@@ -1,0 +1,2525 @@
+{
+  "__commonjsHelpers-725317a4.js": {
+    "file": "assets/_commonjsHelpers-725317a4.js"
+  },
+  "_index-18be2a98.js": {
+    "file": "assets/index-18be2a98.js",
+    "imports": [
+      "_index-c7f8d856.js",
+      "_internal-34342d00.js"
+    ]
+  },
+  "_index-c7f8d856.js": {
+    "file": "assets/index-c7f8d856.js"
+  },
+  "_internal-34342d00.js": {
+    "file": "assets/internal-34342d00.js",
+    "imports": [
+      "_index-c7f8d856.js"
+    ]
+  },
+  "_popper-0e930465.js": {
+    "file": "assets/popper-0e930465.js"
+  },
+  "node_modules/leaflet/dist/images/layers-2x.png": {
+    "file": "assets/layers-2x-066daca8.png",
+    "src": "node_modules/leaflet/dist/images/layers-2x.png"
+  },
+  "node_modules/leaflet/dist/images/layers.png": {
+    "file": "assets/layers-1dbbe9d0.png",
+    "src": "node_modules/leaflet/dist/images/layers.png"
+  },
+  "node_modules/leaflet/dist/images/marker-icon.png": {
+    "file": "assets/marker-icon-574c3a5c.png",
+    "src": "node_modules/leaflet/dist/images/marker-icon.png"
+  },
+  "resources/css/app.css": {
+    "file": "assets/app-865b0105.css",
+    "isEntry": true,
+    "src": "resources/css/app.css"
+  },
+  "resources/css/pages/landing-page.css": {
+    "file": "assets/landing-page-3adf694e.css",
+    "isEntry": true,
+    "src": "resources/css/pages/landing-page.css"
+  },
+  "resources/css/themes/dagger.css": {
+    "file": "assets/dagger-2609b0f9.css",
+    "isEntry": true,
+    "src": "resources/css/themes/dagger.css"
+  },
+  "resources/css/themes/echo.css": {
+    "file": "assets/echo-31d9a39c.css",
+    "isEntry": true,
+    "src": "resources/css/themes/echo.css"
+  },
+  "resources/css/themes/exort.css": {
+    "file": "assets/exort-ab5c67d0.css",
+    "isEntry": true,
+    "src": "resources/css/themes/exort.css"
+  },
+  "resources/css/themes/havoc.css": {
+    "file": "assets/havoc-01e9d6b8.css",
+    "isEntry": true,
+    "src": "resources/css/themes/havoc.css"
+  },
+  "resources/css/themes/hook.css": {
+    "file": "assets/hook-ebaa494f.css",
+    "isEntry": true,
+    "src": "resources/css/themes/hook.css"
+  },
+  "resources/css/themes/hurricane.css": {
+    "file": "assets/hurricane-c6322c50.css",
+    "isEntry": true,
+    "src": "resources/css/themes/hurricane.css"
+  },
+  "resources/css/themes/ravage.css": {
+    "file": "assets/ravage-94d1095e.css",
+    "isEntry": true,
+    "src": "resources/css/themes/ravage.css"
+  },
+  "resources/css/themes/raze.css": {
+    "file": "assets/raze-879a4056.css",
+    "isEntry": true,
+    "src": "resources/css/themes/raze.css"
+  },
+  "resources/css/themes/razor.css": {
+    "file": "assets/razor-bc7a4a19.css",
+    "isEntry": true,
+    "src": "resources/css/themes/razor.css"
+  },
+  "resources/css/themes/shuriken.css": {
+    "file": "assets/shuriken-cf05f71d.css",
+    "isEntry": true,
+    "src": "resources/css/themes/shuriken.css"
+  },
+  "resources/css/themes/viper.css": {
+    "file": "assets/viper-63057930.css",
+    "isEntry": true,
+    "src": "resources/css/themes/viper.css"
+  },
+  "resources/css/vendors/ckeditor.css": {
+    "file": "assets/ckeditor-7a56983c.css",
+    "isEntry": true,
+    "src": "resources/css/vendors/ckeditor.css"
+  },
+  "resources/css/vendors/dropzone.css": {
+    "file": "assets/dropzone-1f8a37e8.css",
+    "isEntry": true,
+    "src": "resources/css/vendors/dropzone.css"
+  },
+  "resources/css/vendors/full-calendar.css": {
+    "file": "assets/full-calendar-4f0332e4.css",
+    "isEntry": true,
+    "src": "resources/css/vendors/full-calendar.css"
+  },
+  "resources/css/vendors/highlight.css": {
+    "file": "assets/highlight-47e00288.css",
+    "isEntry": true,
+    "src": "resources/css/vendors/highlight.css"
+  },
+  "resources/css/vendors/leaflet.css": {
+    "file": "assets/leaflet-79eb8ab5.css",
+    "isEntry": true,
+    "src": "resources/css/vendors/leaflet.css"
+  },
+  "resources/css/vendors/litepicker.css": {
+    "file": "assets/litepicker-4ea74866.css",
+    "isEntry": true,
+    "src": "resources/css/vendors/litepicker.css"
+  },
+  "resources/css/vendors/simplebar.css": {
+    "file": "assets/simplebar-6c874a94.css",
+    "isEntry": true,
+    "src": "resources/css/vendors/simplebar.css"
+  },
+  "resources/css/vendors/tabulator.css": {
+    "file": "assets/tabulator-c4bbe32a.css",
+    "isEntry": true,
+    "src": "resources/css/vendors/tabulator.css"
+  },
+  "resources/css/vendors/tiny-slider.css": {
+    "file": "assets/tiny-slider-74981a83.css",
+    "isEntry": true,
+    "src": "resources/css/vendors/tiny-slider.css"
+  },
+  "resources/css/vendors/tippy.css": {
+    "file": "assets/tippy-2114d032.css",
+    "isEntry": true,
+    "src": "resources/css/vendors/tippy.css"
+  },
+  "resources/css/vendors/toastify.css": {
+    "file": "assets/toastify-9c0ea907.css",
+    "isEntry": true,
+    "src": "resources/css/vendors/toastify.css"
+  },
+  "resources/css/vendors/tom-select.css": {
+    "file": "assets/tom-select-f7c9484a.css",
+    "isEntry": true,
+    "src": "resources/css/vendors/tom-select.css"
+  },
+  "resources/css/vendors/zoom-vanilla.css": {
+    "file": "assets/zoom-vanilla-d37d5900.css",
+    "isEntry": true,
+    "src": "resources/css/vendors/zoom-vanilla.css"
+  },
+  "resources/images/browsers/chrome.png": {
+    "file": "assets/chrome-3cf09be3.png",
+    "src": "resources/images/browsers/chrome.png"
+  },
+  "resources/images/browsers/edge.png": {
+    "file": "assets/edge-63a6b8eb.png",
+    "src": "resources/images/browsers/edge.png"
+  },
+  "resources/images/browsers/firefox.png": {
+    "file": "assets/firefox-adc2cea6.png",
+    "src": "resources/images/browsers/firefox.png"
+  },
+  "resources/images/browsers/opera.png": {
+    "file": "assets/opera-ca3558e9.png",
+    "src": "resources/images/browsers/opera.png"
+  },
+  "resources/images/browsers/safari.png": {
+    "file": "assets/safari-ac936f93.png",
+    "src": "resources/images/browsers/safari.png"
+  },
+  "resources/images/flags/Flag_of_the_Taliban.svg": {
+    "file": "assets/Flag_of_the_Taliban-fc326ebb.svg",
+    "src": "resources/images/flags/Flag_of_the_Taliban.svg"
+  },
+  "resources/images/flags/ad.svg": {
+    "file": "assets/ad-b7fd2e5e.svg",
+    "src": "resources/images/flags/ad.svg"
+  },
+  "resources/images/flags/ae.svg": {
+    "file": "assets/ae-4c99214b.svg",
+    "src": "resources/images/flags/ae.svg"
+  },
+  "resources/images/flags/ag.svg": {
+    "file": "assets/ag-73f382e9.svg",
+    "src": "resources/images/flags/ag.svg"
+  },
+  "resources/images/flags/ai.svg": {
+    "file": "assets/ai-639c7e91.svg",
+    "src": "resources/images/flags/ai.svg"
+  },
+  "resources/images/flags/al.svg": {
+    "file": "assets/al-e223abdb.svg",
+    "src": "resources/images/flags/al.svg"
+  },
+  "resources/images/flags/am.svg": {
+    "file": "assets/am-1eb2190d.svg",
+    "src": "resources/images/flags/am.svg"
+  },
+  "resources/images/flags/ao.svg": {
+    "file": "assets/ao-0f10545c.svg",
+    "src": "resources/images/flags/ao.svg"
+  },
+  "resources/images/flags/aq.svg": {
+    "file": "assets/aq-18adc302.svg",
+    "src": "resources/images/flags/aq.svg"
+  },
+  "resources/images/flags/ar.svg": {
+    "file": "assets/ar-0828d651.svg",
+    "src": "resources/images/flags/ar.svg"
+  },
+  "resources/images/flags/as.svg": {
+    "file": "assets/as-082377df.svg",
+    "src": "resources/images/flags/as.svg"
+  },
+  "resources/images/flags/at.svg": {
+    "file": "assets/at-5c5bded6.svg",
+    "src": "resources/images/flags/at.svg"
+  },
+  "resources/images/flags/au.svg": {
+    "file": "assets/au-b826e039.svg",
+    "src": "resources/images/flags/au.svg"
+  },
+  "resources/images/flags/aw.svg": {
+    "file": "assets/aw-2c9121a1.svg",
+    "src": "resources/images/flags/aw.svg"
+  },
+  "resources/images/flags/ax.svg": {
+    "file": "assets/ax-df64c5be.svg",
+    "src": "resources/images/flags/ax.svg"
+  },
+  "resources/images/flags/az.svg": {
+    "file": "assets/az-963c074a.svg",
+    "src": "resources/images/flags/az.svg"
+  },
+  "resources/images/flags/ba.svg": {
+    "file": "assets/ba-1c83a2cf.svg",
+    "src": "resources/images/flags/ba.svg"
+  },
+  "resources/images/flags/bb.svg": {
+    "file": "assets/bb-b38fe14e.svg",
+    "src": "resources/images/flags/bb.svg"
+  },
+  "resources/images/flags/bd.svg": {
+    "file": "assets/bd-0bcebecf.svg",
+    "src": "resources/images/flags/bd.svg"
+  },
+  "resources/images/flags/be.svg": {
+    "file": "assets/be-95933c38.svg",
+    "src": "resources/images/flags/be.svg"
+  },
+  "resources/images/flags/bf.svg": {
+    "file": "assets/bf-f5bdfcb8.svg",
+    "src": "resources/images/flags/bf.svg"
+  },
+  "resources/images/flags/bg.svg": {
+    "file": "assets/bg-829c1f5f.svg",
+    "src": "resources/images/flags/bg.svg"
+  },
+  "resources/images/flags/bh.svg": {
+    "file": "assets/bh-4cb584ef.svg",
+    "src": "resources/images/flags/bh.svg"
+  },
+  "resources/images/flags/bi.svg": {
+    "file": "assets/bi-00f86f04.svg",
+    "src": "resources/images/flags/bi.svg"
+  },
+  "resources/images/flags/bj.svg": {
+    "file": "assets/bj-03e7fd78.svg",
+    "src": "resources/images/flags/bj.svg"
+  },
+  "resources/images/flags/bl.svg": {
+    "file": "assets/bl-863f20b7.svg",
+    "src": "resources/images/flags/bl.svg"
+  },
+  "resources/images/flags/bm.svg": {
+    "file": "assets/bm-c5641664.svg",
+    "src": "resources/images/flags/bm.svg"
+  },
+  "resources/images/flags/bn.svg": {
+    "file": "assets/bn-cdb37ed2.svg",
+    "src": "resources/images/flags/bn.svg"
+  },
+  "resources/images/flags/bo.svg": {
+    "file": "assets/bo-58fb0ddc.svg",
+    "src": "resources/images/flags/bo.svg"
+  },
+  "resources/images/flags/bq.svg": {
+    "file": "assets/bq-c05d6c9f.svg",
+    "src": "resources/images/flags/bq.svg"
+  },
+  "resources/images/flags/br.svg": {
+    "file": "assets/br-49dc0586.svg",
+    "src": "resources/images/flags/br.svg"
+  },
+  "resources/images/flags/bs.svg": {
+    "file": "assets/bs-44946f0b.svg",
+    "src": "resources/images/flags/bs.svg"
+  },
+  "resources/images/flags/bt.svg": {
+    "file": "assets/bt-39a47be4.svg",
+    "src": "resources/images/flags/bt.svg"
+  },
+  "resources/images/flags/bv.svg": {
+    "file": "assets/bv-0d4b9a52.svg",
+    "src": "resources/images/flags/sj.svg"
+  },
+  "resources/images/flags/bw.svg": {
+    "file": "assets/bw-e89b9cb2.svg",
+    "src": "resources/images/flags/bw.svg"
+  },
+  "resources/images/flags/by.svg": {
+    "file": "assets/by-2af1ac1e.svg",
+    "src": "resources/images/flags/by.svg"
+  },
+  "resources/images/flags/bz.svg": {
+    "file": "assets/bz-99ff3a88.svg",
+    "src": "resources/images/flags/bz.svg"
+  },
+  "resources/images/flags/ca.svg": {
+    "file": "assets/ca-3cd6c2b9.svg",
+    "src": "resources/images/flags/ca.svg"
+  },
+  "resources/images/flags/cc.svg": {
+    "file": "assets/cc-aa90a1a3.svg",
+    "src": "resources/images/flags/cc.svg"
+  },
+  "resources/images/flags/cd.svg": {
+    "file": "assets/cd-e2e70cf2.svg",
+    "src": "resources/images/flags/cd.svg"
+  },
+  "resources/images/flags/cf.svg": {
+    "file": "assets/cf-f36cc981.svg",
+    "src": "resources/images/flags/cf.svg"
+  },
+  "resources/images/flags/cg.svg": {
+    "file": "assets/cg-807dcf2a.svg",
+    "src": "resources/images/flags/cg.svg"
+  },
+  "resources/images/flags/ch.svg": {
+    "file": "assets/ch-a5ec3bbf.svg",
+    "src": "resources/images/flags/ch.svg"
+  },
+  "resources/images/flags/ci.svg": {
+    "file": "assets/ci-aaf7093d.svg",
+    "src": "resources/images/flags/ci.svg"
+  },
+  "resources/images/flags/ck.svg": {
+    "file": "assets/ck-9bd6978b.svg",
+    "src": "resources/images/flags/ck.svg"
+  },
+  "resources/images/flags/cl.svg": {
+    "file": "assets/cl-e7748ff7.svg",
+    "src": "resources/images/flags/cl.svg"
+  },
+  "resources/images/flags/cm.svg": {
+    "file": "assets/cm-e00c6cbb.svg",
+    "src": "resources/images/flags/cm.svg"
+  },
+  "resources/images/flags/cn.svg": {
+    "file": "assets/cn-3d7114ff.svg",
+    "src": "resources/images/flags/cn.svg"
+  },
+  "resources/images/flags/co.svg": {
+    "file": "assets/co-ec3daa5a.svg",
+    "src": "resources/images/flags/co.svg"
+  },
+  "resources/images/flags/cr.svg": {
+    "file": "assets/cr-f7e60b87.svg",
+    "src": "resources/images/flags/cr.svg"
+  },
+  "resources/images/flags/cu.svg": {
+    "file": "assets/cu-afba6d3e.svg",
+    "src": "resources/images/flags/cu.svg"
+  },
+  "resources/images/flags/cv.svg": {
+    "file": "assets/cv-e7805434.svg",
+    "src": "resources/images/flags/cv.svg"
+  },
+  "resources/images/flags/cw.svg": {
+    "file": "assets/cw-2c712553.svg",
+    "src": "resources/images/flags/cw.svg"
+  },
+  "resources/images/flags/cx.svg": {
+    "file": "assets/cx-f2b1f3cc.svg",
+    "src": "resources/images/flags/cx.svg"
+  },
+  "resources/images/flags/cy.svg": {
+    "file": "assets/cy-ec2a3c6c.svg",
+    "src": "resources/images/flags/cy.svg"
+  },
+  "resources/images/flags/cz.svg": {
+    "file": "assets/cz-5f4ba801.svg",
+    "src": "resources/images/flags/cz.svg"
+  },
+  "resources/images/flags/de.svg": {
+    "file": "assets/de-595d7718.svg",
+    "src": "resources/images/flags/de.svg"
+  },
+  "resources/images/flags/dj.svg": {
+    "file": "assets/dj-072cd869.svg",
+    "src": "resources/images/flags/dj.svg"
+  },
+  "resources/images/flags/dk.svg": {
+    "file": "assets/dk-eb4ea992.svg",
+    "src": "resources/images/flags/dk.svg"
+  },
+  "resources/images/flags/dm.svg": {
+    "file": "assets/dm-b4371e47.svg",
+    "src": "resources/images/flags/dm.svg"
+  },
+  "resources/images/flags/do.svg": {
+    "file": "assets/do-ed01134a.svg",
+    "src": "resources/images/flags/do.svg"
+  },
+  "resources/images/flags/dz.svg": {
+    "file": "assets/dz-51bda9bd.svg",
+    "src": "resources/images/flags/dz.svg"
+  },
+  "resources/images/flags/ec.svg": {
+    "file": "assets/ec-59c54050.svg",
+    "src": "resources/images/flags/ec.svg"
+  },
+  "resources/images/flags/ee.svg": {
+    "file": "assets/ee-03ec84a8.svg",
+    "src": "resources/images/flags/ee.svg"
+  },
+  "resources/images/flags/eg.svg": {
+    "file": "assets/eg-07129395.svg",
+    "src": "resources/images/flags/eg.svg"
+  },
+  "resources/images/flags/eh.svg": {
+    "file": "assets/eh-ce96e387.svg",
+    "src": "resources/images/flags/eh.svg"
+  },
+  "resources/images/flags/er.svg": {
+    "file": "assets/er-69f92c17.svg",
+    "src": "resources/images/flags/er.svg"
+  },
+  "resources/images/flags/es.svg": {
+    "file": "assets/es-70fe4661.svg",
+    "src": "resources/images/flags/es.svg"
+  },
+  "resources/images/flags/et.svg": {
+    "file": "assets/et-980ec719.svg",
+    "src": "resources/images/flags/et.svg"
+  },
+  "resources/images/flags/fi.svg": {
+    "file": "assets/fi-5d1ab833.svg",
+    "src": "resources/images/flags/fi.svg"
+  },
+  "resources/images/flags/fj.svg": {
+    "file": "assets/fj-e2c0c872.svg",
+    "src": "resources/images/flags/fj.svg"
+  },
+  "resources/images/flags/fk.svg": {
+    "file": "assets/fk-3bb31afe.svg",
+    "src": "resources/images/flags/fk.svg"
+  },
+  "resources/images/flags/fm.svg": {
+    "file": "assets/fm-d88d4388.svg",
+    "src": "resources/images/flags/fm.svg"
+  },
+  "resources/images/flags/fo.svg": {
+    "file": "assets/fo-ca294294.svg",
+    "src": "resources/images/flags/fo.svg"
+  },
+  "resources/images/flags/fr.svg": {
+    "file": "assets/fr-562a4c9c.svg",
+    "src": "resources/images/flags/mf.svg"
+  },
+  "resources/images/flags/ga.svg": {
+    "file": "assets/ga-43e2be0b.svg",
+    "src": "resources/images/flags/ga.svg"
+  },
+  "resources/images/flags/gb.svg": {
+    "file": "assets/gb-42f04826.svg",
+    "src": "resources/images/flags/gb.svg"
+  },
+  "resources/images/flags/gd.svg": {
+    "file": "assets/gd-a2068c16.svg",
+    "src": "resources/images/flags/gd.svg"
+  },
+  "resources/images/flags/ge.svg": {
+    "file": "assets/ge-dfba0d29.svg",
+    "src": "resources/images/flags/ge.svg"
+  },
+  "resources/images/flags/gf.svg": {
+    "file": "assets/gf-59df62bf.svg",
+    "src": "resources/images/flags/gf.svg"
+  },
+  "resources/images/flags/gg.svg": {
+    "file": "assets/gg-05fb56e4.svg",
+    "src": "resources/images/flags/gg.svg"
+  },
+  "resources/images/flags/gh.svg": {
+    "file": "assets/gh-b2f86ef2.svg",
+    "src": "resources/images/flags/gh.svg"
+  },
+  "resources/images/flags/gi.svg": {
+    "file": "assets/gi-e5f4e6d2.svg",
+    "src": "resources/images/flags/gi.svg"
+  },
+  "resources/images/flags/gl.svg": {
+    "file": "assets/gl-f32a2bfa.svg",
+    "src": "resources/images/flags/gl.svg"
+  },
+  "resources/images/flags/gm.svg": {
+    "file": "assets/gm-d4418b31.svg",
+    "src": "resources/images/flags/gm.svg"
+  },
+  "resources/images/flags/gn.svg": {
+    "file": "assets/gn-4932e18d.svg",
+    "src": "resources/images/flags/gn.svg"
+  },
+  "resources/images/flags/gp.svg": {
+    "file": "assets/gp-ea8ea1dc.svg",
+    "src": "resources/images/flags/gp.svg"
+  },
+  "resources/images/flags/gq.svg": {
+    "file": "assets/gq-c9127828.svg",
+    "src": "resources/images/flags/gq.svg"
+  },
+  "resources/images/flags/gr.svg": {
+    "file": "assets/gr-e8a25b9e.svg",
+    "src": "resources/images/flags/gr.svg"
+  },
+  "resources/images/flags/gs.svg": {
+    "file": "assets/gs-b961866c.svg",
+    "src": "resources/images/flags/gs.svg"
+  },
+  "resources/images/flags/gt.svg": {
+    "file": "assets/gt-d59addea.svg",
+    "src": "resources/images/flags/gt.svg"
+  },
+  "resources/images/flags/gu.svg": {
+    "file": "assets/gu-2c5ae582.svg",
+    "src": "resources/images/flags/gu.svg"
+  },
+  "resources/images/flags/gw.svg": {
+    "file": "assets/gw-00dd3c38.svg",
+    "src": "resources/images/flags/gw.svg"
+  },
+  "resources/images/flags/gy.svg": {
+    "file": "assets/gy-44561670.svg",
+    "src": "resources/images/flags/gy.svg"
+  },
+  "resources/images/flags/hk.svg": {
+    "file": "assets/hk-4c7cbced.svg",
+    "src": "resources/images/flags/hk.svg"
+  },
+  "resources/images/flags/hm.svg": {
+    "file": "assets/hm-1fff6af9.svg",
+    "src": "resources/images/flags/hm.svg"
+  },
+  "resources/images/flags/hn.svg": {
+    "file": "assets/hn-d2dd47a4.svg",
+    "src": "resources/images/flags/hn.svg"
+  },
+  "resources/images/flags/hr.svg": {
+    "file": "assets/hr-fa441578.svg",
+    "src": "resources/images/flags/hr.svg"
+  },
+  "resources/images/flags/ht.svg": {
+    "file": "assets/ht-9684167d.svg",
+    "src": "resources/images/flags/ht.svg"
+  },
+  "resources/images/flags/hu.svg": {
+    "file": "assets/hu-2025b7ca.svg",
+    "src": "resources/images/flags/hu.svg"
+  },
+  "resources/images/flags/id.svg": {
+    "file": "assets/id-b9d9dea9.svg",
+    "src": "resources/images/flags/id.svg"
+  },
+  "resources/images/flags/ie.svg": {
+    "file": "assets/ie-5a2e2ec7.svg",
+    "src": "resources/images/flags/ie.svg"
+  },
+  "resources/images/flags/il.svg": {
+    "file": "assets/il-9e884f0c.svg",
+    "src": "resources/images/flags/il.svg"
+  },
+  "resources/images/flags/im.svg": {
+    "file": "assets/im-78807056.svg",
+    "src": "resources/images/flags/im.svg"
+  },
+  "resources/images/flags/in.svg": {
+    "file": "assets/in-86ade8e2.svg",
+    "src": "resources/images/flags/in.svg"
+  },
+  "resources/images/flags/io.svg": {
+    "file": "assets/io-9d3a6146.svg",
+    "src": "resources/images/flags/io.svg"
+  },
+  "resources/images/flags/iq.svg": {
+    "file": "assets/iq-b0de86ef.svg",
+    "src": "resources/images/flags/iq.svg"
+  },
+  "resources/images/flags/ir.svg": {
+    "file": "assets/ir-bf022884.svg",
+    "src": "resources/images/flags/ir.svg"
+  },
+  "resources/images/flags/is.svg": {
+    "file": "assets/is-b14a9078.svg",
+    "src": "resources/images/flags/is.svg"
+  },
+  "resources/images/flags/it.svg": {
+    "file": "assets/it-7f818fa8.svg",
+    "src": "resources/images/flags/it.svg"
+  },
+  "resources/images/flags/je.svg": {
+    "file": "assets/je-8bd0a0d8.svg",
+    "src": "resources/images/flags/je.svg"
+  },
+  "resources/images/flags/jm.svg": {
+    "file": "assets/jm-44504dda.svg",
+    "src": "resources/images/flags/jm.svg"
+  },
+  "resources/images/flags/jo.svg": {
+    "file": "assets/jo-fb2b2896.svg",
+    "src": "resources/images/flags/jo.svg"
+  },
+  "resources/images/flags/jp.svg": {
+    "file": "assets/jp-e8e6f6e7.svg",
+    "src": "resources/images/flags/jp.svg"
+  },
+  "resources/images/flags/ke.svg": {
+    "file": "assets/ke-0c65788e.svg",
+    "src": "resources/images/flags/ke.svg"
+  },
+  "resources/images/flags/kg.svg": {
+    "file": "assets/kg-aa4e1fb9.svg",
+    "src": "resources/images/flags/kg.svg"
+  },
+  "resources/images/flags/kh.svg": {
+    "file": "assets/kh-bdff2091.svg",
+    "src": "resources/images/flags/kh.svg"
+  },
+  "resources/images/flags/ki.svg": {
+    "file": "assets/ki-3a330172.svg",
+    "src": "resources/images/flags/ki.svg"
+  },
+  "resources/images/flags/km.svg": {
+    "file": "assets/km-21e3ee9d.svg",
+    "src": "resources/images/flags/km.svg"
+  },
+  "resources/images/flags/kn.svg": {
+    "file": "assets/kn-6c480252.svg",
+    "src": "resources/images/flags/kn.svg"
+  },
+  "resources/images/flags/kp.svg": {
+    "file": "assets/kp-cc48c5f5.svg",
+    "src": "resources/images/flags/kp.svg"
+  },
+  "resources/images/flags/kr.svg": {
+    "file": "assets/kr-cca1e8c9.svg",
+    "src": "resources/images/flags/kr.svg"
+  },
+  "resources/images/flags/kw.svg": {
+    "file": "assets/kw-ce622987.svg",
+    "src": "resources/images/flags/kw.svg"
+  },
+  "resources/images/flags/ky.svg": {
+    "file": "assets/ky-30e1eff5.svg",
+    "src": "resources/images/flags/ky.svg"
+  },
+  "resources/images/flags/kz.svg": {
+    "file": "assets/kz-71a7d90e.svg",
+    "src": "resources/images/flags/kz.svg"
+  },
+  "resources/images/flags/la.svg": {
+    "file": "assets/la-c0cbe90a.svg",
+    "src": "resources/images/flags/la.svg"
+  },
+  "resources/images/flags/lb.svg": {
+    "file": "assets/lb-c76324a8.svg",
+    "src": "resources/images/flags/lb.svg"
+  },
+  "resources/images/flags/lc.svg": {
+    "file": "assets/lc-13f4f19e.svg",
+    "src": "resources/images/flags/lc.svg"
+  },
+  "resources/images/flags/li.svg": {
+    "file": "assets/li-308d212c.svg",
+    "src": "resources/images/flags/li.svg"
+  },
+  "resources/images/flags/lk.svg": {
+    "file": "assets/lk-c6d5351f.svg",
+    "src": "resources/images/flags/lk.svg"
+  },
+  "resources/images/flags/lr.svg": {
+    "file": "assets/lr-b722560b.svg",
+    "src": "resources/images/flags/lr.svg"
+  },
+  "resources/images/flags/ls.svg": {
+    "file": "assets/ls-66002ab4.svg",
+    "src": "resources/images/flags/ls.svg"
+  },
+  "resources/images/flags/lt.svg": {
+    "file": "assets/lt-9743f780.svg",
+    "src": "resources/images/flags/lt.svg"
+  },
+  "resources/images/flags/lu.svg": {
+    "file": "assets/lu-23c57bfe.svg",
+    "src": "resources/images/flags/lu.svg"
+  },
+  "resources/images/flags/lv.svg": {
+    "file": "assets/lv-042f799f.svg",
+    "src": "resources/images/flags/lv.svg"
+  },
+  "resources/images/flags/ly.svg": {
+    "file": "assets/ly-e2b01974.svg",
+    "src": "resources/images/flags/ly.svg"
+  },
+  "resources/images/flags/ma.svg": {
+    "file": "assets/ma-1f6f0d1b.svg",
+    "src": "resources/images/flags/ma.svg"
+  },
+  "resources/images/flags/mc.svg": {
+    "file": "assets/mc-bb97fd4d.svg",
+    "src": "resources/images/flags/mc.svg"
+  },
+  "resources/images/flags/md.svg": {
+    "file": "assets/md-a61c465c.svg",
+    "src": "resources/images/flags/md.svg"
+  },
+  "resources/images/flags/me.svg": {
+    "file": "assets/me-01143b99.svg",
+    "src": "resources/images/flags/me.svg"
+  },
+  "resources/images/flags/mf.svg": {
+    "file": "assets/fr-562a4c9c.svg",
+    "src": "resources/images/flags/mf.svg"
+  },
+  "resources/images/flags/mg.svg": {
+    "file": "assets/mg-00a57050.svg",
+    "src": "resources/images/flags/mg.svg"
+  },
+  "resources/images/flags/mh.svg": {
+    "file": "assets/mh-4d9431d2.svg",
+    "src": "resources/images/flags/mh.svg"
+  },
+  "resources/images/flags/mk.svg": {
+    "file": "assets/mk-72a37e58.svg",
+    "src": "resources/images/flags/mk.svg"
+  },
+  "resources/images/flags/ml.svg": {
+    "file": "assets/ml-ae9516c4.svg",
+    "src": "resources/images/flags/ml.svg"
+  },
+  "resources/images/flags/mm.svg": {
+    "file": "assets/mm-2ebf5312.svg",
+    "src": "resources/images/flags/mm.svg"
+  },
+  "resources/images/flags/mn.svg": {
+    "file": "assets/mn-4f89f928.svg",
+    "src": "resources/images/flags/mn.svg"
+  },
+  "resources/images/flags/mo.svg": {
+    "file": "assets/mo-f163f905.svg",
+    "src": "resources/images/flags/mo.svg"
+  },
+  "resources/images/flags/mp.svg": {
+    "file": "assets/mp-f4d7305a.svg",
+    "src": "resources/images/flags/mp.svg"
+  },
+  "resources/images/flags/mq.svg": {
+    "file": "assets/mq-1e7bffab.svg",
+    "src": "resources/images/flags/mq.svg"
+  },
+  "resources/images/flags/mr.svg": {
+    "file": "assets/mr-1655e7ed.svg",
+    "src": "resources/images/flags/mr.svg"
+  },
+  "resources/images/flags/ms.svg": {
+    "file": "assets/ms-0545a34b.svg",
+    "src": "resources/images/flags/ms.svg"
+  },
+  "resources/images/flags/mt.svg": {
+    "file": "assets/mt-708f8eef.svg",
+    "src": "resources/images/flags/mt.svg"
+  },
+  "resources/images/flags/mu.svg": {
+    "file": "assets/mu-c35ef838.svg",
+    "src": "resources/images/flags/mu.svg"
+  },
+  "resources/images/flags/mv.svg": {
+    "file": "assets/mv-801403b3.svg",
+    "src": "resources/images/flags/mv.svg"
+  },
+  "resources/images/flags/mw.svg": {
+    "file": "assets/mw-81a7dc8d.svg",
+    "src": "resources/images/flags/mw.svg"
+  },
+  "resources/images/flags/mx.svg": {
+    "file": "assets/mx-31a26fb8.svg",
+    "src": "resources/images/flags/mx.svg"
+  },
+  "resources/images/flags/my.svg": {
+    "file": "assets/my-1d3284c7.svg",
+    "src": "resources/images/flags/my.svg"
+  },
+  "resources/images/flags/mz.svg": {
+    "file": "assets/mz-649e978e.svg",
+    "src": "resources/images/flags/mz.svg"
+  },
+  "resources/images/flags/na.svg": {
+    "file": "assets/na-ddc9fc88.svg",
+    "src": "resources/images/flags/na.svg"
+  },
+  "resources/images/flags/nc.svg": {
+    "file": "assets/nc-1b63dd59.svg",
+    "src": "resources/images/flags/nc.svg"
+  },
+  "resources/images/flags/ne.svg": {
+    "file": "assets/ne-28609886.svg",
+    "src": "resources/images/flags/ne.svg"
+  },
+  "resources/images/flags/nf.svg": {
+    "file": "assets/nf-224e33c2.svg",
+    "src": "resources/images/flags/nf.svg"
+  },
+  "resources/images/flags/ng.svg": {
+    "file": "assets/ng-3dbebd9f.svg",
+    "src": "resources/images/flags/ng.svg"
+  },
+  "resources/images/flags/ni.svg": {
+    "file": "assets/ni-ed4fbc93.svg",
+    "src": "resources/images/flags/ni.svg"
+  },
+  "resources/images/flags/nl.svg": {
+    "file": "assets/nl-2f746357.svg",
+    "src": "resources/images/flags/nl.svg"
+  },
+  "resources/images/flags/no.svg": {
+    "file": "assets/bv-0d4b9a52.svg",
+    "src": "resources/images/flags/sj.svg"
+  },
+  "resources/images/flags/np.svg": {
+    "file": "assets/np-f4a65e69.svg",
+    "src": "resources/images/flags/np.svg"
+  },
+  "resources/images/flags/nr.svg": {
+    "file": "assets/nr-b1361d30.svg",
+    "src": "resources/images/flags/nr.svg"
+  },
+  "resources/images/flags/nu.svg": {
+    "file": "assets/nu-254e1c4d.svg",
+    "src": "resources/images/flags/nu.svg"
+  },
+  "resources/images/flags/nz.svg": {
+    "file": "assets/nz-aa29843a.svg",
+    "src": "resources/images/flags/nz.svg"
+  },
+  "resources/images/flags/om.svg": {
+    "file": "assets/om-2c0654c0.svg",
+    "src": "resources/images/flags/om.svg"
+  },
+  "resources/images/flags/pa.svg": {
+    "file": "assets/pa-8e8c7cf8.svg",
+    "src": "resources/images/flags/pa.svg"
+  },
+  "resources/images/flags/pe.svg": {
+    "file": "assets/pe-a35cf7c9.svg",
+    "src": "resources/images/flags/pe.svg"
+  },
+  "resources/images/flags/pf.svg": {
+    "file": "assets/pf-f04ae241.svg",
+    "src": "resources/images/flags/pf.svg"
+  },
+  "resources/images/flags/pg.svg": {
+    "file": "assets/pg-d98adee3.svg",
+    "src": "resources/images/flags/pg.svg"
+  },
+  "resources/images/flags/ph.svg": {
+    "file": "assets/ph-d5542973.svg",
+    "src": "resources/images/flags/ph.svg"
+  },
+  "resources/images/flags/pk.svg": {
+    "file": "assets/pk-2011fe01.svg",
+    "src": "resources/images/flags/pk.svg"
+  },
+  "resources/images/flags/pl.svg": {
+    "file": "assets/pl-da6d9e34.svg",
+    "src": "resources/images/flags/pl.svg"
+  },
+  "resources/images/flags/pm.svg": {
+    "file": "assets/pm-2e210b75.svg",
+    "src": "resources/images/flags/pm.svg"
+  },
+  "resources/images/flags/pn.svg": {
+    "file": "assets/pn-2affa299.svg",
+    "src": "resources/images/flags/pn.svg"
+  },
+  "resources/images/flags/pr.svg": {
+    "file": "assets/pr-6b1b5d84.svg",
+    "src": "resources/images/flags/pr.svg"
+  },
+  "resources/images/flags/ps.svg": {
+    "file": "assets/ps-443fbb49.svg",
+    "src": "resources/images/flags/ps.svg"
+  },
+  "resources/images/flags/pt.svg": {
+    "file": "assets/pt-003345b1.svg",
+    "src": "resources/images/flags/pt.svg"
+  },
+  "resources/images/flags/pw.svg": {
+    "file": "assets/pw-47fc578c.svg",
+    "src": "resources/images/flags/pw.svg"
+  },
+  "resources/images/flags/py.svg": {
+    "file": "assets/py-5bb06bf5.svg",
+    "src": "resources/images/flags/py.svg"
+  },
+  "resources/images/flags/qa.svg": {
+    "file": "assets/qa-79e67b6c.svg",
+    "src": "resources/images/flags/qa.svg"
+  },
+  "resources/images/flags/re.svg": {
+    "file": "assets/re-d331ea07.svg",
+    "src": "resources/images/flags/re.svg"
+  },
+  "resources/images/flags/ro.svg": {
+    "file": "assets/ro-20c8e695.svg",
+    "src": "resources/images/flags/ro.svg"
+  },
+  "resources/images/flags/rs.svg": {
+    "file": "assets/rs-351ff543.svg",
+    "src": "resources/images/flags/rs.svg"
+  },
+  "resources/images/flags/ru.svg": {
+    "file": "assets/ru-eb1dbd97.svg",
+    "src": "resources/images/flags/ru.svg"
+  },
+  "resources/images/flags/rw.svg": {
+    "file": "assets/rw-21b67e23.svg",
+    "src": "resources/images/flags/rw.svg"
+  },
+  "resources/images/flags/sa.svg": {
+    "file": "assets/sa-7176d38f.svg",
+    "src": "resources/images/flags/sa.svg"
+  },
+  "resources/images/flags/sb.svg": {
+    "file": "assets/sb-56e24d58.svg",
+    "src": "resources/images/flags/sb.svg"
+  },
+  "resources/images/flags/sc.svg": {
+    "file": "assets/sc-1d2ae98c.svg",
+    "src": "resources/images/flags/sc.svg"
+  },
+  "resources/images/flags/sd.svg": {
+    "file": "assets/sd-305064d3.svg",
+    "src": "resources/images/flags/sd.svg"
+  },
+  "resources/images/flags/se.svg": {
+    "file": "assets/se-1713213a.svg",
+    "src": "resources/images/flags/se.svg"
+  },
+  "resources/images/flags/sg.svg": {
+    "file": "assets/sg-d8782c5c.svg",
+    "src": "resources/images/flags/sg.svg"
+  },
+  "resources/images/flags/sh.svg": {
+    "file": "assets/sh-c33a05d5.svg",
+    "src": "resources/images/flags/sh.svg"
+  },
+  "resources/images/flags/si.svg": {
+    "file": "assets/si-31b0d198.svg",
+    "src": "resources/images/flags/si.svg"
+  },
+  "resources/images/flags/sj.svg": {
+    "file": "assets/bv-0d4b9a52.svg",
+    "src": "resources/images/flags/sj.svg"
+  },
+  "resources/images/flags/sk.svg": {
+    "file": "assets/sk-e684da4c.svg",
+    "src": "resources/images/flags/sk.svg"
+  },
+  "resources/images/flags/sl.svg": {
+    "file": "assets/sl-21d7e066.svg",
+    "src": "resources/images/flags/sl.svg"
+  },
+  "resources/images/flags/sm.svg": {
+    "file": "assets/sm-bb35493b.svg",
+    "src": "resources/images/flags/sm.svg"
+  },
+  "resources/images/flags/sn.svg": {
+    "file": "assets/sn-c0593c9c.svg",
+    "src": "resources/images/flags/sn.svg"
+  },
+  "resources/images/flags/so.svg": {
+    "file": "assets/so-a89ef320.svg",
+    "src": "resources/images/flags/so.svg"
+  },
+  "resources/images/flags/sr.svg": {
+    "file": "assets/sr-098067b9.svg",
+    "src": "resources/images/flags/sr.svg"
+  },
+  "resources/images/flags/ss.svg": {
+    "file": "assets/ss-72e61074.svg",
+    "src": "resources/images/flags/ss.svg"
+  },
+  "resources/images/flags/st.svg": {
+    "file": "assets/st-a9507595.svg",
+    "src": "resources/images/flags/st.svg"
+  },
+  "resources/images/flags/sv.svg": {
+    "file": "assets/sv-cbd0f1c0.svg",
+    "src": "resources/images/flags/sv.svg"
+  },
+  "resources/images/flags/sx.svg": {
+    "file": "assets/sx-7271a35b.svg",
+    "src": "resources/images/flags/sx.svg"
+  },
+  "resources/images/flags/sy.svg": {
+    "file": "assets/sy-7342e86a.svg",
+    "src": "resources/images/flags/sy.svg"
+  },
+  "resources/images/flags/sz.svg": {
+    "file": "assets/sz-d4861d40.svg",
+    "src": "resources/images/flags/sz.svg"
+  },
+  "resources/images/flags/tc.svg": {
+    "file": "assets/tc-d32ec581.svg",
+    "src": "resources/images/flags/tc.svg"
+  },
+  "resources/images/flags/td.svg": {
+    "file": "assets/td-46d9a786.svg",
+    "src": "resources/images/flags/td.svg"
+  },
+  "resources/images/flags/tf.svg": {
+    "file": "assets/tf-56410f02.svg",
+    "src": "resources/images/flags/tf.svg"
+  },
+  "resources/images/flags/tg.svg": {
+    "file": "assets/tg-a9035538.svg",
+    "src": "resources/images/flags/tg.svg"
+  },
+  "resources/images/flags/th.svg": {
+    "file": "assets/th-6b5a7a86.svg",
+    "src": "resources/images/flags/th.svg"
+  },
+  "resources/images/flags/tj.svg": {
+    "file": "assets/tj-fb2c4f79.svg",
+    "src": "resources/images/flags/tj.svg"
+  },
+  "resources/images/flags/tk.svg": {
+    "file": "assets/tk-f3c7c4a9.svg",
+    "src": "resources/images/flags/tk.svg"
+  },
+  "resources/images/flags/tl.svg": {
+    "file": "assets/tl-1f25223c.svg",
+    "src": "resources/images/flags/tl.svg"
+  },
+  "resources/images/flags/tm.svg": {
+    "file": "assets/tm-a03b94f6.svg",
+    "src": "resources/images/flags/tm.svg"
+  },
+  "resources/images/flags/tn.svg": {
+    "file": "assets/tn-b0d8964e.svg",
+    "src": "resources/images/flags/tn.svg"
+  },
+  "resources/images/flags/to.svg": {
+    "file": "assets/to-aaf4a1b5.svg",
+    "src": "resources/images/flags/to.svg"
+  },
+  "resources/images/flags/tr.svg": {
+    "file": "assets/tr-f15da84b.svg",
+    "src": "resources/images/flags/tr.svg"
+  },
+  "resources/images/flags/tt.svg": {
+    "file": "assets/tt-89fa29d1.svg",
+    "src": "resources/images/flags/tt.svg"
+  },
+  "resources/images/flags/tv.svg": {
+    "file": "assets/tv-8596575d.svg",
+    "src": "resources/images/flags/tv.svg"
+  },
+  "resources/images/flags/tw.svg": {
+    "file": "assets/tw-8e27d3df.svg",
+    "src": "resources/images/flags/tw.svg"
+  },
+  "resources/images/flags/tz.svg": {
+    "file": "assets/tz-0bdf0b45.svg",
+    "src": "resources/images/flags/tz.svg"
+  },
+  "resources/images/flags/ua.svg": {
+    "file": "assets/ua-542eaacd.svg",
+    "src": "resources/images/flags/ua.svg"
+  },
+  "resources/images/flags/ug.svg": {
+    "file": "assets/ug-b0d36274.svg",
+    "src": "resources/images/flags/ug.svg"
+  },
+  "resources/images/flags/um.svg": {
+    "file": "assets/um-f1225c7c.svg",
+    "src": "resources/images/flags/um.svg"
+  },
+  "resources/images/flags/us.svg": {
+    "file": "assets/um-f1225c7c.svg",
+    "src": "resources/images/flags/um.svg"
+  },
+  "resources/images/flags/uy.svg": {
+    "file": "assets/uy-1cea0344.svg",
+    "src": "resources/images/flags/uy.svg"
+  },
+  "resources/images/flags/uz.svg": {
+    "file": "assets/uz-705caaf4.svg",
+    "src": "resources/images/flags/uz.svg"
+  },
+  "resources/images/flags/va.svg": {
+    "file": "assets/va-cc741dcf.svg",
+    "src": "resources/images/flags/va.svg"
+  },
+  "resources/images/flags/vc.svg": {
+    "file": "assets/vc-c2a36b00.svg",
+    "src": "resources/images/flags/vc.svg"
+  },
+  "resources/images/flags/ve.svg": {
+    "file": "assets/ve-756f64b7.svg",
+    "src": "resources/images/flags/ve.svg"
+  },
+  "resources/images/flags/vg.svg": {
+    "file": "assets/vg-da78c74f.svg",
+    "src": "resources/images/flags/vg.svg"
+  },
+  "resources/images/flags/vi.svg": {
+    "file": "assets/vi-f38cfcf8.svg",
+    "src": "resources/images/flags/vi.svg"
+  },
+  "resources/images/flags/vn.svg": {
+    "file": "assets/vn-67347f8f.svg",
+    "src": "resources/images/flags/vn.svg"
+  },
+  "resources/images/flags/vu.svg": {
+    "file": "assets/vu-18232f22.svg",
+    "src": "resources/images/flags/vu.svg"
+  },
+  "resources/images/flags/wf.svg": {
+    "file": "assets/wf-ac87487b.svg",
+    "src": "resources/images/flags/wf.svg"
+  },
+  "resources/images/flags/ws.svg": {
+    "file": "assets/ws-acedd8fb.svg",
+    "src": "resources/images/flags/ws.svg"
+  },
+  "resources/images/flags/xk.svg": {
+    "file": "assets/xk-d58ac2f5.svg",
+    "src": "resources/images/flags/xk.svg"
+  },
+  "resources/images/flags/ye.svg": {
+    "file": "assets/ye-a92f3989.svg",
+    "src": "resources/images/flags/ye.svg"
+  },
+  "resources/images/flags/yt.svg": {
+    "file": "assets/yt-39582c32.svg",
+    "src": "resources/images/flags/yt.svg"
+  },
+  "resources/images/flags/za.svg": {
+    "file": "assets/za-385ef186.svg",
+    "src": "resources/images/flags/za.svg"
+  },
+  "resources/images/flags/zm.svg": {
+    "file": "assets/zm-b64a4ec9.svg",
+    "src": "resources/images/flags/zm.svg"
+  },
+  "resources/images/flags/zw.svg": {
+    "file": "assets/zw-f0b79e88.svg",
+    "src": "resources/images/flags/zw.svg"
+  },
+  "resources/images/frameworks/chartjs.png": {
+    "file": "assets/chartjs-ce95e47e.png",
+    "src": "resources/images/frameworks/chartjs.png"
+  },
+  "resources/images/frameworks/ckeditor.png": {
+    "file": "assets/ckeditor-d0ab0ba0.png",
+    "src": "resources/images/frameworks/ckeditor.png"
+  },
+  "resources/images/frameworks/headlessui.png": {
+    "file": "assets/headlessui-0441ddb3.png",
+    "src": "resources/images/frameworks/headlessui.png"
+  },
+  "resources/images/frameworks/postcss.png": {
+    "file": "assets/postcss-0ea5c32b.png",
+    "src": "resources/images/frameworks/postcss.png"
+  },
+  "resources/images/frameworks/react.png": {
+    "file": "assets/react-1083dd11.png",
+    "src": "resources/images/frameworks/react.png"
+  },
+  "resources/images/frameworks/reduxtoolkit.png": {
+    "file": "assets/reduxtoolkit-d87ab6ba.png",
+    "src": "resources/images/frameworks/reduxtoolkit.png"
+  },
+  "resources/images/frameworks/tailwindcss.png": {
+    "file": "assets/tailwindcss-658d64f2.png",
+    "src": "resources/images/frameworks/tailwindcss.png"
+  },
+  "resources/images/frameworks/typescript.png": {
+    "file": "assets/typescript-10280532.png",
+    "src": "resources/images/frameworks/typescript.png"
+  },
+  "resources/images/frameworks/vite.png": {
+    "file": "assets/vite-416c0631.png",
+    "src": "resources/images/frameworks/vite.png"
+  },
+  "resources/images/invoice.png": {
+    "file": "assets/invoice-2a516c10.png",
+    "src": "resources/images/invoice.png"
+  },
+  "resources/images/logo.png": {
+    "file": "assets/logo-31d7f778.png",
+    "src": "resources/images/logo.png"
+  },
+  "resources/images/miscellaneous/mountain.jpg": {
+    "file": "assets/mountain-99d52d39.jpg",
+    "src": "resources/images/miscellaneous/mountain.jpg"
+  },
+  "resources/images/miscellaneous/robot.jpg": {
+    "file": "assets/robot-e4fbeb65.jpg",
+    "src": "resources/images/miscellaneous/robot.jpg"
+  },
+  "resources/images/pages/add-product.jpg": {
+    "file": "assets/add-product-d8091e92.jpg",
+    "src": "resources/images/pages/add-product.jpg"
+  },
+  "resources/images/pages/add-user.jpg": {
+    "file": "assets/add-user-5e6d390c.jpg",
+    "src": "resources/images/pages/add-user.jpg"
+  },
+  "resources/images/pages/billing.jpg": {
+    "file": "assets/billing-951016cc.jpg",
+    "src": "resources/images/pages/billing.jpg"
+  },
+  "resources/images/pages/categories.jpg": {
+    "file": "assets/categories-68f0d39a.jpg",
+    "src": "resources/images/pages/categories.jpg"
+  },
+  "resources/images/pages/creative.jpg": {
+    "file": "assets/creative-075c006c.jpg",
+    "src": "resources/images/pages/creative.jpg"
+  },
+  "resources/images/pages/dashboard-overview-1.jpg": {
+    "file": "assets/dashboard-overview-1-ce399747.jpg",
+    "src": "resources/images/pages/dashboard-overview-1.jpg"
+  },
+  "resources/images/pages/dashboard-overview-2.jpg": {
+    "file": "assets/dashboard-overview-2-22cae9b2.jpg",
+    "src": "resources/images/pages/dashboard-overview-2.jpg"
+  },
+  "resources/images/pages/dashboard-overview-3.jpg": {
+    "file": "assets/dashboard-overview-3-94dfbd5d.jpg",
+    "src": "resources/images/pages/dashboard-overview-3.jpg"
+  },
+  "resources/images/pages/dashboard-overview-4.jpg": {
+    "file": "assets/dashboard-overview-4-3df7bfd1.jpg",
+    "src": "resources/images/pages/dashboard-overview-4.jpg"
+  },
+  "resources/images/pages/dashboard-overview-5.jpg": {
+    "file": "assets/dashboard-overview-5-80f31ab1.jpg",
+    "src": "resources/images/pages/dashboard-overview-5.jpg"
+  },
+  "resources/images/pages/dashboard-overview-6.jpg": {
+    "file": "assets/dashboard-overview-6-4eae344a.jpg",
+    "src": "resources/images/pages/dashboard-overview-6.jpg"
+  },
+  "resources/images/pages/dashboard-overview-7.jpg": {
+    "file": "assets/dashboard-overview-7-04fa9478.jpg",
+    "src": "resources/images/pages/dashboard-overview-7.jpg"
+  },
+  "resources/images/pages/dashboard-overview-8.jpg": {
+    "file": "assets/dashboard-overview-8-4a8423b5.jpg",
+    "src": "resources/images/pages/dashboard-overview-8.jpg"
+  },
+  "resources/images/pages/departments.jpg": {
+    "file": "assets/departments-9c8e7209.jpg",
+    "src": "resources/images/pages/departments.jpg"
+  },
+  "resources/images/pages/dynamic.jpg": {
+    "file": "assets/dynamic-7ee70187.jpg",
+    "src": "resources/images/pages/dynamic.jpg"
+  },
+  "resources/images/pages/file-manager-grid.jpg": {
+    "file": "assets/file-manager-grid-934690fd.jpg",
+    "src": "resources/images/pages/file-manager-grid.jpg"
+  },
+  "resources/images/pages/file-manager-list.jpg": {
+    "file": "assets/file-manager-list-8188157a.jpg",
+    "src": "resources/images/pages/file-manager-list.jpg"
+  },
+  "resources/images/pages/inbox.jpg": {
+    "file": "assets/inbox-d4f2033f.jpg",
+    "src": "resources/images/pages/inbox.jpg"
+  },
+  "resources/images/pages/interactive.jpg": {
+    "file": "assets/interactive-36f90bb7.jpg",
+    "src": "resources/images/pages/interactive.jpg"
+  },
+  "resources/images/pages/invoice.jpg": {
+    "file": "assets/invoice-529556f7.jpg",
+    "src": "resources/images/pages/invoice.jpg"
+  },
+  "resources/images/pages/login.jpg": {
+    "file": "assets/login-18930f24.jpg",
+    "src": "resources/images/pages/login.jpg"
+  },
+  "resources/images/pages/point-of-sale.jpg": {
+    "file": "assets/point-of-sale-5e37e20c.jpg",
+    "src": "resources/images/pages/point-of-sale.jpg"
+  },
+  "resources/images/pages/product-grid.jpg": {
+    "file": "assets/product-grid-549a80bb.jpg",
+    "src": "resources/images/pages/product-grid.jpg"
+  },
+  "resources/images/pages/product-list.jpg": {
+    "file": "assets/product-list-c1bb1f77.jpg",
+    "src": "resources/images/pages/product-list.jpg"
+  },
+  "resources/images/pages/profile-overview-achievements.jpg": {
+    "file": "assets/profile-overview-achievements-f40c50bc.jpg",
+    "src": "resources/images/pages/profile-overview-achievements.jpg"
+  },
+  "resources/images/pages/profile-overview-contacts.jpg": {
+    "file": "assets/profile-overview-contacts-3451e77a.jpg",
+    "src": "resources/images/pages/profile-overview-contacts.jpg"
+  },
+  "resources/images/pages/profile-overview-default.jpg": {
+    "file": "assets/profile-overview-default-fda40990.jpg",
+    "src": "resources/images/pages/profile-overview-default.jpg"
+  },
+  "resources/images/pages/profile-overview-events.jpg": {
+    "file": "assets/profile-overview-events-05cb5f9e.jpg",
+    "src": "resources/images/pages/profile-overview-events.jpg"
+  },
+  "resources/images/pages/profile-overview.jpg": {
+    "file": "assets/profile-overview-eb0f833a.jpg",
+    "src": "resources/images/pages/profile-overview.jpg"
+  },
+  "resources/images/pages/register.jpg": {
+    "file": "assets/register-9e4a5058.jpg",
+    "src": "resources/images/pages/register.jpg"
+  },
+  "resources/images/pages/reviews.jpg": {
+    "file": "assets/reviews-f1531f6c.jpg",
+    "src": "resources/images/pages/reviews.jpg"
+  },
+  "resources/images/pages/seller-detail.jpg": {
+    "file": "assets/seller-detail-84633cef.jpg",
+    "src": "resources/images/pages/seller-detail.jpg"
+  },
+  "resources/images/pages/seller-list.jpg": {
+    "file": "assets/seller-list-750ce102.jpg",
+    "src": "resources/images/pages/seller-list.jpg"
+  },
+  "resources/images/pages/settings-account-deactivation.jpg": {
+    "file": "assets/settings-account-deactivation-fc64d2e4.jpg",
+    "src": "resources/images/pages/settings-account-deactivation.jpg"
+  },
+  "resources/images/pages/settings-connected-services.jpg": {
+    "file": "assets/settings-connected-services-e3a60cbe.jpg",
+    "src": "resources/images/pages/settings-connected-services.jpg"
+  },
+  "resources/images/pages/settings-device-history.jpg": {
+    "file": "assets/settings-device-history-75f7d9c1.jpg",
+    "src": "resources/images/pages/settings-device-history.jpg"
+  },
+  "resources/images/pages/settings-email-settings.jpg": {
+    "file": "assets/settings-email-settings-b3bc6cdd.jpg",
+    "src": "resources/images/pages/settings-email-settings.jpg"
+  },
+  "resources/images/pages/settings-notification-settings.jpg": {
+    "file": "assets/settings-notification-settings-5f3f1292.jpg",
+    "src": "resources/images/pages/settings-notification-settings.jpg"
+  },
+  "resources/images/pages/settings-preferences.jpg": {
+    "file": "assets/settings-preferences-25e21b3b.jpg",
+    "src": "resources/images/pages/settings-preferences.jpg"
+  },
+  "resources/images/pages/settings-security.jpg": {
+    "file": "assets/settings-security-e77169ac.jpg",
+    "src": "resources/images/pages/settings-security.jpg"
+  },
+  "resources/images/pages/settings-social-media-links.jpg": {
+    "file": "assets/settings-social-media-links-bdc3323c.jpg",
+    "src": "resources/images/pages/settings-social-media-links.jpg"
+  },
+  "resources/images/pages/settings-two-factor-authentication.jpg": {
+    "file": "assets/settings-two-factor-authentication-b4991c8b.jpg",
+    "src": "resources/images/pages/settings-two-factor-authentication.jpg"
+  },
+  "resources/images/pages/settings.jpg": {
+    "file": "assets/settings-efee7dfe.jpg",
+    "src": "resources/images/pages/settings.jpg"
+  },
+  "resources/images/pages/transaction-detail.jpg": {
+    "file": "assets/transaction-detail-1ac31395.jpg",
+    "src": "resources/images/pages/transaction-detail.jpg"
+  },
+  "resources/images/pages/transaction-list.jpg": {
+    "file": "assets/transaction-list-8a549439.jpg",
+    "src": "resources/images/pages/transaction-list.jpg"
+  },
+  "resources/images/pages/users.jpg": {
+    "file": "assets/users-46aa7157.jpg",
+    "src": "resources/images/pages/users.jpg"
+  },
+  "resources/images/placeholders/200x200.jpg": {
+    "file": "assets/200x200-44e1cf33.jpg",
+    "src": "resources/images/placeholders/200x200.jpg"
+  },
+  "resources/images/placeholders/800x800.jpg": {
+    "file": "assets/800x800-c82b9003.jpg",
+    "src": "resources/images/placeholders/800x800.jpg"
+  },
+  "resources/images/products/product1-100x100.jpg": {
+    "file": "assets/product1-100x100-e6077d9d.jpg",
+    "src": "resources/images/products/product1-100x100.jpg"
+  },
+  "resources/images/products/product1-200x200.jpg": {
+    "file": "assets/product1-200x200-175e7f65.jpg",
+    "src": "resources/images/products/product1-200x200.jpg"
+  },
+  "resources/images/products/product1-400x400.jpg": {
+    "file": "assets/product1-400x400-3a070fa2.jpg",
+    "src": "resources/images/products/product1-400x400.jpg"
+  },
+  "resources/images/products/product1-50x50.jpg": {
+    "file": "assets/product1-50x50-2258c9b1.jpg",
+    "src": "resources/images/products/product1-50x50.jpg"
+  },
+  "resources/images/products/product10-100x100.jpg": {
+    "file": "assets/product10-100x100-6bb0a9aa.jpg",
+    "src": "resources/images/products/product10-100x100.jpg"
+  },
+  "resources/images/products/product10-200x200.jpg": {
+    "file": "assets/product10-200x200-06f44323.jpg",
+    "src": "resources/images/products/product10-200x200.jpg"
+  },
+  "resources/images/products/product10-400x400.jpg": {
+    "file": "assets/product10-400x400-e6f7d494.jpg",
+    "src": "resources/images/products/product10-400x400.jpg"
+  },
+  "resources/images/products/product10-50x50.jpg": {
+    "file": "assets/product10-50x50-4e7715f2.jpg",
+    "src": "resources/images/products/product10-50x50.jpg"
+  },
+  "resources/images/products/product2-100x100 .jpg": {
+    "file": "assets/product2-100x100 -44ed81d2.jpg",
+    "src": "resources/images/products/product2-100x100 .jpg"
+  },
+  "resources/images/products/product2-100x100.jpg": {
+    "file": "assets/product2-100x100-bb1d53fd.jpg",
+    "src": "resources/images/products/product2-100x100.jpg"
+  },
+  "resources/images/products/product2-200x200.jpg": {
+    "file": "assets/product2-200x200-15b20ac1.jpg",
+    "src": "resources/images/products/product2-200x200.jpg"
+  },
+  "resources/images/products/product2-400x400.jpg": {
+    "file": "assets/product2-400x400-d7900320.jpg",
+    "src": "resources/images/products/product2-400x400.jpg"
+  },
+  "resources/images/products/product2-50x50.jpg": {
+    "file": "assets/product2-50x50-09ac4abf.jpg",
+    "src": "resources/images/products/product2-50x50.jpg"
+  },
+  "resources/images/products/product3-100x100.jpg": {
+    "file": "assets/product3-100x100-18ffc48a.jpg",
+    "src": "resources/images/products/product3-100x100.jpg"
+  },
+  "resources/images/products/product3-200x200.jpg": {
+    "file": "assets/product3-200x200-7d09a987.jpg",
+    "src": "resources/images/products/product3-200x200.jpg"
+  },
+  "resources/images/products/product3-400x400.jpg": {
+    "file": "assets/product3-400x400-64a706b8.jpg",
+    "src": "resources/images/products/product3-400x400.jpg"
+  },
+  "resources/images/products/product3-50x50.jpg": {
+    "file": "assets/product3-50x50-660e5e54.jpg",
+    "src": "resources/images/products/product3-50x50.jpg"
+  },
+  "resources/images/products/product4-100x100.jpg": {
+    "file": "assets/product4-100x100-8b57e7d3.jpg",
+    "src": "resources/images/products/product4-100x100.jpg"
+  },
+  "resources/images/products/product4-200x200.jpg": {
+    "file": "assets/product4-200x200-85c43af6.jpg",
+    "src": "resources/images/products/product4-200x200.jpg"
+  },
+  "resources/images/products/product4-400x400.jpg": {
+    "file": "assets/product4-400x400-c033d724.jpg",
+    "src": "resources/images/products/product4-400x400.jpg"
+  },
+  "resources/images/products/product4-50x50.jpg": {
+    "file": "assets/product4-50x50-6814b3bc.jpg",
+    "src": "resources/images/products/product4-50x50.jpg"
+  },
+  "resources/images/products/product5-100x100.jpg": {
+    "file": "assets/product5-100x100-7fa5cf4f.jpg",
+    "src": "resources/images/products/product5-100x100.jpg"
+  },
+  "resources/images/products/product5-200x200.jpg": {
+    "file": "assets/product5-200x200-3abd4eef.jpg",
+    "src": "resources/images/products/product5-200x200.jpg"
+  },
+  "resources/images/products/product5-400x400.jpg": {
+    "file": "assets/product5-400x400-ec1203bc.jpg",
+    "src": "resources/images/products/product5-400x400.jpg"
+  },
+  "resources/images/products/product5-50x50.jpg": {
+    "file": "assets/product5-50x50-b6997764.jpg",
+    "src": "resources/images/products/product5-50x50.jpg"
+  },
+  "resources/images/products/product6-100x100.jpg": {
+    "file": "assets/product6-100x100-bf3ed71d.jpg",
+    "src": "resources/images/products/product6-100x100.jpg"
+  },
+  "resources/images/products/product6-200x200.jpg": {
+    "file": "assets/product6-200x200-bae00be6.jpg",
+    "src": "resources/images/products/product6-200x200.jpg"
+  },
+  "resources/images/products/product6-400x400.jpg": {
+    "file": "assets/product6-400x400-75da489a.jpg",
+    "src": "resources/images/products/product6-400x400.jpg"
+  },
+  "resources/images/products/product6-50x50.jpg": {
+    "file": "assets/product6-50x50-983688ea.jpg",
+    "src": "resources/images/products/product6-50x50.jpg"
+  },
+  "resources/images/products/product7-100x100.jpg": {
+    "file": "assets/product7-100x100-4c46a599.jpg",
+    "src": "resources/images/products/product7-100x100.jpg"
+  },
+  "resources/images/products/product7-200x200.jpg": {
+    "file": "assets/product7-200x200-53bc82ad.jpg",
+    "src": "resources/images/products/product7-200x200.jpg"
+  },
+  "resources/images/products/product7-400x400.jpg": {
+    "file": "assets/product7-400x400-19097f2d.jpg",
+    "src": "resources/images/products/product7-400x400.jpg"
+  },
+  "resources/images/products/product7-50x50.jpg": {
+    "file": "assets/product7-50x50-102feba6.jpg",
+    "src": "resources/images/products/product7-50x50.jpg"
+  },
+  "resources/images/products/product8-100x100.jpg": {
+    "file": "assets/product8-100x100-b67376aa.jpg",
+    "src": "resources/images/products/product8-100x100.jpg"
+  },
+  "resources/images/products/product8-200x200.jpg": {
+    "file": "assets/product8-200x200-b2e082a8.jpg",
+    "src": "resources/images/products/product8-200x200.jpg"
+  },
+  "resources/images/products/product8-400x400.jpg": {
+    "file": "assets/product8-400x400-d76ab329.jpg",
+    "src": "resources/images/products/product8-400x400.jpg"
+  },
+  "resources/images/products/product8-50x50.jpg": {
+    "file": "assets/product8-50x50-67bce533.jpg",
+    "src": "resources/images/products/product8-50x50.jpg"
+  },
+  "resources/images/products/product9-100x100.jpg": {
+    "file": "assets/product9-100x100-c4b1b3cd.jpg",
+    "src": "resources/images/products/product9-100x100.jpg"
+  },
+  "resources/images/products/product9-200x200.jpg": {
+    "file": "assets/product9-200x200-0f799966.jpg",
+    "src": "resources/images/products/product9-200x200.jpg"
+  },
+  "resources/images/products/product9-400x400.jpg": {
+    "file": "assets/product9-400x400-944c7681.jpg",
+    "src": "resources/images/products/product9-400x400.jpg"
+  },
+  "resources/images/products/product9-50x50.jpg": {
+    "file": "assets/product9-50x50-9e339c62.jpg",
+    "src": "resources/images/products/product9-50x50.jpg"
+  },
+  "resources/images/projects/project1-100x100.jpg": {
+    "file": "assets/project1-100x100-3a67a293.jpg",
+    "src": "resources/images/projects/project1-100x100.jpg"
+  },
+  "resources/images/projects/project1-200x200.jpg": {
+    "file": "assets/project1-200x200-6543cfdb.jpg",
+    "src": "resources/images/projects/project1-200x200.jpg"
+  },
+  "resources/images/projects/project1-400x400.jpg": {
+    "file": "assets/project1-400x400-47c6d0ec.jpg",
+    "src": "resources/images/projects/project1-400x400.jpg"
+  },
+  "resources/images/projects/project1-50x50.jpg": {
+    "file": "assets/project1-50x50-54fb6005.jpg",
+    "src": "resources/images/projects/project1-50x50.jpg"
+  },
+  "resources/images/projects/project10-100x100.jpg": {
+    "file": "assets/project10-100x100-9961640a.jpg",
+    "src": "resources/images/projects/project10-100x100.jpg"
+  },
+  "resources/images/projects/project10-200x200.jpg": {
+    "file": "assets/project10-200x200-892bed97.jpg",
+    "src": "resources/images/projects/project10-200x200.jpg"
+  },
+  "resources/images/projects/project10-400x400.jpg": {
+    "file": "assets/project10-400x400-7f1b1cd3.jpg",
+    "src": "resources/images/projects/project10-400x400.jpg"
+  },
+  "resources/images/projects/project10-50x50.jpg": {
+    "file": "assets/project10-50x50-c7af7cf9.jpg",
+    "src": "resources/images/projects/project10-50x50.jpg"
+  },
+  "resources/images/projects/project2-100x100.jpg": {
+    "file": "assets/project2-100x100-67268f83.jpg",
+    "src": "resources/images/projects/project2-100x100.jpg"
+  },
+  "resources/images/projects/project2-200x200.jpg": {
+    "file": "assets/project2-200x200-36f662b5.jpg",
+    "src": "resources/images/projects/project2-200x200.jpg"
+  },
+  "resources/images/projects/project2-400x400.jpg": {
+    "file": "assets/project2-400x400-be028f9d.jpg",
+    "src": "resources/images/projects/project2-400x400.jpg"
+  },
+  "resources/images/projects/project2-50x50.jpg": {
+    "file": "assets/project2-50x50-1ce6b223.jpg",
+    "src": "resources/images/projects/project2-50x50.jpg"
+  },
+  "resources/images/projects/project3-100x100.jpg": {
+    "file": "assets/project3-100x100-8c931c8b.jpg",
+    "src": "resources/images/projects/project3-100x100.jpg"
+  },
+  "resources/images/projects/project3-200x200.jpg": {
+    "file": "assets/project3-200x200-81f20208.jpg",
+    "src": "resources/images/projects/project3-200x200.jpg"
+  },
+  "resources/images/projects/project3-400x400.jpg": {
+    "file": "assets/project3-400x400-1af2a0be.jpg",
+    "src": "resources/images/projects/project3-400x400.jpg"
+  },
+  "resources/images/projects/project3-50x50.jpg": {
+    "file": "assets/project3-50x50-dfb7bb5c.jpg",
+    "src": "resources/images/projects/project3-50x50.jpg"
+  },
+  "resources/images/projects/project4-100x100.jpg": {
+    "file": "assets/project4-100x100-77853b58.jpg",
+    "src": "resources/images/projects/project4-100x100.jpg"
+  },
+  "resources/images/projects/project4-200x200.jpg": {
+    "file": "assets/project4-200x200-733c1b89.jpg",
+    "src": "resources/images/projects/project4-200x200.jpg"
+  },
+  "resources/images/projects/project4-400x400.jpg": {
+    "file": "assets/project4-400x400-4b8e6896.jpg",
+    "src": "resources/images/projects/project4-400x400.jpg"
+  },
+  "resources/images/projects/project4-50x50.jpg": {
+    "file": "assets/project4-50x50-537f7c87.jpg",
+    "src": "resources/images/projects/project4-50x50.jpg"
+  },
+  "resources/images/projects/project5-100x100.jpg": {
+    "file": "assets/project5-100x100-0844cd44.jpg",
+    "src": "resources/images/projects/project5-100x100.jpg"
+  },
+  "resources/images/projects/project5-200x200.jpg": {
+    "file": "assets/project5-200x200-fa1df184.jpg",
+    "src": "resources/images/projects/project5-200x200.jpg"
+  },
+  "resources/images/projects/project5-400x400.jpg": {
+    "file": "assets/project5-400x400-ffa1d988.jpg",
+    "src": "resources/images/projects/project5-400x400.jpg"
+  },
+  "resources/images/projects/project5-50x50.jpg": {
+    "file": "assets/project5-50x50-e2f29f39.jpg",
+    "src": "resources/images/projects/project5-50x50.jpg"
+  },
+  "resources/images/projects/project6-100x100.jpg": {
+    "file": "assets/project6-100x100-275890fb.jpg",
+    "src": "resources/images/projects/project6-100x100.jpg"
+  },
+  "resources/images/projects/project6-200x200.jpg": {
+    "file": "assets/project6-200x200-9be129c7.jpg",
+    "src": "resources/images/projects/project6-200x200.jpg"
+  },
+  "resources/images/projects/project6-400x400.jpg": {
+    "file": "assets/project6-400x400-61ce6b5e.jpg",
+    "src": "resources/images/projects/project6-400x400.jpg"
+  },
+  "resources/images/projects/project6-50x50.jpg": {
+    "file": "assets/project6-50x50-21dd1e05.jpg",
+    "src": "resources/images/projects/project6-50x50.jpg"
+  },
+  "resources/images/projects/project7-100x100.jpg": {
+    "file": "assets/project7-100x100-3e97242a.jpg",
+    "src": "resources/images/projects/project7-100x100.jpg"
+  },
+  "resources/images/projects/project7-200x200.jpg": {
+    "file": "assets/project7-200x200-886e6167.jpg",
+    "src": "resources/images/projects/project7-200x200.jpg"
+  },
+  "resources/images/projects/project7-400x400.jpg": {
+    "file": "assets/project7-400x400-7fdb02f5.jpg",
+    "src": "resources/images/projects/project7-400x400.jpg"
+  },
+  "resources/images/projects/project7-50x50.jpg": {
+    "file": "assets/project7-50x50-56549b8f.jpg",
+    "src": "resources/images/projects/project7-50x50.jpg"
+  },
+  "resources/images/projects/project8-100x100.jpg": {
+    "file": "assets/project8-100x100-247e713f.jpg",
+    "src": "resources/images/projects/project8-100x100.jpg"
+  },
+  "resources/images/projects/project8-200x200.jpg": {
+    "file": "assets/project8-200x200-e5b275e0.jpg",
+    "src": "resources/images/projects/project8-200x200.jpg"
+  },
+  "resources/images/projects/project8-400x400.jpg": {
+    "file": "assets/project8-400x400-15dcc976.jpg",
+    "src": "resources/images/projects/project8-400x400.jpg"
+  },
+  "resources/images/projects/project8-50x50.jpg": {
+    "file": "assets/project8-50x50-817bcbfe.jpg",
+    "src": "resources/images/projects/project8-50x50.jpg"
+  },
+  "resources/images/projects/project9-100x100.jpg": {
+    "file": "assets/project9-100x100-ede9c7fa.jpg",
+    "src": "resources/images/projects/project9-100x100.jpg"
+  },
+  "resources/images/projects/project9-200x200.jpg": {
+    "file": "assets/project9-200x200-ce5026c8.jpg",
+    "src": "resources/images/projects/project9-200x200.jpg"
+  },
+  "resources/images/projects/project9-400x400.jpg": {
+    "file": "assets/project9-400x400-668b0b70.jpg",
+    "src": "resources/images/projects/project9-400x400.jpg"
+  },
+  "resources/images/projects/project9-50x50.jpg": {
+    "file": "assets/project9-50x50-333f26f3.jpg",
+    "src": "resources/images/projects/project9-50x50.jpg"
+  },
+  "resources/images/themes/dagger.png": {
+    "file": "assets/dagger-05acf2a7.png",
+    "src": "resources/images/themes/dagger.png"
+  },
+  "resources/images/themes/echo.png": {
+    "file": "assets/echo-f7c59727.png",
+    "src": "resources/images/themes/echo.png"
+  },
+  "resources/images/themes/exort.png": {
+    "file": "assets/exort-d9e34ffc.png",
+    "src": "resources/images/themes/exort.png"
+  },
+  "resources/images/themes/havoc.png": {
+    "file": "assets/havoc-ac52757f.png",
+    "src": "resources/images/themes/havoc.png"
+  },
+  "resources/images/themes/hook.png": {
+    "file": "assets/hook-ab1ffe46.png",
+    "src": "resources/images/themes/hook.png"
+  },
+  "resources/images/themes/hurricane.png": {
+    "file": "assets/hurricane-c2bd7eb1.png",
+    "src": "resources/images/themes/hurricane.png"
+  },
+  "resources/images/themes/ravage.png": {
+    "file": "assets/ravage-1ccaca1c.png",
+    "src": "resources/images/themes/ravage.png"
+  },
+  "resources/images/themes/raze.png": {
+    "file": "assets/raze-454cfe7a.png",
+    "src": "resources/images/themes/raze.png"
+  },
+  "resources/images/themes/razor.png": {
+    "file": "assets/razor-34c96b0f.png",
+    "src": "resources/images/themes/razor.png"
+  },
+  "resources/images/themes/shuriken.png": {
+    "file": "assets/shuriken-d74045b3.png",
+    "src": "resources/images/themes/shuriken.png"
+  },
+  "resources/images/themes/viper.png": {
+    "file": "assets/viper-acdb54fb.png",
+    "src": "resources/images/themes/viper.png"
+  },
+  "resources/images/users/user1-100x100.jpg": {
+    "file": "assets/user1-100x100-4304dcdf.jpg",
+    "src": "resources/images/users/user1-100x100.jpg"
+  },
+  "resources/images/users/user1-200x200.jpg": {
+    "file": "assets/user1-200x200-4a9886a3.jpg",
+    "src": "resources/images/users/user1-200x200.jpg"
+  },
+  "resources/images/users/user1-400x400.jpg": {
+    "file": "assets/user1-400x400-0080ac64.jpg",
+    "src": "resources/images/users/user1-400x400.jpg"
+  },
+  "resources/images/users/user1-50x50.jpg": {
+    "file": "assets/user1-50x50-148a267c.jpg",
+    "src": "resources/images/users/user1-50x50.jpg"
+  },
+  "resources/images/users/user10-100x100.jpg": {
+    "file": "assets/user10-100x100-b7f67cc4.jpg",
+    "src": "resources/images/users/user10-100x100.jpg"
+  },
+  "resources/images/users/user10-200x200.jpg": {
+    "file": "assets/user10-200x200-983b45b4.jpg",
+    "src": "resources/images/users/user10-200x200.jpg"
+  },
+  "resources/images/users/user10-400x400.jpg": {
+    "file": "assets/user10-400x400-adf91ed1.jpg",
+    "src": "resources/images/users/user10-400x400.jpg"
+  },
+  "resources/images/users/user10-50x50.jpg": {
+    "file": "assets/user10-50x50-f06db745.jpg",
+    "src": "resources/images/users/user10-50x50.jpg"
+  },
+  "resources/images/users/user2-100x100.jpg": {
+    "file": "assets/user2-100x100-c517d995.jpg",
+    "src": "resources/images/users/user2-100x100.jpg"
+  },
+  "resources/images/users/user2-200x200.jpg": {
+    "file": "assets/user2-200x200-ff2320b6.jpg",
+    "src": "resources/images/users/user2-200x200.jpg"
+  },
+  "resources/images/users/user2-400x400.jpg": {
+    "file": "assets/user2-400x400-a1368fd1.jpg",
+    "src": "resources/images/users/user2-400x400.jpg"
+  },
+  "resources/images/users/user2-50x50.jpg": {
+    "file": "assets/user2-50x50-0838d70b.jpg",
+    "src": "resources/images/users/user2-50x50.jpg"
+  },
+  "resources/images/users/user3-100x100.jpg": {
+    "file": "assets/user3-100x100-b2b875d6.jpg",
+    "src": "resources/images/users/user3-100x100.jpg"
+  },
+  "resources/images/users/user3-200x200.jpg": {
+    "file": "assets/user3-200x200-8bdf85e3.jpg",
+    "src": "resources/images/users/user3-200x200.jpg"
+  },
+  "resources/images/users/user3-400x400.jpg": {
+    "file": "assets/user3-400x400-60bb259d.jpg",
+    "src": "resources/images/users/user3-400x400.jpg"
+  },
+  "resources/images/users/user3-50x50.jpg": {
+    "file": "assets/user3-50x50-df9ee68e.jpg",
+    "src": "resources/images/users/user3-50x50.jpg"
+  },
+  "resources/images/users/user4-100x100.jpg": {
+    "file": "assets/user4-100x100-ae1c8fdf.jpg",
+    "src": "resources/images/users/user4-100x100.jpg"
+  },
+  "resources/images/users/user4-200x200.jpg": {
+    "file": "assets/user4-200x200-a0299665.jpg",
+    "src": "resources/images/users/user4-200x200.jpg"
+  },
+  "resources/images/users/user4-400x400.jpg": {
+    "file": "assets/user4-400x400-2f712e66.jpg",
+    "src": "resources/images/users/user4-400x400.jpg"
+  },
+  "resources/images/users/user4-50x50.jpg": {
+    "file": "assets/user4-50x50-aafcef85.jpg",
+    "src": "resources/images/users/user4-50x50.jpg"
+  },
+  "resources/images/users/user5-100x100.jpg": {
+    "file": "assets/user5-100x100-a6bee66d.jpg",
+    "src": "resources/images/users/user5-100x100.jpg"
+  },
+  "resources/images/users/user5-200x200.jpg": {
+    "file": "assets/user5-200x200-3ad06451.jpg",
+    "src": "resources/images/users/user5-200x200.jpg"
+  },
+  "resources/images/users/user5-400x400.jpg": {
+    "file": "assets/user5-400x400-a01f39c5.jpg",
+    "src": "resources/images/users/user5-400x400.jpg"
+  },
+  "resources/images/users/user5-50x50.jpg": {
+    "file": "assets/user5-50x50-e5270b7a.jpg",
+    "src": "resources/images/users/user5-50x50.jpg"
+  },
+  "resources/images/users/user6-100x100.jpg": {
+    "file": "assets/user6-100x100-25fb7ea5.jpg",
+    "src": "resources/images/users/user6-100x100.jpg"
+  },
+  "resources/images/users/user6-200x200.jpg": {
+    "file": "assets/user6-200x200-1fe7b5e1.jpg",
+    "src": "resources/images/users/user6-200x200.jpg"
+  },
+  "resources/images/users/user6-400x400.jpg": {
+    "file": "assets/user6-400x400-7a2b393a.jpg",
+    "src": "resources/images/users/user6-400x400.jpg"
+  },
+  "resources/images/users/user6-50x50.jpg": {
+    "file": "assets/user6-50x50-72bf02fa.jpg",
+    "src": "resources/images/users/user6-50x50.jpg"
+  },
+  "resources/images/users/user7-100x100.jpg": {
+    "file": "assets/user7-100x100-3cd8e8fa.jpg",
+    "src": "resources/images/users/user7-100x100.jpg"
+  },
+  "resources/images/users/user7-200x200.jpg": {
+    "file": "assets/user7-200x200-75475e1d.jpg",
+    "src": "resources/images/users/user7-200x200.jpg"
+  },
+  "resources/images/users/user7-400x400.jpg": {
+    "file": "assets/user7-400x400-f6fdaccf.jpg",
+    "src": "resources/images/users/user7-400x400.jpg"
+  },
+  "resources/images/users/user7-50x50.jpg": {
+    "file": "assets/user7-50x50-65e02e23.jpg",
+    "src": "resources/images/users/user7-50x50.jpg"
+  },
+  "resources/images/users/user8-100x100.jpg": {
+    "file": "assets/user8-100x100-ff04346b.jpg",
+    "src": "resources/images/users/user8-100x100.jpg"
+  },
+  "resources/images/users/user8-200x200.jpg": {
+    "file": "assets/user8-200x200-c56d7f9b.jpg",
+    "src": "resources/images/users/user8-200x200.jpg"
+  },
+  "resources/images/users/user8-400x400.jpg": {
+    "file": "assets/user8-400x400-342527a6.jpg",
+    "src": "resources/images/users/user8-400x400.jpg"
+  },
+  "resources/images/users/user8-50x50.jpg": {
+    "file": "assets/user8-50x50-fccd4b23.jpg",
+    "src": "resources/images/users/user8-50x50.jpg"
+  },
+  "resources/images/users/user9-100x100.jpg": {
+    "file": "assets/user9-100x100-c4b761a4.jpg",
+    "src": "resources/images/users/user9-100x100.jpg"
+  },
+  "resources/images/users/user9-200x200.jpg": {
+    "file": "assets/user9-200x200-e2958ce0.jpg",
+    "src": "resources/images/users/user9-200x200.jpg"
+  },
+  "resources/images/users/user9-400x400.jpg": {
+    "file": "assets/user9-400x400-851f4396.jpg",
+    "src": "resources/images/users/user9-400x400.jpg"
+  },
+  "resources/images/users/user9-50x50.jpg": {
+    "file": "assets/user9-50x50-2d2a05c4.jpg",
+    "src": "resources/images/users/user9-50x50.jpg"
+  },
+  "resources/js/app.js": {
+    "file": "assets/app-4ed993c7.js",
+    "isEntry": true,
+    "src": "resources/js/app.js"
+  },
+  "resources/js/components/base/balloon-block-editor.js": {
+    "file": "assets/balloon-block-editor-54953b68.js",
+    "isEntry": true,
+    "src": "resources/js/components/base/balloon-block-editor.js"
+  },
+  "resources/js/components/base/balloon-editor.js": {
+    "file": "assets/balloon-editor-080ad46e.js",
+    "isEntry": true,
+    "src": "resources/js/components/base/balloon-editor.js"
+  },
+  "resources/js/components/base/calendar/calendar.js": {
+    "file": "assets/calendar-53ccebf8.js",
+    "imports": [
+      "_index-c7f8d856.js",
+      "_index-18be2a98.js",
+      "_internal-34342d00.js"
+    ],
+    "isEntry": true,
+    "src": "resources/js/components/base/calendar/calendar.js"
+  },
+  "resources/js/components/base/calendar/draggable.js": {
+    "file": "assets/draggable-7149090a.js",
+    "isEntry": true,
+    "src": "resources/js/components/base/calendar/draggable.js"
+  },
+  "resources/js/components/base/classic-editor.js": {
+    "file": "assets/classic-editor-05bff611.js",
+    "isEntry": true,
+    "src": "resources/js/components/base/classic-editor.js"
+  },
+  "resources/js/components/base/document-editor.js": {
+    "file": "assets/document-editor-297c5d4a.js",
+    "isEntry": true,
+    "src": "resources/js/components/base/document-editor.js"
+  },
+  "resources/js/components/base/dropzone.js": {
+    "file": "assets/dropzone-51d234c6.js",
+    "isEntry": true,
+    "src": "resources/js/components/base/dropzone.js"
+  },
+  "resources/js/components/base/highlight.js": {
+    "file": "assets/highlight-729ed8bf.js",
+    "isEntry": true,
+    "src": "resources/js/components/base/highlight.js"
+  },
+  "resources/js/components/base/inline-editor.js": {
+    "file": "assets/inline-editor-75de90e7.js",
+    "isEntry": true,
+    "src": "resources/js/components/base/inline-editor.js"
+  },
+  "resources/js/components/base/leaflet-map-loader.js": {
+    "file": "assets/leaflet-map-loader-e213e48e.js",
+    "isEntry": true,
+    "src": "resources/js/components/base/leaflet-map-loader.js"
+  },
+  "resources/js/components/base/litepicker.js": {
+    "file": "assets/litepicker-4ed993c7.js",
+    "isEntry": true,
+    "src": "resources/js/components/base/litepicker.js"
+  },
+  "resources/js/components/base/lucide.js": {
+    "file": "assets/lucide-5755dfe2.js",
+    "isEntry": true,
+    "src": "resources/js/components/base/lucide.js"
+  },
+  "resources/js/components/base/preview-component.js": {
+    "file": "assets/preview-component-3492fcaf.js",
+    "isEntry": true,
+    "src": "resources/js/components/base/preview-component.js"
+  },
+  "resources/js/components/base/source.js": {
+    "file": "assets/source-2e0f873d.js",
+    "isEntry": true,
+    "src": "resources/js/components/base/source.js"
+  },
+  "resources/js/components/base/theme-color.js": {
+    "file": "assets/theme-color-bbc20322.js",
+    "isEntry": true,
+    "src": "resources/js/components/base/theme-color.js"
+  },
+  "resources/js/components/base/tiny-slider.js": {
+    "file": "assets/tiny-slider-b96b18c2.js",
+    "isEntry": true,
+    "src": "resources/js/components/base/tiny-slider.js"
+  },
+  "resources/js/components/base/tom-select.js": {
+    "file": "assets/tom-select-4ed993c7.js",
+    "isEntry": true,
+    "src": "resources/js/components/base/tom-select.js"
+  },
+  "resources/js/components/donut-chart.js": {
+    "file": "assets/donut-chart-1a8d36a5.js",
+    "isEntry": true,
+    "src": "resources/js/components/donut-chart.js"
+  },
+  "resources/js/components/horizontal-bar-chart.js": {
+    "file": "assets/horizontal-bar-chart-0f03d5b8.js",
+    "isEntry": true,
+    "src": "resources/js/components/horizontal-bar-chart.js"
+  },
+  "resources/js/components/line-chart.js": {
+    "file": "assets/line-chart-c86327ee.js",
+    "isEntry": true,
+    "src": "resources/js/components/line-chart.js"
+  },
+  "resources/js/components/pie-chart.js": {
+    "file": "assets/pie-chart-1e6ed608.js",
+    "isEntry": true,
+    "src": "resources/js/components/pie-chart.js"
+  },
+  "resources/js/components/quick-search.js": {
+    "file": "assets/quick-search-ffa941ee.js",
+    "isEntry": true,
+    "src": "resources/js/components/quick-search.js"
+  },
+  "resources/js/components/report-bar-chart-3.js": {
+    "file": "assets/report-bar-chart-3-a81a3fcd.js",
+    "isEntry": true,
+    "src": "resources/js/components/report-bar-chart-3.js"
+  },
+  "resources/js/components/report-bar-chart-4.js": {
+    "file": "assets/report-bar-chart-4-42412309.js",
+    "isEntry": true,
+    "src": "resources/js/components/report-bar-chart-4.js"
+  },
+  "resources/js/components/report-bar-chart-5.js": {
+    "file": "assets/report-bar-chart-5-4ed993c7.js",
+    "isEntry": true,
+    "src": "resources/js/components/report-bar-chart-5.js"
+  },
+  "resources/js/components/report-bar-chart-6.js": {
+    "file": "assets/report-bar-chart-6-3475d6e5.js",
+    "isEntry": true,
+    "src": "resources/js/components/report-bar-chart-6.js"
+  },
+  "resources/js/components/report-bar-chart.js": {
+    "file": "assets/report-bar-chart-0173a0fa.js",
+    "isEntry": true,
+    "src": "resources/js/components/report-bar-chart.js"
+  },
+  "resources/js/components/report-donut-chart-3.js": {
+    "file": "assets/report-donut-chart-3-4ed993c7.js",
+    "isEntry": true,
+    "src": "resources/js/components/report-donut-chart-3.js"
+  },
+  "resources/js/components/report-donut-chart-4.js": {
+    "file": "assets/report-donut-chart-4-5579b89c.js",
+    "isEntry": true,
+    "src": "resources/js/components/report-donut-chart-4.js"
+  },
+  "resources/js/components/report-donut-chart-5.js": {
+    "file": "assets/report-donut-chart-5-40282260.js",
+    "isEntry": true,
+    "src": "resources/js/components/report-donut-chart-5.js"
+  },
+  "resources/js/components/report-donut-chart-6.js": {
+    "file": "assets/report-donut-chart-6-c0034768.js",
+    "isEntry": true,
+    "src": "resources/js/components/report-donut-chart-6.js"
+  },
+  "resources/js/components/report-donut-chart-7.js": {
+    "file": "assets/report-donut-chart-7-ce931a55.js",
+    "isEntry": true,
+    "src": "resources/js/components/report-donut-chart-7.js"
+  },
+  "resources/js/components/report-line-chart-1.js": {
+    "file": "assets/report-line-chart-1-2a7f169e.js",
+    "isEntry": true,
+    "src": "resources/js/components/report-line-chart-1.js"
+  },
+  "resources/js/components/report-line-chart-2.js": {
+    "file": "assets/report-line-chart-2-b24cf09a.js",
+    "isEntry": true,
+    "src": "resources/js/components/report-line-chart-2.js"
+  },
+  "resources/js/components/report-line-chart-3.js": {
+    "file": "assets/report-line-chart-3-c58c8c82.js",
+    "isEntry": true,
+    "src": "resources/js/components/report-line-chart-3.js"
+  },
+  "resources/js/components/report-line-chart-4.js": {
+    "file": "assets/report-line-chart-4-d1114866.js",
+    "isEntry": true,
+    "src": "resources/js/components/report-line-chart-4.js"
+  },
+  "resources/js/components/report-line-chart.js": {
+    "file": "assets/report-line-chart-71b701e5.js",
+    "isEntry": true,
+    "src": "resources/js/components/report-line-chart.js"
+  },
+  "resources/js/components/report-radar-chart.js": {
+    "file": "assets/report-radar-chart-c019ef53.js",
+    "isEntry": true,
+    "src": "resources/js/components/report-radar-chart.js"
+  },
+  "resources/js/components/simple-line-chart-1.js": {
+    "file": "assets/simple-line-chart-1-d8b2bff7.js",
+    "isEntry": true,
+    "src": "resources/js/components/simple-line-chart-1.js"
+  },
+  "resources/js/components/stacked-bar-chart.js": {
+    "file": "assets/stacked-bar-chart-e8ab2629.js",
+    "isEntry": true,
+    "src": "resources/js/components/stacked-bar-chart.js"
+  },
+  "resources/js/components/vertical-bar-chart.js": {
+    "file": "assets/vertical-bar-chart-525f985a.js",
+    "isEntry": true,
+    "src": "resources/js/components/vertical-bar-chart.js"
+  },
+  "resources/js/pages/landing-page.js": {
+    "file": "assets/landing-page-83a713c7.js",
+    "isEntry": true,
+    "src": "resources/js/pages/landing-page.js"
+  },
+  "resources/js/pages/modal.js": {
+    "file": "assets/modal-fdb67a0b.js",
+    "isEntry": true,
+    "src": "resources/js/pages/modal.js"
+  },
+  "resources/js/pages/notification.js": {
+    "file": "assets/notification-ffdbc1cf.js",
+    "isEntry": true,
+    "src": "resources/js/pages/notification.js"
+  },
+  "resources/js/pages/slideover.js": {
+    "file": "assets/slideover-187aa54f.js",
+    "isEntry": true,
+    "src": "resources/js/pages/slideover.js"
+  },
+  "resources/js/pages/tabulator.js": {
+    "file": "assets/tabulator-ff270e84.js",
+    "isEntry": true,
+    "src": "resources/js/pages/tabulator.js"
+  },
+  "resources/js/pages/validation.js": {
+    "file": "assets/validation-bb927a73.js",
+    "isEntry": true,
+    "src": "resources/js/pages/validation.js"
+  },
+  "resources/js/themes/dagger.js": {
+    "file": "assets/dagger-5993437f.js",
+    "isEntry": true,
+    "src": "resources/js/themes/dagger.js"
+  },
+  "resources/js/themes/echo.js": {
+    "file": "assets/echo-d0c82571.js",
+    "isEntry": true,
+    "src": "resources/js/themes/echo.js"
+  },
+  "resources/js/themes/exort.js": {
+    "file": "assets/exort-5993437f.js",
+    "isEntry": true,
+    "src": "resources/js/themes/exort.js"
+  },
+  "resources/js/themes/havoc.js": {
+    "file": "assets/havoc-5993437f.js",
+    "isEntry": true,
+    "src": "resources/js/themes/havoc.js"
+  },
+  "resources/js/themes/hook.js": {
+    "file": "assets/hook-5993437f.js",
+    "isEntry": true,
+    "src": "resources/js/themes/hook.js"
+  },
+  "resources/js/themes/hurricane.js": {
+    "file": "assets/hurricane-5993437f.js",
+    "isEntry": true,
+    "src": "resources/js/themes/hurricane.js"
+  },
+  "resources/js/themes/ravage.js": {
+    "file": "assets/ravage-5993437f.js",
+    "isEntry": true,
+    "src": "resources/js/themes/ravage.js"
+  },
+  "resources/js/themes/raze.js": {
+    "file": "assets/raze-5993437f.js",
+    "isEntry": true,
+    "src": "resources/js/themes/raze.js"
+  },
+  "resources/js/themes/razor.js": {
+    "file": "assets/razor-5993437f.js",
+    "isEntry": true,
+    "src": "resources/js/themes/razor.js"
+  },
+  "resources/js/themes/shuriken.js": {
+    "file": "assets/shuriken-2e6b059b.js",
+    "isEntry": true,
+    "src": "resources/js/themes/shuriken.js"
+  },
+  "resources/js/themes/viper.js": {
+    "file": "assets/viper-5993437f.js",
+    "isEntry": true,
+    "src": "resources/js/themes/viper.js"
+  },
+  "resources/js/utils/colors.js": {
+    "file": "assets/colors-ec2d5555.js",
+    "imports": [
+      "resources/js/utils/helper.js",
+      "__commonjsHelpers-725317a4.js"
+    ],
+    "isEntry": true,
+    "src": "resources/js/utils/colors.js"
+  },
+  "resources/js/utils/helper.js": {
+    "file": "assets/helper-915e752f.js",
+    "isEntry": true,
+    "src": "resources/js/utils/helper.js"
+  },
+  "resources/js/vendors/accordion.js": {
+    "file": "assets/accordion-1082afb5.js",
+    "isEntry": true,
+    "src": "resources/js/vendors/accordion.js"
+  },
+  "resources/js/vendors/alert.js": {
+    "file": "assets/alert-f3c9fdad.js",
+    "isEntry": true,
+    "src": "resources/js/vendors/alert.js"
+  },
+  "resources/js/vendors/axios.js": {
+    "file": "assets/axios-c8aaf68e.js",
+    "isEntry": true,
+    "src": "resources/js/vendors/axios.js"
+  },
+  "resources/js/vendors/calendar/calendar.js": {
+    "file": "assets/calendar-86f2f2bf.js",
+    "imports": [
+      "_index-c7f8d856.js"
+    ],
+    "isEntry": true,
+    "src": "resources/js/vendors/calendar/calendar.js"
+  },
+  "resources/js/vendors/calendar/plugins/day-grid.js": {
+    "file": "assets/day-grid-51bf51e3.js",
+    "imports": [
+      "_index-18be2a98.js",
+      "_index-c7f8d856.js",
+      "_internal-34342d00.js"
+    ],
+    "isEntry": true,
+    "src": "resources/js/vendors/calendar/plugins/day-grid.js"
+  },
+  "resources/js/vendors/calendar/plugins/interaction.js": {
+    "file": "assets/interaction-561cd077.js",
+    "imports": [
+      "_index-c7f8d856.js"
+    ],
+    "isEntry": true,
+    "src": "resources/js/vendors/calendar/plugins/interaction.js"
+  },
+  "resources/js/vendors/calendar/plugins/list.js": {
+    "file": "assets/list-8c437374.js",
+    "imports": [
+      "_index-c7f8d856.js"
+    ],
+    "isEntry": true,
+    "src": "resources/js/vendors/calendar/plugins/list.js"
+  },
+  "resources/js/vendors/calendar/plugins/time-grid.js": {
+    "file": "assets/time-grid-4e86159c.js",
+    "imports": [
+      "_index-c7f8d856.js",
+      "_internal-34342d00.js"
+    ],
+    "isEntry": true,
+    "src": "resources/js/vendors/calendar/plugins/time-grid.js"
+  },
+  "resources/js/vendors/chartjs.js": {
+    "file": "assets/chartjs-3a9aacac.js",
+    "isEntry": true,
+    "src": "resources/js/vendors/chartjs.js"
+  },
+  "resources/js/vendors/ckeditor/balloon-block.js": {
+    "file": "assets/balloon-block-049fa296.js",
+    "imports": [
+      "__commonjsHelpers-725317a4.js"
+    ],
+    "isEntry": true,
+    "src": "resources/js/vendors/ckeditor/balloon-block.js"
+  },
+  "resources/js/vendors/ckeditor/balloon.js": {
+    "file": "assets/balloon-8f6804de.js",
+    "imports": [
+      "__commonjsHelpers-725317a4.js"
+    ],
+    "isEntry": true,
+    "src": "resources/js/vendors/ckeditor/balloon.js"
+  },
+  "resources/js/vendors/ckeditor/classic.js": {
+    "file": "assets/classic-3f200128.js",
+    "imports": [
+      "__commonjsHelpers-725317a4.js"
+    ],
+    "isEntry": true,
+    "src": "resources/js/vendors/ckeditor/classic.js"
+  },
+  "resources/js/vendors/ckeditor/document.js": {
+    "file": "assets/document-89afb137.js",
+    "imports": [
+      "__commonjsHelpers-725317a4.js"
+    ],
+    "isEntry": true,
+    "src": "resources/js/vendors/ckeditor/document.js"
+  },
+  "resources/js/vendors/ckeditor/inline.js": {
+    "file": "assets/inline-7b691ffd.js",
+    "imports": [
+      "__commonjsHelpers-725317a4.js"
+    ],
+    "isEntry": true,
+    "src": "resources/js/vendors/ckeditor/inline.js"
+  },
+  "resources/js/vendors/dayjs.js": {
+    "file": "assets/dayjs-c04b07f3.js",
+    "imports": [
+      "__commonjsHelpers-725317a4.js"
+    ],
+    "isEntry": true,
+    "src": "resources/js/vendors/dayjs.js"
+  },
+  "resources/js/vendors/dom.js": {
+    "file": "assets/dom-99fd0146.js",
+    "isEntry": true,
+    "src": "resources/js/vendors/dom.js"
+  },
+  "resources/js/vendors/dropdown.js": {
+    "file": "assets/dropdown-c87bd42d.js",
+    "isEntry": true,
+    "src": "resources/js/vendors/dropdown.js"
+  },
+  "resources/js/vendors/dropzone.js": {
+    "file": "assets/dropzone-ae47886c.js",
+    "isEntry": true,
+    "src": "resources/js/vendors/dropzone.js"
+  },
+  "resources/js/vendors/highlight.js": {
+    "file": "assets/highlight-8c457890.js",
+    "imports": [
+      "__commonjsHelpers-725317a4.js"
+    ],
+    "isEntry": true,
+    "src": "resources/js/vendors/highlight.js"
+  },
+  "resources/js/vendors/image-zoom.js": {
+    "file": "assets/image-zoom-90b8d3e8.js",
+    "isEntry": true,
+    "src": "resources/js/vendors/image-zoom.js"
+  },
+  "resources/js/vendors/leaflet-map.js": {
+    "file": "assets/leaflet-map-6ae051e6.js",
+    "imports": [
+      "__commonjsHelpers-725317a4.js"
+    ],
+    "isEntry": true,
+    "src": "resources/js/vendors/leaflet-map.js"
+  },
+  "resources/js/vendors/litepicker.js": {
+    "file": "assets/litepicker-f946c709.js",
+    "imports": [
+      "__commonjsHelpers-725317a4.js"
+    ],
+    "isEntry": true,
+    "src": "resources/js/vendors/litepicker.js"
+  },
+  "resources/js/vendors/lodash.js": {
+    "file": "assets/lodash-66362d1c.js",
+    "imports": [
+      "__commonjsHelpers-725317a4.js"
+    ],
+    "isEntry": true,
+    "src": "resources/js/vendors/lodash.js"
+  },
+  "resources/js/vendors/lucide.js": {
+    "file": "assets/lucide-005f7c06.js",
+    "isEntry": true,
+    "src": "resources/js/vendors/lucide.js"
+  },
+  "resources/js/vendors/modal.js": {
+    "file": "assets/modal-8e103543.js",
+    "isEntry": true,
+    "src": "resources/js/vendors/modal.js"
+  },
+  "resources/js/vendors/popper.js": {
+    "file": "assets/popper-dfd1031a.js",
+    "imports": [
+      "_popper-0e930465.js"
+    ],
+    "isEntry": true,
+    "src": "resources/js/vendors/popper.js"
+  },
+  "resources/js/vendors/pristine.js": {
+    "file": "assets/pristine-231517fd.js",
+    "imports": [
+      "__commonjsHelpers-725317a4.js"
+    ],
+    "isEntry": true,
+    "src": "resources/js/vendors/pristine.js"
+  },
+  "resources/js/vendors/simplebar.js": {
+    "file": "assets/simplebar-e62365c2.js",
+    "imports": [
+      "__commonjsHelpers-725317a4.js"
+    ],
+    "isEntry": true,
+    "src": "resources/js/vendors/simplebar.js"
+  },
+  "resources/js/vendors/svg-loader.js": {
+    "file": "assets/svg-loader-4007d299.js",
+    "isEntry": true,
+    "src": "resources/js/vendors/svg-loader.js"
+  },
+  "resources/js/vendors/tab.js": {
+    "file": "assets/tab-4d59613d.js",
+    "isEntry": true,
+    "src": "resources/js/vendors/tab.js"
+  },
+  "resources/js/vendors/tabulator.js": {
+    "file": "assets/tabulator-6769c35a.js",
+    "isEntry": true,
+    "src": "resources/js/vendors/tabulator.js"
+  },
+  "resources/js/vendors/tailwind-merge.js": {
+    "file": "assets/tailwind-merge-9b07a190.js",
+    "isEntry": true,
+    "src": "resources/js/vendors/tailwind-merge.js"
+  },
+  "resources/js/vendors/tiny-slider.js": {
+    "file": "assets/tiny-slider-3e7bb466.js",
+    "isEntry": true,
+    "src": "resources/js/vendors/tiny-slider.js"
+  },
+  "resources/js/vendors/tippy.js": {
+    "file": "assets/tippy-2e9cf08a.js",
+    "imports": [
+      "_popper-0e930465.js"
+    ],
+    "isEntry": true,
+    "src": "resources/js/vendors/tippy.js"
+  },
+  "resources/js/vendors/toastify.js": {
+    "file": "assets/toastify-531d53e0.js",
+    "imports": [
+      "__commonjsHelpers-725317a4.js"
+    ],
+    "isEntry": true,
+    "src": "resources/js/vendors/toastify.js"
+  },
+  "resources/js/vendors/tom-select.js": {
+    "file": "assets/tom-select-0edec986.js",
+    "isEntry": true,
+    "src": "resources/js/vendors/tom-select.js"
+  },
+  "resources/js/vendors/transition.js": {
+    "file": "assets/transition-7f89bf19.js",
+    "isEntry": true,
+    "src": "resources/js/vendors/transition.js"
+  },
+  "resources/js/vendors/xlsx.js": {
+    "file": "assets/xlsx-95343e70.js",
+    "isEntry": true,
+    "src": "resources/js/vendors/xlsx.js"
+  }
+}
