@@ -140,8 +140,7 @@ class NewSale extends Component
 
     public function addToArticle($id)
     {
-
-        $article = Article::find($id);
+        $article = DB::table('articles')->find($id);
 
         if ($article) {
 
