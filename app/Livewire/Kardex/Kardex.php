@@ -11,15 +11,20 @@ class Kardex extends Component
 {
 
     public $kardex = [];
-    public $articles = [];
     public $article;
 
-    public function mount(){
 
-        $this->articles = Article::select('id','title','stock','sale_price','sku')->where('stock', '>', 0)
-            ->whereNot('id', 1)
-            ->OrderBy('id', 'desc')
-            ->get();
+    public function searchArticles($query)
+    {
+        return Article::query()
+            ->where('title', 'like', '%'.$query.'%')
+            ->limit(10)
+            ->get(['id', 'title'])
+            ->map(fn($c) => [
+                'value' => $c->id,
+                'text'  => $c->title,
+            ])
+            ->toArray();
     }
 
     public function updatedArticle($id)
@@ -30,6 +35,7 @@ class Kardex extends Component
 
     public function getKardex()
     {
+
         // Movimientos de compras (entradas) con nombre del artículo
         $purchaseMovements = PurchaseDetail::select(
             'purchase_details.article_id',
@@ -44,7 +50,7 @@ class Kardex extends Component
         )->join('purchases', 'purchases.id', '=', 'purchase_details.purchase_id')
             ->join('articles', 'articles.id', '=', 'purchase_details.article_id')
             ->join('users', 'users.id', '=', 'purchases.user_id')
-            ->where('purchases.status', 1)
+            ->where('purchases.status', [1,2,3])
             ->where('purchase_details.article_id', $this->article);
 
         // Movimientos de ventas (salidas) con nombre del artículo
@@ -64,7 +70,7 @@ class Kardex extends Component
             ->join('contacts', 'contacts.id', '=', 'sales.contact_id')
             ->join('clients', 'clients.id', '=', 'sales.client_id')
             ->join('articles', 'articles.id', '=', 'sale_details.article_id')
-            ->where('sales.status',1)
+            ->whereIn('sales.status',[1,2,3])
             ->where('sale_details.article_id', $this->article);
 
         // Unificar ambas consultas
@@ -90,7 +96,7 @@ class Kardex extends Component
         });
 
 
-        $this->kardex =  $kardexConSaldo;
+        $this->kardex =  $kardexConSaldo->reverse()->values();
 
     }
 

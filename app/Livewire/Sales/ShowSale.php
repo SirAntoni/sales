@@ -47,14 +47,13 @@ class ShowSale extends Component
 
         $sale = Sale::find($this->id);
 
-        $clients = Client::select('id','name','document_number')->whereNot('id',1)->orderBy('id','desc')->get();
         $articles = Article::select('id','title','stock','sale_price')->where('stock', '>', 0)
             ->whereNot('id', 1)
             ->OrderBy('id', 'desc')
             ->get();
         $contacts = Contact::select('id','name')->get();
         $paymentMethods = PaymentMethod::select('id','name')->get();
-        $this->clients = $clients;
+        $this->client = $sale->client;
         $this->articles = $articles;
         $this->contacts = $contacts;
         $this->paymentMethods = $paymentMethods;
@@ -82,6 +81,33 @@ class ShowSale extends Component
         'delivery_fee' => 'numeric|nullable',
         'articlesSelected' => 'required|array|min:1'
     ];
+
+    public function searchClients($query)
+    {
+        return Client::query()
+            ->where('name', 'like', '%'.$query.'%')
+            ->limit(10)
+            ->get(['id', 'name'])
+            ->map(fn($c) => [
+                'value' => $c->id,
+                'text'  => $c->name,
+            ])
+            ->toArray();
+    }
+
+
+    public function searchArticles($query)
+    {
+        return Article::query()
+            ->where('title', 'like', '%'.$query.'%')
+            ->limit(10)
+            ->get(['id', 'title'])
+            ->map(fn($c) => [
+                'value' => $c->id,
+                'text'  => $c->title,
+            ])
+            ->toArray();
+    }
 
     public function save()
     {

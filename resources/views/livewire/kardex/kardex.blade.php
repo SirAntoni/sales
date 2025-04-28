@@ -3,7 +3,7 @@
         <div class="col-span-12">
             <div class="flex flex-col gap-y-3 md:h-10 md:flex-row md:items-center">
                 <div class="text-base font-medium group-[.mode--light]:text-white">
-                   Kardex - Entradas y salidas
+                    Kardex - Entradas y salidas
                 </div>
 
             </div>
@@ -18,49 +18,24 @@
                     </div>
                     <div class="grid grid-cols-12 pt-4">
                         <div class="col-span-12 sm:col-span-12 flex flex-col gap-3.5 px-5 py-2">
-                            <x-base.preview>
-                                <div>
-                                    <div class="mt-2" wire:ignore>
-                                        <x-base.tom-select
-                                            class="w-full"
-                                            data-placeholder="Buscar producto por nombre u sku"
-                                            wire:model.live="article"
-                                        >
-                                            <option value=""></option>
-                                            @foreach($articles as $article)
-                                                <option value="{{$article->id}}">{{$article->title}} | SKU: {{$article->sku}}</option>
-                                            @endforeach
 
-                                        </x-base.tom-select>
-                                    </div>
-                                    @error('articlesSelected')
-                                    <div class="p-1">
-                                        {{$message}}
-                                    </div>
-                                    @enderror
+                            <div>
+                                <div class="mt-2" wire:ignore>
+                                    <x-base.tom-select
+                                        id="tomArticles"
+                                        class="w-full"
+                                        data-placeholder="Buscar producto por nombre"
+                                        wire:model.live="article"
+                                    >
+                                    </x-base.tom-select>
                                 </div>
-                            </x-base.preview>
-                            <x-base.source>
-                                <x-base.highlight>
-                                    <div>
-                                        <label>Basic</label>
+                                @error('articlesSelected')
+                                <div class="p-1">
+                                    {{$message}}
+                                </div>
+                                @enderror
+                            </div>
 
-                                        <div class="mt-2">
-                                            <x-base.tom-select
-                                                class="w-full"
-                                                data-placeholder="Buscar producto por nombre u sku"
-                                                wire:change="article"
-                                            >
-                                                <option value=""></option>
-                                                @foreach($articles as $article)
-                                                    <option value="{{$article->id}}">{{$article->title}} | SKU: {{$article->sku}}</option>
-                                                @endforeach
-
-                                            </x-base.tom-select>
-                                        </div>
-                                    </div>
-                                </x-base.highlight>
-                            </x-base.source>
                         </div>
 
                     </div>
@@ -218,7 +193,7 @@
                                         class="rounded-l-none rounded-r-none border-x-0 border-t-0 border-dashed py-5 first:rounded-l-[0.6rem] last:rounded-r-[0.6rem] dark:bg-darkmode-600 text-center"
                                     >
 
-                                       Seleccione un articulo
+                                        Seleccione un articulo
 
                                     </x-base.table.td>
 
@@ -236,4 +211,28 @@
         </div>
     </div>
 </div>
-</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+
+        new TomSelect('#tomArticles', {
+            valueField: 'value',
+            labelField: 'text',
+            searchField: 'text',
+            maxItems: 1,
+            create: false,
+            load: function (query, callback) {
+                if (!query.length) return callback();
+
+                @this.
+                call('searchArticles', query)
+                    .then(data => callback(data))
+                    .catch(() => callback());
+            }
+        });
+
+    });
+
+
+</script>
+

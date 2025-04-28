@@ -31,10 +31,9 @@ class Dashboard extends Component
 
     public function mount()
     {
-        $providers = Provider::select('id', 'name')->get();
-        $categories = Category::select('id', 'name')->get();
-        $departments = Department::all();
-        $districts = District::select('id', 'name')->get();
+        $providers = DB::table('providers')->select('id', 'name')->get();
+        $categories = DB::table('categories')->select('id', 'name')->get();
+        $departments = DB::table('departments')->select('id', 'name')->get();
         $this->providers = $providers;
         $this->categories = $categories;
         $this->departments = $departments;
@@ -44,7 +43,7 @@ class Dashboard extends Component
 
     public function updatingDepartment($department)
     {
-        $departments = Department::find($department);
+        $departments = Department::with('districts')->find($department);
         $this->districts = $departments->districts;
         $this->department = $department;
         $top10Products = $this->top10Products();

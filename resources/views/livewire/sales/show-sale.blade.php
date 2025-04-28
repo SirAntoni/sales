@@ -34,52 +34,27 @@
 
 
                                     <div class="col-span-12 sm:col-span-6 flex flex-col px-5 py-2">
-                                        <x-base.preview>
-                                            <div>
-                                                <label>Cliente</label>
-                                                <div class="mt-2 " wire:ignore>
-                                                    <x-base.tom-select
-                                                        wire:ignore
-                                                        class="w-full"
-                                                        data-placeholder="Selecciona un cliente"
-                                                        wire:model="client"
-                                                    >
 
-                                                        @foreach($clients as $client)
-                                                            <option value="{{$client->id}}" {{ $defaultClient == $client->id ? 'selected' : '' }}>{{$client->name}}
-                                                                - {{$client->document_number}}</option>
-                                                        @endforeach
+                                        <div>
+                                            <label>Cliente</label>
+                                            <div class="mt-2 " wire:ignore>
+                                                <x-base.tom-select
+                                                    id="tomClients"
+                                                    wire:ignore
+                                                    class="w-full"
+                                                    data-placeholder="Selecciona un cliente"
+                                                    wire:model="client"
+                                                >
 
+                                                </x-base.tom-select>
 
-                                                    </x-base.tom-select>
-
-                                                </div>
-                                                @error('client')
-                                                <div class="p-1">
-                                                    {{$message}}
-                                                </div>
-                                                @enderror
                                             </div>
-                                        </x-base.preview>
-
-                                        <x-base.source>
-                                            <x-base.highlight>
-                                                <div>
-                                                    <div>
-                                                        <x-base.tom-select
-                                                            class="w-full"
-                                                            data-placeholder="Selecciona un cliente"
-                                                            wire:model="defaultClient"
-                                                        >
-                                                            @foreach($clients as $client)
-                                                                <option value="{{$client->id}}" {{ $defaultClient == $client->id ? 'selected' : '' }}>{{$client->name}}
-                                                                    - {{$client->document_number}}</option>
-                                                            @endforeach
-                                                        </x-base.tom-select>
-                                                    </div>
-                                                </div>
-                                            </x-base.highlight>
-                                        </x-base.source>
+                                            @error('client')
+                                            <div class="p-1">
+                                                {{$message}}
+                                            </div>
+                                            @enderror
+                                        </div>
 
 
                                     </div>
@@ -141,7 +116,8 @@
                                             >
 
                                                 @foreach($contacts as $contact)
-                                                    <option value="{{$contact->id}}" {{ $defaultContact == $contact->id ? 'selected' : '' }}>{{$contact->name}}</option>
+                                                    <option
+                                                        value="{{$contact->id}}" {{ $defaultContact == $contact->id ? 'selected' : '' }}>{{$contact->name}}</option>
                                                 @endforeach
 
 
@@ -205,55 +181,30 @@
 
                                     </div>
                                     <div class="col-span-12 sm:col-span-9 flex flex-col gap-3.5 px-5 py-2">
-                                        <x-base.preview>
-                                            <div>
-                                                <label>Agregar Articulo</label>
 
-                                                <div class="mt-2" wire:ignore>
-                                                    <x-base.tom-select
-                                                        class="w-full"
-                                                        data-placeholder="Selecciona el articulo a agregar"
-                                                        wire:model.live="articleSelected"
-                                                    >
-                                                        <option value=""></option>
-                                                        @foreach($articles as $article)
-                                                            <option value="{{$article->id}}">{{$article->title}} |
-                                                                stock: {{$article->stock}} |
-                                                                sku: {{$article->sku}}</option>
-                                                        @endforeach
+                                        <div>
+                                            <label>Agregar Articulo</label>
+
+                                            <div class="mt-2" wire:ignore>
+                                                <x-base.tom-select
+                                                    id="tomArticles"
+                                                    class="w-full"
+                                                    data-placeholder="Selecciona el articulo a agregar"
+                                                    wire:model.live="articleSelected"
+                                                >
 
 
-                                                    </x-base.tom-select>
-                                                </div>
-                                                @error('articlesSelected')
-                                                <div class="p-1">
-                                                    {{$message}}
-                                                </div>
-                                                @enderror
+
+                                                </x-base.tom-select>
                                             </div>
-                                        </x-base.preview>
-                                        <x-base.source>
-                                            <x-base.highlight>
-                                                <div>
-                                                    <label>Basic</label>
+                                            @error('articlesSelected')
+                                            <div class="p-1">
+                                                {{$message}}
+                                            </div>
+                                            @enderror
+                                        </div>
 
-                                                    <div class="mt-2">
-                                                        <x-base.tom-select
-                                                            class="w-full"
-                                                            data-placeholder="Selecciona el articulo a agregar"
-                                                            wire:change="articleSelected"
-                                                        >
-                                                            <option value=""></option>
-                                                            @foreach($articles as $article)
-                                                                <option value="{{$article->id}}">{{$article->title}} |
-                                                                    stock: {{$article->stock}} |
-                                                                    sku: {{$article->sku}}</option>
-                                                            @endforeach
-                                                        </x-base.tom-select>
-                                                    </div>
-                                                </div>
-                                            </x-base.highlight>
-                                        </x-base.source>
+
                                     </div>
                                     <div
                                         class="col-span-12 sm:col-span-3 flex flex-col gap-3.5 px-5 sm:pt-1 pt-10  md:pt-10 pb-4">
@@ -386,7 +337,7 @@
                             <div class="flex items-center justify-end">
                                 <div class="text-slate-500">Subtotal:</div>
                                 <div class="w-20 font-medium text-slate-600 sm:w-52">
-                                    S/.  {{ number_format($this->granSubtotal, 2) }}
+                                    S/. {{ number_format($this->granSubtotal, 2) }}
                                 </div>
                             </div>
                             <div class="flex items-center justify-end">
@@ -398,7 +349,7 @@
                             <div class="flex items-center justify-end">
                                 <div class="text-slate-500">Total:</div>
                                 <div class="w-20 font-medium text-slate-600 sm:w-52">
-                                    S/.  {{ number_format($this->granTotal, 2) }}
+                                    S/. {{ number_format($this->granTotal, 2) }}
                                 </div>
                             </div>
                         </div>
@@ -416,28 +367,28 @@
                                 {{$message}}
                             </div>
                             @enderror
-                           <div class="flex justify-end">
-                               <x-base.button
-                                   class="w-full rounded-[0.5rem] py-2.5 md:w-56 mr-2"
-                                   variant="primary"
-                                   wire:click="saveObservation"
-                               >
-                                   <div class="px-2">
-                                       <i class="fa-solid fa-floppy-disk"></i>
-                                   </div>
-                                   Guardar observación
-                               </x-base.button>
-                               <x-base.button
-                                   class="w-full rounded-[0.5rem] py-2.5 md:w-56"
-                                   variant="danger"
-                                   wire:click="deleteObservation"
-                               >
-                                   <div class="px-2">
-                                       <i class="fa-solid fa-floppy-disk"></i>
-                                   </div>
-                                   Eliminar Observación
-                               </x-base.button>
-                           </div>
+                            <div class="flex justify-end">
+                                <x-base.button
+                                    class="w-full rounded-[0.5rem] py-2.5 md:w-56 mr-2"
+                                    variant="primary"
+                                    wire:click="saveObservation"
+                                >
+                                    <div class="px-2">
+                                        <i class="fa-solid fa-floppy-disk"></i>
+                                    </div>
+                                    Guardar observación
+                                </x-base.button>
+                                <x-base.button
+                                    class="w-full rounded-[0.5rem] py-2.5 md:w-56"
+                                    variant="danger"
+                                    wire:click="deleteObservation"
+                                >
+                                    <div class="px-2">
+                                        <i class="fa-solid fa-floppy-disk"></i>
+                                    </div>
+                                    Eliminar Observación
+                                </x-base.button>
+                            </div>
                         </div>
 
 
@@ -473,11 +424,63 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
+
+
         const picker = new Litepicker({
             element: document.getElementById('datepicker'),
-            autoApply: false,
+            autoApply: true,
             singleMode: true
         });
+
+        new TomSelect('#tomArticles', {
+            valueField: 'value',
+            labelField: 'text',
+            searchField: 'text',
+            maxItems: 1,
+            create: false,
+            load: function (query, callback) {
+                if (!query.length) return callback();
+
+                @this.
+                call('searchArticles', query)
+                    .then(data => callback(data))
+                    .catch(() => callback());
+            }
+        });
+
+        new TomSelect('#tomClients', {
+            valueField: 'value',
+            labelField: 'text',
+            searchField: 'text',
+            maxItems: 1,
+            create: false,
+            load: function (query, callback) {
+                if (!query.length) return callback();
+
+                @this.
+                call('searchClients', query)
+                    .then(data => callback(data))
+                    .catch(() => callback());
+            },
+            onChange: function (value) {
+                @this.
+                set('client', value);
+            },
+            onInitialize() {
+                @if(isset($client) && $client)
+                // agregamos la opción que ya existe
+                this.addOption({
+                    value: '{{ $client->id }}',
+                    text: '{{ $client->name }}'
+                });
+                // la seleccionamos
+                this.setValue('{{ $client->id }}');
+                @endif
+            }
+        });
+
+
+
 
         picker.on('selected', (startDate, endDate) => {
             @this.
@@ -485,6 +488,8 @@
         });
 
     });
+
+
 </script>
 
 
