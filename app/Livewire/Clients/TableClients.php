@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\Client;
 use Livewire\Attributes\On;
 use Livewire\WithPagination;
+use Illuminate\Support\Facades\DB;
 
 class TableClients extends Component
 {
@@ -37,13 +38,13 @@ class TableClients extends Component
         $clients = [];
         switch ($this->filter) {
             case 'document':
-                $clients = Client::orderBy('id', 'desc')->when($this->search, function ($query) {
+                $clients = DB::table('clients')->orderBy('id', 'desc')->when($this->search, function ($query) {
                     $query->where('document_number', 'like', '%' . $this->search . '%');
                 })->paginate($pages);
                 break;
                 break;
             default:
-                $clients = Client::orderBy('id', 'desc')->when($this->search, function ($query) {
+                $clients = DB::table('clients')->orderBy('id', 'desc')->when($this->search, function ($query) {
                     $query->where('name', 'like', '%' . $this->search . '%');
                 })->paginate($pages);
                 break;

@@ -8,6 +8,7 @@ use App\Models\Client;
 use Log;
 use App\Models\Province;
 use App\Models\District;
+use Illuminate\Support\Facades\DB;
 
 class AddClient extends Component
 {
@@ -26,7 +27,7 @@ class AddClient extends Component
     public $districtSelect = null;
 
     public function mount(){
-        $departments = Department::all();
+        $departments = DB::table('departments')->get();
         $this->departments = $departments;
     }
 
@@ -36,13 +37,13 @@ class AddClient extends Component
         $this->districtSelect = null;
         $this->provinceSelect = null;
         $this->districts = [];
-        $this->provinces = Province::where('department_id', $value)->get();
+        $this->provinces = DB::table('provinces')->where('department_id', $value)->get();
 
     }
 
     public function updatedProvinceSelect($value)
     {
-        $this->districts = District::where('province_id', $value)->get();
+        $this->districts = DB::table('districts')->where('province_id', $value)->get();
     }
 
     protected $rules = [

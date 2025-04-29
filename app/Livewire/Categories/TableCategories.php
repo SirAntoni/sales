@@ -7,6 +7,7 @@ use Livewire\Component;
 use Livewire\Attributes\On;
 use Livewire\WithPagination;
 use Log;
+use Illuminate\Support\Facades\DB;
 
 class TableCategories extends Component
 {
@@ -35,7 +36,8 @@ class TableCategories extends Component
         $categories = Category::orderBy('id','desc')->when($this->search,function($query){
                 $query->where('name','like','%'.$this->search.'%');
             })->paginate('15');
-        Log::info("Registros filtrados por categoria ".$this->search);
+
+
         return view('livewire.categories.table-categories', compact('categories'));
     }
 

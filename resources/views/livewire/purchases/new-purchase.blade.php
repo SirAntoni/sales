@@ -31,22 +31,17 @@
                                 </div>
                                 <div class="grid grid-cols-12 pt-4">
                                     <div class="col-span-12 sm:col-span-6 flex flex-col px-5 py-2">
-                                        <x-base.preview>
+
                                             <div>
                                                 <label>Proveedor</label>
                                                 <div class="mt-2 " wire:ignore>
                                                     <x-base.tom-select
                                                         wire:ignore
+                                                        id="tomProviders"
                                                         class="w-full"
                                                         data-placeholder="Selecciona un proveedor"
                                                         wire:model="provider"
                                                     >
-                                                        <option value=""></option>
-                                                        @foreach($providers as $provider)
-                                                            <option value="{{$provider->id}}">{{$provider->name}}
-                                                                - {{$provider->document_number}}</option>
-                                                        @endforeach
-
 
                                                     </x-base.tom-select>
 
@@ -57,29 +52,9 @@
                                                 </div>
                                                 @enderror
                                             </div>
-                                        </x-base.preview>
 
-                                        <x-base.source>
-                                            <x-base.highlight>
-                                                <div>
-                                                    <label>Basic</label>
-                                                    <div>
-                                                        <x-base.tom-select
-                                                            class="w-full"
-                                                            data-placeholder="Selecciona un proveedor"
-                                                            wire:model="provider"
 
-                                                        >
-                                                            <option value=""></option>
-                                                            @foreach($providers as $provider)
-                                                                <option value="{{$provider->id}}">{{$provider->name}}
-                                                                    - {{$provider->document_number}}</option>
-                                                            @endforeach
-                                                        </x-base.tom-select>
-                                                    </div>
-                                                </div>
-                                            </x-base.highlight>
-                                        </x-base.source>
+
 
 
                                     </div>
@@ -151,24 +126,17 @@
 
                                     </div>
                                     <div class="col-span-12 sm:col-span-9 flex flex-col gap-3.5 px-5 py-2">
-                                        <x-base.preview>
+
                                             <div>
                                                 <label>Agregar Articulo</label>
 
                                                 <div class="mt-2" wire:ignore>
                                                     <x-base.tom-select
+                                                        id="tomArticles"
                                                         class="w-full"
                                                         data-placeholder="Selecciona el articulo a agregar"
                                                         wire:model.live="articleSelected"
                                                     >
-                                                        <option value=""></option>
-                                                        @foreach($articles as $article)
-                                                            <option value="{{$article->id}}">{{$article->title}} |
-                                                                stock: {{$article->stock}} |
-                                                                sku: {{$article->sku}}</option>
-                                                        @endforeach
-
-
                                                     </x-base.tom-select>
                                                 </div>
                                                 @error('articlesSelected')
@@ -177,29 +145,8 @@
                                                 </div>
                                                 @enderror
                                             </div>
-                                        </x-base.preview>
-                                        <x-base.source>
-                                            <x-base.highlight>
-                                                <div>
-                                                    <label>Basic</label>
 
-                                                    <div class="mt-2">
-                                                        <x-base.tom-select
-                                                            class="w-full"
-                                                            data-placeholder="Selecciona el articulo a agregar"
-                                                            wire:change="articleSelecte"
-                                                        >
-                                                            <option value=""></option>
-                                                            @foreach($articles as $article)
-                                                                <option value="{{$article->id}}">{{$article->title}} |
-                                                                    stock: {{$article->stock}} |
-                                                                    sku: {{$article->sku}}</option>
-                                                            @endforeach
-                                                        </x-base.tom-select>
-                                                    </div>
-                                                </div>
-                                            </x-base.highlight>
-                                        </x-base.source>
+
                                     </div>
                                     <div
                                         class="col-span-12 sm:col-span-3 flex flex-col gap-3.5 px-5 sm:pt-1 pt-10  md:pt-10 pb-4">
@@ -359,3 +306,47 @@
         </div>
     </div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+
+        new TomSelect('#tomProviders', {
+            valueField: 'value',
+            labelField: 'text',
+            searchField: 'text',
+            maxItems: 1,
+            create: false,
+            load: function (query, callback) {
+                if (!query.length) return callback();
+
+                @this.
+                call('searchProviders', query)
+                    .then(data => callback(data))
+                    .catch(() => callback());
+            },
+            onChange: function (value) {
+                @this.
+                set('provider', value);
+            },
+        });
+
+        new TomSelect('#tomArticles', {
+            valueField: 'value',
+            labelField: 'text',
+            searchField: 'text',
+            maxItems: 1,
+            create: false,
+            load: function (query, callback) {
+                if (!query.length) return callback();
+
+                @this.
+                call('searchArticles', query)
+                    .then(data => callback(data))
+                    .catch(() => callback());
+            }
+        });
+
+    });
+
+
+</script>

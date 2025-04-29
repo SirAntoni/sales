@@ -6,16 +6,13 @@ use App\Models\Article;
 use App\Models\Purchase;
 use Livewire\Component;
 use App\Models\Provider;
-use Log;
 
 
 class NewPurchase extends Component
 {
     public $provider;
     public $voucher_type;
-    public $providers;
     public $article;
-    public $articles;
     public $document;
     public $passenger;
     public $granSubtotal;
@@ -43,16 +40,6 @@ class NewPurchase extends Component
     protected $messages = [
         'articlesSelected.required' => 'Debe seleccionar al menos 1 artículo'
     ];
-
-    public function mount()
-    {
-        $providers = Provider::all();
-        $articles = Article::whereNot('id', '1')
-            ->OrderBy('id', 'asc')
-            ->get();
-        $this->providers = $providers;
-        $this->articles = $articles;
-    }
 
     public function save(){
         $this->validate();
@@ -152,6 +139,32 @@ class NewPurchase extends Component
 
     public function updateTax(){
         $this->calculateTotals();
+    }
+
+    public function searchProviders($query)
+    {
+        return Provider::query()
+            ->where('name', 'like', '%'.$query.'%')
+            ->limit(10)
+            ->get(['id', 'name'])
+            ->map(fn($c) => [
+                'value' => $c->id,
+                'text'  => $c->name,
+            ])
+            ->toArray();
+    }
+
+    public function searchArticles($query)
+    {
+        return Article::query()
+            ->where('title', 'like', '%'.$query.'%')
+            ->limit(10)
+            ->get(['id', 'title'])
+            ->map(fn($c) => [
+                'value' => $c->id,
+                'text'  => $c->title,
+            ])
+            ->toArray();
     }
 
     public function render()

@@ -7,6 +7,7 @@ use App\Models\Brand;
 use App\Models\Category;
 use Livewire\Component;
 use Livewire\Features\SupportAttributes\AttributeCollection;
+use Illuminate\Support\Facades\DB;
 
 class AddArticle extends Component
 {
@@ -64,8 +65,10 @@ class AddArticle extends Component
 
     public function render()
     {
-        $categories = Category::all();
-        $brands = Brand::all();
+
+        $categories = DB::table('categories')->get();
+        $brands = DB::table('brands')->get();
+
         return view('livewire.articles.add-article', compact('categories', 'brands'));
     }
 }
