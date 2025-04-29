@@ -274,7 +274,7 @@
                                                                 type="number"
                                                                 min="1"
                                                                 step="1"
-                                                                wire:model="articlesSelected.{{ $index }}.quantity"
+                                                                wire:model.debounce.100ms="articlesSelected.{{ $index }}.quantity"
                                                                 wire:input="updateTotal({{ $index }})"
                                                                 class="w-15 text-center border rounded"
                                                             >
@@ -287,7 +287,7 @@
                                                                 type="number"
                                                                 step="0.01"
                                                                 min="0"
-                                                                wire:model="articlesSelected.{{ $index }}.price"
+                                                                wire:model.debounce.100ms="articlesSelected.{{ $index }}.price"
                                                                 wire:input="updateTotal({{ $index }})"
                                                                 class="w-15 text-center border rounded"
                                                             >
