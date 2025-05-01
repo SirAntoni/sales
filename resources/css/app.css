@@ -27,18 +27,15 @@
 @import "./components/_typing-dots.css";
 @import "./components/_zoom-in.css";
 
-/*
- |--------------------------------------------------------------------------
- | TailwindCSS Directives
- |--------------------------------------------------------------------------
- |
- | Import TailwindCSS directives and swipe out at build-time with all of
- | the styles it generates based on your configured design system.
- |
- | Please check this link for more details:
- | https://tailwindcss.com/docs/installation#include-tailwind-in-your-css
- |
- */
+
+
+/*Custom Container CSS*/
+@media (min-width: 1320px) {
+    .container {
+        max-width: 100% !important;
+    }
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

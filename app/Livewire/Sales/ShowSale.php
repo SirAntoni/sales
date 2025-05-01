@@ -47,14 +47,11 @@ class ShowSale extends Component
 
         $sale = Sale::find($this->id);
 
-        $articles = Article::select('id','title','stock','sale_price')->where('stock', '>', 0)
-            ->whereNot('id', 1)
-            ->OrderBy('id', 'desc')
-            ->get();
+
         $contacts = Contact::select('id','name')->get();
         $paymentMethods = PaymentMethod::select('id','name')->get();
         $this->client = $sale->client;
-        $this->articles = $articles;
+
         $this->contacts = $contacts;
         $this->paymentMethods = $paymentMethods;
         $this->date = $sale->date;
@@ -257,7 +254,7 @@ class ShowSale extends Component
     public function addToArticleSale($id)
     {
 
-        $article = SaleDetail::find($id);
+        $article = SaleDetail::with('article')->find($id);
 
 
         if ($article) {

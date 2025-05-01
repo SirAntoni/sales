@@ -181,7 +181,6 @@
 
                                     </div>
                                     <div class="col-span-12 sm:col-span-9 flex flex-col gap-3.5 px-5 py-2">
-
                                         <div>
                                             <label>Agregar Articulo</label>
 
