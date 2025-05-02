@@ -14,6 +14,15 @@
                         <div class="px-2"><i class="fa-solid fa-plus"></i></div>
                         Nuevo Cliente
                     </x-base.button>
+                    <x-base.button
+                        class="group-[.mode--light]:!border-transparent group-[.mode--light]:!bg-white/[0.12] group-[.mode--light]:!text-slate-200"
+                        variant="primary"
+                        onclick="window.location.href='{{ route('sales.create') }}'"
+                    >
+                        <i class="fa-solid fa-cart-shopping mr-2"></i>
+
+                        Nueva Venta
+                    </x-base.button>
                 </div>
             </div>
             <div class="mt-3.5">
@@ -21,7 +30,6 @@
                     <div class="flex flex-col gap-y-2 p-5 sm:flex-row sm:items-center justify-end">
                         <div>
                             <div class="relative">
-
                                 <i class="absolute inset-y-0 left-0 z-10 my-auto ml-3.5 h-4 w-4 stroke-[1.3] text-slate-500 fa-solid fa-magnifying-glass"></i>
                                 <x-base.form-input
                                     class="rounded-[0.5rem] pl-9 sm:w-64"

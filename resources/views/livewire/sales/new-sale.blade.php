@@ -9,6 +9,15 @@
                     <x-base.button
                         class="group-[.mode--light]:!border-transparent group-[.mode--light]:!bg-white/[0.12] group-[.mode--light]:!text-slate-200"
                         variant="primary"
+                        onclick="window.location.href='{{ route('clients.create') }}'"
+                    >
+                        <i class="fa-solid fa-user-plus mr-2"></i>
+
+                        Nuevo cliente
+                    </x-base.button>
+                    <x-base.button
+                        class="group-[.mode--light]:!border-transparent group-[.mode--light]:!bg-white/[0.12] group-[.mode--light]:!text-slate-200"
+                        variant="primary"
                         wire:click="save"
                     >
                         <i class="fa-solid fa-floppy-disk mr-2"></i>
