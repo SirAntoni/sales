@@ -42,6 +42,8 @@ class ShowSale extends Component
     public $articlesSelected = [];
     public $observation = "";
 
+    public $clientSelected;
+
     public function mount()
     {
 
@@ -50,8 +52,14 @@ class ShowSale extends Component
 
         $contacts = Contact::select('id','name')->get();
         $paymentMethods = PaymentMethod::select('id','name')->get();
-        $this->client = $sale->client;
 
+        //Inicio Client
+        $this->client = $sale->client_id;
+        $this->clientSelected = $sale->client;
+        //Fin Client
+
+        $this->contact = $sale->contact_id;
+        $this->paymentMethod = $sale->payment_method_id;;
         $this->contacts = $contacts;
         $this->paymentMethods = $paymentMethods;
         $this->date = $sale->date;
@@ -139,7 +147,7 @@ class ShowSale extends Component
             'tax' => $this->granTax,
             'total' => $this->granTotal,
             'delivery' => empty($this->delivery_fee) ? 0 : 1,
-            'delivery_fee' => $this->delivery_fee ?? 0,
+            'delivery_fee' => $this->delivery_fee ?: 0,
             'client_id' => $this->client,
             'contact_id' => $this->contact,
             'payment_method_id' => $this->paymentMethod

@@ -38,7 +38,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('payment-methods', PaymentMethodController::class)->middleware('can:settings');
     Route::resource('purchases', PurchaseController::class)->middleware('can:purchases');
     Route::resource('sales', SaleController::class)->middleware('can:sales');
-    Route::resource('documents', DocumentController::class)->middleware('can:documents');
+    Route::resource('documents', DocumentController::class)->middleware('can:kardex');
     Route::get('canceled', [CanceledController::class,'index'])->name('canceled')->middleware('can:sales');
     Route::get('reports', [ReportController::class,'index'])->name('reports')->middleware('can:reports');
     Route::get('reports/dayli/export', [ReportController::class, 'dayli'])->name('reports.dayli.export')->middleware('can:reports');

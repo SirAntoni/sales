@@ -101,6 +101,7 @@ class NewSale extends Component
         $this->contacts = $contacts;
         $this->paymentMethods = $paymentMethods;
         $this->date = Carbon::now()->format('Y-m-d');
+        $this->contact = 1;
     }
 
     public function searchClients($query)

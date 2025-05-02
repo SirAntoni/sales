@@ -37,6 +37,7 @@
 
                                         <div>
                                             <label>Cliente</label>
+
                                             <div class="mt-2 " wire:ignore>
                                                 <x-base.tom-select
                                                     id="tomClients"
@@ -462,18 +463,17 @@
                     .catch(() => callback());
             },
             onChange: function (value) {
-                @this.
-                set('client', value);
+                @this.set('client', value);
             },
             onInitialize() {
-                @if(isset($client) && $client)
+                @if(isset($clientSelected) && $clientSelected)
                 // agregamos la opción que ya existe
                 this.addOption({
-                    value: '{{ $client->id }}',
-                    text: '{{ $client->name }}'
+                    value: '{{ $clientSelected->id }}',
+                    text: '{{ $clientSelected->name }}'
                 });
                 // la seleccionamos
-                this.setValue('{{ $client->id }}');
+                this.setValue('{{ $clientSelected->id }}');
                 @endif
             }
         });

@@ -29,6 +29,8 @@ class AddClient extends Component
     public function mount(){
         $departments = DB::table('departments')->get();
         $this->departments = $departments;
+        $this->email = "info@shipersales.pe";
+        $this->phone = "990062896";
     }
 
     public function updatedDepartmentSelect($value)

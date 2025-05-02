@@ -7,7 +7,6 @@ use Livewire\Component;
 use App\Models\Sale;
 use Livewire\Attributes\On;
 use Illuminate\Support\Facades\DB;
-use Barryvdh\DomPDF\Facade\Pdf;
 use Livewire\WithPagination;
 use Log;
 
@@ -97,8 +96,8 @@ class TableSales extends Component
     public function render()
     {
 
-        $pages = 30;
-        $sales = Sale::orderBy('id', 'desc')
+        $pages = 15;
+        $sales = Sale::with('saleDetails')->orderBy('id', 'desc')
             ->whereNot('status', 0)
             ->whereYear('created_at', '2025')
             ->when($this->search, function ($query) {
