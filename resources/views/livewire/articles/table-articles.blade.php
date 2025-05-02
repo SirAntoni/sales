@@ -27,23 +27,9 @@
                                 <x-base.form-input
                                     class="rounded-[0.5rem] pl-9 sm:w-64"
                                     type="text"
-                                    placeholder="Buscar articulos..."
+                                    placeholder="Buscar..."
                                     wire:model.live="search"
                                 />
-                            </div>
-                        </div>
-                        <div>
-                            <div class="relative md:ml-2">
-                                <i class="absolute inset-y-0 left-0 z-10 my-auto ml-3.5 h-4 w-4 stroke-[1.3] text-slate-500 fa-solid fa-filter"></i>
-                                <x-base.form-select
-                                    class="rounded-[0.5rem] pl-9 sm:w-64"
-                                    wire:model="filter"
-                                >
-                                    <option disabled selected value="">Filtros</option>
-                                    <option value="title">Titulo</option>
-                                    <option value="categories">Categoría</option>
-                                    <option value="brands">Marca</option>
-                                </x-base.form-select>
                             </div>
                         </div>
 

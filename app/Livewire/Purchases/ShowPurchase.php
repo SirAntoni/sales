@@ -8,6 +8,7 @@ use App\Models\PurchaseDetail;
 use Livewire\Component;
 use App\Models\Provider;
 use Log;
+use DB;
 
 class ShowPurchase extends Component
 {
@@ -21,12 +22,16 @@ class ShowPurchase extends Component
     public $granTax = 0;
     public $articlesSelected = [];
     public $number;
+    public $providers;
 
-    public function mount(){
+    public function mount()
+    {
 
-        $purchase = Purchase::find($this->id);
+        $this->providers = DB::table('providers')->get();
+
+        $purchase = DB::table('purchases')->find($this->id);
         $this->number = $purchase->number;
-        $this->provider = $purchase->provider->name;
+        $this->provider = $purchase->provider_id;
         $this->voucher_type = $purchase->voucher_type;
         $this->document = $purchase->document;
         $this->passenger = $purchase->passenger;
@@ -34,9 +39,17 @@ class ShowPurchase extends Component
         $this->granTax = $purchase->tax;
         $this->granTotal = $purchase->total;
 
-        $this->articlesSelected = PurchaseDetail::where('purchase_id', $this->id)->get();
+        $this->articlesSelected = PurchaseDetail::with('article')->where('purchase_id', $this->id)->get();
 
     }
+
+    public function save()
+    {
+        Purchase::find($this->id)->update(['provider_id' => $this->provider]);
+        $this->dispatch('success', ['label' => 'La compra fue editada con éxito.', 'btn' => 'Ir a compras', 'route' => route('purchases.index')]);
+
+    }
+
     public function render()
     {
         return view('livewire.purchases.show-purchase');

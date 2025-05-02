@@ -70,15 +70,20 @@ class TablePurchases extends Component
 
     public function render()
     {
-        $pages = 15;
-        $purchases = Purchase::orderBy('id', 'desc')
-            ->whereNot('status', 0)
-            ->when($this->search, function ($query) {
-                $query->whereHas('provider', function ($q) {
-                    $q->where('name', 'like', '%' . $this->search . '%');
+        $limit = 15;
+        $purchases = Purchase::query()
+            ->with(['provider:id,name'])
+            ->where('status', '!=', 0)
+            ->when($this->search, function ($query, $search) {
+                $search = trim($search);
+                $query->where(function ($q) use ($search) {
+                    $q->where('number', 'like', "%{$search}%")
+                        ->orWhere('passenger', 'like', "%{$search}%")
+                        ->orWhereHas('provider', fn ($c) => $c->where('name', 'like', "%{$search}%"));
                 });
             })
-            ->paginate($pages);
+            ->orderByDesc('id')
+            ->paginate($limit);
 
         foreach ($purchases as $purchase) {
             $btnColor = '';

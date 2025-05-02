@@ -96,16 +96,21 @@ class TableSales extends Component
     public function render()
     {
 
-        $pages = 15;
-        $sales = Sale::with('saleDetails')->orderBy('id', 'desc')
-            ->whereNot('status', 0)
-            ->whereYear('created_at', '2025')
-            ->when($this->search, function ($query) {
-                $query->whereHas('client', function ($q) {
-                    $q->where('name', 'like', '%' . $this->search . '%');
+        $limit = 15;
+        $sales = Sale::query()
+            ->with(['saleDetails', 'client:id,name', 'contact:id,name', 'paymentMethod:id,name'])
+            ->where('status', '!=', 0)
+            ->when($this->search, function ($query, $search) {
+                $search = trim($search);
+                $query->where(function ($q) use ($search) {
+                    $q->where('number', 'like', "%{$search}%")
+                        ->orWhereHas('client', fn ($c) => $c->where('name', 'like', "%{$search}%"))
+                        ->orWhereHas('contact', fn ($c) => $c->where('name', 'like', "%{$search}%"))
+                        ->orWhereHas('paymentMethod', fn ($p) => $p->where('name', 'like', "%{$search}%"));
                 });
             })
-            ->paginate($pages);
+            ->orderByDesc('id')
+            ->paginate($limit);
 
         foreach ($sales as $sale) {
             $htmlDetails = "<p><strong>Cliente: </strong> {$sale->client->name} </p><br><table style='border: 1px solid;'><thead style='border:1px solid;'><tr><th style='border:1px solid'>Titulo</th><th style='border:1px solid;padding:10px'>Cantidad</th><th style='padding:10px'>Precio</thstyle></tr></thead><tbody style='border:1px solid;'>";

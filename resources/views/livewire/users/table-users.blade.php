@@ -26,22 +26,9 @@
                                 <x-base.form-input
                                     class="rounded-[0.5rem] pl-9 sm:w-64"
                                     type="text"
-                                    placeholder="Buscar usuarios..."
+                                    placeholder="Buscar..."
                                     wire:model.live="search"
                                 />
-                            </div>
-                        </div>
-                        <div>
-                            <div class="relative md:ml-2">
-                                <i class="absolute inset-y-0 left-0 z-10 my-auto ml-3.5 h-4 w-4 stroke-[1.3] text-slate-500 fa-solid fa-filter"></i>
-                                <x-base.form-select
-                                    class="rounded-[0.5rem] pl-9 sm:w-64"
-                                    wire:model="filter"
-                                >
-                                    <option disabled selected value="">Filtros</option>
-                                    <option value="name">Nombre</option>
-                                    <option value="document">Documento</option>
-                                </x-base.form-select>
                             </div>
                         </div>
 
@@ -50,16 +37,6 @@
                         <x-base.table class="border-b border-slate-200/60">
                             <x-base.table.thead>
                                 <x-base.table.tr>
-                                    <x-base.table.td
-                                        class="border-t border-slate-200/60 bg-slate-50 py-4 font-medium text-slate-500"
-                                    >
-                                        T.Documento
-                                    </x-base.table.td>
-                                    <x-base.table.td
-                                        class="border-t border-slate-200/60 bg-slate-50 py-4 font-medium text-slate-500"
-                                    >
-                                        Documento
-                                    </x-base.table.td>
                                     <x-base.table.td
                                         class="border-t border-slate-200/60 bg-slate-50 py-4 font-medium text-slate-500"
                                     >
@@ -83,12 +60,6 @@
                                 @if($users->count() > 0)
                                     @foreach ($users as $user)
                                         <x-base.table.tr class="[&_td]:last:border-b-0">
-                                            <x-base.table.td class="border-dashed py-4 dark:bg-darkmode-600">
-                                                {{ $user->name }}
-                                            </x-base.table.td>
-                                            <x-base.table.td class="border-dashed py-4 dark:bg-darkmode-600">
-                                                {{ $user->name }}
-                                            </x-base.table.td>
                                             <x-base.table.td class="border-dashed py-4 dark:bg-darkmode-600">
                                                 {{ $user->name }}
                                             </x-base.table.td>

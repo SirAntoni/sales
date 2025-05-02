@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\DB;
 class TableClients extends Component
 {
     public $search;
-    public $filter;
     use WithPagination;
 
     public function updatingSearch(){
@@ -35,20 +34,21 @@ class TableClients extends Component
     public function render()
     {
         $pages = 15;
-        $clients = [];
-        switch ($this->filter) {
-            case 'document':
-                $clients = DB::table('clients')->orderBy('id', 'desc')->when($this->search, function ($query) {
-                    $query->where('document_number', 'like', '%' . $this->search . '%');
-                })->paginate($pages);
-                break;
-                break;
-            default:
-                $clients = DB::table('clients')->orderBy('id', 'desc')->when($this->search, function ($query) {
-                    $query->where('name', 'like', '%' . $this->search . '%');
-                })->paginate($pages);
-                break;
-        }
+
+        $clients = DB::table('clients')
+            ->when($this->search, function ($query, $search) {
+                $search = trim($search);
+                $query->where(function ($q) use ($search) {
+                    $q->where('name', 'like', "%{$search}%")
+                        ->orWhere('document_number', 'like', "%{$search}%")
+                        ->orWhere('phone', 'like', "%{$search}%");
+                });
+            })
+            ->orderByDesc('id')
+            ->paginate($pages);
+
+
+
 
         return view('livewire.clients.table-clients', compact('clients'));
     }

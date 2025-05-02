@@ -15,6 +15,15 @@
 
                         Ir a compras
                     </x-base.button>
+                    <x-base.button
+                        class="group-[.mode--light]:!border-transparent group-[.mode--light]:!bg-white/[0.12] group-[.mode--light]:!text-slate-200"
+                        variant="primary"
+                        wire:click="save"
+                    >
+                        <i class="fa-solid fa-floppy-disk mr-2"></i>
+
+                        Guardar Compra
+                    </x-base.button>
                 </div>
             </div>
 
@@ -37,12 +46,15 @@
                                             <x-base.form-label for="provider">
                                                 Proveedor
                                             </x-base.form-label>
-                                            <x-base.form-input
+                                            <x-base.form-select
                                                 id="provider"
                                                 type="text"
-                                                disabled
                                                 wire:model="provider"
-                                            />
+                                            >
+                                                @foreach($providers as $p)
+                                                    <option value="{{$p->id}}">{{$p->name}}</option>
+                                                @endforeach
+                                            </x-base.form-select>
                                         </div>
 
 

@@ -29,31 +29,11 @@
                                 <x-base.form-input
                                     class="rounded-[0.5rem] pl-9 sm:w-64"
                                     type="text"
-                                    placeholder="Buscar por cliente..."
+                                    placeholder="Buscar..."
                                     wire:model.live="search"
                                 />
                             </div>
                         </div>
-
-                        <div>
-                            <x-base.litepicker
-                                id="datepickerFilter"
-                                placeholder="Ingrese un rango de fechas valido."
-                                class="w-300 block"
-                                data-single-mode="true"
-                            />
-                            @error('startDate')
-                            <div class="p-1">
-                                {{ $message }}
-                            </div>
-                            @enderror
-                            @error('endDate')
-                            <div class="p-1">
-                                {{ $message }}
-                            </div>
-                            @enderror
-                        </div>
-
 
                     </div>
                     <div class="overflow-auto xl:overflow-visible text-sm">
@@ -247,29 +227,29 @@
     </div>
 </div>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
+{{--<script>--}}
+{{--    document.addEventListener('DOMContentLoaded', function () {--}}
 
-        const pickerFilter = new Litepicker({
-            element: document.getElementById('datepickerFilter'),
-            autoApply: false,
-            singleMode: false,
-            numberOfColumns: 2,
-            numberOfMonths: 2,
-            dropdowns: {
-                minYear: 2020,
-                maxYear: null,
-                months: true,
-                years: true,
-            },
-        });
+{{--        const pickerFilter = new Litepicker({--}}
+{{--            element: document.getElementById('datepickerFilter'),--}}
+{{--            autoApply: false,--}}
+{{--            singleMode: false,--}}
+{{--            numberOfColumns: 2,--}}
+{{--            numberOfMonths: 2,--}}
+{{--            dropdowns: {--}}
+{{--                minYear: 2020,--}}
+{{--                maxYear: null,--}}
+{{--                months: true,--}}
+{{--                years: true,--}}
+{{--            },--}}
+{{--        });--}}
 
-        pickerFilter.on('selected', (startDate, endDate) => {
-            @this.set('startDate', startDate.format('YYYY-MM-DD'));
-            @this.set('endDate', endDate.format('YYYY-MM-DD'));
-        });
+{{--        pickerFilter.on('selected', (startDate, endDate) => {--}}
+{{--            @this.set('startDate', startDate.format('YYYY-MM-DD'));--}}
+{{--            @this.set('endDate', endDate.format('YYYY-MM-DD'));--}}
+{{--        });--}}
 
-    });
-</script>
+{{--    });--}}
+{{--</script>--}}
 
 

@@ -37,34 +37,22 @@ class TableArticles extends Component
 
     public function render()
     {
-        $pages = 15;
-        $articles = [];
-        switch ($this->filter) {
-            case 'categories':
-                $articles = Article::orderBy('id', 'desc')
-                    ->when($this->search, function ($query) {
-                        $query->whereHas('category', function ($q) {
-                            $q->where('name', 'like', '%' . $this->search . '%');
-                        });
-                    })
-                    ->paginate($pages);
-                break;
-            case 'brands':
-                $articles = Article::orderBy('id', 'desc')
-                    ->when($this->search, function ($query) {
-                        $query->whereHas('brand', function ($q) {
-                            $q->where('name', 'like', '%' . $this->search . '%');
-                        });
-                    })
-                    ->paginate($pages);
-                break;
-            default:
-                $articles = Article::orderBy('id', 'desc')->when($this->search, function ($query) {
-                    $query->where('title', 'like', '%' . $this->search . '%');
-                })->paginate($pages);
-                break;
-        }
-
+        $limit = 15;
+        $articles = Article::query()
+            ->with(['category:id,name', 'brand:id,name'])
+            ->when($this->search, function ($query, $search) {
+                $search = trim($search);
+                $query->where(function ($q) use ($search) {
+                    $q->where('title', 'like', "%{$search}%")
+                        ->orWhere('description', 'like', "%{$search}%")
+                        ->orWhere('detail', 'like', "%{$search}%")
+                        ->orWhere('sku', 'like', "%{$search}%")
+                        ->orWhereHas('category', fn ($c) => $c->where('name', 'like', "%{$search}%"))
+                        ->orWhereHas('brand', fn ($c) => $c->where('name', 'like', "%{$search}%"));
+                });
+            })
+            ->orderByDesc('id')
+            ->paginate($limit);
 
         return view('livewire.articles.table-articles', compact('articles'));
     }

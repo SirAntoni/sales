@@ -4,6 +4,7 @@ namespace App\Livewire\Users;
 use App\Models\User;
 use Livewire\Component;
 use Livewire\Attributes\On;
+use Illuminate\Support\Facades\DB;
 
 class TableUsers extends Component
 {
@@ -26,9 +27,20 @@ class TableUsers extends Component
 
     public function render()
     {
-        $users = User::orderBy('id','desc')->when($this->search,function($query){
-            $query->where('name','like','%'.$this->search.'%');
-        })->paginate('15');
+        $limit = 15;
+        $users = DB::table('users')
+            ->when($this->search, function ($query, $search) {
+                $search = trim($search);
+                $query->where(function ($q) use ($search) {
+                    $q->where('name', 'like', "%{$search}%")
+                        ->orWhere('email', 'like', "%{$search}%");
+                });
+            })
+            ->orderByDesc('id')
+            ->paginate($limit);
+
+
+
         return view('livewire.users.table-users', compact('users'));
     }
 }
