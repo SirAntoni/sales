@@ -63,7 +63,13 @@ class SideMenu
                         'route_name' => "providers.index",
                         'params' => [],
                         'title' => "Proveedores",
-                    ]
+                    ],
+                    [
+                        'icon' => "FileMinus",
+                        'route_name' => "canceled_purchases",
+                        'params' => [],
+                        'title' => "Anulados",
+                    ],
                 ],
             ],
             [

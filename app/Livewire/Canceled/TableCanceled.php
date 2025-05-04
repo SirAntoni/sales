@@ -18,16 +18,19 @@ class TableCanceled extends Component
     public function render()
     {
 
-        $pages = 30;
-        $sales = Sale::orderBy('id', 'desc')
+        $limit = 15;
+        $sales = Sale::query()
+            ->with(['saleDetails', 'client:id,name','contact:id,name'])
             ->where('status', 0)
-            ->whereYear('created_at', '2025')
-            ->when($this->search, function ($query) {
-                $query->whereHas('client', function ($q) {
-                    $q->where('name', 'like', '%' . $this->search . '%');
+            ->when($this->search, function ($query, $search) {
+                $search = trim($search);
+                $query->where(function ($q) use ($search) {
+                    $q->where('number', 'like', "%{$search}%")
+                        ->orWhereHas('contact', fn ($c) => $c->where('name', 'like', "%{$search}%"));
                 });
             })
-            ->paginate($pages);
+            ->orderByDesc('id')
+            ->paginate($limit);
 
         foreach ($sales as $sale) {
 
