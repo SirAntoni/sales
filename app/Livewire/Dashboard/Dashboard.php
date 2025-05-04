@@ -11,9 +11,14 @@ use Livewire\Component;
 use App\Models\Provider;
 use App\Models\Article;
 use Illuminate\Support\Facades\DB;
+use App\Models\Sale;
+use Illuminate\Support\Facades\Cache;
 
 class Dashboard extends Component
 {
+
+    public $cantidadVentas;
+    public $gananciaVentas;
 
     public $month;
     public $year;
@@ -39,6 +44,26 @@ class Dashboard extends Component
         $this->departments = $departments;
         $this->month = Carbon::now()->format('m');
         $this->year = Carbon::now()->format('Y');
+
+        $this->cantidadVentas = $this->getCantidadVentas();
+        $this->gananciaVentas = $this->getTotalVentasHoy();
+
+    }
+
+
+    public function getCantidadVentas(): int{
+        return Cache::remember('ventas_hoy_count', 60, function () {
+            return Sale::whereDate('created_at', Carbon::today())->count();
+        });
+
+    }
+
+    public function getTotalVentasHoy(): float
+    {
+        return Cache::remember('total_ventas_hoy', 60, function () {
+            return (float) Sale::whereDate('created_at', Carbon::today())
+                ->sum('total');
+        });
     }
 
     public function updatingDepartment($department)

@@ -1,7 +1,7 @@
 @extends('../themes/base')
 
 @section('subhead')
-    <title>Tailwise - Admin Dashboard Template</title>
+    <title>ShiperSales | Login | Sistema de ventas</title>
 @endsection
 
 @section('content')

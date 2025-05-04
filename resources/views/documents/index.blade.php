@@ -1,7 +1,7 @@
 @extends('../themes/echo')
 
 @section('subhead')
-    <title>Tailwise - Admin Dashboard Template</title>
+    <title>ShiperSales | Documentos | Sistema de ventas</title>
 @endsection
 
 @section('subcontent')

@@ -119,11 +119,77 @@
 
 
         </div>
+        <div class="col-span-6 lg:col-span-4 2xl:col-span-12">
+            <div class="flex flex-col gap-y-3 md:h-10 md:flex-row md:items-center">
+                <div class="text-base font-medium group-[.mode--light]:text-white">
+                    Cantidad venta de hoy
+                </div>
+            </div>
+            <div class="box box--stacked mt-3.5 p-5">
 
+                <div
+                    class="flex h-12 w-12 items-center justify-center rounded-full border border-info/10 bg-info/10">
+                    <x-base.lucide
+                        class="h-6 w-6 fill-info/10 text-info"
+                        icon="Box"
+                    />
+                </div>
+                <div class="mb-6 mt-8 lg:mb-7 lg:mt-16 2xl:mb-5 2xl:mt-7">
+                    <div class="text-base text-slate-500">Cantidad</div>
+                    <div class="mt-1 flex items-center text-2xl font-medium">
+                        <span class="ml-px mr-1.5">{{$cantidadVentas}}</span>
+                    </div>
+                </div>
+                <a
+                    class="flex items-center font-medium text-primary"
+                    href="{{route('sales.index')}}"
+                >
+                    Ir a ventas
+                    <x-base.lucide
+                        class="ml-1.5 h-4 w-4"
+                        icon="MoveRight"
+                    />
+                </a>
+            </div>
+        </div>
+        <div class="col-span-6 lg:col-span-4 2xl:col-span-12">
+            <div class="flex flex-col gap-y-3 md:h-10 md:flex-row md:items-center">
+                <div class="text-base font-medium group-[.mode--light]:text-white">
+                    Ganancia ventas hoy
+                </div>
+            </div>
+            <div class="box box--stacked mt-3.5 p-5">
+
+                <div
+                    class="flex h-12 w-12 items-center justify-center rounded-full border border-info/10 bg-info/10">
+                    <x-base.lucide
+                        class="h-6 w-6 fill-info/10 text-info"
+                        icon="Box"
+                    />
+                </div>
+                <div class="mb-6 mt-8 lg:mb-7 lg:mt-16 2xl:mb-5 2xl:mt-7">
+                    <div class="text-base text-slate-500">Soles</div>
+                    <div class="mt-1 flex items-center text-2xl font-medium">
+                        <span class="text-[1.3rem]">S/. </span>
+                        <span class="ml-px mr-1.5">{{$gananciaVentas}}</span>
+                    </div>
+                </div>
+                <a
+                    class="flex items-center font-medium text-primary"
+                    href="{{route('sales.index')}}"
+                >
+                    Ir a ventas
+                    <x-base.lucide
+                        class="ml-1.5 h-4 w-4"
+                        icon="MoveRight"
+                    />
+                </a>
+            </div>
+        </div>
         <div class="col-span-6">
             <div>
                 <div class="flex flex-col gap-y-3 md:h-10 md:flex-row md:items-center">
-                    <div class="text-base font-medium group-[.mode--light]:text-white">Ganancia y margen según proveedor.
+                    <div class="text-base font-medium">Ganancia y margen según proveedor.
                     </div>
 
                 </div>
@@ -140,7 +206,7 @@
         <div class="col-span-6">
             <div>
                 <div class="flex flex-col gap-y-3 md:h-10 md:flex-row md:items-center">
-                    <div class="text-base font-medium group-[.mode--light]:text-white">Ganancia y venta total.
+                    <div class="text-base font-medium">Ganancia y venta total.
                     </div>
 
                 </div>
