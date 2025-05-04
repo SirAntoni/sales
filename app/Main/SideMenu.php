@@ -94,7 +94,7 @@ class SideMenu
                 ],
             ],
             [
-                'icon' => "AlignJustify",
+                'icon' => "Folder",
                 'route_name' => "documents.index",
                 'params' => [],
                 'title' => "Documentos",
