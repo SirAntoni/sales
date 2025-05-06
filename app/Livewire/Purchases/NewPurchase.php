@@ -21,6 +21,7 @@ class NewPurchase extends Component
     public $tax;
     public $articleSelected;
     public $articlesSelected = [];
+    public $status;
 
     protected $rules = [
         'provider' => 'required',
@@ -41,6 +42,14 @@ class NewPurchase extends Component
         'articlesSelected.required' => 'Debe seleccionar al menos 1 artículo'
     ];
 
+    public function mount(){
+        $this->status = 1;
+    }
+
+    public function updateStatus(){
+        $this->status ^= 1;
+    }
+
     public function save(){
         $this->validate();
         $purchase = Purchase::create([
@@ -50,7 +59,7 @@ class NewPurchase extends Component
             'subtotal'=>$this->granSubtotal,
             'tax' => $this->granTax,
             'total' => $this->granTotal,
-            'status'=>1,
+            'status'=> $this->status ? Purchase::PURCHASE_NOT_FINISHED : Purchase::PURCHASE_FINISHED,
             'provider_id'=> $this->provider,
             'user_id'=> auth()->id()
         ]);

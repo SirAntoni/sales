@@ -66,9 +66,9 @@ class NewSale extends Component
             'delivery_fee' => $this->delivery_fee ?? 0,
             'client_id' => $this->client,
             'user_id' => auth()->id(),
-            'contact_id' => 1,
+            'contact_id' => $this->contact,
             'payment_method_id' => $this->paymentMethod,
-            'status' => 2,
+            'status' => Sale::SALE_APPROVED,
         ]);
 
         foreach ($this->articlesSelected as $article) {

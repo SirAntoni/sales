@@ -13,10 +13,7 @@ use Log;
 class TableSales extends Component
 {
     use WithPagination;
-    const SALE_CANCELED = 0;
-    const SALE_PENDING = 1;
-    const SALE_APPROVED = 2;
-    const SALE_OBSERVATION = 3;
+
     public $search;
     public $details;
     public $titleNotification;
@@ -36,11 +33,6 @@ class TableSales extends Component
     public function edit($id)
     {
         return redirect()->route('sales.show', $id);
-    }
-
-    public function getDetails()
-    {
-
     }
 
     #[On('destroy')]
@@ -65,7 +57,7 @@ class TableSales extends Component
             }
         });
 
-        $sale->update(['status' => self::SALE_CANCELED]);
+        $sale->update(['status' => Sale::SALE_CANCELED,'updated_at' => now()]);
         $this->render();
     }
 
@@ -78,10 +70,10 @@ class TableSales extends Component
     {
         $sale = Sale::find($id);
 
-        if ($sale->status === self::SALE_APPROVED || $sale->status === self::SALE_PENDING) {
-            $sale->status = ($sale->status === self::SALE_APPROVED)
-                ? self::SALE_PENDING
-                : self::SALE_APPROVED;
+        if ($sale->status === Sale::SALE_APPROVED || $sale->status === Sale::SALE_PENDING) {
+            $sale->status = ($sale->status === Sale::SALE_APPROVED)
+                ? Sale::SALE_PENDING
+                : Sale::SALE_APPROVED;
             $sale->save();
             $this->dispatch('notification');
         }
@@ -99,7 +91,7 @@ class TableSales extends Component
         $limit = 15;
         $sales = Sale::query()
             ->with(['saleDetails', 'client:id,name', 'contact:id,name', 'paymentMethod:id,name'])
-            ->where('status', '!=', 0)
+            ->where('status', '!=', Sale::SALE_CANCELED)
             ->when($this->search, function ($query, $search) {
                 $search = trim($search);
                 $query->where(function ($q) use ($search) {
@@ -116,10 +108,10 @@ class TableSales extends Component
             $htmlDetails = "<p><strong>Cliente: </strong> {$sale->client->name} </p><br><table style='border: 1px solid;'><thead style='border:1px solid;'><tr><th style='border:1px solid'>Titulo</th><th style='border:1px solid;padding:10px'>Cantidad</th><th style='padding:10px'>Precio</thstyle></tr></thead><tbody style='border:1px solid;'>";
             $btnDetails = '';
             switch($sale->status) {
-                case self::SALE_APPROVED:
+                case Sale::SALE_APPROVED:
                     $btnDetails = 'success';
                     break;
-                case self::SALE_OBSERVATION:
+                case Sale::SALE_OBSERVATION:
                     $btnDetails = 'warning';
                     break;
                 default:

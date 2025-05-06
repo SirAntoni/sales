@@ -7,6 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class Sale extends Model
 {
 
+    const SALE_CANCELED = 0;
+    const SALE_PENDING = 1;
+    const SALE_APPROVED = 2;
+    const SALE_OBSERVATION = 3;
+
     protected $fillable = [
         'number',
         'client_id',
@@ -50,6 +55,11 @@ class Sale extends Model
     public function saleDetails()
     {
         return $this->hasMany(SaleDetail::class);
+    }
+
+    public function invoice()
+    {
+        return $this->hasOne(Invoice::class);
     }
 
 }

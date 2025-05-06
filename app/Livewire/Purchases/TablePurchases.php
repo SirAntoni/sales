@@ -13,11 +13,6 @@ use Livewire\WithPagination;
 class TablePurchases extends Component
 {
 
-    const PURCHASE_CANCELED = 0;
-    const PURCHASE_SUCCESS = 1;
-    const PURCHASE_PARTIAL = 2;
-
-
     use WithPagination;
     public $search;
 
@@ -29,10 +24,10 @@ class TablePurchases extends Component
     {
         $purchase = Purchase::find($id);
 
-        if ($purchase->status === self::PURCHASE_SUCCESS || $purchase->status === self::PURCHASE_PARTIAL) {
-            $purchase->status = ($purchase->status === self::PURCHASE_SUCCESS)
-                ? self::PURCHASE_PARTIAL
-                : self::PURCHASE_SUCCESS;
+        if ($purchase->status === Purchase::PURCHASE_FINISHED || $purchase->status === Purchase::PURCHASE_NOT_FINISHED) {
+            $purchase->status = ($purchase->status === Purchase::PURCHASE_FINISHED)
+                ? Purchase::PURCHASE_NOT_FINISHED
+                : Purchase::PURCHASE_FINISHED;
             $purchase->save();
             $this->dispatch('notification');
         }
@@ -60,7 +55,7 @@ class TablePurchases extends Component
                 }
             }
         });
-        $purchase->update(['status' => 0]);
+        $purchase->update(['status' => Purchase::PURCHASE_CANCELED,'updated_at' => now()]);
         $this->render();
     }
 
@@ -73,7 +68,7 @@ class TablePurchases extends Component
         $limit = 15;
         $purchases = Purchase::query()
             ->with(['provider:id,name'])
-            ->where('status', '!=', 0)
+            ->where('status', '!=', Purchase::PURCHASE_CANCELED)
             ->when($this->search, function ($query, $search) {
                 $search = trim($search);
                 $query->where(function ($q) use ($search) {
@@ -88,10 +83,10 @@ class TablePurchases extends Component
         foreach ($purchases as $purchase) {
             $btnColor = '';
             switch($purchase->status) {
-                case self::PURCHASE_SUCCESS:
+                case Purchase::PURCHASE_FINISHED:
                     $btnColor = 'success';
                     break;
-                case self::PURCHASE_PARTIAL:
+                case Purchase::PURCHASE_NOT_FINISHED:
                     $btnColor = 'warning';
                     break;
                 default:

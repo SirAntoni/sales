@@ -83,7 +83,7 @@
 
 
                                     </div>
-                                    <div class="col-span-12 sm:col-span-6 flex flex-col gap-3.5 px-5 py-2">
+                                    <div class="col-span-12 sm:col-span-4 flex flex-col gap-3.5 px-5 py-2">
 
                                         <div>
                                             <x-base.form-label for="passenger">
@@ -104,7 +104,8 @@
 
 
                                     </div>
-                                    <div class="col-span-12 sm:col-span-6 flex flex-col gap-3.5 px-5 py-2">
+
+                                    <div class="col-span-12 sm:col-span-5 flex flex-col gap-3.5 px-5 py-2">
 
                                         <div>
                                             <x-base.form-label for="passenger">
@@ -123,6 +124,23 @@
                                             @enderror
                                         </div>
 
+
+                                    </div>
+                                    <div
+                                        class="col-span-12 sm:col-span-3 flex flex-col gap-3.5 px-5 sm:pt-1 pt-10  md:pt-10 pb-4">
+                                        <div>
+                                            <x-base.form-switch>
+                                                <x-base.form-switch.input
+                                                    id="checkbox-switch-7"
+                                                    type="checkbox"
+                                                    wire:model="status"
+                                                    wire:change="updateStatus"
+                                                />
+                                                <x-base.form-switch.label for="checkbox-switch-7">
+                                                    Finalizado
+                                                </x-base.form-switch.label>
+                                            </x-base.form-switch>
+                                        </div>
 
                                     </div>
                                     <div class="col-span-12 sm:col-span-9 flex flex-col gap-3.5 px-5 py-2">
@@ -229,7 +247,7 @@
                                                                 min="1"
                                                                 step="1"
                                                                 wire:model="articlesSelected.{{ $index }}.quantity"
-                                                                wire:input.debounce.500ms="updateTotal({{ $index }})"
+                                                                wire:input.debounce.1000ms="updateTotal({{ $index }})"
                                                                 class="w-15 text-center border rounded"
                                                             >
                                                         </div>
@@ -242,7 +260,7 @@
                                                                 step="0.01"
                                                                 min="0"
                                                                 wire:model="articlesSelected.{{ $index }}.price"
-                                                                wire:input.debounce.500ms="updateTotal({{ $index }})"
+                                                                wire:input.debounce.1000ms="updateTotal({{ $index }})"
                                                                 class="w-15 text-center border rounded"
                                                             >
                                                         </div>

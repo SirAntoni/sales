@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Purchase extends Model
 {
+
+    const PURCHASE_CANCELED = 0;
+    const PURCHASE_FINISHED = 1;
+    const PURCHASE_NOT_FINISHED = 2;
+
     protected $fillable = [
         'provider_id',
         'user_id',

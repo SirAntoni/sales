@@ -19,9 +19,8 @@ class TableCanceled extends Component
     {
 
         $limit = 15;
-        $sales = Sale::query()
-            ->with(['saleDetails', 'client:id,name','contact:id,name'])
-            ->where('status', 0)
+        $sales = Sale::with(['saleDetails', 'client:id,name','contact:id,name','paymentMethod:id,name','user:id,name'])
+            ->where('status', Sale::SALE_CANCELED)
             ->when($this->search, function ($query, $search) {
                 $search = trim($search);
                 $query->where(function ($q) use ($search) {
