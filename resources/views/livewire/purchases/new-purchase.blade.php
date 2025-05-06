@@ -32,29 +32,26 @@
                                 <div class="grid grid-cols-12 pt-4">
                                     <div class="col-span-12 sm:col-span-6 flex flex-col px-5 py-2">
 
-                                            <div>
-                                                <label>Proveedor</label>
-                                                <div class="mt-2 " wire:ignore>
-                                                    <x-base.tom-select
-                                                        wire:ignore
-                                                        id="tomProviders"
-                                                        class="w-full"
-                                                        data-placeholder="Selecciona un proveedor"
-                                                        wire:model="provider"
-                                                    >
+                                        <div>
+                                            <label>Proveedor</label>
+                                            <div class="mt-2 " wire:ignore>
+                                                <x-base.tom-select
+                                                    wire:ignore
+                                                    id="tomProviders"
+                                                    class="w-full"
+                                                    data-placeholder="Selecciona un proveedor"
+                                                    wire:model="provider"
+                                                >
 
-                                                    </x-base.tom-select>
+                                                </x-base.tom-select>
 
-                                                </div>
-                                                @error('provider')
-                                                <div class="p-1">
-                                                    {{$message}}
-                                                </div>
-                                                @enderror
                                             </div>
-
-
-
+                                            @error('provider')
+                                            <div class="p-1">
+                                                {{$message}}
+                                            </div>
+                                            @enderror
+                                        </div>
 
 
                                     </div>
@@ -145,24 +142,24 @@
                                     </div>
                                     <div class="col-span-12 sm:col-span-9 flex flex-col gap-3.5 px-5 py-2">
 
-                                            <div>
-                                                <label>Agregar Articulo</label>
+                                        <div>
+                                            <label>Agregar Articulo</label>
 
-                                                <div class="mt-2" wire:ignore>
-                                                    <x-base.tom-select
-                                                        id="tomArticles"
-                                                        class="w-full"
-                                                        data-placeholder="Selecciona el articulo a agregar"
-                                                        wire:model.live="articleSelected"
-                                                    >
-                                                    </x-base.tom-select>
-                                                </div>
-                                                @error('articlesSelected')
-                                                <div class="p-1">
-                                                    {{$message}}
-                                                </div>
-                                                @enderror
+                                            <div class="mt-2" wire:ignore>
+                                                <x-base.tom-select
+                                                    id="tomArticles"
+                                                    class="w-full"
+                                                    data-placeholder="Selecciona el articulo a agregar"
+                                                    wire:model.live="articleSelected"
+                                                >
+                                                </x-base.tom-select>
                                             </div>
+                                            @error('articlesSelected')
+                                            <div class="p-1">
+                                                {{$message}}
+                                            </div>
+                                            @enderror
+                                        </div>
 
 
                                     </div>
@@ -268,7 +265,13 @@
                                                     <x-base.table.td
                                                         class="border-dashed py-4 text-right dark:bg-darkmode-600">
                                                         <div class="whitespace-nowrap font-medium">
-                                                            $ {{$article['total']}}
+                                                            <span wire:loading>
+                                                                <i class="fas fa-spinner animate-spin"></i> Cargando…
+                                                            </span>
+                                                            <span wire:loading.remove>
+                                                                $ {{$article['total']}}
+                                                            </span>
+
                                                         </div>
                                                     </x-base.table.td>
                                                 </x-base.table.tr>
@@ -294,19 +297,37 @@
                             <div class="flex items-center justify-end">
                                 <div class="text-slate-500">Subtotal:</div>
                                 <div class="w-20 font-medium text-slate-600 sm:w-52">
-                                    $ {{ number_format($this->granSubtotal, 2) }}
+                                    <span wire:loading>
+                                                                <i class="fas fa-spinner animate-spin"></i> Cargando…
+                                                            </span>
+                                    <span wire:loading.remove>
+                                                                 $ {{ number_format($this->granSubtotal, 2) }}
+                                                            </span>
+
                                 </div>
                             </div>
                             <div class="flex items-center justify-end">
                                 <div class="text-slate-500">IGV:</div>
                                 <div class="w-20 font-medium text-slate-600 sm:w-52">
-                                    $ {{ number_format($this->granTax, 2) }}
+                                    <span wire:loading>
+                                                                <i class="fas fa-spinner animate-spin"></i> Cargando…
+                                                            </span>
+                                    <span wire:loading.remove>
+                                                                  $ {{ number_format($this->granTax, 2) }}
+                                                            </span>
+
                                 </div>
                             </div>
                             <div class="flex items-center justify-end">
                                 <div class="text-slate-500">Total:</div>
                                 <div class="w-20 font-medium text-slate-600 sm:w-52">
-                                    $ {{ number_format($this->granTotal, 2) }}
+                                    <span wire:loading>
+                                                                <i class="fas fa-spinner animate-spin"></i> Cargando…
+                                                            </span>
+                                    <span wire:loading.remove>
+                                                                  $ {{ number_format($this->granTotal, 2) }}
+                                                            </span>
+
                                 </div>
                             </div>
                         </div>
