@@ -9,7 +9,12 @@
                     <x-base.button
                         class="group-[.mode--light]:!border-transparent group-[.mode--light]:!bg-white/[0.12] group-[.mode--light]:!text-slate-200"
                         variant="primary"
+                        wire:loading.attr="disabled"
                         wire:click="save"
+
+                        wire:target="save"
+
+                        wire:loading.class="opacity-50 cursor-not-allowed"
                     >
                         <i class="fa-solid fa-floppy-disk mr-2"></i>
 
@@ -244,7 +249,7 @@
                                                                 min="1"
                                                                 step="1"
                                                                 wire:model="articlesSelected.{{ $index }}.quantity"
-                                                                wire:input.debounce.1000ms="updateTotal({{ $index }})"
+                                                                wire:input.debounce.2000ms="updateTotal({{ $index }})"
                                                                 class="w-15 text-center border rounded"
                                                             >
                                                         </div>
@@ -266,7 +271,7 @@
                                                         class="border-dashed py-4 text-right dark:bg-darkmode-600">
                                                         <div class="whitespace-nowrap font-medium">
                                                             <span wire:loading>
-                                                                <i class="fas fa-spinner animate-spin"></i> Cargando…
+                                                                <i class="fas fa-spinner animate-spin"></i> Calculando..
                                                             </span>
                                                             <span wire:loading.remove>
                                                                 $ {{$article['total']}}
@@ -298,7 +303,7 @@
                                 <div class="text-slate-500">Subtotal:</div>
                                 <div class="w-20 font-medium text-slate-600 sm:w-52">
                                     <span wire:loading>
-                                                                <i class="fas fa-spinner animate-spin"></i> Cargando…
+                                                                <i class="fas fa-spinner animate-spin"></i> Calculando..
                                                             </span>
                                     <span wire:loading.remove>
                                                                  $ {{ number_format($this->granSubtotal, 2) }}
@@ -310,7 +315,7 @@
                                 <div class="text-slate-500">IGV:</div>
                                 <div class="w-20 font-medium text-slate-600 sm:w-52">
                                     <span wire:loading>
-                                                                <i class="fas fa-spinner animate-spin"></i> Cargando…
+                                                                <i class="fas fa-spinner animate-spin"></i> Calculando..
                                                             </span>
                                     <span wire:loading.remove>
                                                                   $ {{ number_format($this->granTax, 2) }}
@@ -322,7 +327,7 @@
                                 <div class="text-slate-500">Total:</div>
                                 <div class="w-20 font-medium text-slate-600 sm:w-52">
                                     <span wire:loading>
-                                                                <i class="fas fa-spinner animate-spin"></i> Cargando…
+                                                                <i class="fas fa-spinner animate-spin"></i> Calculando..
                                                             </span>
                                     <span wire:loading.remove>
                                                                   $ {{ number_format($this->granTotal, 2) }}
