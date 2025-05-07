@@ -11,9 +11,7 @@
                         variant="primary"
                         wire:loading.attr="disabled"
                         wire:click="save"
-
                         wire:target="save"
-
                         wire:loading.class="opacity-50 cursor-not-allowed"
                     >
                         <i class="fa-solid fa-floppy-disk mr-2"></i>
@@ -249,7 +247,7 @@
                                                                 min="1"
                                                                 step="1"
                                                                 wire:model="articlesSelected.{{ $index }}.quantity"
-                                                                wire:input.debounce.2000ms="updateTotal({{ $index }})"
+                                                                wire:input.debounce.1000ms="updateTotal({{ $index }})"
                                                                 class="w-15 text-center border rounded"
                                                             >
                                                         </div>
