@@ -9,6 +9,7 @@ use Log;
 use App\Models\Province;
 use App\Models\District;
 use Illuminate\Support\Facades\DB;
+use App\Services\MigoApiService;
 
 class AddClient extends Component
 {
@@ -25,12 +26,72 @@ class AddClient extends Component
     public $departmentSelect = null;
     public $provinceSelect = null;
     public $districtSelect = null;
+    public $token;
 
-    public function mount(){
+    protected array $docConfig = [
+        'DNI' => [
+            'size'        => 8,
+            'field'       => 'dni',
+            'responseKey' => 'nombre',
+        ],
+        'RUC' => [
+            'size'        => 11,
+            'field'       => 'ruc',
+            'responseKey' => 'nombre_o_razon_social',
+        ],
+    ];
+
+    private function throwError(string $message)
+    {
+        $this->dispatch('error', ['label' => $message]);
+    }
+
+    public function mount()
+    {
+
+        $this->token = env('MIGO_API_TOKEN');
         $departments = DB::table('departments')->get();
         $this->departments = $departments;
         $this->email = "info@shipersales.pe";
         $this->phone = "990062896";
+    }
+
+    public function searchDocument(MigoApiService $api)
+    {
+
+        // 1) Validar que exista el tipo de documento
+        if (! isset($this->docConfig[$this->document_type])) {
+            return $this->throwError('Selecciona un tipo de documento válido.');
+        }
+
+        // 2) Si es CE, directamente error
+        if ($this->document_type === 'CE') {
+            return $this->throwError('Servicio no disponible para este tipo de documento.');
+        }
+
+        // 3) Extraer config
+        $config = $this->docConfig[$this->document_type];
+
+        if (strlen($this->document_number) !== $config['size']) {
+            return $this->throwError(
+                "El {$this->document_type} debe tener exactamente {$config['size']} dígitos."
+            );
+        }
+
+        // 5) Preparar payload y llamar al servicio
+        $payload = [
+            $config['field'] => $this->document_number,
+            'token'          => $this->token,
+        ];
+
+        $response = $api->post(
+            strtolower($this->document_type),
+            $payload
+        );
+dd($response);
+        // 6) Asignar resultado con clave dinámica
+        $this->name = $response[$config['responseKey']] ?? '';
+
     }
 
     public function updatedDepartmentSelect($value)
@@ -72,7 +133,8 @@ class AddClient extends Component
         'districtSelect' => 'distrito'
     ];
 
-    public function save(){
+    public function save()
+    {
         $this->validate();
         Client::create([
             'name' => $this->name,
@@ -86,12 +148,11 @@ class AddClient extends Component
             'district_id' => $this->districtSelect
         ]);
 
-        $this->dispatch('success',['label' => 'Se agrego el cliente con éxito.','btn' => 'Ir a clientes','route' => route('clients.index')]);
+        $this->dispatch('success', ['label' => 'Se agrego el cliente con éxito.', 'btn' => 'Ir a clientes', 'route' => route('clients.index')]);
     }
 
     public function render()
     {
-
         return view('livewire.clients.add-client');
     }
 }

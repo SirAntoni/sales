@@ -31,6 +31,8 @@ class NewSale extends Component
     public $articleSelected;
     public $articlesSelected = [];
 
+    public $userId;
+
     public function generarCodigo()
     {
         $fecha = Carbon::now();
@@ -101,7 +103,17 @@ class NewSale extends Component
         $this->contacts = $contacts;
         $this->paymentMethods = $paymentMethods;
         $this->date = Carbon::now()->format('Y-m-d');
-        $this->contact = 1;
+        $this->userId = auth()->id() ?? 0;
+    }
+
+    public function updatedContact(){
+        if($this->contact == 2 || $this->contact == 7 || $this->contact == 8 || $this->contact == 9 || $this->contact == 10){
+            $this->paymentMethod = 1;
+        }elseif ($this->contact == 3){
+            $this->paymentMethod = 4;
+        }else{
+            $this->paymentMethod = "";
+        }
     }
 
     public function searchClients($query)
@@ -119,15 +131,25 @@ class NewSale extends Component
 
     public function searchArticles($query)
     {
-        return Article::query()
+        $qb = Article::query()
             ->where('title', 'like', '%'.$query.'%')
             ->limit(10)
-            ->get(['id', 'title'])
-            ->map(fn($c) => [
+            ->get(['id', 'title', 'stock', 'sale_price', 'purchase_price']);
+
+        $showPurchase = auth()->id() === 1;
+
+        return $qb->map(function($c) use ($showPurchase) {
+            $text = "{$c->title} | Stock: {$c->stock} | Precio Venta: S/.{$c->sale_price}";
+
+            if ($showPurchase) {
+                $text .= " | Precio Compra: $ {$c->purchase_price}";
+            }
+
+            return [
                 'value' => $c->id,
-                'text'  => $c->title,
-            ])
-            ->toArray();
+                'text'  => $text,
+            ];
+        })->toArray();
     }
 
     public function updatedArticleSelected($id)

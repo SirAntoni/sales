@@ -13,12 +13,10 @@ use App\Models\Article;
 use Illuminate\Support\Facades\DB;
 use App\Models\Sale;
 use Illuminate\Support\Facades\Cache;
+use Carbon\CarbonPeriod;
 
 class Dashboard extends Component
 {
-
-    public $cantidadVentas;
-    public $gananciaVentas;
 
     public $month;
     public $year;
@@ -44,9 +42,6 @@ class Dashboard extends Component
         $this->departments = $departments;
         $this->month = Carbon::now()->format('m');
         $this->year = Carbon::now()->format('Y');
-
-        $this->cantidadVentas = $this->getCantidadVentas();
-        $this->gananciaVentas = $this->getTotalVentasHoy();
 
     }
 
@@ -94,6 +89,45 @@ class Dashboard extends Component
         $this->year = $year;
         $top10Products = $this->top10Products();
         $this->dispatch('dashboard-report', $top10Products);
+    }
+
+    private function getSalesChartData(): array
+    {
+        $end   = Carbon::now();
+        $start = $end->copy()->subDays(6)->startOfDay();
+
+        // 1) Obtenemos por día: suma de total y cantidad de ventas
+        $raw = Sale::whereBetween('date', [$start, $end])
+            ->groupBy(DB::raw('DATE(date)'))
+            ->orderBy(DB::raw('DATE(date)'), 'ASC')
+            ->get([
+                DB::raw('DATE(date)       AS sale_date'),
+                DB::raw('SUM(total)        AS total_sum'),
+                DB::raw('COUNT(*)          AS total_count'),
+            ]);
+
+        // Mapear por fecha
+        $totals = $raw->pluck('total_sum', 'sale_date')->toArray();
+        $counts = $raw->pluck('total_count', 'sale_date')->toArray();
+
+        // 2) Generar período de 7 días
+        $period = CarbonPeriod::create($start, $end);
+        $labels = [];
+        $dataTotals = [];
+        $dataCounts = [];
+
+        foreach ($period as $date) {
+            $day = $date->format('Y-m-d');
+            $labels[]       = $day;
+            $dataTotals[]   = isset($totals[$day]) ? (float) $totals[$day] : 0.00;
+            $dataCounts[]   = isset($counts[$day]) ? (int) $counts[$day] : 0;
+        }
+
+        return [
+            'labels'      => $labels,
+            'totals'      => $dataTotals,
+            'counts'      => $dataCounts,
+        ];
     }
 
     public function top10Products()
@@ -457,7 +491,8 @@ class Dashboard extends Component
         $gananciasDepartment = $this->margenGananciasDepartment();
         $gananciasDistrict = $this->margenGananciasDistrict();
         $gananciasVentasTotal = $this->gananciaVentasTotal();
-        $this->dispatch('dashboard-report', [$gananciasProveedores,$gananciasContacto,$gananciasCategory,$gananciasDepartment,$gananciasDistrict,$gananciasVentasTotal]);
+        $getSalesChartData = $this->getSalesChartData();
+        $this->dispatch('dashboard-report', [$gananciasProveedores,$gananciasContacto,$gananciasCategory,$gananciasDepartment,$gananciasDistrict,$gananciasVentasTotal,$getSalesChartData]);
 
 
 

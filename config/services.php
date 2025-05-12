@@ -31,4 +31,9 @@ return [
         ],
     ],
 
+    'migo_api' => [
+        'base_uri' => env('MIGO_API_BASE_URL'),
+        'token'    => env('MIGO_API_TOKEN'),
+    ],
+
 ];

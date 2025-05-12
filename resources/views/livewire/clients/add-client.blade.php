@@ -25,7 +25,7 @@
                                     <div class="inline-block mb-2 sm:mb-0 sm:mr-5 sm:text-right xl:mr-14 xl:w-60">
                                         <div class="text-left">
                                             <div class="flex items-center">
-                                                <div class="font-medium">Nombre del cliente</div>
+                                                <div class="font-medium">Nombre o Razón social</div>
                                                 <div
                                                     class="ml-2.5 rounded-md border border-slate-200 bg-slate-100 px-2 py-0.5 text-xs text-slate-500 dark:bg-darkmode-300 dark:text-slate-400">
                                                     Required
@@ -113,6 +113,15 @@
                                             placeholder="Número de documento del cliente"
                                             wire:model="document_number"
                                         />
+
+                                        <x-base.button
+                                            class="w-32"
+                                            variant="primary"
+                                            wire:click="searchDocument"
+                                        >
+                                            <i class="fa-solid fa-magnifying-glass mr-2"></i>
+                                            Buscar
+                                        </x-base.button>
                                         @error('document_number')
                                         <div class="p-1">
                                             {{ $message }}

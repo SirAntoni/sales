@@ -119,73 +119,25 @@
 
 
         </div>
-        <div class="col-span-12 lg:col-span-6 2xl:col-span-6">
-            <div class="flex flex-col gap-y-3 md:h-10 md:flex-row md:items-center">
-                <div class="text-base font-medium group-[.mode--light]:text-white">
-                    Cantidad venta de hoy
-                </div>
-            </div>
-            <div class="box box--stacked mt-3.5 p-5">
 
-                <div
-                    class="flex h-12 w-12 items-center justify-center rounded-full border border-info/10 bg-info/10">
-                    <x-base.lucide
-                        class="h-6 w-6 fill-info/10 text-info"
-                        icon="Box"
-                    />
-                </div>
-                <div class="mb-6 mt-8 lg:mb-7 lg:mt-16 2xl:mb-5 2xl:mt-7">
-                    <div class="text-base text-slate-500">Cantidad</div>
-                    <div class="mt-1 flex items-center text-2xl font-medium">
-                        <span class="ml-px mr-1.5">{{$cantidadVentas}}</span>
+
+        <div class="col-span-12 sm:colspan-12">
+            <div>
+                <div class="flex flex-col gap-y-3 md:h-10 md:flex-row md:items-center">
+                    <div class="text-base font-medium group-[.mode--light]:text-white">Ganancia y cantidad de ventas últimos 7 días
                     </div>
+
                 </div>
-                <a
-                    class="flex items-center font-medium text-primary"
-                    href="{{route('sales.index')}}"
-                >
-                    Ir a ventas
-                    <x-base.lucide
-                        class="ml-1.5 h-4 w-4"
-                        icon="MoveRight"
-                    />
-                </a>
+                <div class="box box--stacked mt-3.5 p-5">
+
+                    <div class="mb-1 mt-10">
+                        <x-report-bar-chart-5 classReport="getSalesChartData" height="h-[400px]"/>
+                    </div>
+
+                </div>
             </div>
         </div>
-        <div class="col-span-12 lg:col-span-6 2xl:col-span-6">
-            <div class="flex flex-col gap-y-3 md:h-10 md:flex-row md:items-center">
-                <div class="text-base font-medium group-[.mode--light]:text-white">
-                    Ganancia ventas hoy
-                </div>
-            </div>
-            <div class="box box--stacked mt-3.5 p-5">
 
-                <div
-                    class="flex h-12 w-12 items-center justify-center rounded-full border border-info/10 bg-info/10">
-                    <x-base.lucide
-                        class="h-6 w-6 fill-info/10 text-info"
-                        icon="Box"
-                    />
-                </div>
-                <div class="mb-6 mt-8 lg:mb-7 lg:mt-16 2xl:mb-5 2xl:mt-7">
-                    <div class="text-base text-slate-500">Soles</div>
-                    <div class="mt-1 flex items-center text-2xl font-medium">
-                        <span class="text-[1.3rem]">S/. </span>
-                        <span class="ml-px mr-1.5">{{$gananciaVentas}}</span>
-                    </div>
-                </div>
-                <a
-                    class="flex items-center font-medium text-primary"
-                    href="{{route('sales.index')}}"
-                >
-                    Ir a ventas
-                    <x-base.lucide
-                        class="ml-1.5 h-4 w-4"
-                        icon="MoveRight"
-                    />
-                </a>
-            </div>
-        </div>
         <div class="col-span-12 lg:col-span-6 2xl:col-span-6">
             <div>
                 <div class="flex flex-col gap-y-3 md:h-10 md:flex-row md:items-center">
@@ -350,14 +302,13 @@
 
         <div class="col-span-12">
             <div>
-                <div class="box box--stacked mt-3.5 p-5">
-                    <div class="flex flex-col gap-3 sm:flex-row sm:items-center">
-                        <div class="sm:mr-auto">
-                            <div class="text-base text-slate-500">
-                                Ganancia y cantidad según distritos
-                            </div>
-                        </div>
+                <div class="flex flex-col gap-y-3 md:h-10 md:flex-row md:items-center">
+                    <div class="text-base font-medium group-[.mode--light]:text-white">Ganancia y cantidad según distritos
                     </div>
+
+                </div>
+                <div class="box box--stacked mt-3.5 p-5">
+
                     <div class="mb-1 mt-10">
                         <x-report-bar-chart-5 classReport="margenGananciaDistrict" height="h-[400px]"/>
                     </div>
@@ -392,13 +343,109 @@
     document.addEventListener('DOMContentLoaded', function () {
 
         window.addEventListener('dashboard-report', event => {
-            console.log(event.detail[0][5][0]['total_ganancias'])
+            console.log(event.detail[0][6])
             setTimeout(() => {
                 createIcons({
                     icons,
                     "stroke-width": 1.5,
                     nameAttr: "data-lucide",
                 });
+
+
+                const $charVentasSemanal = $(".getSalesChartData");
+
+
+                if ($charVentasSemanal.length) {
+                    $charVentasSemanal.each(function () {
+                        const ctx = this.getContext("2d");
+
+                        // Verifica si ya hay un gráfico asociado al canvas
+                        const existingChart = Chart.getChart(ctx);
+                        if (existingChart) {
+                            console.log("Destruyendo gráfico existente...");
+                            existingChart.destroy();
+                        }
+
+                        // Ahora creamos el nuevo gráfico
+                        const newChart = new Chart(ctx, {
+                            type: "bar",
+                            data: {
+                                labels:event.detail[0][6]['labels'],
+                                datasets: [
+                                    {
+                                        label: "Ganacias S/.",
+                                        categoryPercentage: 0.4,
+                                        barPercentage: 0.8,
+                                        borderRadius: 2,
+                                        data: event.detail[0][6]['totals'],
+                                        borderWidth: 1,
+                                        borderColor: getColor("primary", 0.7),
+                                        backgroundColor: getColor("primary", 0.35),
+                                    },
+                                    {
+                                        label: "Cantidad",
+                                        categoryPercentage: 0.4,
+                                        barPercentage: 0.8,
+                                        borderRadius: 2,
+                                        data: event.detail[0][6]['counts'],
+                                        borderWidth: 1,
+                                        borderColor: getColor("success", 0.7),
+                                        backgroundColor: getColor("success", 0.35),
+                                    },
+                                ],
+                            },
+                            options: {
+                                maintainAspectRatio: false,
+                                plugins: {
+                                    legend: {
+                                        display: true,
+                                    },
+                                },
+                                scales: {
+                                    x: {
+                                        ticks: {
+                                            color: getColor("slate.500", 0.7),
+                                        },
+                                        grid: {
+                                            display: false,
+                                        },
+                                        border: {
+                                            display: false,
+                                        },
+                                    },
+                                    y: {
+                                        ticks: {
+                                            autoSkipPadding: 15,
+                                            color: getColor("slate.500", 0.9),
+                                            beginAtZero: true,
+                                        },
+                                        grid: {
+                                            color: getColor("slate.200", 0.7),
+                                        },
+                                        border: {
+                                            display: false,
+                                        },
+                                    },
+                                },
+                            },
+                        });
+
+                        // Opcional: Vigilar cambios en las variables CSS para actualizar los colores del gráfico
+                        helper.watchCssVariables(
+                            "html",
+                            ["color-primary", "color-success"],
+                            (newValues) => {
+                                newChart.data.datasets[0].borderColor = getColor("primary", 0.7);
+                                newChart.data.datasets[0].backgroundColor = getColor("primary", 0.35);
+                                newChart.data.datasets[1].borderColor = getColor("success", 0.7);
+                                newChart.data.datasets[1].backgroundColor = getColor("success", 0.35);
+                                newChart.update();
+                            }
+                        );
+                    });
+                }
+
+
 
                 const $charProveedor = $(".margenGananciaProveedor");
 

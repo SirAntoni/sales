@@ -110,6 +110,7 @@
                                             @if (isset($menu['sub_menu']))
                                                 <ul class="{{ $firstLevelActiveIndex == $menuKey ? 'block' : 'hidden' }}">
                                                     @foreach ($menu['sub_menu'] as $subMenuKey => $subMenu)
+                                                        @can($subMenu['permission'])
                                                         <li>
                                                             <a
                                                                 href="{{ isset($subMenu['route_name']) && Route::has($subMenu['route_name']) ? route($subMenu['route_name'], $subMenu['params']) : 'javascript:;' }}"
@@ -182,6 +183,7 @@
                                                             @endif
                                                             <!-- END: Third Child -->
                                                         </li>
+                                                        @endcan
                                                     @endforeach
                                                 </ul>
                                             @endif

@@ -26,21 +26,21 @@ Route::middleware(['guest'])->group(function () {
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/', [DashboardController::class,'index'])->middleware('can:dashboard')->name('dashboard');
-    Route::resource('categories', CategoryController::class)->middleware('can:store');
-    Route::resource('brands', BrandController::class)->middleware('can:store');
-    Route::resource('articles', ArticleController::class)->middleware('can:store');
-    Route::resource('providers', ProviderController::class)->middleware('can:purchases');
-    Route::resource('clients', ClientController::class)->middleware('can:sales');
+    Route::resource('categories', CategoryController::class)->middleware('can:store','can:categories');
+    Route::resource('brands', BrandController::class)->middleware('can:store','can:brands');
+    Route::resource('articles', ArticleController::class)->middleware('can:store','can:articles');
+    Route::resource('providers', ProviderController::class)->middleware('can:purchases','can:providers');
+    Route::resource('clients', ClientController::class)->middleware('can:sales','can:clients');
     Route::resource('users', UserController::class)->middleware('can:users');
     Route::resource('vouchers', VoucherController::class)->middleware('can:settings');
     Route::get('settings', [SettingController::class,'index'])->name('settings')->middleware('can:settings');
     Route::resource('contacts', ContactController::class)->middleware('can:settings');
     Route::resource('payment-methods', PaymentMethodController::class)->middleware('can:settings');
-    Route::resource('purchases', PurchaseController::class)->middleware('can:purchases');
-    Route::get('canceled_purchases', [CanceledController::class,'purchases'])->name('canceled_purchases')->middleware('can:purchases');
+    Route::resource('purchases', PurchaseController::class)->middleware('can:purchases.index');
+    Route::get('canceled_purchases', [CanceledController::class,'purchases'])->name('canceled_purchases')->middleware('can:purchases','can:canceled_purchases');
     Route::resource('sales', SaleController::class)->middleware('can:sales');
-    Route::resource('documents', DocumentController::class)->middleware('can:kardex');
-    Route::get('canceled', [CanceledController::class,'index'])->name('canceled')->middleware('can:sales');
+    Route::resource('documents', DocumentController::class)->middleware('can:documents');
+    Route::get('canceled', [CanceledController::class,'index'])->name('canceled')->middleware('can:canceled');;
     Route::get('reports', [ReportController::class,'index'])->name('reports')->middleware('can:reports');
     Route::get('reports/dayli/export', [ReportController::class, 'dayli'])->name('reports.dayli.export')->middleware('can:reports');
     Route::get('reports/custom/export', [ReportController::class, 'custom'])->name('reports.custom.export')->middleware('can:reports');

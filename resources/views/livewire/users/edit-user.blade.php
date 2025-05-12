@@ -105,13 +105,13 @@
                                             @foreach($permissions as $permission)
                                                 <x-base.form-check class="mb-4 mr-3 sm:mt-0">
                                                     <x-base.form-check.input
-                                                        id="permissions"
+                                                        id="{{$permission->description}}"
                                                         type="checkbox"
                                                         name="permissions[]"
                                                         value="{{$permission->id}}"
                                                         wire:model.live="permissionsSelected"
                                                     />
-                                                    <x-base.form-check.label for="permissions">
+                                                    <x-base.form-check.label for="{{$permission->description}}">
                                                         {{$permission->description}}
                                                     </x-base.form-check.label>
                                                 </x-base.form-check>

@@ -115,7 +115,8 @@
                                             <x-base.form-select
                                                 aria-label=".form-select-lg"
                                                 id="contact"
-                                                wire:model="contact"
+                                                wire:model.live="contact"
+
                                             >
                                                 <option value="">Selecciona un contacto</option>
                                                 @foreach($contacts as $contact)
@@ -142,7 +143,7 @@
                                             <x-base.form-select
                                                 aria-label=".form-select-lg"
                                                 id="paymentMethod"
-                                                wire:model="paymentMethod"
+                                                wire:model.live="paymentMethod"
                                             >
                                                 <option value="">Selecciona un método de pago</option>
                                                 @foreach($paymentMethods as $paymentMethod)
@@ -194,7 +195,6 @@
                                                     data-placeholder="Busque y seleccione los articulos a agregar"
                                                     wire:model.live="articleSelected"
                                                 >
-
                                                 </x-base.tom-select>
                                             </div>
                                             @error('articlesSelected')

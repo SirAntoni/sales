@@ -52,6 +52,10 @@
             ['title' => 'Proveedores'],
             ['title' => 'Editar', 'active' => true]
         ],
+        'canceled_purchases' => [
+            ['title' => 'Compras'],
+            ['title' => 'Anuladas', 'active' => true]
+        ],
         'sales.index' => [
             ['title' => 'Ventas'],
             ['title' => 'Listar', 'active' => true]
