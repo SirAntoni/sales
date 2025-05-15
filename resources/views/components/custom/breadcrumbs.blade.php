@@ -139,7 +139,7 @@
             ['title' => 'Documentos'],
             ['title' => 'Listar', 'active' => true]
         ],
-        'documents.create' => [
+        'documents.show' => [
             ['title' => 'Documentos'],
             ['title' => 'Emitir', 'active' => true]
         ],
