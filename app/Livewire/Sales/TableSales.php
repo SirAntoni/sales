@@ -35,6 +35,11 @@ class TableSales extends Component
         return redirect()->route('sales.show', $id);
     }
 
+    public function newDocument($id)
+    {
+        return redirect()->route('documents.show', $id);
+    }
+
     #[On('destroy')]
     public function destroy($id)
     {

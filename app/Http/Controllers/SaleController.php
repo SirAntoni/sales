@@ -23,7 +23,7 @@ class SaleController extends Controller implements hasMiddleware
 
     public function create()
     {
-        return view('sales.create');
+        return view('sales.show');
     }
 
     public function show(string $id)

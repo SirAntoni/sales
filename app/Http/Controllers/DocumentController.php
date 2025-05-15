@@ -35,7 +35,7 @@ class DocumentController extends Controller
      */
     public function show(string $id)
     {
-        //
+        return view('documents.show',compact('id'));
     }
 
     /**

@@ -29,12 +29,12 @@
                                     <x-base.table.td
                                         class="border-t border-slate-200/60 bg-slate-50 font-medium text-slate-500"
                                     >
-                                        Creación
+                                        Fecha
                                     </x-base.table.td>
                                     <x-base.table.td
                                         class="border-t border-slate-200/60 bg-slate-50 font-medium text-slate-500"
                                     >
-                                        Usuario
+                                        Comprobante
                                     </x-base.table.td>
                                     <x-base.table.td
                                         class="border-t border-slate-200/60 bg-slate-50 font-medium text-slate-500"
@@ -44,34 +44,28 @@
                                     <x-base.table.td
                                         class="border-t border-slate-200/60 bg-slate-50 font-medium text-slate-500"
                                     >
-                                        Fecha
+                                        Monto
                                     </x-base.table.td>
                                     <x-base.table.td
                                         class="border-t border-slate-200/60 bg-slate-50 font-medium text-slate-500"
                                     >
-                                        Total
+                                        PDF
                                     </x-base.table.td>
                                     <x-base.table.td
                                         class="border-t border-slate-200/60 bg-slate-50 font-medium text-slate-500"
                                     >
-                                        Cant.
+                                        XML
                                     </x-base.table.td>
                                     <x-base.table.td
                                         class="border-t border-slate-200/60 bg-slate-50 font-medium text-slate-500"
                                     >
-                                        Contacto
+                                        CDR
                                     </x-base.table.td>
                                     <x-base.table.td
                                         class="border-t border-slate-200/60 bg-slate-50 font-medium text-slate-500"
                                     >
-                                        M. pago
+                                        Sunat
                                     </x-base.table.td>
-                                    <x-base.table.td
-                                        class="border-t border-slate-200/60 bg-slate-50 font-medium text-slate-500"
-                                    >
-                                        N.Orden
-                                    </x-base.table.td>
-
                                     <x-base.table.td
                                         class="w-36 border-t border-slate-200/60 bg-slate-50 text-center font-medium text-slate-500"
                                     >
@@ -83,74 +77,54 @@
                                 @if($invoices->count() > 0 )
                                     @foreach ($invoices as $invoice)
                                         <x-base.table.tr class="[&_td]:last:border-b-0">
-                                            <x-base.table.td-sale class="border-dashed dark:bg-darkmode-600 text" >
+                                            <x-base.table.td class="border-dashed dark:bg-darkmode-600 text">
 
                                                 {{ $invoice->created_at->format("d-m-Y h:m:s")}}
 
-                                            </x-base.table.td-sale>
-                                            <x-base.table.td-sale class="border-dashed dark:bg-darkmode-600" >
-
-                                                {{ $invoice->number}}
-
-                                            </x-base.table.td-sale>
-                                            <x-base.table.td-sale class="border-dashed dark:bg-darkmode-600">
+                                            </x-base.table.td>
+                                            <x-base.table.td class="border-dashed dark:bg-darkmode-600">
+                                                <span
+                                                    class="bg-blue-100 text-white-800 text-xs font-medium me-2 px-2.5 p-1 rounded-full">{{ $invoice->serie}}-{{$invoice->number}}</span>
 
 
+                                            </x-base.table.td>
+                                            <x-base.table.td class="border-dashed dark:bg-darkmode-600">
 
-                                            </x-base.table.td-sale>
-                                            <x-base.table.td-sale class="border-dashed dark:bg-darkmode-600" >
+                                                {{$invoice->sale->client->name}}
 
-                                                {{ $invoice->serie }}
-
-                                            </x-base.table.td-sale>
-                                            <x-base.table.td-sale class="border-dashed dark:bg-darkmode-600" >
+                                            </x-base.table.td>
+                                            <x-base.table.td class="border-dashed dark:bg-darkmode-600">
 
                                                 S/. {{ $invoice->sale->total }}
 
-                                            </x-base.table.td-sale>
-                                            <x-base.table.td-sale class="text-center border-dashed dark:bg-darkmode-600"
+                                            </x-base.table.td>
+                                            <x-base.table.td class="border-dashed dark:bg-darkmode-600">
+
+                                                <img src="{{asset('images/pdf.svg')}}" width="35px" alt="">
+
+                                            </x-base.table.td>
+                                            <x-base.table.td class="text-center border-dashed dark:bg-darkmode-600"
                                             >
-                                                {{ $invoice->serie }}
+                                                <img src="{{asset('images/xml.svg')}}" width="35px" alt="">
 
-                                            </x-base.table.td-sale>
-                                            <x-base.table.td-sale class="border-dashed dark:bg-darkmode-600" >
+                                            </x-base.table.td>
+                                            <x-base.table.td class="border-dashed dark:bg-darkmode-600">
 
-                                                {{ $invoice->serie }}
+                                                <img src="{{asset('images/cdr.png')}}" width="35px" alt="">
 
-                                            </x-base.table.td-sale>
-                                            <x-base.table.td-sale class="border-dashed dark:bg-darkmode-600" >
-
-                                                {{ $invoice->serie }}
-
-                                            </x-base.table.td-sale>
-                                            <x-base.table.td-sale class="border-dashed dark:bg-darkmode-600" >
-                                                {{ $invoice->number }}
-                                            </x-base.table.td-sale>
-
+                                            </x-base.table.td>
+                                            <x-base.table.td class="border-dashed dark:bg-darkmode-600">
+<span
+    class="bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">Enviado</span>
+                                            </x-base.table.td>
                                             <x-base.table.td class="border-dashed dark:bg-darkmode-600">
                                                 <div class="flex items-center justify-center">
-                                                    @can('update')
-                                                        <x-base.button-custom
-                                                            class="mr-2"
-                                                            variant="success"
-                                                            wire:click="edit({{$invoice->id}})"
-                                                        >
-                                                            <i class="text-white fa-solid fa-eye"></i>
-                                                        </x-base.button-custom>
-                                                    @endcan
-                                                    <x-base.button-custom
-                                                        class="mr-2"
-                                                        variant="soft-primary"
-                                                        wire:click="edit({{$invoice->id}})"
-                                                    >
-                                                        <i class="fa-solid fa-file-circle-plus"></i>
-                                                    </x-base.button-custom>
                                                     <x-base.button-custom
                                                         class="mr-2"
                                                         variant="dark"
                                                         wire:click="verPDF({{$invoice->id}})"
                                                     >
-                                                        <i class="text-white fa-solid fa-file-pdf"></i>
+                                                        <i class="text-white fa-solid fa-envelope"></i>
                                                     </x-base.button-custom>
                                                     @can('delete')
                                                         <x-base.button-custom
@@ -178,7 +152,7 @@
                         </x-base.table>
                     </div>
                     <div class="m-4">
-{{--                        {{$invoices->links()}}--}}
+                        {{$invoices->links()}}
                     </div>
                 </div>
             </div>

@@ -59,17 +59,14 @@ class AddClient extends Component
     public function searchDocument(MigoApiService $api)
     {
 
-        // 1) Validar que exista el tipo de documento
         if (! isset($this->docConfig[$this->document_type])) {
             return $this->throwError('Selecciona un tipo de documento válido.');
         }
 
-        // 2) Si es CE, directamente error
         if ($this->document_type === 'CE') {
             return $this->throwError('Servicio no disponible para este tipo de documento.');
         }
 
-        // 3) Extraer config
         $config = $this->docConfig[$this->document_type];
 
         if (strlen($this->document_number) !== $config['size']) {
@@ -88,8 +85,11 @@ class AddClient extends Component
             strtolower($this->document_type),
             $payload
         );
-dd($response);
-        // 6) Asignar resultado con clave dinámica
+
+        if(!isset($response['success']) || $response['success'] === false ){
+            return $this->throwError("Recurso no encontrado");
+        }
+
         $this->name = $response[$config['responseKey']] ?? '';
 
     }

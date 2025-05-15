@@ -13,13 +13,18 @@ return new class extends Migration
     {
         Schema::create('invoices', function (Blueprint $table) {
             $table->id();
+            $table->date('date')->nullable();
+            $table->double('subtotal');
+            $table->double('tax');
+            $table->double('total');
+            $table->boolean('status');
+            $table->boolean('delivery');
+            $table->double('delivery_fee');
 
-            // Relación con ventas
-            $table->unsignedBigInteger('sale_id');
-            $table->foreign('sale_id')
-                ->references('id')
-                ->on('sales')
-                ->onDelete('cascade');
+            $table->foreignId('client_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('contact_id')->constrained();
+            $table->foreignId('payment_method_id')->constrained();
 
             // Campos de facturación electrónica
             $table->string('serie', 10);

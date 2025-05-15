@@ -164,7 +164,7 @@
                                                     <x-base.button-custom
                                                                    class="mr-2"
                                                                    variant="soft-primary"
-                                                                   wire:click="edit({{$sale->id}})"
+                                                                   wire:click="newDocument({{$sale->id}})"
                                                     >
                                                         <i class="fa-solid fa-file-circle-plus"></i>
                                                     </x-base.button-custom>

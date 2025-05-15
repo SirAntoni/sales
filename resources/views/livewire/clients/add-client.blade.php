@@ -19,40 +19,6 @@
                                 Información del cliente
                             </div>
                             <div class="mt-5">
-
-                                <div
-                                    class="flex-col block pt-5 mt-5 first:mt-0 first:pt-0 sm:flex xl:flex-row xl:items-center">
-                                    <div class="inline-block mb-2 sm:mb-0 sm:mr-5 sm:text-right xl:mr-14 xl:w-60">
-                                        <div class="text-left">
-                                            <div class="flex items-center">
-                                                <div class="font-medium">Nombre o Razón social</div>
-                                                <div
-                                                    class="ml-2.5 rounded-md border border-slate-200 bg-slate-100 px-2 py-0.5 text-xs text-slate-500 dark:bg-darkmode-300 dark:text-slate-400">
-                                                    Required
-                                                </div>
-                                            </div>
-                                            <div class="mt-1.5 text-xs leading-relaxed text-slate-500/80 xl:mt-3">
-                                                Ingresa el nombre o razón social del cliente, es la forma en como lo
-                                                buscarás en tus compras.
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="flex-1 w-full mt-3 xl:mt-0">
-
-                                        <x-base.form-input
-                                            class="mb-2"
-                                            type="text"
-                                            placeholder="Nombre o Razón social del cliente."
-                                            wire:model="name"
-                                        />
-                                        @error('name')
-                                        <div class="p-1">
-                                            {{ $message }}
-                                        </div>
-                                        @enderror
-                                    </div>
-
-                                </div>
                                 <div
                                     class="flex-col block pt-5 mt-5 first:mt-0 first:pt-0 sm:flex xl:flex-row xl:items-center">
                                     <div class="inline-block mb-2 sm:mb-0 sm:mr-5 sm:text-right xl:mr-14 xl:w-60">
@@ -114,14 +80,28 @@
                                             wire:model="document_number"
                                         />
 
-                                        <x-base.button
-                                            class="w-32"
-                                            variant="primary"
-                                            wire:click="searchDocument"
-                                        >
+                                        <span wire:loading>
+                                             <x-base.button class="w-32" variant="primary">
+                                                    Buscando...
+                                                    <x-base.loading-icon
+                                                        class="ml-2 h-4 w-4"
+                                                        icon="three-dots"
+                                                        color="white"
+                                                    />
+                                                </x-base.button>
+                                        </span>
+                                        <span wire:loading.remove>
+                                            <x-base.button
+                                                class="w-32"
+                                                variant="primary"
+                                                wire:click="searchDocument"
+                                            >
                                             <i class="fa-solid fa-magnifying-glass mr-2"></i>
                                             Buscar
-                                        </x-base.button>
+                                            </x-base.button>
+                                        </span>
+
+
                                         @error('document_number')
                                         <div class="p-1">
                                             {{ $message }}
@@ -130,6 +110,41 @@
                                     </div>
 
                                 </div>
+                                <div
+                                    class="flex-col block pt-5 mt-5 first:mt-0 first:pt-0 sm:flex xl:flex-row xl:items-center">
+                                    <div class="inline-block mb-2 sm:mb-0 sm:mr-5 sm:text-right xl:mr-14 xl:w-60">
+                                        <div class="text-left">
+                                            <div class="flex items-center">
+                                                <div class="font-medium">Nombre o Razón social</div>
+                                                <div
+                                                    class="ml-2.5 rounded-md border border-slate-200 bg-slate-100 px-2 py-0.5 text-xs text-slate-500 dark:bg-darkmode-300 dark:text-slate-400">
+                                                    Required
+                                                </div>
+                                            </div>
+                                            <div class="mt-1.5 text-xs leading-relaxed text-slate-500/80 xl:mt-3">
+                                                Ingresa el nombre o razón social del cliente, es la forma en como lo
+                                                buscarás en tus compras.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="flex-1 w-full mt-3 xl:mt-0">
+
+                                        <x-base.form-input
+                                            class="mb-2"
+                                            type="text"
+                                            placeholder="Nombre o Razón social del cliente."
+                                            wire:model="name"
+                                        />
+                                        @error('name')
+                                        <div class="p-1">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
+                                    </div>
+
+                                </div>
+
+
                                 <div
                                     class="flex-col block pt-5 mt-5 first:mt-0 first:pt-0 sm:flex xl:flex-row
                                 xl:items-center">

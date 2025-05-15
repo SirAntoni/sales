@@ -1,9 +1,9 @@
 @extends('../themes/echo')
 
 @section('subhead')
-    <title>ShiperSales | Ventas | Sistema de ventas</title>
+    <title>ShiperSales | Documentos | Sistema de ventas</title>
 @endsection
 
 @section('subcontent')
-    <livewire:sales.show-sale :id="$id" />
+    <livewire:documents.new-document />
 @endsection
