@@ -74,28 +74,28 @@
                                 </x-base.table.tr>
                             </x-base.table.thead>
                             <x-base.table.tbody>
-                                @if($invoices->count() > 0 )
-                                    @foreach ($invoices as $invoice)
+                                @if($documents->count() > 0 )
+                                    @foreach ($documents as $document)
                                         <x-base.table.tr class="[&_td]:last:border-b-0">
                                             <x-base.table.td class="border-dashed dark:bg-darkmode-600 text">
 
-                                                {{ $invoice->created_at->format("d-m-Y h:m:s")}}
+                                                {{ $document->created_at->format("d-m-Y h:m:s")}}
 
                                             </x-base.table.td>
                                             <x-base.table.td class="border-dashed dark:bg-darkmode-600">
                                                 <span
-                                                    class="bg-blue-100 text-white-800 text-xs font-medium me-2 px-2.5 p-1 rounded-full">{{ $invoice->serie}}-{{$invoice->number}}</span>
+                                                    class="bg-blue-100 text-white-800 text-xs font-medium me-2 px-2.5 p-1 rounded-full">{{ $document->serie}}-{{$document->correlative}}</span>
 
 
                                             </x-base.table.td>
                                             <x-base.table.td class="border-dashed dark:bg-darkmode-600">
 
-                                                {{$invoice->sale->client->name}}
+                                                {{$document->client->name}}
 
                                             </x-base.table.td>
                                             <x-base.table.td class="border-dashed dark:bg-darkmode-600">
 
-                                                S/. {{ $invoice->sale->total }}
+                                                S/. {{ $document->total }}
 
                                             </x-base.table.td>
                                             <x-base.table.td class="border-dashed dark:bg-darkmode-600">
@@ -122,7 +122,7 @@
                                                     <x-base.button-custom
                                                         class="mr-2"
                                                         variant="dark"
-                                                        wire:click="verPDF({{$invoice->id}})"
+                                                        wire:click="verPDF({{$document->id}})"
                                                     >
                                                         <i class="text-white fa-solid fa-envelope"></i>
                                                     </x-base.button-custom>
@@ -130,7 +130,7 @@
                                                         <x-base.button-custom
 
                                                             variant="danger"
-                                                            wire:click="delete({{$invoice->id}})"
+                                                            wire:click="delete({{$document->id}})"
                                                         >
                                                             <i class="text-white fa-solid fa-xmark"></i>
                                                         </x-base.button-custom>
@@ -152,7 +152,7 @@
                         </x-base.table>
                     </div>
                     <div class="m-4">
-                        {{$invoices->links()}}
+                        {{$documents->links()}}
                     </div>
                 </div>
             </div>

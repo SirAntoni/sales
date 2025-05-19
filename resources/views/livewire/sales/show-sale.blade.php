@@ -70,7 +70,7 @@
                                                 id="datepicker"
                                                 class="w-full block"
                                                 data-single-mode="true"
-                                                wire:model="date"
+                                                wire:model.live="date"
                                             />
 
                                             @error('date')
@@ -290,7 +290,7 @@
                                                                 min="1"
                                                                 step="1"
                                                                 wire:model="articlesSelected.{{ $index }}.quantity"
-                                                                wire:input.debounce.500ms="updateTotal({{ $index }})"
+                                                                wire:input.debounce.1000ms="updateTotal({{ $index }})"
                                                                 class="w-15 text-center border rounded"
                                                             >
                                                         </div>
@@ -303,7 +303,7 @@
                                                                 step="0.01"
                                                                 min="0"
                                                                 wire:model="articlesSelected.{{ $index }}.price"
-                                                                wire:input.debounce.500ms="updateTotal({{ $index }})"
+                                                                wire:input.debounce.1000ms="updateTotal({{ $index }})"
                                                                 class="w-15 text-center border rounded"
                                                             >
                                                         </div>
@@ -311,7 +311,12 @@
                                                     <x-base.table.td
                                                         class="border-dashed py-4 text-right dark:bg-darkmode-600">
                                                         <div class="whitespace-nowrap font-medium">
-                                                            S./ {{$article['total']}}
+                                                           <span wire:loading>
+                                                                <i class="fas fa-spinner animate-spin"></i> Calculando..
+                                                            </span>
+                                                            <span wire:loading.remove>
+                                                                $ {{$article['total']}}
+                                                            </span>
                                                         </div>
                                                     </x-base.table.td>
                                                 </x-base.table.tr>
@@ -337,19 +342,34 @@
                             <div class="flex items-center justify-end">
                                 <div class="text-slate-500">Subtotal:</div>
                                 <div class="w-20 font-medium text-slate-600 sm:w-52">
-                                    S/. {{ number_format($this->granSubtotal, 2) }}
+                                    <span wire:loading>
+                                        <i class="fas fa-spinner animate-spin"></i> Calculando..
+                                    </span>
+                                    <span wire:loading.remove>
+                                        $ {{ number_format($this->granSubtotal, 2) }}
+                                    </span>
                                 </div>
                             </div>
                             <div class="flex items-center justify-end">
                                 <div class="text-slate-500">IGV:</div>
                                 <div class="w-20 font-medium text-slate-600 sm:w-52">
-                                    S/. {{ number_format($this->granTax, 2) }}
+                                    <span wire:loading>
+                                        <i class="fas fa-spinner animate-spin"></i> Calculando..
+                                    </span>
+                                    <span wire:loading.remove>
+                                        $ {{ number_format($this->granTax, 2) }}
+                                    </span>
                                 </div>
                             </div>
                             <div class="flex items-center justify-end">
                                 <div class="text-slate-500">Total:</div>
                                 <div class="w-20 font-medium text-slate-600 sm:w-52">
-                                    S/. {{ number_format($this->granTotal, 2) }}
+                                    <span wire:loading>
+                                       <i class="fas fa-spinner animate-spin"></i> Calculando..
+                                   </span>
+                                    <span wire:loading.remove>
+                                        $ {{ number_format($this->granTotal, 2) }}
+                                    </span>
                                 </div>
                             </div>
                         </div>
@@ -462,10 +482,8 @@
                     .then(data => callback(data))
                     .catch(() => callback());
             },
-            onChange: function (value) {
-                @this.set('client', value);
-            },
             onInitialize() {
+                console.log('onInitialize');
                 @if(isset($clientSelected) && $clientSelected)
                 // agregamos la opción que ya existe
                 this.addOption({
@@ -475,11 +493,17 @@
                 // la seleccionamos
                 this.setValue('{{ $clientSelected->id }}');
                 @endif
+            },
+            onChange: function (value) {
+                console.log('onChange', value);
+                try {
+                    @this.set('client', value);
+                } catch (err) {
+                    // aquí ignoras el error
+                }
+                console.log('finalize client', value);
             }
         });
-
-
-
 
         picker.on('selected', (startDate, endDate) => {
             @this.

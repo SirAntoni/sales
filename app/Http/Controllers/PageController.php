@@ -591,7 +591,7 @@ class PageController extends Controller
                         'image' => "billing",
                     ],
                     [
-                        'name' => "Invoice",
+                        'name' => "Document",
                         'pathname' => "invoice",
                         'image' => "invoice",
                     ],

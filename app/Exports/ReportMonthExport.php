@@ -4,7 +4,6 @@ namespace App\Exports;
 
 use App\Models\SaleDetail;
 use Carbon\Carbon;
-use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\FromQuery;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithColumnFormatting;
@@ -19,6 +18,7 @@ use PhpOffice\PhpSpreadsheet\Style\Border;
 use PhpOffice\PhpSpreadsheet\Style\Fill;
 use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
 use PhpOffice\PhpSpreadsheet\Worksheet\Drawing;
+use App\Models\Purchase;
 
 class ReportMonthExport implements
     FromQuery,
@@ -98,7 +98,7 @@ class ReportMonthExport implements
     public function map($row): array
     {
         $pvp = $row->sale_price * $row->quantity;
-        $in_dollars = $pvp / 3.90;
+        $in_dollars = $pvp / Purchase::exchangeRate();
         $charge = $row->purchase_price * $row->quantity;
         $gain = $in_dollars - $charge;
 
@@ -159,7 +159,7 @@ class ReportMonthExport implements
                 $month = Carbon::createFromFormat('!m', $this->month)
                     ->locale('es')
                     ->isoFormat('MMMM');
-                $titulo = "REPORTE PERSONALIZADO DESDE {$month} HASTA {$this->year}";
+                $titulo = "REPORTE MENSUAL DE {$month} DEL AÑO {$this->year}";
                 $sheet->setCellValue('B2', $titulo);
 
                 // 2) Fusionar B1 hasta, digamos, H1 para que el texto tenga espacio

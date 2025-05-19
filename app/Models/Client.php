@@ -36,4 +36,8 @@ class Client extends Model
     public function sales(){
         return $this->hasMany(Sale::class);
     }
+
+    public function documents(){
+        return $this->hasMany(Document::class);
+    }
 }

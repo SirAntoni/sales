@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-
 class Purchase extends Model
 {
 
@@ -26,6 +25,11 @@ class Purchase extends Model
     public function provider()
     {
         return $this->belongsTo(Provider::class);
+    }
+
+    public static function exchangeRate(): float
+    {
+        return (float) Setting::value('exchange_rate');
     }
 
     public function user()

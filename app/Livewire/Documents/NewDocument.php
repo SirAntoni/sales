@@ -3,11 +3,16 @@
 namespace App\Livewire\Documents;
 
 use App\Models\Article;
+use App\Models\Client;
 use App\Models\Contact;
+use App\Models\Document;
 use App\Models\PaymentMethod;
 use App\Models\Sale;
 use App\Models\SaleDetail;
+use Illuminate\Http\Middleware\ValidatePostSize;
 use Livewire\Component;
+use App\Models\Voucher;
+use Luecano\NumeroALetras\NumeroALetras;
 
 class NewDocument extends Component
 {
@@ -15,17 +20,10 @@ class NewDocument extends Component
     public $clients;
     public $client;
     public $defaultClient;
-    public $defaultPaymentMethod;
-    public $defaultContact;
     public $articles;
-    public $contacts;
-    public $tax;
     public $number;
-    public $contact;
-    public $paymentMethod;
-    public $paymentMethods;
-    public $delivery_fee;
     public $date;
+    public $expirationDate;
     public $granSubtotal;
     public $granTax;
     public $granTotal;
@@ -35,33 +33,127 @@ class NewDocument extends Component
 
     public $clientSelected;
 
+
+    public $serie;
+    public $correlative;
+    public $documentType;
+
+    public $legends;
+
     public function mount(){
         $sale = Sale::find($this->id);
 
-
-        $contacts = Contact::select('id','name')->get();
-        $paymentMethods = PaymentMethod::select('id','name')->get();
+        $this->serie = "-";
+        $this->correlative = "-";
 
         //Inicio Client
         $this->client = $sale->client_id;
         $this->clientSelected = $sale->client;
         //Fin Client
 
-        $this->contact = $sale->contact_id;
-        $this->paymentMethod = $sale->payment_method_id;;
-        $this->contacts = $contacts;
-        $this->paymentMethods = $paymentMethods;
         $this->date = $sale->date;
         $this->defaultClient = $sale->client->id;
-        $this->defaultPaymentMethod = $sale->paymentMethod->id;
-        $this->defaultContact = $sale->contact->id;
         $this->number = $sale->number;
-        $this->delivery_fee = $sale->delivery_fee;
         $this->granSubtotal = $sale->granSubtotal;
-        $this->tax = ($sale->tax > 0) ? 1:0;
 
         foreach ($sale->saleDetails as $detail) {
             $this->addToArticleSale($detail->id);
+        }
+    }
+
+    protected $rules = [
+        'date'=>'required',
+        'expirationDate' => 'required',
+        'documentType' => 'required',
+        'articlesSelected' => 'required|array|min:1',
+        'client' => 'required',
+    ];
+
+    public function save()
+    {
+        $this->validate();
+        $document = Document::create([
+            'document_type' => $this->documentType,
+            'serie' => $this->serie,
+            'correlative' => $this->correlative,
+            'date' => $this->date,
+            'expiration_date' => $this->expirationDate,
+            'currency' => 'PEN',
+            'payment_method' => 'CONTADO',
+            'subtotal' => $this->granSubtotal,
+            'tax' => $this->granTax,
+            'total' => $this->granTotal,
+            'xml_path' => 'xml/path',
+            'cdr_path' => 'cdr/path',
+            'status_sunat'=> '001',
+            'sale_id' => $this->id,
+            'client_id' => $this->client,
+            'user_id' => auth()->id()
+        ]);
+
+        foreach ($this->articlesSelected as $article) {
+            $art = Article::find($article['id']);
+            $document->documentDetails()->create([
+                'price' => $article['price'],
+                'quantity' => $article['quantity'],
+                'tax' => $article['total'] * 0.18,
+                'total' => $article['total'] + ($article['total'] * 0.18),
+                'article_id' => $article['id'],
+                'category_id' => $article['category'],
+                'brand_id' => $article['brand'],
+                'subtotal' => $article['total'],
+            ]);
+
+        }
+        $this->dispatch('success', ['label' => 'La documento fue registrada con éxito.', 'btn' => 'Ir a documentos', 'route' => route('documents.index')]);
+    }
+
+    public function searchClients($query)
+    {
+        return Client::query()
+            ->where('name', 'like', '%'.$query.'%')
+            ->limit(10)
+            ->get(['id', 'name'])
+            ->map(fn($c) => [
+                'value' => $c->id,
+                'text'  => $c->name,
+            ])
+            ->toArray();
+    }
+
+    public function updatedDocumentType(){
+        $this->serie = Voucher::serie($this->documentType);
+        $this->correlative = Voucher::nextCorrelativeById($this->documentType);
+    }
+
+    public function searchArticles($query)
+    {
+        $qb = Article::query()
+            ->where('title', 'like', '%'.$query.'%')
+            ->limit(10)
+            ->get(['id', 'title', 'stock', 'sale_price', 'purchase_price']);
+
+        $showPurchase = auth()->id() === 1;
+
+        return $qb->map(function($c) use ($showPurchase) {
+            $text = "{$c->title} | Stock: {$c->stock} | Precio Venta: S/.{$c->sale_price}";
+
+            if ($showPurchase) {
+                $text .= " | Precio Compra: $ {$c->purchase_price}";
+            }
+
+            return [
+                'value' => $c->id,
+                'text'  => $text,
+            ];
+        })->toArray();
+    }
+
+    public function updatedArticleSelected($id)
+    {
+        if ($id) {
+            $this->addToArticle($id);
+            $this->articleSelected = null;
         }
     }
 
@@ -159,13 +251,42 @@ class NewDocument extends Component
     public function calculateTotals()
     {
         $this->granSubtotal = collect($this->articlesSelected)->sum('total');
-        if ($this->tax == 1) {
-            $this->granTotal = $this->granSubtotal + ($this->granSubtotal * 0.18);
-            $this->granTax = $this->granSubtotal * 0.18;
-        } else {
-            $this->granTotal = $this->granSubtotal;
-            $this->granTax = 0;
+        $this->granTax = $this->granSubtotal * 0.18;
+        $this->granTotal = $this->granSubtotal + $this->granTax;
+
+        $formatter = new NumeroALetras();
+
+        $this->legends = $formatter->toInvoice($this->granTotal, 2, 'SOLES');
+    }
+
+    public function updateTotal($index)
+    {
+
+        if (!isset($this->articlesSelected[$index])) {
+            return;
         }
+
+        $selected = &$this->articlesSelected[$index];
+
+        $article = Article::find($selected['id']);
+        if (!$article) {
+            $this->dispatch('error', ['label' => 'Artículo no encontrado']);
+            return;
+        }
+
+        if ($article->stock < $selected['quantity']) {
+            $this->dispatch('error', ['label' => 'No hay stock disponible para ' . $article->title]);
+            $selected['quantity'] = $article->stock;
+        }
+
+        $selected['total'] = (float)$selected['price'] * (int)$selected['quantity'];
+        $this->calculateTotals();
+    }
+
+    public function remove($index)
+    {
+        array_splice($this->articlesSelected, $index, 1);
+        $this->calculateTotals();
     }
     public function render()
     {

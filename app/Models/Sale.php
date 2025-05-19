@@ -57,9 +57,8 @@ class Sale extends Model
         return $this->hasMany(SaleDetail::class);
     }
 
-    public function invoice()
-    {
-        return $this->hasOne(Invoice::class);
+    public function documents(){
+        return $this->hasMany(Document::class);
     }
 
 }

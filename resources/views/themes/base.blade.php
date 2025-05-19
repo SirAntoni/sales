@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <!--
-Template Name: Tailwise - Admin Dashboard Template
-Author: Left4code
-Website: http://www.left4code.com/
-Contact: muhammadrizki@left4code.com
-Purchase: https://themeforest.net/user/left4code/portfolio
-Renew Support: https://themeforest.net/user/left4code/portfolio
-License: You must have a valid license purchased only from themeforest(the above link) in order to legally use the theme for your project.
+Template Name: Sistema de ventas | ShiperSales
+Author: Antony Culqui
+Website: https://www.inventrashop.com
+Contact: a.culqui02@gmail.com
+License: Uso comercial solo para ShiperSales
 -->
 <html
     class="opacity-0"
@@ -26,25 +24,27 @@ License: You must have a valid license purchased only from themeforest(the above
     >
     <meta
         name="description"
-        content="Tailwise admin is super flexible, powerful, clean & modern responsive tailwind admin template with unlimited possibilities."
+        content="ShiperSales | Sistema de ventas "
     >
     <meta
         name="keywords"
-        content="admin template, Tailwise Admin Template, dashboard template, flat admin template, responsive admin template, web app"
+        content="Sistema de ventas | ShiperSales"
     >
     <meta
         name="author"
-        content="LEFT4CODE"
+        content="ANTONY CULQUI"
     >
 
     @yield('head')
 
     <!-- BEGIN: CSS Assets-->
     @stack('styles')
+    <link rel="shortcut icon" href="{{asset('images/logo-icon.png')}}" />
     <!-- END: CSS Assets-->
 
     @vite('resources/css/app.css')
     @livewireStyles
+
 </head>
 <!-- END: Head -->
 

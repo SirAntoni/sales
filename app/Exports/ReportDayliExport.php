@@ -2,6 +2,7 @@
 
 namespace App\Exports;
 
+use App\Models\Purchase;
 use App\Models\SaleDetail;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -99,7 +100,7 @@ class ReportDayliExport implements
     public function map($row): array
     {
         $pvp = $row->sale_price * $row->quantity;
-        $in_dollars = $pvp / 3.90;
+        $in_dollars = $pvp / Purchase::exchangeRate();
         $charge = $row->purchase_price * $row->quantity;
         $gain = $in_dollars - $charge;
 

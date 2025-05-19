@@ -8,6 +8,7 @@ use App\Models\Contact;
 use App\Models\PaymentMethod;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+use Livewire\Attributes\On;
 use Livewire\Component;
 use App\Models\Sale;
 use App\Models\SaleDetail;
@@ -117,7 +118,6 @@ class ShowSale extends Component
     public function save()
     {
         $this->validate();
-
 
         $sale = Sale::find($this->id);
 

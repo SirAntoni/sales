@@ -2,14 +2,10 @@
 
 namespace App\Livewire\Dashboard;
 
-use App\Models\Category;
 use App\Models\Department;
-use App\Models\District;
-use App\Models\SaleDetail;
+use App\Models\Purchase;
 use Carbon\Carbon;
 use Livewire\Component;
-use App\Models\Provider;
-use App\Models\Article;
 use Illuminate\Support\Facades\DB;
 use App\Models\Sale;
 use Illuminate\Support\Facades\Cache;
@@ -32,6 +28,8 @@ class Dashboard extends Component
     public $margenGananciasProveedor = [];
     public $margenGananciasCategory = [];
 
+    public $exchange;
+
     public function mount()
     {
         $providers = DB::table('providers')->select('id', 'name')->get();
@@ -42,6 +40,7 @@ class Dashboard extends Component
         $this->departments = $departments;
         $this->month = Carbon::now()->format('m');
         $this->year = Carbon::now()->format('Y');
+        $this->exchange = Purchase::exchangeRate();
 
     }
 
@@ -151,7 +150,7 @@ class Dashboard extends Component
                 // Suma la cantidad vendida
                 DB::raw('SUM(sale_details.quantity) as total_qty'),
                 // Realiza la operación por cada registro de sale_details
-                DB::raw('SUM(sale_details.price - (articles.purchase_price * 3.90)) as total')
+                DB::raw('SUM(sale_details.price - (articles.purchase_price * '. Purchase::exchangeRate() .')) as total')
             )
             ->where('sales.status',"!=",0)
             ->whereYear('sale_details.created_at', $year)
@@ -182,7 +181,6 @@ class Dashboard extends Component
 
     public function margenGananciaProveedor()
     {
-        $exchange = 3.90;
 
         $month = $this->month;
         $year = $this->year;
@@ -202,9 +200,9 @@ class Dashboard extends Component
                 'articles.provider_id as provider_id',
                 'providers.name as provider_name',
                 // Calcula la ganancia total aplicando la fórmula y el tipo de cambio
-                DB::raw("SUM(sale_details.price - (articles.purchase_price * $exchange)) as total_ganancia"),
+                DB::raw("SUM(sale_details.price - (articles.purchase_price * $this->exchange)) as total_ganancia"),
                 // Calcula el margen promedio en porcentaje
-                DB::raw("AVG((sale_details.price - (articles.purchase_price * $exchange)) / sale_details.price * 100) as margen_promedio")
+                DB::raw("AVG((sale_details.price - (articles.purchase_price * $this->exchange)) / sale_details.price * 100) as margen_promedio")
             )
             ->where('sales.status',"!=",0)
             ->whereYear('sale_details.created_at', $year)
@@ -233,7 +231,6 @@ class Dashboard extends Component
 
     public function margenGananciaContacto()
     {
-        $exchange = 3.90;
 
         $month = $this->month;
         $year = $this->year;
@@ -252,9 +249,9 @@ class Dashboard extends Component
             ->select(
                 'contacts.name as contact_name',
                 // Calcula la ganancia total aplicando la fórmula y el tipo de cambio
-                DB::raw('SUM(sale_details.quantity) as total_qty'),
+                DB::raw("SUM(sale_details.quantity) as total_qty"),
                 // Realiza la operación por cada registro de sale_details
-                DB::raw('SUM(sale_details.price - (articles.purchase_price * 3.90)) as total')
+                DB::raw("SUM(sale_details.price - (articles.purchase_price * $this->exchange)) as total")
             )
             ->where('sales.status',"!=",0)
             ->whereYear('sale_details.created_at', $year)
@@ -283,8 +280,6 @@ class Dashboard extends Component
 
     public function margenGananciasCategory()
     {
-        $exchange = 3.90;
-
         $month = $this->month;
         $year = $this->year;
         $provider = $this->provider;
@@ -304,7 +299,7 @@ class Dashboard extends Component
                 // Calcula la ganancia total aplicando la fórmula y el tipo de cambio
                 DB::raw('SUM(sale_details.quantity) as total_qty'),
                 // Realiza la operación por cada registro de sale_details
-                DB::raw('SUM(sale_details.price - (articles.purchase_price * 3.90)) as total')
+                DB::raw("SUM(sale_details.price - (articles.purchase_price * $this->exchange)) as total")
             )
             ->where('sales.status',"!=",0)
             ->whereYear('sale_details.created_at', $year)
@@ -333,8 +328,6 @@ class Dashboard extends Component
 
     public function margenGananciasDepartment()
     {
-        $exchange = 3.90;
-
         $month = $this->month;
         $year = $this->year;
         $provider = $this->provider;
@@ -354,7 +347,7 @@ class Dashboard extends Component
                 // Calcula la ganancia total aplicando la fórmula y el tipo de cambio
                 DB::raw('SUM(sale_details.quantity) as total_qty'),
                 // Realiza la operación por cada registro de sale_details
-                DB::raw('SUM(sale_details.price - (articles.purchase_price * 3.90)) as total')
+                DB::raw("SUM(sale_details.price - (articles.purchase_price * $this->exchange)) as total")
             )
             ->where('sales.status',"!=",0)
             ->whereYear('sale_details.created_at', $year)
@@ -384,8 +377,6 @@ class Dashboard extends Component
 
     public function margenGananciasDistrict()
     {
-        $exchange = 3.90;
-
         $month = $this->month;
         $year = $this->year;
         $provider = $this->provider;
@@ -405,7 +396,7 @@ class Dashboard extends Component
                 // Calcula la ganancia total aplicando la fórmula y el tipo de cambio
                 DB::raw('SUM(sale_details.quantity) as total_qty'),
                 // Realiza la operación por cada registro de sale_details
-                DB::raw('SUM(sale_details.price - (articles.purchase_price * 3.90)) as total')
+                DB::raw("SUM(sale_details.price - (articles.purchase_price * $this->exchange)) as total")
             )
             ->where('sales.status',"!=",0)
             ->whereYear('sale_details.created_at', $year)
@@ -436,8 +427,6 @@ class Dashboard extends Component
 
     public function gananciaVentasTotal()
     {
-        $exchange = 3.90;
-
         $month = $this->month;
         $year = $this->year;
         $provider = $this->provider;
@@ -453,7 +442,7 @@ class Dashboard extends Component
             ->join('clients', 'sales.client_id', '=', 'clients.id')
             ->select(
                 // Calcula la ganancia total aplicando la fórmula y el tipo de cambio
-                DB::raw('SUM(sale_details.price - (articles.purchase_price * 3.90)) as total_ganancias'),
+                DB::raw("SUM(sale_details.price - (articles.purchase_price * $this->exchange)) as total_ganancias"),
                 // Realiza la operación por cada registro de sale_details
                 DB::raw('SUM(sale_details.price) as total_ventas')
             )

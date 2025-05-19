@@ -13,7 +13,7 @@ class AddVoucher extends Component
 
     protected $rules = [
         'name' => 'required|string|min:3',
-        'serie' => 'required|numeric|min:1',
+        'serie' => 'required|min:1',
         'number' => 'required|numeric|min:1',
     ];
 

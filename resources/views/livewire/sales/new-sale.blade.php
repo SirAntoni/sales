@@ -68,7 +68,7 @@
                                         <div>
 
                                             <x-base.form-label for="datepicker">
-                                                Fecha del documento
+                                                Fecha del documento - {{$date}}
                                             </x-base.form-label>
                                             <x-base.litepicker
                                                 id="datepicker"
