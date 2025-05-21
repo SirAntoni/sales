@@ -24,13 +24,11 @@ class TablePurchases extends Component
     public function changeStatus($id)
     {
         $purchase = Purchase::find($id);
-        Log::info("Encuentra?: " . json_encode($purchase));
-        if ($purchase->status === Purchase::PURCHASE_FINISHED || $purchase->status === Purchase::PURCHASE_NOT_FINISHED) {
-            $purchase->status = ($purchase->status === Purchase::PURCHASE_FINISHED)
+        if ($purchase->status == Purchase::PURCHASE_FINISHED || $purchase->status == Purchase::PURCHASE_NOT_FINISHED) {
+            $purchase->status = ($purchase->status == Purchase::PURCHASE_FINISHED)
                 ? Purchase::PURCHASE_NOT_FINISHED
                 : Purchase::PURCHASE_FINISHED;
             $purchase->save();
-            Log::info("Graba?: " . json_encode($purchase));
             $this->dispatch('notification');
         }
     }

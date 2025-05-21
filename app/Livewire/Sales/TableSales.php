@@ -82,8 +82,8 @@ class TableSales extends Component
     {
         $sale = Sale::find($id);
 
-        if ($sale->status === Sale::SALE_APPROVED || $sale->status === Sale::SALE_PENDING) {
-            $sale->status = ($sale->status === Sale::SALE_APPROVED)
+        if ($sale->status == Sale::SALE_APPROVED || $sale->status == Sale::SALE_PENDING) {
+            $sale->status = ($sale->status == Sale::SALE_APPROVED)
                 ? Sale::SALE_PENDING
                 : Sale::SALE_APPROVED;
             $sale->save();
