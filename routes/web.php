@@ -48,10 +48,16 @@ Route::middleware(['auth'])->group(function () {
     Route::get('kardex', [KardexController::class,'index'])->name('kardex')->middleware('can:kardex');
     Route::get('pdf/{id}', [SaleController::class,'pdf'])->name('pdf.view');
     Route::post("/logout",[AuthController::class,'logout'])->name('logout');
-    Route::get('/clear-config', function () {
+    Route::get('/clear-all-caches', function () {
         Artisan::call('config:clear');
         Artisan::call('cache:clear');
-        return 'Configuración cache borrada';
+        Artisan::call('route:clear');
+        Artisan::call('permission:cache-reset');  // <— aquí reseteas el cache de Spatie
+        return "Todos los caches (config, app, rutas y permisos) han sido limpiados.";
+    });
+    Route::get('/clear-permission-cache', function () {
+        Cache::forget('spatie.permission.cache');
+        return "Cache de permisos borrado.";
     });
 
 });
