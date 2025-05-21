@@ -3,6 +3,7 @@
 namespace App\Livewire\Sales;
 
 use App\Models\Article;
+use Carbon\Carbon;
 use Livewire\Component;
 use App\Models\Sale;
 use Livewire\Attributes\On;
@@ -21,7 +22,13 @@ class TableSales extends Component
 
     public $startDate;
     public $endDate;
+    public $limit;
 
+    public function mount(){
+        $this->limit = 40;
+        $this->startDate = null;
+        $this->endDate = null;
+    }
     public function updatingSearch(){
         $this->resetPage();
     }
@@ -93,7 +100,7 @@ class TableSales extends Component
     public function render()
     {
 
-        $limit = 15;
+        $limit = $this->limit ?? 40;
         $sales = Sale::query()
             ->with(['saleDetails', 'client:id,name', 'contact:id,name', 'paymentMethod:id,name'])
             ->where('status', '!=', Sale::SALE_CANCELED)
@@ -105,6 +112,13 @@ class TableSales extends Component
                         ->orWhereHas('contact', fn ($c) => $c->where('name', 'like', "%{$search}%"))
                         ->orWhereHas('paymentMethod', fn ($p) => $p->where('name', 'like', "%{$search}%"));
                 });
+            })
+            ->when($this->startDate && $this->endDate, function ($query) {
+                $query->whereBetween('sales.created_at', [
+                    // formatea según tu columna; si usas created_at, cámbialo
+                    Carbon::parse($this->startDate)->startOfDay(),
+                    Carbon::parse($this->endDate)->endOfDay(),
+                ]);
             })
             ->orderByDesc('id')
             ->paginate($limit);

@@ -33,25 +33,26 @@
                                     <div class="-mt-px">datos de la compra</div>
                                 </div>
                                 <div class="grid grid-cols-12 pt-4">
-                                    <div class="col-span-12 sm:col-span-6 flex flex-col px-5 py-2">
+                                    <div class="col-span-12 sm:col-span-6 flex flex-col gap-3.5 px-5 py-2">
 
                                         <div>
-                                            <label>Proveedor</label>
-                                            <div class="mt-2 " wire:ignore>
-                                                <x-base.tom-select
-                                                    wire:ignore
-                                                    id="tomProviders"
-                                                    class="w-full"
-                                                    data-placeholder="Selecciona un proveedor"
-                                                    wire:model="provider"
-                                                >
+                                            <x-base.form-label for="provider">
+                                                Proveedor
+                                            </x-base.form-label>
+                                            <x-base.form-select
+                                                aria-label=".form-select-lg"
+                                                id="provider"
+                                                wire:model="provider"
+                                            >
+                                                <option value="">Selecciona un proveedor</option>
 
-                                                </x-base.tom-select>
-
-                                            </div>
+                                                @foreach($providers as $provider)
+                                                <option value="{{$provider->id}}">{{$provider->name}}</option>
+                                                @endforeach
+                                            </x-base.form-select>
                                             @error('provider')
                                             <div class="p-1">
-                                                {{$message}}
+                                                {{ $message }}
                                             </div>
                                             @enderror
                                         </div>
@@ -352,32 +353,45 @@
 <script>
     document.addEventListener('DOMContentLoaded', function () {
 
-        new TomSelect('#tomProviders', {
-            valueField: 'value',
-            labelField: 'text',
-            searchField: 'text',
-            maxItems: 1,
-            create: false,
-            load: function (query, callback) {
-                if (!query.length) return callback();
-
-                @this.
-                call('searchProviders', query)
-                    .then(data => callback(data))
-                    .catch(() => callback());
-            },
-            onChange: function (value) {
-                @this.
-                set('provider', value);
-            },
-        });
-
         new TomSelect('#tomArticles', {
             valueField: 'value',
             labelField: 'text',
             searchField: 'text',
             maxItems: 1,
             create: false,
+            render: {
+                option: function(data, escape) {
+
+                    let label = escape(data.text);
+
+                    // 2) Busca el número de stock ("stock: 12")
+                    const match = data.text.match(/stock:\s*(\d+)/);
+                    if (match) {
+                        const stock = parseInt(match[1], 10);
+                        const cls   = stock > 10 ? 'mark-green' : 'mark-red';
+                        // 3) Reemplaza esa parte por un <span> coloreado
+                        label = label.replace(
+                            /stock:\s*\d+/,
+                            `stock: <span class="${cls}">${stock}</span>`
+                        );
+                    }
+
+                    return `<div>${label}</div>`;
+                },
+                item: function(data, escape) {
+                    let label = escape(data.text);
+                    const match = data.text.match(/stock:\s*(\d+)/);
+                    if (match) {
+                        const stock = parseInt(match[1], 10);
+                        const cls   = stock > 10 ? 'mark-green' : 'mark-red';
+                        label = label.replace(
+                            /stock:\s*\d+/,
+                            `stock: <span class="${cls}">${stock}</span>`
+                        );
+                    }
+                    return `<div>${label}</div>`;
+                }
+            },
             load: function (query, callback) {
                 if (!query.length) return callback();
 
@@ -385,6 +399,10 @@
                 call('searchArticles', query)
                     .then(data => callback(data))
                     .catch(() => callback());
+            },
+            onItemAdd: function(value, $item) {
+                this.clear();
+                @this.set('articleSelected', value);
             }
         });
 

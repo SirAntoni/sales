@@ -295,7 +295,7 @@
                                         >
                                             <option value="">Selecciona una opción</option>
                                             @foreach($provinces as $province)
-                                                <option value="{{$province->id}}">{{$province->name}}</option>
+                                                <option value="{{$province->id}}">{{html_entity_decode($province->name)}}</option>
                                             @endforeach
 
                                         </x-base.form-select>
@@ -332,7 +332,7 @@
                                         >
                                             <option value="">Selecciona una opción</option>
                                             @foreach($districts as $district)
-                                                <option value="{{$district->id}}">{{$district->name}}</option>
+                                                <option value="{{$district->id}}">{{html_entity_decode($district->name)}}</option>
                                             @endforeach
 
                                         </x-base.form-select>

@@ -29,7 +29,7 @@ class NewSale extends Component
     public $granTotal;
     public $dateSelected;
     public $articleSelected;
-    public $articlesSelected = [];
+    public array $articlesSelected = [];
 
     public $userId;
 
@@ -131,25 +131,23 @@ class NewSale extends Component
 
     public function searchArticles($query)
     {
-        $qb = Article::query()
-            ->where('title', 'like', '%'.$query.'%')
+        return Article::where('title', 'like', '%'.$query.'%')
+            ->orWhereHas('brand', fn($q) =>
+            $q->where('name', 'like', '%'.$query.'%')
+            )
             ->limit(10)
-            ->get(['id', 'title', 'stock', 'sale_price', 'purchase_price']);
-
-        $showPurchase = auth()->id() === 1;
-
-        return $qb->map(function($c) use ($showPurchase) {
-            $text = "{$c->title} | Stock: {$c->stock} | Precio Venta: S/.{$c->sale_price}";
-
-            if ($showPurchase) {
-                $text .= " | Precio Compra: $ {$c->purchase_price}";
-            }
-
-            return [
+            ->get()
+            ->map(fn($c) => [
                 'value' => $c->id,
-                'text'  => $text,
-            ];
-        })->toArray();
+                'text'  => trim(
+                    $c->title
+                    // si existe brand, lo pinto entre paréntesis
+                    . ($c->brand?->name ? " ({$c->brand->name})" : '')
+                    . " | stock: {$c->stock}"
+                    . " | precio: S/. {$c->sale_price}"
+                ),
+            ])
+            ->toArray();
     }
 
     public function updatedArticleSelected($id)

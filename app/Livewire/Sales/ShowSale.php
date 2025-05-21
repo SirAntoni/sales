@@ -104,13 +104,21 @@ class ShowSale extends Component
 
     public function searchArticles($query)
     {
-        return Article::query()
-            ->where('title', 'like', '%'.$query.'%')
+        return Article::where('title', 'like', '%'.$query.'%')
+            ->orWhereHas('brand', fn($q) =>
+            $q->where('name', 'like', '%'.$query.'%')
+            )
             ->limit(10)
-            ->get(['id', 'title'])
+            ->get()
             ->map(fn($c) => [
                 'value' => $c->id,
-                'text'  => $c->title,
+                'text'  => trim(
+                    $c->title
+                    // si existe brand, lo pinto entre paréntesis
+                    . ($c->brand?->name ? " ({$c->brand->name})" : '')
+                    . " | stock: {$c->stock}"
+                    . " | precio: S/. {$c->sale_price}"
+                ),
             ])
             ->toArray();
     }

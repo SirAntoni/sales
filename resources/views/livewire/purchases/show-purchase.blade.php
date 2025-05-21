@@ -72,9 +72,9 @@
                                                 disabled
                                             >
                                                 <option value="">Selecciona un tipo de documento</option>
-                                                <option value="1">Factura</option>
-                                                <option value="2">Boleta</option>
-                                                <option value="TICKET">Ticket</option>
+                                                <option value="Factura">Factura</option>
+                                                <option value="Boleta">Boleta</option>
+                                                <option value="Ticket">Ticket</option>
                                             </x-base.form-select>
                                             @error('voucher_type')
                                             <div class="p-1">
@@ -179,13 +179,13 @@
                                                     <x-base.table.td
                                                         class="border-dashed py-4 text-right dark:bg-darkmode-600">
                                                         <div class="whitespace-nowrap">
-                                                            {{$article->price}}
+                                                            $ {{$article->price}}
                                                         </div>
                                                     </x-base.table.td>
                                                     <x-base.table.td
                                                         class="border-dashed py-4 text-right dark:bg-darkmode-600">
                                                         <div class="whitespace-nowrap font-medium">
-                                                            {{$article->total}}
+                                                            $ {{$article->total}}
                                                         </div>
                                                     </x-base.table.td>
                                                 </x-base.table.tr>
@@ -211,19 +211,19 @@
                             <div class="flex items-center justify-end">
                                 <div class="text-slate-500">Subtotal:</div>
                                 <div class="w-20 font-medium text-slate-600 sm:w-52">
-                                    {{ number_format($this->granSubtotal, 2) }}
+                                    $ {{ number_format($this->granSubtotal, 2) }}
                                 </div>
                             </div>
                             <div class="flex items-center justify-end">
                                 <div class="text-slate-500">IGV:</div>
                                 <div class="w-20 font-medium text-slate-600 sm:w-52">
-                                    {{ number_format($this->granTax, 2) }}
+                                    $ {{ number_format($this->granTax, 2) }}
                                 </div>
                             </div>
                             <div class="flex items-center justify-end">
                                 <div class="text-slate-500">Total:</div>
                                 <div class="w-20 font-medium text-slate-600 sm:w-52">
-                                    {{ number_format($this->granTotal, 2) }}
+                                    $ {{ number_format($this->granTotal, 2) }}
                                 </div>
                             </div>
                         </div>

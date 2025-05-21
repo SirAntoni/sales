@@ -69,11 +69,13 @@
                                     >
                                         Stock
                                     </x-base.table.td>
+                                    @if(auth()->user()->id == 1)
                                     <x-base.table.td
                                         class="w-36 border-t border-slate-200/60 bg-slate-50 py-4 font-medium text-slate-500"
                                     >
                                         Precio Compra
                                     </x-base.table.td>
+                                    @endif
                                     <x-base.table.td
                                         class="w-36 border-t border-slate-200/60 bg-slate-50 py-4 font-medium text-slate-500"
                                     >
@@ -129,11 +131,13 @@
                                                         class="bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">{{$article->stock}}</span>
                                                 @endif
                                             </x-base.table.td>
+                                            @if(auth()->user()->id == 1)
                                             <x-base.table.td class="border-dashed py-4 dark:bg-darkmode-600">
 
                                                 $ {{ $article->purchase_price }}
 
                                             </x-base.table.td>
+                                            @endif
                                             <x-base.table.td class="border-dashed py-4 dark:bg-darkmode-600">
 
                                                 S/. {{ $article->sale_price }}

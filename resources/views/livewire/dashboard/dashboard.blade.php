@@ -107,7 +107,7 @@
                             <option value="custom-date">Distrito</option>
                             @if($districts != null)
                                 @foreach($districts as $district)
-                                    <option value="{{$district->id}}">{{$district->name}}</option>
+                                    <option value="{{$district->id}}">{{html_entity_decode($district->name)}}</option>
                                 @endforeach
                             @endif
                         </x-base.form-select>

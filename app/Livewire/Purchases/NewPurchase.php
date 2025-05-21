@@ -6,6 +6,7 @@ use App\Models\Article;
 use App\Models\Purchase;
 use Livewire\Component;
 use App\Models\Provider;
+use DB;
 
 
 class NewPurchase extends Component
@@ -22,6 +23,7 @@ class NewPurchase extends Component
     public $articleSelected;
     public $articlesSelected = [];
     public $status;
+    public $providers;
 
     protected $rules = [
         'provider' => 'required',
@@ -43,6 +45,7 @@ class NewPurchase extends Component
     ];
 
     public function mount(){
+        $this->providers = DB::table('providers')->get(['id','name']);
         $this->status = 1;
     }
 
@@ -150,28 +153,23 @@ class NewPurchase extends Component
         $this->calculateTotals();
     }
 
-    public function searchProviders($query)
-    {
-        return Provider::query()
-            ->where('name', 'like', '%'.$query.'%')
-            ->limit(10)
-            ->get(['id', 'name'])
-            ->map(fn($c) => [
-                'value' => $c->id,
-                'text'  => $c->name,
-            ])
-            ->toArray();
-    }
-
     public function searchArticles($query)
     {
-        return Article::query()
-            ->where('title', 'like', '%'.$query.'%')
+        return Article::where('title', 'like', '%'.$query.'%')
+            ->orWhereHas('brand', fn($q) =>
+            $q->where('name', 'like', '%'.$query.'%')
+            )
             ->limit(10)
-            ->get(['id', 'title'])
+            ->get()
             ->map(fn($c) => [
                 'value' => $c->id,
-                'text'  => $c->title,
+                'text'  => trim(
+                    $c->title
+                    // si existe brand, lo pinto entre paréntesis
+                    . ($c->brand?->name ? " ({$c->brand->name})" : '')
+                    . " | stock: {$c->stock}"
+                    . " | precio: S/. {$c->sale_price}"
+                ),
             ])
             ->toArray();
     }

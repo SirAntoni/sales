@@ -45,6 +45,13 @@ License: Uso comercial solo para ShiperSales
     @vite('resources/css/app.css')
     @livewireStyles
 
+    <style>
+        .mark-green { color: #28a745; font-weight: bold; }
+        .mark-red   { color: #dc3545; font-weight: bold; }
+
+
+    </style>
+
 </head>
 <!-- END: Head -->
 
