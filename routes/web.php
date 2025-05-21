@@ -50,6 +50,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post("/logout",[AuthController::class,'logout'])->name('logout');
     Route::get('/clear-config', function () {
         Artisan::call('config:clear');
+        Artisan::call('cache:clear');
         return 'Configuración cache borrada';
     });
 
