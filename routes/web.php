@@ -48,6 +48,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('kardex', [KardexController::class,'index'])->name('kardex')->middleware('can:kardex');
     Route::get('pdf/{id}', [SaleController::class,'pdf'])->name('pdf.view');
     Route::post("/logout",[AuthController::class,'logout'])->name('logout');
+    Route::get('/clear-config', function () {
+        Artisan::call('config:clear');
+        return 'Configuración cache borrada';
+    });
 
 });
 
