@@ -46,6 +46,7 @@ class NewPurchase extends Component
 
     public function mount(){
         $this->providers = DB::table('providers')->get(['id','name']);
+        $this->voucher_type = "Boleta";
         $this->status = 1;
     }
 

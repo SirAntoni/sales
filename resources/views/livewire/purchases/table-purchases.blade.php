@@ -95,7 +95,7 @@
                                                 {{ $purchase->passenger }}
                                             </x-base.table.td>
                                             <x-base.table.td class="border-dashed py-4 dark:bg-darkmode-600">
-                                                $ {{ $purchase->total }}
+                                                $ {{ number_format($purchase->total,2) }}
                                             </x-base.table.td>
                                             <x-base.table.td class="border-dashed py-4 dark:bg-darkmode-600">
                                                 <div class="flex items-center justify-center">

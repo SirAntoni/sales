@@ -161,7 +161,7 @@
                                             </x-base.table.td-sale>
                                             <x-base.table.td-sale class="border-dashed dark:bg-darkmode-600" >
 
-                                                S/. {{ $sale->total }}
+                                                S/. {{ number_format($sale->total,2) }}
 
                                             </x-base.table.td-sale>
                                             <x-base.table.td-sale class="text-center border-dashed dark:bg-darkmode-600"

@@ -145,7 +145,9 @@ class ReportCustomExport implements
     public function columnFormats(): array
     {
         return [
+            'G' => NumberFormat::FORMAT_NUMBER_00,
             'H' => NumberFormat::FORMAT_NUMBER_00,
+            'I' => NumberFormat::FORMAT_NUMBER_00,
             'J' => NumberFormat::FORMAT_NUMBER_00,
         ];
     }

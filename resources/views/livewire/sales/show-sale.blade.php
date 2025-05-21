@@ -300,7 +300,7 @@
                                                                 <i class="fas fa-spinner animate-spin"></i> Calculando..
                                                             </span>
                                                             <span wire:loading.remove>
-                                                                S/. {{$article['total']}}
+                                                                S/. {{number_format($article['total'],2)}}
                                                             </span>
                                                         </div>
                                                     </x-base.table.td>

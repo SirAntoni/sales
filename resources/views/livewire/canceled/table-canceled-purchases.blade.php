@@ -104,7 +104,7 @@
                                             </x-base.table.td-sale>
                                             <x-base.table.td-sale class="border-dashed dark:bg-darkmode-600" >
 
-                                                $ {{ $purchase->total }}
+                                                $ {{ number_format($purchase->total,2,'.','') }}
 
                                             </x-base.table.td-sale>
 

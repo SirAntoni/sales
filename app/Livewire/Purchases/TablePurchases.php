@@ -5,6 +5,7 @@ namespace App\Livewire\Purchases;
 use App\Models\Article;
 use App\Models\PurchaseDetail;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Livewire\Component;
 use App\Models\Purchase;
 use Livewire\Attributes\On;
@@ -23,12 +24,13 @@ class TablePurchases extends Component
     public function changeStatus($id)
     {
         $purchase = Purchase::find($id);
-
+        Log::info("Encuentra?: " . json_encode($purchase));
         if ($purchase->status === Purchase::PURCHASE_FINISHED || $purchase->status === Purchase::PURCHASE_NOT_FINISHED) {
             $purchase->status = ($purchase->status === Purchase::PURCHASE_FINISHED)
                 ? Purchase::PURCHASE_NOT_FINISHED
                 : Purchase::PURCHASE_FINISHED;
             $purchase->save();
+            Log::info("Graba?: " . json_encode($purchase));
             $this->dispatch('notification');
         }
     }

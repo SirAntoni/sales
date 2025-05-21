@@ -179,13 +179,13 @@
                                                     <x-base.table.td
                                                         class="border-dashed py-4 text-right dark:bg-darkmode-600">
                                                         <div class="whitespace-nowrap">
-                                                            $ {{$article->price}}
+                                                            $ {{number_format($article->price,2)}}
                                                         </div>
                                                     </x-base.table.td>
                                                     <x-base.table.td
                                                         class="border-dashed py-4 text-right dark:bg-darkmode-600">
                                                         <div class="whitespace-nowrap font-medium">
-                                                            $ {{$article->total}}
+                                                            $ {{number_format($article->total,2)}}
                                                         </div>
                                                     </x-base.table.td>
                                                 </x-base.table.tr>

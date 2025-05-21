@@ -231,7 +231,7 @@
                                             >
 
                                                 <div class="ml-1.5 whitespace-nowrap">
-                                                  S/.  {{$product->total}}
+                                                  S/.  {{ number_format($product->total, 2) }}
                                                 </div>
 
                                             </x-base.table.td>
@@ -343,7 +343,7 @@
     document.addEventListener('DOMContentLoaded', function () {
 
         window.addEventListener('dashboard-report', event => {
-            console.log(event.detail[0][6])
+
             setTimeout(() => {
                 createIcons({
                     icons,

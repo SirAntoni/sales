@@ -95,7 +95,7 @@
                                             </x-base.table.td>
                                             <x-base.table.td class="border-dashed dark:bg-darkmode-600">
 
-                                                S/. {{ $document->total }}
+                                                S/. {{ number_format($document->total,2) }}
 
                                             </x-base.table.td>
                                             <x-base.table.td class="border-dashed dark:bg-darkmode-600">

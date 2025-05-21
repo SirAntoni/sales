@@ -136,13 +136,13 @@
                                             @if(auth()->user()->id == 1)
                                                 <x-base.table.td class="border-dashed py-4 dark:bg-darkmode-600">
 
-                                                    $ {{ $article->purchase_price }}
+                                                    $ {{ number_format($article->purchase_price,2) }}
 
                                                 </x-base.table.td>
                                             @endif
                                             <x-base.table.td class="border-dashed py-4 dark:bg-darkmode-600">
 
-                                                S/. {{ $article->sale_price }}
+                                                S/. {{ number_format($article->sale_price,2) }}
 
                                             </x-base.table.td>
 

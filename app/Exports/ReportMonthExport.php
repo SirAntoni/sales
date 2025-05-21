@@ -144,7 +144,9 @@ class ReportMonthExport implements
     public function columnFormats(): array
     {
         return [
+            'G' => NumberFormat::FORMAT_NUMBER_00,
             'H' => NumberFormat::FORMAT_NUMBER_00,
+            'I' => NumberFormat::FORMAT_NUMBER_00,
             'J' => NumberFormat::FORMAT_NUMBER_00,
         ];
     }
@@ -159,6 +161,7 @@ class ReportMonthExport implements
                 $month = Carbon::createFromFormat('!m', $this->month)
                     ->locale('es')
                     ->isoFormat('MMMM');
+                $month = strtoupper($month);
                 $titulo = "REPORTE MENSUAL DE {$month} DEL AÑO {$this->year}";
                 $sheet->setCellValue('B2', $titulo);
 
