@@ -5,17 +5,18 @@
                 <div class="text-base font-medium group-[.mode--light]:text-white">
                     Articulos
                 </div>
-                <div class="flex flex-col gap-x-3 gap-y-2 sm:flex-row md:ml-auto">
-                    <x-base.button
-                        class="group-[.mode--light]:!border-transparent group-[.mode--light]:!bg-white/[0.12] group-[.mode--light]:!text-slate-200"
-                        variant="primary"
-                        onclick="window.location.href='{{ route('articles.create') }}'"
-                    >
-                        <div class="px-2"><i class="fa-solid fa-plus"></i></div>
-                        Nuevo articulo
-
-                    </x-base.button>
-                </div>
+                @can('articles.create')
+                    <div class="flex flex-col gap-x-3 gap-y-2 sm:flex-row md:ml-auto">
+                        <x-base.button
+                            class="group-[.mode--light]:!border-transparent group-[.mode--light]:!bg-white/[0.12] group-[.mode--light]:!text-slate-200"
+                            variant="primary"
+                            onclick="window.location.href='{{ route('articles.create') }}'"
+                        >
+                            <div class="px-2"><i class="fa-solid fa-plus"></i></div>
+                            Nuevo articulo
+                        </x-base.button>
+                    </div>
+                @endcan
             </div>
             <div class="mt-3.5">
                 <div class="box box--stacked flex flex-col">
@@ -70,11 +71,11 @@
                                         Stock
                                     </x-base.table.td>
                                     @if(auth()->user()->id == 1)
-                                    <x-base.table.td
-                                        class="w-36 border-t border-slate-200/60 bg-slate-50 py-4 font-medium text-slate-500"
-                                    >
-                                        Precio Compra
-                                    </x-base.table.td>
+                                        <x-base.table.td
+                                            class="w-36 border-t border-slate-200/60 bg-slate-50 py-4 font-medium text-slate-500"
+                                        >
+                                            Precio Compra
+                                        </x-base.table.td>
                                     @endif
                                     <x-base.table.td
                                         class="w-36 border-t border-slate-200/60 bg-slate-50 py-4 font-medium text-slate-500"
@@ -124,7 +125,8 @@
                                                     <span
                                                         class="bg-gray-100 text-gray-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-gray-700 dark:text-gray-300">{{$article->stock}}</span>
                                                 @elseif($article->stock > 0  && $article->stock <= 10)
-                                                    <span class="bg-red-100 text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-red-900 dark:text-red-300">{{$article->stock}}</span>
+                                                    <span
+                                                        class="bg-red-100 text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-red-900 dark:text-red-300">{{$article->stock}}</span>
 
                                                 @elseif($article->stock > 10)
                                                     <span
@@ -132,11 +134,11 @@
                                                 @endif
                                             </x-base.table.td>
                                             @if(auth()->user()->id == 1)
-                                            <x-base.table.td class="border-dashed py-4 dark:bg-darkmode-600">
+                                                <x-base.table.td class="border-dashed py-4 dark:bg-darkmode-600">
 
-                                                $ {{ $article->purchase_price }}
+                                                    $ {{ $article->purchase_price }}
 
-                                            </x-base.table.td>
+                                                </x-base.table.td>
                                             @endif
                                             <x-base.table.td class="border-dashed py-4 dark:bg-darkmode-600">
 
@@ -156,12 +158,12 @@
                                                         </x-base.button>
                                                     @endcan
                                                     @can('delete')
-                                                            <x-base.button
-                                                                variant="danger"
-                                                                wire:click="delete({{$article->id}})"
-                                                            >
-                                                                <i class="text-white fa-solid fa-trash"></i>
-                                                            </x-base.button>
+                                                        <x-base.button
+                                                            variant="danger"
+                                                            wire:click="delete({{$article->id}})"
+                                                        >
+                                                            <i class="text-white fa-solid fa-trash"></i>
+                                                        </x-base.button>
                                                     @endcan
                                                 </div>
                                             </x-base.table.td>
@@ -169,10 +171,10 @@
                                     @endforeach
                                 @else
                                     <x-base.table.tr>
-                                            <x-base.table.td colspan="9"
-                                                             class=" text-center border-dashed py-4 dark:bg-darkmode-600">
-                                                No se encontrarón resultados.
-                                            </x-base.table.td>
+                                        <x-base.table.td colspan="9"
+                                                         class=" text-center border-dashed py-4 dark:bg-darkmode-600">
+                                            No se encontrarón resultados.
+                                        </x-base.table.td>
                                     </x-base.table.tr>
                                 @endif
                             </x-base.table.tbody>

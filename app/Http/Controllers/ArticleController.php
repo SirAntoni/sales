@@ -10,6 +10,7 @@ class ArticleController extends Controller implements HasMiddleware
     public static function middleware(): array
     {
         return [
+            new Middleware(\Spatie\Permission\Middleware\PermissionMiddleware::using('articles.create'), only:['create']),
             new Middleware(\Spatie\Permission\Middleware\PermissionMiddleware::using('update'), only:['show']),
         ];
     }
