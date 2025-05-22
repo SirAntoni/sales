@@ -41,7 +41,7 @@
                                     <x-base.table.td
                                         class="border-t border-slate-200/60 bg-slate-50 font-medium text-slate-500"
                                     >
-                                        Creación
+                                        F. Anulación
                                     </x-base.table.td>
                                     <x-base.table.td
                                         class="border-t border-slate-200/60 bg-slate-50 font-medium text-slate-500"
@@ -97,7 +97,7 @@
                                         <x-base.table.tr class="[&_td]:last:border-b-0">
                                             <x-base.table.td class="border-dashed dark:bg-darkmode-600 text" >
 
-                                                {{ $sale->created_at->format("d-m-Y h:m:s")}}
+                                                {{ $sale->updated_at->format("d-m-Y H:i:s")}}
 
                                             </x-base.table.td>
                                             <x-base.table.td-sale class="border-dashed dark:bg-darkmode-600" >

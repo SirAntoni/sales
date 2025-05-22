@@ -41,6 +41,11 @@
                                     <x-base.table.td
                                         class="border-t border-slate-200/60 bg-slate-50 font-medium text-slate-500"
                                     >
+                                        F. Anulación
+                                    </x-base.table.td>
+                                    <x-base.table.td
+                                        class="border-t border-slate-200/60 bg-slate-50 font-medium text-slate-500"
+                                    >
                                         Proveedor
                                     </x-base.table.td>
                                     <x-base.table.td
@@ -76,13 +81,18 @@
                                     @foreach ($purchases as $purchase)
                                         <x-base.table.tr class="[&_td]:last:border-b-0">
                                             <x-base.table.td class="border-dashed dark:bg-darkmode-600 text" >
+                                                {{$purchase->updated_at->format("d-m-Y H:i:s")}}
+
+
+                                            </x-base.table.td>
+                                            <x-base.table.td class="border-dashed dark:bg-darkmode-600 text" >
                                                 {{$purchase->provider->name}}
 
 
                                             </x-base.table.td>
                                             <x-base.table.td-sale class="border-dashed dark:bg-darkmode-600" >
 
-                                                {{ $purchase->created_at->format("d-m-Y h:m:s")}}
+                                                {{ $purchase->created_at->format("d-m-Y H:i:s")}}
 
                                             </x-base.table.td-sale>
                                             <x-base.table.td-sale class="border-dashed dark:bg-darkmode-600">

@@ -42,4 +42,9 @@ class Document extends Model
     {
         return $this->belongsTo(Client::class);
     }
+
+    public function sale()
+    {
+        return $this->belongsTo(Sale::class);
+    }
 }

@@ -132,7 +132,7 @@
                                         <x-base.table.tr class="[&_td]:last:border-b-0">
                                             <x-base.table.td-sale class="border-dashed dark:bg-darkmode-600 text" >
 
-                                                {{ $sale->created_at->format("d-m-Y h:m:s")}}
+                                                {{ $sale->created_at->format("d-m-Y H:i:s")}}
 
                                             </x-base.table.td-sale>
                                             <x-base.table.td-sale class="border-dashed dark:bg-darkmode-600" >
@@ -196,8 +196,10 @@
                                                     @endcan
                                                     <x-base.button-custom
                                                                    class="mr-2"
-                                                                   variant="soft-primary"
+
+                                                                   variant="{{ is_null($sale->document?->id) ? 'soft-primary' : 'soft-pending' }}"
                                                                    wire:click="newDocument({{$sale->id}})"
+                                                                   :disabled="! is_null($sale->document?->id)"
                                                     >
                                                         <i class="fa-solid fa-file-circle-plus"></i>
                                                     </x-base.button-custom>

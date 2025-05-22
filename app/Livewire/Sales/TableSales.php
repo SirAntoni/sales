@@ -102,7 +102,7 @@ class TableSales extends Component
 
         $limit = $this->limit ?? 40;
         $sales = Sale::query()
-            ->with(['saleDetails', 'client:id,name', 'contact:id,name', 'paymentMethod:id,name'])
+            ->with(['saleDetails','document', 'client:id,name', 'contact:id,name', 'paymentMethod:id,name'])
             ->where('status', '!=', Sale::SALE_CANCELED)
             ->when($this->search, function ($query, $search) {
                 $search = trim($search);

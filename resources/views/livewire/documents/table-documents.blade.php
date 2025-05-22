@@ -79,7 +79,7 @@
                                         <x-base.table.tr class="[&_td]:last:border-b-0">
                                             <x-base.table.td class="border-dashed dark:bg-darkmode-600 text">
 
-                                                {{ $document->created_at->format("d-m-Y h:m:s")}}
+                                                {{ $document->created_at->format("d-m-Y H:i:s")}}
 
                                             </x-base.table.td>
                                             <x-base.table.td class="border-dashed dark:bg-darkmode-600">

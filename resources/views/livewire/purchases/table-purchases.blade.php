@@ -20,6 +20,18 @@
                 <div class="box box--stacked flex flex-col">
                     <div class="flex flex-col gap-y-2 p-5 sm:flex-row sm:items-center justify-end">
                         <div>
+                            <div class="relative mr-2">
+                                <i class="absolute inset-y-0 left-0 z-10 my-auto ml-3.5 h-4 w-4 stroke-[1.3] text-slate-500 fa-solid fa-arrow-up-1-9"></i>
+                                <x-base.litepicker
+                                    id="datepicker"
+                                    class="rounded-[0.5rem] pl-9 sm:w-60"
+                                    data-single-mode="true"
+                                    wire:model.live="date"
+                                    placeholder="Ingresa un rango de fechas"
+                                />
+                            </div>
+                        </div>
+                        <div>
                             <div class="relative">
 
                                 <i class="absolute inset-y-0 left-0 z-10 my-auto ml-3.5 h-4 w-4 stroke-[1.3] text-slate-500 fa-solid fa-magnifying-glass"></i>
@@ -87,6 +99,7 @@
                                                     as="x-base.button-sm"
                                                     :variant="$purchase->btnColor"
                                                     :size="$purchase->btnSize"
+                                                    :content="$purchase->htmlDetails"
                                                     wire:click="changeStatus({{$purchase->id}})">
                                                     {{$purchase->document}}
                                                 </x-base.tippy>
@@ -154,3 +167,27 @@
         </x-base.notification>
     </div>
 </div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+
+        const pickerFilter = new Litepicker({
+            element: document.getElementById('datepicker'),
+            autoApply: false,
+            singleMode: false,
+            numberOfColumns: 2,
+            numberOfMonths: 2,
+            dropdowns: {
+                minYear: 2020,
+                maxYear: null,
+                months: true,
+                years: true,
+            },
+        });
+
+        pickerFilter.on('selected', (startDate, endDate) => {
+            @this.set('startDate', startDate.format('YYYY-MM-DD'));
+            @this.set('endDate', endDate.format('YYYY-MM-DD'));
+        });
+
+    });
+</script>

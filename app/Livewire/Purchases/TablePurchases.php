@@ -4,6 +4,7 @@ namespace App\Livewire\Purchases;
 
 use App\Models\Article;
 use App\Models\PurchaseDetail;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Livewire\Component;
@@ -16,9 +17,15 @@ class TablePurchases extends Component
 
     use WithPagination;
     public $search;
+    public $startDate;
+    public $endDate;
 
     public function updatingSearch(){
         $this->resetPage();
+    }
+
+    public function rendered(){
+        $this->dispatch('reinit-tippy');
     }
 
     public function changeStatus($id)
@@ -77,6 +84,13 @@ class TablePurchases extends Component
                         ->orWhereHas('provider', fn ($c) => $c->where('name', 'like', "%{$search}%"));
                 });
             })
+            ->when($this->startDate && $this->endDate, function ($query) {
+                $query->whereBetween('purchases.created_at', [
+                    // formatea según tu columna; si usas created_at, cámbialo
+                    Carbon::parse($this->startDate)->startOfDay(),
+                    Carbon::parse($this->endDate)->endOfDay(),
+                ]);
+            })
             ->orderByDesc('id')
             ->paginate($limit);
 
@@ -96,6 +110,13 @@ class TablePurchases extends Component
 
             $purchase->btnColor = $btnColor;
             $purchase->btnSize = "sm";
+
+            $htmlDetails = "<p><strong>Proveedor: </strong> {$purchase->provider->name} </p><br><table style='border: 1px solid;'><thead style='border:1px solid;'><tr><th style='border:1px solid'>Titulo</th><th style='border:1px solid;padding:10px'>Cantidad</th><th style='padding:10px'>Precio</thstyle></tr></thead><tbody style='border:1px solid;'>";
+
+            foreach ($purchase->purchaseDetails as $detail) {
+                $htmlDetails .= "<tr><td style='border:1px solid;padding:5px'>{$detail->article->title}</td><td style='text-align: center;border:1px solid;'>{$detail->quantity}</td><td style='text-align: center;border:1px solid;'>{$detail->price}</td></tr>";
+            }
+            $purchase->htmlDetails = $htmlDetails . '</tbody></table>';
 
         }
 
