@@ -51,7 +51,7 @@
                                                 @endforeach
                                             </x-base.form-select>
                                             @error('provider')
-                                            <div class="p-1">
+                                            <div class="p-1 text-red-600">
                                                 {{ $message }}
                                             </div>
                                             @enderror
@@ -76,7 +76,7 @@
                                                 <option value="Ticket">Ticket</option>
                                             </x-base.form-select>
                                             @error('voucher_type')
-                                            <div class="p-1">
+                                            <div class="p-1 text-red-600">
                                                 {{ $message }}
                                             </div>
                                             @enderror
@@ -97,7 +97,7 @@
                                                 wire:model="document"
                                             />
                                             @error('document')
-                                            <div class="p-1">
+                                            <div class="p-1 text-red-600">
                                                 {{$message}}
                                             </div>
                                             @enderror
@@ -119,7 +119,7 @@
                                                 wire:model="passenger"
                                             />
                                             @error('passenger')
-                                            <div class="p-1">
+                                            <div class="p-1 text-red-600">
                                                 {{$message}}
                                             </div>
                                             @enderror
@@ -159,7 +159,7 @@
                                                 </x-base.tom-select>
                                             </div>
                                             @error('articlesSelected')
-                                            <div class="p-1">
+                                            <div class="p-1 text-red-600">
                                                 {{$message}}
                                             </div>
                                             @enderror

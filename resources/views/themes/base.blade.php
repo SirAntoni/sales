@@ -91,6 +91,15 @@ License: Uso comercial solo para ShiperSales
             }
         });
     });
+
+    window.addEventListener('success_sale', event => {
+        Swal.fire({
+            title: 'Realizado',
+            text: event.detail[0]['label'],
+            icon: 'success'
+        });
+    });
+
     window.addEventListener('error', event => {
         Swal.fire({
             title: 'Error',

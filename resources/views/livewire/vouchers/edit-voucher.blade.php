@@ -44,7 +44,7 @@
                                             wire:model="name"
                                         />
                                         @error('name')
-                                        <div class="p-1">
+                                        <div class="p-1 text-red-600">
                                             {{ $message }}
                                         </div>
                                         @enderror
@@ -76,7 +76,7 @@
                                             wire:model="serie"
                                         />
                                         @error('serie')
-                                        <div class="p-1">
+                                        <div class="p-1 text-red-600">
                                             {{ $message }}
                                         </div>
                                         @enderror
@@ -108,7 +108,7 @@
                                             wire:model="number"
                                         />
                                         @error('number')
-                                        <div class="p-1">
+                                        <div class="p-1 text-red-600">
                                             {{ $message }}
                                         </div>
                                         @enderror

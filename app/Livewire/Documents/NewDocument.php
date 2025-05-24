@@ -283,11 +283,6 @@ class NewDocument extends Component
         $this->calculateTotals();
     }
 
-    public function remove($index)
-    {
-        array_splice($this->articlesSelected, $index, 1);
-        $this->calculateTotals();
-    }
     public function render()
     {
         return view('livewire.documents.new-document');

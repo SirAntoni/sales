@@ -42,7 +42,7 @@
                                             wire:model="company"
                                         />
                                         @error('company')
-                                        <div class="p-1">
+                                        <div class="p-1 text-red-600">
                                             {{ $message }}
                                         </div>
                                         @enderror
@@ -72,7 +72,7 @@
                                             wire:model="ruc"
                                         />
                                         @error('ruc')
-                                        <div class="p-1">
+                                        <div class="p-1 text-red-600">
                                             {{ $message }}
                                         </div>
                                         @enderror
@@ -101,7 +101,7 @@
                                             wire:model="country"
                                         />
                                         @error('country')
-                                        <div class="p-1">
+                                        <div class="p-1 text-red-600">
                                             {{ $message }}
                                         </div>
                                         @enderror
@@ -130,7 +130,7 @@
                                             wire:model="address"
                                         />
                                         @error('address')
-                                        <div class="p-1">
+                                        <div class="p-1 text-red-600">
                                             {{ $message }}
                                         </div>
                                         @enderror
@@ -159,7 +159,7 @@
                                             wire:model="city"
                                         />
                                         @error('city')
-                                        <div class="p-1">
+                                        <div class="p-1 text-red-600">
                                             {{ $message }}
                                         </div>
                                         @enderror
@@ -188,7 +188,7 @@
                                             wire:model="phone"
                                         />
                                         @error('phone')
-                                        <div class="p-1">
+                                        <div class="p-1 text-red-600">
                                             {{ $message }}
                                         </div>
                                         @enderror
@@ -216,7 +216,7 @@
                                             wire:model="email"
                                         />
                                         @error('email')
-                                        <div class="p-1">
+                                        <div class="p-1 text-red-600">
                                             {{ $message }}
                                         </div>
                                         @enderror
@@ -244,7 +244,7 @@
                                             wire:model="exchange_rate"
                                         />
                                         @error('exchange_rate')
-                                        <div class="p-1">
+                                        <div class="p-1 text-red-600">
                                             {{ $message }}
                                         </div>
                                         @enderror

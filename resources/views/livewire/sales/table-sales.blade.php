@@ -194,15 +194,17 @@
                                                             <i class="text-white fa-solid fa-eye"></i>
                                                         </x-base.button-custom>
                                                     @endcan
-                                                    <x-base.button-custom
-                                                                   class="mr-2"
-
-                                                                   variant="{{ is_null($sale->document?->id) ? 'soft-primary' : 'soft-pending' }}"
-                                                                   wire:click="newDocument({{$sale->id}})"
-                                                                   :disabled="! is_null($sale->document?->id)"
-                                                    >
+                                                    <x-base.tippy
+                                                        as="x-base.button-sm"
+                                                        variant="{{ is_null($sale->document?->id) ? 'soft-primary' : 'soft-pending' }}"
+                                                        size="sm"
+                                                        class="mr-2"
+                                                        content="Emitir comprobante"
+                                                        :disabled="! is_null($sale->document?->id)"
+                                                        wire:click="newDocument({{$sale->id}})">
                                                         <i class="fa-solid fa-file-circle-plus"></i>
-                                                    </x-base.button-custom>
+
+                                                    </x-base.tippy>
                                                     <x-base.button-custom
                                                                    class="mr-2"
                                                                    variant="dark"

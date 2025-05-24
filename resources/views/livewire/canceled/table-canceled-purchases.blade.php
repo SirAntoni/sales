@@ -26,7 +26,7 @@
                                 <x-base.form-input
                                     class="rounded-[0.5rem] pl-9 sm:w-64"
                                     type="text"
-                                    placeholder="Buscar por cliente..."
+                                    placeholder="Buscar..."
                                     wire:model.live="search"
                                 />
                             </div>

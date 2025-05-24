@@ -77,7 +77,7 @@
                                                 <option value="Ticket">Ticket</option>
                                             </x-base.form-select>
                                             @error('voucher_type')
-                                            <div class="p-1">
+                                            <div class="p-1 text-red-600">
                                                 {{ $message }}
                                             </div>
                                             @enderror
@@ -99,7 +99,7 @@
                                                 disabled
                                             />
                                             @error('document')
-                                            <div class="p-1">
+                                            <div class="p-1 text-red-600">
                                                 {{$message}}
                                             </div>
                                             @enderror
@@ -121,7 +121,7 @@
                                                 disabled
                                             />
                                             @error('passenger')
-                                            <div class="p-1">
+                                            <div class="p-1 text-red-600">
                                                 {{$message}}
                                             </div>
                                             @enderror

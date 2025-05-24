@@ -46,7 +46,7 @@
                                             wire:model="name"
                                         />
                                         @error('name')
-                                        <div class="p-1">
+                                        <div class="p-1 text-red-600">
                                             {{ $message }}
                                         </div>
                                         @enderror
@@ -82,7 +82,7 @@
                                         </x-base.form-select>
 
                                         @error('document_type')
-                                        <div class="p-1">
+                                        <div class="p-1 text-red-600">
                                             {{ $message }}
                                         </div>
                                         @enderror
@@ -114,7 +114,7 @@
                                             wire:model="document_number"
                                         />
                                         @error('document_number')
-                                        <div class="p-1">
+                                        <div class="p-1 text-red-600">
                                             {{ $message }}
                                         </div>
                                         @enderror
@@ -143,7 +143,7 @@
                                             wire:model="address"
                                         />
                                         @error('address')
-                                        <div class="p-1">
+                                        <div class="p-1 text-red-600">
                                             {{ $message }}
                                         </div>
                                         @enderror
@@ -172,7 +172,7 @@
                                             wire:model="phone"
                                         />
                                         @error('phone')
-                                        <div class="p-1">
+                                        <div class="p-1 text-red-600">
                                             {{ $message }}
                                         </div>
                                         @enderror
@@ -201,7 +201,7 @@
                                             wire:model="email"
                                         />
                                         @error('email')
-                                        <div class="p-1">
+                                        <div class="p-1 text-red-600">
                                             {{ $message }}
                                         </div>
                                         @enderror
@@ -239,7 +239,7 @@
 
                                         </x-base.form-select>
                                         @error('departmentSelect')
-                                        <div class="p-1">
+                                        <div class="p-1 text-red-600">
                                             {{ $message }}
                                         </div>
                                         @enderror
@@ -276,7 +276,7 @@
 
                                         </x-base.form-select>
                                         @error('provinceSelect')
-                                        <div class="p-1">
+                                        <div class="p-1 text-red-600">
                                             {{ $message }}
                                         </div>
                                         @enderror
@@ -313,7 +313,7 @@
 
                                         </x-base.form-select>
                                         @error('districtSelect')
-                                        <div class="p-1">
+                                        <div class="p-1 text-red-600">
                                             {{ $message }}
                                         </div>
                                         @enderror

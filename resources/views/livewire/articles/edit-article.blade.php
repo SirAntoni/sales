@@ -46,7 +46,7 @@
 
 
                                         @error('title')
-                                        <div class="p-1">
+                                        <div class="p-1 text-red-600">
                                             {{ $message }}
                                         </div>
                                         @enderror
@@ -78,7 +78,7 @@
 
 
                                         @error('detail')
-                                        <div class="p-1">
+                                        <div class="p-1 text-red-600">
                                             {{ $message }}
                                         </div>
                                         @enderror
@@ -110,7 +110,7 @@
 
 
                                         @error('description')
-                                        <div class="p-1">
+                                        <div class="p-1 text-red-600">
                                             {{ $message }}
                                         </div>
                                         @enderror
@@ -145,7 +145,7 @@
 
 
                                         @error('sku')
-                                        <div class="p-1">
+                                        <div class="p-1 text-red-600">
                                             {{ $message }}
                                         </div>
                                         @enderror
@@ -177,7 +177,7 @@
 
 
                                         @error('stock')
-                                        <div class="p-1">
+                                        <div class="p-1 text-red-600">
                                             {{ $message }}
                                         </div>
                                         @enderror
@@ -211,7 +211,7 @@
                                             @endforeach
                                         </x-base.form-select>
                                         @error('category_id')
-                                        <div class="p-1">
+                                        <div class="p-1 text-red-600">
                                             {{ $message }}
                                         </div>
                                         @enderror
@@ -245,7 +245,7 @@
                                             @endforeach
                                         </x-base.form-select>
                                         @error('brand_id')
-                                        <div class="p-1">
+                                        <div class="p-1 text-red-600">
                                             {{ $message }}
                                         </div>
                                         @enderror
@@ -277,7 +277,7 @@
 
 
                                         @error('purchase_price')
-                                        <div class="p-1">
+                                        <div class="p-1 text-red-600">
                                             {{ $message }}
                                         </div>
                                         @enderror
@@ -308,7 +308,7 @@
 
 
                                         @error('sale_price')
-                                        <div class="p-1">
+                                        <div class="p-1 text-red-600">
                                             {{ $message }}
                                         </div>
                                         @enderror

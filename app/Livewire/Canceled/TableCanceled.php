@@ -25,7 +25,10 @@ class TableCanceled extends Component
                 $search = trim($search);
                 $query->where(function ($q) use ($search) {
                     $q->where('number', 'like', "%{$search}%")
-                        ->orWhereHas('contact', fn ($c) => $c->where('name', 'like', "%{$search}%"));
+                        ->orWhereHas('contact', fn ($c) => $c->where('name', 'like', "%{$search}%"))
+                        ->orWhereHas('saleDetails.article', fn($a) =>
+                            $a->where('title', 'like', "%{$search}%")
+                        );
                 });
             })
             ->orderByDesc('id')

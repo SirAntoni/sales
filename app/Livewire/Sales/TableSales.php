@@ -80,14 +80,15 @@ class TableSales extends Component
 
     public function changeStatus($id)
     {
-        $sale = Sale::find($id);
-
-        if ($sale->status == Sale::SALE_APPROVED || $sale->status == Sale::SALE_PENDING) {
-            $sale->status = ($sale->status == Sale::SALE_APPROVED)
-                ? Sale::SALE_PENDING
-                : Sale::SALE_APPROVED;
-            $sale->save();
-            $this->dispatch('notification');
+        if(auth()->user()->can('update')){
+            $sale = Sale::find($id);
+            if ($sale->status == Sale::SALE_APPROVED || $sale->status == Sale::SALE_PENDING) {
+                $sale->status = ($sale->status == Sale::SALE_APPROVED)
+                    ? Sale::SALE_PENDING
+                    : Sale::SALE_APPROVED;
+                $sale->save();
+                $this->dispatch('notification');
+            }
         }
     }
 
@@ -110,7 +111,10 @@ class TableSales extends Component
                     $q->where('number', 'like', "%{$search}%")
                         ->orWhereHas('client', fn ($c) => $c->where('name', 'like', "%{$search}%"))
                         ->orWhereHas('contact', fn ($c) => $c->where('name', 'like', "%{$search}%"))
-                        ->orWhereHas('paymentMethod', fn ($p) => $p->where('name', 'like', "%{$search}%"));
+                        ->orWhereHas('paymentMethod', fn ($p) => $p->where('name', 'like', "%{$search}%"))
+                        ->orWhereHas('saleDetails.article', fn($a) =>
+                            $a->where('title', 'like', "%{$search}%")
+                        );
                 });
             })
             ->when($this->startDate && $this->endDate, function ($query) {

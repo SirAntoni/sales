@@ -51,7 +51,7 @@
 
                                             </div>
                                             @error('client')
-                                            <div class="p-1">
+                                            <div class="p-1 text-red-600">
                                                 {{$message}}
                                             </div>
                                             @enderror
@@ -74,7 +74,7 @@
                                             />
 
                                             @error('date')
-                                            <div class="p-1">
+                                            <div class="p-1 text-red-600">
                                                 {{ $message }}
                                             </div>
                                             @enderror
@@ -96,7 +96,7 @@
                                                 wire:model="number"
                                             />
                                             @error('number')
-                                            <div class="p-1">
+                                            <div class="p-1 text-red-600">
                                                 {{$message}}
                                             </div>
                                             @enderror
@@ -124,7 +124,7 @@
 
                                             </x-base.form-select>
                                             @error('contact')
-                                            <div class="p-1">
+                                            <div class="p-1 text-red-600">
                                                 {{ $message }}
                                             </div>
                                             @enderror
@@ -152,7 +152,7 @@
 
                                             </x-base.form-select>
                                             @error('paymentMethod')
-                                            <div class="p-1">
+                                            <div class="p-1 text-red-600">
                                                 {{ $message }}
                                             </div>
                                             @enderror
@@ -173,7 +173,7 @@
                                                 wire:model="delivery_fee"
                                             />
                                             @error('delivery_fee')
-                                            <div class="p-1">
+                                            <div class="p-1 text-red-600">
                                                 {{$message}}
                                             </div>
                                             @enderror
@@ -198,7 +198,7 @@
                                                 </x-base.tom-select>
                                             </div>
                                             @error('articlesSelected')
-                                            <div class="p-1">
+                                            <div class="p-1 text-red-600">
                                                 {{$message}}
                                             </div>
                                             @enderror
@@ -368,7 +368,7 @@
                                 wire:model="observation"
                             />
                             @error('observation')
-                            <div class="p-1">
+                            <div class="p-1 text-red-600">
                                 {{$message}}
                             </div>
                             @enderror

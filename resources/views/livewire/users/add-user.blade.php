@@ -44,7 +44,7 @@
                                             wire:model="name"
                                         />
                                         @error('name')
-                                        <div class="p-1">
+                                        <div class="p-1 text-red-600">
                                             {{ $message }}
                                         </div>
                                         @enderror
@@ -76,7 +76,7 @@
                                             wire:model="email"
                                         />
                                         @error('email')
-                                        <div class="p-1">
+                                        <div class="p-1 text-red-600">
                                             {{ $message }}
                                         </div>
                                         @enderror
@@ -107,7 +107,7 @@
                                             wire:model="password"
                                         />
                                         @error('password')
-                                        <div class="p-1">
+                                        <div class="p-1 text-red-600">
                                             {{ $message }}
                                         </div>
                                         @enderror
@@ -150,7 +150,7 @@
 
                                         </div>
                                         @error('password')
-                                        <div class="p-1">
+                                        <div class="p-1 text-red-600">
                                             {{ $message }}
                                         </div>
                                         @enderror

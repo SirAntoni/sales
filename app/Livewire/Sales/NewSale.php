@@ -89,7 +89,10 @@ class NewSale extends Component
             Article::find($article['id'])->decrement('stock', $article['quantity']);
 
         }
-        $this->dispatch('success', ['label' => 'La venta fue registrada con éxito.', 'btn' => 'Ir a ventas', 'route' => route('sales.index')]);
+
+        $this->reset(['client','date','contact','paymentMethod','articlesSelected','granTotal','granTax','granSubtotal','number','delivery_fee']);;
+        $this->dispatch('success_sale', ['label' => 'La venta fue registrada con éxito.']);
+
     }
 
     protected $messages = [

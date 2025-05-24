@@ -30,14 +30,17 @@ class TablePurchases extends Component
 
     public function changeStatus($id)
     {
-        $purchase = Purchase::find($id);
-        if ($purchase->status == Purchase::PURCHASE_FINISHED || $purchase->status == Purchase::PURCHASE_NOT_FINISHED) {
-            $purchase->status = ($purchase->status == Purchase::PURCHASE_FINISHED)
-                ? Purchase::PURCHASE_NOT_FINISHED
-                : Purchase::PURCHASE_FINISHED;
-            $purchase->save();
-            $this->dispatch('notification');
+        if(auth()->user()->can('update')){
+            $purchase = Purchase::find($id);
+            if ($purchase->status == Purchase::PURCHASE_FINISHED || $purchase->status == Purchase::PURCHASE_NOT_FINISHED) {
+                $purchase->status = ($purchase->status == Purchase::PURCHASE_FINISHED)
+                    ? Purchase::PURCHASE_NOT_FINISHED
+                    : Purchase::PURCHASE_FINISHED;
+                $purchase->save();
+                $this->dispatch('notification');
+            }
         }
+
     }
 
     public function edit($id){
@@ -74,14 +77,17 @@ class TablePurchases extends Component
     {
         $limit = 15;
         $purchases = Purchase::query()
-            ->with(['provider:id,name'])
+            ->with(['purchaseDetails','provider:id,name'])
             ->where('status', '!=', Purchase::PURCHASE_CANCELED)
             ->when($this->search, function ($query, $search) {
                 $search = trim($search);
                 $query->where(function ($q) use ($search) {
                     $q->where('number', 'like', "%{$search}%")
                         ->orWhere('passenger', 'like', "%{$search}%")
-                        ->orWhereHas('provider', fn ($c) => $c->where('name', 'like', "%{$search}%"));
+                        ->orWhereHas('provider', fn ($c) => $c->where('name', 'like', "%{$search}%"))
+                        ->orWhereHas('purchaseDetails.article', fn($a) =>
+                            $a->where('title', 'like', "%{$search}%")
+                        );
                 });
             })
             ->when($this->startDate && $this->endDate, function ($query) {

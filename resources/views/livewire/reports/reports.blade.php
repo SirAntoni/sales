@@ -45,7 +45,7 @@
                                                 wire:model.live="date"
                                             />
                                             @error('date')
-                                            <div class="p-1">
+                                            <div class="p-1 text-red-600">
                                                 {{ $message }}
                                             </div>
                                             @enderror
@@ -142,18 +142,18 @@
                                             </x-base.form-select>
                                         </div>
                                         @error('month')
-                                        <div class="p-1">
+                                        <div class="p-1 text-red-600">
                                             {{ $message }}
                                         </div>
                                         @enderror
                                         @error('year')
-                                        <div class="p-1">
+                                        <div class="p-1 text-red-600">
                                             {{ $message }}
                                         </div>
                                         @enderror
 
                                         @error('provider')
-                                        <div class="p-1">
+                                        <div class="p-1 text-red-600">
                                             {{ $message }}
                                         </div>
                                         @enderror
@@ -215,12 +215,12 @@
                                                 data-single-mode="true"
                                             />
                                             @error('startDate')
-                                            <div class="p-1">
+                                            <div class="p-1 text-red-600">
                                                 {{ $message }}
                                             </div>
                                             @enderror
                                             @error('endDate')
-                                            <div class="p-1">
+                                            <div class="p-1 text-red-600">
                                                 {{ $message }}
                                             </div>
                                             @enderror
