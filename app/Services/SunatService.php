@@ -33,9 +33,9 @@ class SunatService
             ->setUblVersion('2.1')
             ->setTipoOperacion('0101') // Venta - Catalog. 51
             ->setTipoDoc('01') // Factura - Catalog. 01
-            ->setSerie("F001")
-            ->setCorrelativo("617")
-            ->setFechaEmision(new DateTime('2020-08-24 13:05:00-05:00')) // Zona horaria: Lima
+            ->setSerie($data['serie'])
+            ->setCorrelativo($data['correlative'])
+            ->setFechaEmision(new DateTime($data['date'])) // Zona horaria: Lima
             ->setFormaPago(new FormaPagoContado()) // FormaPago: Contado
             ->setTipoMoneda('PEN') // Sol - Catalog. 02
             ->setCompany($this->getCompany())
@@ -54,7 +54,7 @@ class SunatService
     {
         return (new Client())
             ->setTipoDoc('6')
-            ->setNumDoc('20000000001')
+            ->setNumDoc('10465899129')
             ->setRznSocial('EMPRESA X');
     }
 

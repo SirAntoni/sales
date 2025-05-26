@@ -55,7 +55,7 @@ class NewSale extends Component
             'delivery_fee' => 'numeric|nullable',
             'articlesSelected' => 'required|array|min:1',
             'number' => $this->number
-                ? 'unique:sales,number|max:10|min:10|regex:/^[0-9]{10}$/'
+                ? 'unique:sales,number'
                 : 'nullable',
         ];
     }

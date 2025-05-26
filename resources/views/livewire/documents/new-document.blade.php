@@ -47,8 +47,8 @@
                                             >
 
                                                 <option value="">Seleccione tipo de documento.</option>
-                                                <option value="1">BOLETA</option>
-                                                <option value="2">FACTURA</option>
+                                                <option value="2">BOLETA</option>
+                                                <option value="1">FACTURA</option>
 
                                             </x-base.form-select>
                                             @error('documentType')
