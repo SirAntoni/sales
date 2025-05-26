@@ -50,17 +50,17 @@ Route::middleware(['auth'])->group(function () {
     Route::post("/logout",[AuthController::class,'logout'])->name('logout');
 
     //Start Reset Cache en Cpanel
-//    Route::get('/clear-all-caches', function () {
-//        Artisan::call('config:clear');
-//        Artisan::call('cache:clear');
-//        Artisan::call('route:clear');
-//        Artisan::call('permission:cache-reset');
-//        return "Todos los caches (config, app, rutas y permisos) han sido limpiados.";
-//    });
-//    Route::get('/clear-permission-cache', function () {
-//        Cache::forget('spatie.permission.cache');
-//        return "Cache de permisos borrado.";
-//    });
+    Route::get('/clear-all-caches', function () {
+        Artisan::call('config:clear');
+        Artisan::call('cache:clear');
+        Artisan::call('route:clear');
+        Artisan::call('permission:cache-reset');
+        return "Todos los caches (config, app, rutas y permisos) han sido limpiados.";
+    });
+    Route::get('/clear-permission-cache', function () {
+        Cache::forget('spatie.permission.cache');
+        return "Cache de permisos borrado.";
+    });
     //End Reset Cache en Cpanel
 
 });
