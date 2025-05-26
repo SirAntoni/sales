@@ -70,6 +70,9 @@ class NewDocument extends Component
     public function save()
     {
 
+        $this->dispatch('error', ['label' => 'La función se encuentra en desarrollo. Por favor, espere confirmación del administrador de sistemas.']);
+        return;
+
         $data = [
             "serie" => $this->serie,
             "correlative" => $this->correlative,
