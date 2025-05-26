@@ -72,9 +72,9 @@
                                                 disabled
                                             >
                                                 <option value="">Selecciona un tipo de documento</option>
-                                                <option value="Factura">Factura</option>
-                                                <option value="Boleta">Boleta</option>
-                                                <option value="Ticket">Ticket</option>
+                                                <option value="FACTURA">Factura</option>
+                                                <option value="BOLETA">Boleta</option>
+                                                <option value="TICKET">Ticket</option>
                                             </x-base.form-select>
                                             @error('voucher_type')
                                             <div class="p-1 text-red-600">
