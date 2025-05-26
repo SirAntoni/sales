@@ -13,6 +13,8 @@ class Document extends Model
     const RUC = 6;
     const PASAPORTE = 7;
 
+    const DOCUMENT_ACCEPTED = 1;
+    const DOCUMENT_REJECTED = 2;
 
     protected $fillable = [
         'document_type',

@@ -4,15 +4,13 @@ namespace App\Livewire\Documents;
 
 use App\Models\Article;
 use App\Models\Client;
-use App\Models\Contact;
-use App\Models\Document;
-use App\Models\PaymentMethod;
+use App\Services\SunatService;
 use App\Models\Sale;
 use App\Models\SaleDetail;
-use Illuminate\Http\Middleware\ValidatePostSize;
 use Livewire\Component;
 use App\Models\Voucher;
 use Luecano\NumeroALetras\NumeroALetras;
+use App\Models\Setting;
 
 class NewDocument extends Component
 {
@@ -71,41 +69,63 @@ class NewDocument extends Component
 
     public function save()
     {
-        $this->validate();
-        $document = Document::create([
-            'document_type' => $this->documentType,
-            'serie' => $this->serie,
-            'correlative' => $this->correlative,
-            'date' => $this->date,
-            'expiration_date' => $this->expirationDate,
-            'currency' => 'PEN',
-            'payment_method' => 'CONTADO',
-            'subtotal' => $this->granSubtotal,
-            'tax' => $this->granTax,
-            'total' => $this->granTotal,
-            'xml_path' => 'xml/path',
-            'cdr_path' => 'cdr/path',
-            'status_sunat'=> '001',
-            'sale_id' => $this->id,
-            'client_id' => $this->client,
-            'user_id' => auth()->id()
-        ]);
 
-        foreach ($this->articlesSelected as $article) {
-            $art = Article::find($article['id']);
-            $document->documentDetails()->create([
-                'price' => $article['price'],
-                'quantity' => $article['quantity'],
-                'tax' => $article['total'] * 0.18,
-                'total' => $article['total'] + ($article['total'] * 0.18),
-                'article_id' => $article['id'],
-                'category_id' => $article['category'],
-                'brand_id' => $article['brand'],
-                'subtotal' => $article['total'],
-            ]);
+        $data = [
+            "serie" => $this->serie,
+            "correlative" => $this->correlative,
+            "date" => $this->date,
+        ];
 
-        }
-        $this->dispatch('success', ['label' => 'La documento fue registrada con éxito.', 'btn' => 'Ir a documentos', 'route' => route('documents.index')]);
+        $company = Setting::first();
+
+        $sunat = new SunatService();
+
+        $see = $sunat->getSee();
+
+        $invoice = $sunat->getInvoice($data);
+
+        $result = $see->send($invoice);
+
+        file_put_contents(storage_path('/xml_path/'.$invoice->getName().'.xml'),$see->getFactory()->getLastXml());
+
+        dd($sunat->sunatResponse($invoice,$result));
+
+//        $this->validate();
+//        $document = Document::create([
+//            'document_type' => $this->documentType,
+//            'serie' => $this->serie,
+//            'correlative' => $this->correlative,
+//            'date' => $this->date,
+//            'expiration_date' => $this->expirationDate,
+//            'currency' => 'PEN',
+//            'payment_method' => 'CONTADO',
+//            'subtotal' => $this->granSubtotal,
+//            'tax' => $this->granTax,
+//            'total' => $this->granTotal,
+//            'xml_path' => 'xml/path',
+//            'cdr_path' => 'cdr/path',
+//            'status_sunat'=> '001',
+//            'sale_id' => $this->id,
+//            'client_id' => $this->client,
+//            'user_id' => auth()->id()
+//        ]);
+//
+//        foreach ($this->articlesSelected as $article) {
+//            $art = Article::find($article['id']);
+//            $document->documentDetails()->create([
+//                'price' => $article['price'],
+//                'quantity' => $article['quantity'],
+//                'tax' => $article['total'] * 0.18,
+//                'total' => $article['total'] + ($article['total'] * 0.18),
+//                'article_id' => $article['id'],
+//                'category_id' => $article['category'],
+//                'brand_id' => $article['brand'],
+//                'subtotal' => $article['total'],
+//            ]);
+//
+//        }
+//        $this->dispatch('success', ['label' => 'La documento fue registrada con éxito.', 'btn' => 'Ir a documentos', 'route' => route('documents.index')]);
+//
     }
 
     public function searchClients($query)
