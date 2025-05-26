@@ -4,6 +4,7 @@ namespace App\Livewire\Auth;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Log;
+use App\Services\UserRedirectService;
 
 use Livewire\Component;
 
@@ -17,7 +18,7 @@ class Login extends Component
         'password' => 'required',
     ];
 
-    public function login(){
+    public function login(UserRedirectService $redirectService){
 
         $this->validate();
 
@@ -27,37 +28,9 @@ class Login extends Component
 
             $user = auth()->user();
 
-            $home = [
-                'dashboard',
-                'sales',
-                'purchases',
-                'articles',
-                'brands',
-                'categories',
-                'providers',
-                'reports',
-                'users',
-                'settings',
-                'kardex',
-            ];
+            $routeName = $redirectService->getHomeRouteForUser($user);
 
-            foreach ($home as $module) {
-                // Si el usuario tiene el permiso
-                if ($user->can($module)) {
-                    // Para dashboard la ruta es 'dashboard',
-                    // para recursos se usa '.index'
-                    $routeName = $module === 'dashboard'
-                        ? 'dashboard'
-                        : "{$module}.index";
-
-                    // Asegurarse de que existe la ruta
-                    if (Route::has($routeName)) {
-                        return redirect()->route($routeName);
-                    }
-                }
-            }
-
-            return redirect()->intended('/');
+            return redirect()->route($routeName);
 
         } else {
             session()->flash('error', 'Credenciales incorrectas.');

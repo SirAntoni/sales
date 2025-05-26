@@ -6,6 +6,7 @@ use App\Http\Controllers\BrandController;
 use App\Http\Controllers\KardexController;
 use App\Http\Controllers\ProviderController;
 use App\Http\Controllers\PurchaseController;
+use App\Http\Middleware\RedirectIfNoDashboardPermission;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
@@ -25,7 +26,7 @@ Route::middleware(['guest'])->group(function () {
 });
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/', [DashboardController::class,'index'])->middleware('can:dashboard')->name('dashboard');
+    Route::get('/', [DashboardController::class,'index'])->middleware(['auth', RedirectIfNoDashboardPermission::class])->name('dashboard');
     Route::resource('categories', CategoryController::class)->middleware('can:store','can:categories');
     Route::resource('brands', BrandController::class)->middleware('can:store','can:brands');
     Route::resource('articles', ArticleController::class)->middleware('can:store','can:articles');
