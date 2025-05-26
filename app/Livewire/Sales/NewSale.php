@@ -45,14 +45,20 @@ class NewSale extends Component
         return "{$yy}{$mm}{$dd}{$ss}{$randomNum}";
     }
 
-    protected $rules = [
-        'client' => 'required',
-        'date' => 'required|date_format:Y-m-d',
-        'contact' => 'required',
-        'paymentMethod' => 'required',
-        'delivery_fee' => 'numeric|nullable',
-        'articlesSelected' => 'required|array|min:1'
-    ];
+    public function rules()
+    {
+        return [
+            'client' => 'required',
+            'date' => 'required|date_format:Y-m-d',
+            'contact' => 'required',
+            'paymentMethod' => 'required',
+            'delivery_fee' => 'numeric|nullable',
+            'articlesSelected' => 'required|array|min:1',
+            'number' => $this->number
+                ? 'unique:sales,number|max:10|min:10|regex:/^[0-9]{10}$/'
+                : 'nullable',
+        ];
+    }
 
     public function save()
     {
