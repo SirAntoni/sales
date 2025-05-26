@@ -63,6 +63,13 @@ Route::middleware(['auth'])->group(function () {
     });
     //End Reset Cache en Cpanel
 
+    //Start create password
+//    Route::get('/create-password/{password}', function ($password) {
+//        $new_passowrd = bcrypt($password);
+//        return $new_passowrd;
+//    });
+    //End create password
+
 });
 
 
