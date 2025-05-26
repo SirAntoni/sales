@@ -70,7 +70,7 @@ class NewSale extends Component
             'user_id' => auth()->id(),
             'contact_id' => $this->contact,
             'payment_method_id' => $this->paymentMethod,
-            'status' => Sale::SALE_APPROVED,
+            'status' => Sale::SALE_PENDING,
         ]);
 
         foreach ($this->articlesSelected as $article) {
