@@ -17,3 +17,7 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
+/storage/cdr_path/*
+!/storage/cdr_path/.gitkeep
+/storage/xml_path/*
+!/storage/xml_path/.gitkeep
