@@ -32,7 +32,7 @@ class SunatService
         return (new Invoice())
             ->setUblVersion('2.1')
             ->setTipoOperacion('0101') // Venta - Catalog. 51
-            ->setTipoDoc('01') // Factura - Catalog. 01
+            ->setTipoDoc($data['tipoDoc']) // Factura - Catalog. 01
             ->setSerie($data['serie'])
             ->setCorrelativo($data['correlative'])
             ->setFechaEmision(new DateTime($data['date'])) // Zona horaria: Lima

@@ -70,16 +70,19 @@ class NewDocument extends Component
     public function save()
     {
 
-        $this->dispatch('error', ['label' => 'La función se encuentra en desarrollo. Por favor, espere confirmación del administrador de sistemas.']);
-        return;
+       // $this->dispatch('error', ['label' => 'La función se encuentra en desarrollo. Por favor, espere confirmación del administrador de sistemas.']);
+       // return;
 
         $data = [
             "serie" => $this->serie,
             "correlative" => $this->correlative,
             "date" => $this->date,
+            "tipoDoc" => ($this->documentType == '1') ? '01' : '03',
         ];
 
-        $company = Setting::first();
+        $client = Client::find($this->client);
+
+        dd($client->document_type);
 
         $sunat = new SunatService();
 

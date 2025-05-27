@@ -82,7 +82,7 @@ class TablePurchases extends Component
             ->when($this->search, function ($query, $search) {
                 $search = trim($search);
                 $query->where(function ($q) use ($search) {
-                    $q->where('number', 'like', "%{$search}%")
+                    $q->where('document', 'like', "%{$search}%")
                         ->orWhere('passenger', 'like', "%{$search}%")
                         ->orWhereHas('provider', fn ($c) => $c->where('name', 'like', "%{$search}%"))
                         ->orWhereHas('purchaseDetails.article', fn($a) =>

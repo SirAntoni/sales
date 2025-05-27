@@ -108,7 +108,7 @@ class TableSales extends Component
             ->when($this->search, function ($query, $search) {
                 $search = trim($search);
                 $query->where(function ($q) use ($search) {
-                    $q->where('number', 'like', "%{$search}%")
+                        $q->where('number', 'like', "%{$search}%")
                         ->orWhereHas('client', fn ($c) => $c->where('name', 'like', "%{$search}%"))
                         ->orWhereHas('contact', fn ($c) => $c->where('name', 'like', "%{$search}%"))
                         ->orWhereHas('paymentMethod', fn ($p) => $p->where('name', 'like', "%{$search}%"))
