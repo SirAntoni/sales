@@ -23,8 +23,7 @@ class AddArticle extends Component
     protected $rules = [
         'title' => 'required|min:3',
         'detail' => 'string|nullable|max:250',
-        'description' => 'string|nullable|max:500',
-        'stock' => 'integer|nullable',
+        'description' => 'string|nullable|max:500'
         'brand_id' => 'required|integer|exists:brands,id',
         'category_id' => 'required|integer|exists:categories,id',
         'purchase_price' => 'decimal:2|nullable',
@@ -66,7 +65,7 @@ class AddArticle extends Component
             'detail' => $this->detail ?? '',
             'description' => $this->description ?? '',
             'sku' => $this->generateSku(),
-            'stock' => $this->stock ?? 0,
+            'stock' => 0,
             'brand_id' => $this->brand_id,
             'category_id' => $this->category_id,
             'purchase_price' => $this->purchase_price ?? 0,

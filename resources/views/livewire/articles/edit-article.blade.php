@@ -173,6 +173,7 @@
                                             type="text"
                                             placeholder="Ingresa el stock incial del articulo."
                                             wire:model="stock"
+                                            disabled
 
                                         />
 
