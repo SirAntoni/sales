@@ -23,7 +23,7 @@ class AddArticle extends Component
     protected $rules = [
         'title' => 'required|min:3',
         'detail' => 'string|nullable|max:250',
-        'description' => 'string|nullable|max:500'
+        'description' => 'string|nullable|max:500',
         'brand_id' => 'required|integer|exists:brands,id',
         'category_id' => 'required|integer|exists:categories,id',
         'purchase_price' => 'decimal:2|nullable',
