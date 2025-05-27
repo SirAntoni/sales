@@ -14,6 +14,11 @@ class TableArticles extends Component
     public $search = "";
     public $filter = "";
 
+    public function reportArticle(){
+        $url = route('reports.articles');
+        $this->dispatch('abrir-nueva-pestania', ['url' => $url]);
+    }
+
     public function updatingSearch(){
         $this->resetPage();
     }

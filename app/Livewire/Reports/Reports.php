@@ -26,7 +26,6 @@ class Reports extends Component
 
         $url = route('reports.dayli.export',['date' => $this->date]);
         $this->dispatch('abrir-nueva-pestania', ['url' => $url]);
-
     }
 
     public function reportCustom(){

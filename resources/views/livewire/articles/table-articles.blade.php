@@ -5,8 +5,9 @@
                 <div class="text-base font-medium group-[.mode--light]:text-white">
                     Articulos
                 </div>
-                @can('articles.create')
+
                     <div class="flex flex-col gap-x-3 gap-y-2 sm:flex-row md:ml-auto">
+                        @can('articles.create')
                         <x-base.button
                             class="group-[.mode--light]:!border-transparent group-[.mode--light]:!bg-white/[0.12] group-[.mode--light]:!text-slate-200"
                             variant="primary"
@@ -15,8 +16,18 @@
                             <div class="px-2"><i class="fa-solid fa-plus"></i></div>
                             Nuevo articulo
                         </x-base.button>
+                        @endcan
+                            <x-base.button
+                                class="group-[.mode--light]:!border-transparent group-[.mode--light]:!bg-white/[0.12] group-[.mode--light]:!text-slate-200"
+                                variant="primary"
+                                wire:click="reportArticle"
+                            >
+                                <div class="px-2"><i class="fa-solid fa-file-excel"></i></div>
+                                Exportar Excel
+                            </x-base.button>
                     </div>
-                @endcan
+
+
             </div>
             <div class="mt-3.5">
                 <div class="box box--stacked flex flex-col">

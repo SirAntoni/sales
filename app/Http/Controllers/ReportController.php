@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\ReportArticlesExport;
 use App\Exports\ReportDayliExport;
 use App\Exports\ReportCustomExport;
 use App\Exports\ReportMonthExport;
@@ -53,5 +54,11 @@ class ReportController extends Controller
         $provider = $request->query('provider');
 
         return Excel::download(new ReportMonthExport($month,$year,$provider), 'reporte-mensual-'. $monthName . '-'.$year .'.xlsx');
+    }
+
+    public function articles(){
+
+
+        return Excel::download(new ReportArticlesExport(), 'reporte-articles.xlsx');
     }
 }
