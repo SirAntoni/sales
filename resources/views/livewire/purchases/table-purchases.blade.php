@@ -92,7 +92,7 @@
 
                                             </x-base.table.td>
                                             <x-base.table.td class="border-dashed py-4 dark:bg-darkmode-600">
-                                                {{ $purchase->created_at->format("d-m-Y")}}
+                                                {{ $purchase->created_at->format("d-m-Y H:i:s")}}
                                             </x-base.table.td>
                                             <x-base.table.td class="border-dashed py-4 dark:bg-darkmode-600 text-white">
                                                 <x-base.tippy

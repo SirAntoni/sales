@@ -14,7 +14,6 @@ class AddArticle extends Component
     public $title = '';
     public $detail = '';
     public $description = '';
-    public $sku;
     public $stock;
     public $brand_id = '';
     public $category_id = '';
@@ -25,7 +24,6 @@ class AddArticle extends Component
         'title' => 'required|min:3',
         'detail' => 'string|nullable|max:250',
         'description' => 'string|nullable|max:500',
-        'sku' => 'required|string|min:3',
         'stock' => 'integer|nullable',
         'brand_id' => 'required|integer|exists:brands,id',
         'category_id' => 'required|integer|exists:categories,id',
@@ -43,6 +41,21 @@ class AddArticle extends Component
         'sale_price' => 'precio de venta',
     ];
 
+    public function generateSku()
+    {
+        $sku = DB::table('articles')
+            ->select(DB::raw("CONCAT('A', LPAD(FLOOR(RAND() * 10000), 4, '0'), YEAR(NOW()), LPAD(MONTH(NOW()), 2, '0')) AS sku"))
+            ->whereYear('created_at', now()->year)
+            ->orderByDesc('sku')
+            ->first();
+
+        if (!$sku) {
+            return 'A0001' . now()->year . now()->format('m');
+        }
+
+        return $sku->sku;
+    }
+
 
     public function save()
     {
@@ -52,7 +65,7 @@ class AddArticle extends Component
             'title' => $this->title,
             'detail' => $this->detail ?? '',
             'description' => $this->description ?? '',
-            'sku' => $this->sku,
+            'sku' => $this->generateSku(),
             'stock' => $this->stock ?? 0,
             'brand_id' => $this->brand_id,
             'category_id' => $this->category_id,

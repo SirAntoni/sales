@@ -141,6 +141,7 @@
                                             type="text"
                                             placeholder="Ingresa el SKU del articulo."
                                             wire:model="sku"
+                                            disabled
                                         />
 
 

@@ -87,7 +87,7 @@
                                     <div class="col-span-12 sm:col-span-4 flex flex-col gap-3.5 px-5 py-2">
 
                                         <div>
-                                            <x-base.form-label for="passenger">
+                                            <x-base.form-label for="document">
                                                 Número de factura
                                             </x-base.form-label>
                                             <x-base.form-input
@@ -113,7 +113,7 @@
                                                 Pasajero
                                             </x-base.form-label>
                                             <x-base.form-input
-                                                id="document"
+                                                id="passenger"
                                                 type="text"
                                                 placeholder="Ingresa nombre del pasajero"
                                                 wire:model="passenger"

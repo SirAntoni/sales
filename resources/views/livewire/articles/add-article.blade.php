@@ -123,41 +123,6 @@
                                     <div class="inline-block mb-2 sm:mb-0 sm:mr-5 sm:text-right xl:mr-14 xl:w-60">
                                         <div class="text-left">
                                             <div class="flex items-center">
-                                                <div class="font-medium">SKU</div>
-                                                <div
-                                                    class="ml-2.5 rounded-md border border-slate-200 bg-slate-100 px-2 py-0.5 text-xs text-slate-500 dark:bg-darkmode-300 dark:text-slate-400">
-                                                    Required
-                                                </div>
-                                            </div>
-                                            <div class="mt-1.5 text-xs leading-relaxed text-slate-500/80 xl:mt-3">
-                                                Ingresa el nombre de la marca a guardar, Esto servirá para seleccionar
-                                                al crear un articulo.
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="flex-1 w-full mt-3 xl:mt-0">
-
-                                        <x-base.form-input
-                                            type="text"
-                                            placeholder="Ingresa el SKU del articulo."
-                                            wire:model="sku"
-                                        />
-
-
-                                        @error('sku')
-                                        <div class="p-1 text-red-600">
-                                            {{ $message }}
-                                        </div>
-                                        @enderror
-
-                                    </div>
-
-                                </div>
-                                <div
-                                    class="flex-col block pt-5 mt-5 first:mt-0 first:pt-0 sm:flex xl:flex-row xl:items-center">
-                                    <div class="inline-block mb-2 sm:mb-0 sm:mr-5 sm:text-right xl:mr-14 xl:w-60">
-                                        <div class="text-left">
-                                            <div class="flex items-center">
                                                 <div class="font-medium">Stock</div>
 
                                             </div>
