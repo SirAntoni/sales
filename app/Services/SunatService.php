@@ -40,12 +40,12 @@ class SunatService
             ->setTipoMoneda('PEN') // Sol - Catalog. 02
             ->setCompany($this->getCompany())
             ->setClient($this->getClient())
-            ->setMtoOperGravadas(100.00)
-            ->setMtoIGV(18.00)
-            ->setTotalImpuestos(18.00)
-            ->setValorVenta(100.00)
-            ->setSubTotal(118.00)
-            ->setMtoImpVenta(118.00)
+            ->setMtoOperGravadas($data['subtotal'])
+            ->setMtoIGV($data['igv'])
+            ->setTotalImpuestos($data['igv'])
+            ->setValorVenta($data['subtotal'])
+            ->setSubTotal($data['total'])
+            ->setMtoImpVenta($data['total'])
             ->setDetails($this->getDetails())
             ->setLegends($this->getLegends());
     }
@@ -79,32 +79,40 @@ class SunatService
             ->setCodLocal('0000');
     }
 
-    public function getDetails()
+    public function getDetails($details = [])
     {
-        $item = (new SaleDetail())
-            ->setCodProducto('P001')
-            ->setUnidad('NIU') // Unidad - Catalog. 03
-            ->setCantidad(2)
-            ->setMtoValorUnitario(50.00)
-            ->setDescripcion('PRODUCTO 1')
-            ->setMtoBaseIgv(100)
-            ->setPorcentajeIgv(18.00) // 18%
-            ->setIgv(18.00)
-            ->setTipAfeIgv('10') // Gravado Op. Onerosa - Catalog. 07
-            ->setTotalImpuestos(18.00) // Suma de impuestos en el detalle
-            ->setMtoValorVenta(100.00)
-            ->setMtoPrecioUnitario(59.00);
+        $greenDetails = [];
 
-        return [$item];
+        foreach($details as $detail){
+            $greenDetails = (new SaleDetail())
+                ->setCodProducto($detail['sku'])
+                ->setUnidad('NIU') // Unidad - Catalog. 03
+                ->setCantidad($detail['qty'])
+                ->setMtoValorUnitario($detail['price'])
+                ->setDescripcion($data['title'])
+                ->setMtoBaseIgv(100)
+                ->setPorcentajeIgv(18.00) // 18%
+                ->setIgv(18.00)
+                ->setTipAfeIgv('10') // Gravado Op. Onerosa - Catalog. 07
+                ->setTotalImpuestos(18.00) // Suma de impuestos en el detalle
+                ->setMtoValorVenta(100.00)
+                ->setMtoPrecioUnitario(59.00);
+        }
 
+        return $greenDetails;
     }
 
-    public function getLegends(){
-        $legend =  (new Legend())
-            ->setCode('1000') // Monto en letras - Catalog. 52
-            ->setValue('SON DOSCIENTOS TREINTA Y SEIS CON 00/100 SOLES');
+    public function getLegends($legends){
 
-        return [$legend];
+        $greenLegends = [];
+
+        foreach($legends as $legend){
+            $legend =  (new Legend())
+                ->setCode('1000') // Monto en letras - Catalog. 52
+                ->setValue($legend['value']);
+        }
+
+        return $greenLegends;
     }
 
     public function sunatResponse($invoice,$result){

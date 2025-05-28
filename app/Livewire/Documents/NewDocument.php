@@ -73,12 +73,19 @@ class NewDocument extends Component
        // $this->dispatch('error', ['label' => 'La función se encuentra en desarrollo. Por favor, espere confirmación del administrador de sistemas.']);
        // return;
 
+        $this->validate();
+
         $data = [
             "serie" => $this->serie,
             "correlative" => $this->correlative,
             "date" => $this->date,
             "tipoDoc" => ($this->documentType == '1') ? '01' : '03',
+            "subtotal" => $this->granSubtotal,
+            "igv"=> $this->granTax,
+            "total" => $this->granTotal
         ];
+
+        dd($data);
 
         $client = Client::find($this->client);
 
@@ -96,7 +103,7 @@ class NewDocument extends Component
 
         dd($sunat->sunatResponse($invoice,$result));
 
-//        $this->validate();
+//
 //        $document = Document::create([
 //            'document_type' => $this->documentType,
 //            'serie' => $this->serie,
@@ -198,7 +205,7 @@ class NewDocument extends Component
 
                 if ($this->articlesSelected[$index]['quantity'] < $article->stock) {
                     $this->articlesSelected[$index]['quantity']++;
-                    $this->articlesSelected[$index]['total'] = $this->articlesSelected[$index]['quantity'] * $article->purchase_price;
+                    $this->articlesSelected[$index]['total'] = $this->articlesSelected[$index]['quantity'] * $article->sale_price;
                 } else {
                     $this->dispatch('error', ['label' => 'No hay stock disponible para ' . $article->title]);
                 }
@@ -244,7 +251,7 @@ class NewDocument extends Component
 
                 if ($this->articlesSelected[$index]['quantity'] < $article->stock) {
                     $this->articlesSelected[$index]['quantity']++;
-                    $this->articlesSelected[$index]['total'] = $this->articlesSelected[$index]['quantity'] * $article->purchase_price;
+                    $this->articlesSelected[$index]['total'] = $this->articlesSelected[$index]['quantity'] * $article->sale_price;
                 } else {
                     $this->dispatch('error', ['label' => 'No hay stock disponible para ' . $article->title]);
                 }

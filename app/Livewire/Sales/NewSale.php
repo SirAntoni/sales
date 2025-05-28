@@ -4,6 +4,7 @@ namespace App\Livewire\Sales;
 
 use App\Models\Article;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Log;
 use Livewire\Component;
 use App\Models\Sale;
 use App\Models\Client;
@@ -174,21 +175,23 @@ class NewSale extends Component
 
         if ($article) {
 
+           Log::info(json_encode($article));
+
             $index = collect($this->articlesSelected)->search(function ($item) use ($article) {
                 return $item['id'] == $article->id;
             });
 
             if ($index !== false) {
-
+                Log::info('pasa1');
                 if ($this->articlesSelected[$index]['quantity'] < $article->stock) {
                     $this->articlesSelected[$index]['quantity']++;
-                    $this->articlesSelected[$index]['total'] = $this->articlesSelected[$index]['quantity'] * $article->purchase_price;
+                    $this->articlesSelected[$index]['total'] = $this->articlesSelected[$index]['quantity'] * $article->sale_price;
                 } else {
                     $this->dispatch('error', ['label' => 'No hay stock disponible para ' . $article->title]);
                 }
 
             } else {
-
+            Log::info('pasa2');
                 if ($article->stock > 0) {
                     $this->articlesSelected[] = [
                         'id' => $article->id,
