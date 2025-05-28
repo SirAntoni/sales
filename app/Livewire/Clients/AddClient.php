@@ -111,7 +111,7 @@ class AddClient extends Component
 
     protected $rules = [
         'name' => 'required|string|min:3',
-        'document_number' => 'required|numeric|min:3',
+        'document_number' => 'required|numeric|min:3|unique:clients,document_number',
         'document_type' => 'required|string|min:2',
         'address' => 'nullable|string|min:3',
         'phone' => 'nullable|numeric|min:3',

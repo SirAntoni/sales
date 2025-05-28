@@ -8,6 +8,7 @@ use App\Models\Contact;
 use App\Models\PaymentMethod;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\Rule;
 use Livewire\Attributes\On;
 use Livewire\Component;
 use App\Models\Sale;
@@ -79,14 +80,25 @@ class ShowSale extends Component
 
     }
 
-    protected $rules = [
-        'client' => 'required',
-        'date' => 'required|date_format:Y-m-d',
-        'contact' => 'required',
-        'paymentMethod' => 'required',
-        'delivery_fee' => 'numeric|nullable',
-        'articlesSelected' => 'required|array|min:1'
-    ];
+    public function rules()
+    {
+        return [
+            'client'            => 'required',
+            'date'              => 'required|date_format:Y-m-d',
+            'contact'           => 'required',
+            'paymentMethod'     => 'required',
+            'delivery_fee'      => 'numeric|nullable',
+            'articlesSelected'  => 'required|array|min:1',
+            'number'            => [
+                'nullable',
+                Rule::unique('sales', 'number')
+                    ->ignore($this->saleId)
+                    ->where(function ($query) {
+                        $query->where('status', '<>', 0);
+                    }),
+            ],
+        ];
+    }
 
     public function searchClients($query)
     {

@@ -5,6 +5,7 @@ namespace App\Livewire\Sales;
 use App\Models\Article;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Validation\Rule;
 use Livewire\Component;
 use App\Models\Sale;
 use App\Models\Client;
@@ -55,9 +56,13 @@ class NewSale extends Component
             'paymentMethod' => 'required',
             'delivery_fee' => 'numeric|nullable',
             'articlesSelected' => 'required|array|min:1',
-            'number' => $this->number
-                ? 'unique:sales,number'
-                : 'nullable',
+            'number'            => [
+                'nullable',
+                Rule::unique('sales', 'number')
+                    ->where(function ($query) {
+                        return $query->where('status', '<>', 0);
+                    }),
+            ],
         ];
     }
 
@@ -175,14 +180,12 @@ class NewSale extends Component
 
         if ($article) {
 
-           Log::info(json_encode($article));
-
             $index = collect($this->articlesSelected)->search(function ($item) use ($article) {
                 return $item['id'] == $article->id;
             });
 
             if ($index !== false) {
-                Log::info('pasa1');
+
                 if ($this->articlesSelected[$index]['quantity'] < $article->stock) {
                     $this->articlesSelected[$index]['quantity']++;
                     $this->articlesSelected[$index]['total'] = $this->articlesSelected[$index]['quantity'] * $article->sale_price;
@@ -191,7 +194,7 @@ class NewSale extends Component
                 }
 
             } else {
-            Log::info('pasa2');
+
                 if ($article->stock > 0) {
                     $this->articlesSelected[] = [
                         'id' => $article->id,
