@@ -18,8 +18,5 @@ yarn-error.log
 /.idea
 /.vscode
 /storage/cdr_path/*
-!/storage/cdr_path/.gitkeep
 /storage/xml_path/*
-!/storage/xml_path/.gitkeep
 /storage/pdf_path/*
-!/storage/pdf_path/.gitkeep
