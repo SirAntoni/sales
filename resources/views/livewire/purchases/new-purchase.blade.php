@@ -6,18 +6,24 @@
                     Nueva Compra
                 </div>
                 <div class="flex flex-col gap-x-3 gap-y-2 sm:flex-row md:ml-auto">
-                    <x-base.button
-                        class="group-[.mode--light]:!border-transparent group-[.mode--light]:!bg-white/[0.12] group-[.mode--light]:!text-slate-200"
-                        variant="primary"
-                        wire:loading.attr="disabled"
-                        wire:click="save"
-                        wire:target="save"
-                        wire:loading.class="opacity-50 cursor-not-allowed"
-                    >
-                        <i class="fa-solid fa-floppy-disk mr-2"></i>
-
-                        Guardar compra
-                    </x-base.button>
+                    <span wire:loading>
+                        <x-base.button
+                            class="group-[.mode--light]:!border-transparent group-[.mode--light]:!bg-white/[0.12] group-[.mode--light]:!text-slate-200"
+                            variant="primary"
+                            disabled="true" >
+                                <i class="fas fa-spinner animate-spin"></i> Calculando..
+                        </x-base.button>
+                    </span>
+                    <span wire:loading.remove>
+                       <x-base.button
+                           class="group-[.mode--light]:!border-transparent group-[.mode--light]:!bg-white/[0.12] group-[.mode--light]:!text-slate-200"
+                           variant="primary"
+                           wire:click="save"
+                       >
+                            <i class="fa-solid fa-floppy-disk mr-2"></i>
+                            Guardar compra
+                        </x-base.button>
+                     </span>
                 </div>
             </div>
 
