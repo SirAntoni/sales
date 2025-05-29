@@ -17,13 +17,15 @@ class Kardex extends Component
     public function searchArticles($query)
     {
         return Article::query()
-            ->where('title', 'like', '%'.$query.'%')
-            ->orWhere('sku', 'like', '%'.$query.'%')
+            ->where(fn($q) => $q
+                ->where('title', 'like', '%'.$query.'%')
+                ->orWhere('sku',   'like', '%'.$query.'%')
+            )
             ->limit(10)
-            ->get(['id', 'title'])
+            ->get(['id', 'title','sku'])
             ->map(fn($c) => [
                 'value' => $c->id,
-                'text'  => $c->title,
+                'text'  => $c->title . ' - ' . $c->sku,
             ])
             ->toArray();
     }
