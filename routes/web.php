@@ -73,6 +73,15 @@ Route::middleware(['auth'])->group(function () {
 //    });
     //End create password
 
+    Route::get('/run-migrations', function () {
+        // Ejecuta todas las migraciones pendientes con --force
+        Artisan::call('migrate', ['--force' => true]);
+
+        // Devuelve por pantalla el resultado de Artisan
+        return response( nl2br(Artisan::output()), 200 )
+            ->header('Content-Type', 'text/html');
+    });
+
 });
 
 
