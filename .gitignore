@@ -23,4 +23,3 @@ yarn-error.log
 !/storage/xml_path/.gitkeep
 /storage/pdf_path/*
 !/storage/pdf_path/.gitkeep
-/storage/.DS_Store
