@@ -18,6 +18,7 @@ class Kardex extends Component
     {
         return Article::query()
             ->where('title', 'like', '%'.$query.'%')
+            ->orWhere('sku', 'like', '%'.$query.'%')
             ->limit(10)
             ->get(['id', 'title'])
             ->map(fn($c) => [

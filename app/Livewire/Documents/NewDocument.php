@@ -70,22 +70,32 @@ class NewDocument extends Component
     public function save()
     {
 
+        //dd($this->articlesSelected);
+
+
+
        // $this->dispatch('error', ['label' => 'La función se encuentra en desarrollo. Por favor, espere confirmación del administrador de sistemas.']);
        // return;
 
-        $this->validate();
+        $items = collect($this->articlesSelected);
 
         $data = [
-            "serie" => $this->serie,
-            "correlative" => $this->correlative,
-            "date" => $this->date,
+            "serie" => $this->serie ?? "F001",
+            "correlative" => $this->correlative ?? "1",
+            "date" => $this->date ?? "2005-01-01",
             "tipoDoc" => ($this->documentType == '1') ? '01' : '03',
             "subtotal" => $this->granSubtotal,
             "igv"=> $this->granTax,
-            "total" => $this->granTotal
+            "total" => $this->granTotal,
+            "mtoOperGrav" => $items->sum("price")
         ];
 
+
+        $mtoOperGrav = $items->sum('price');
+        $data['mtoOperGrav'] = $mtoOperGrav;
+
         dd($data);
+
 
         $client = Client::find($this->client);
 
