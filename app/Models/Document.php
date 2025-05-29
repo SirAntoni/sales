@@ -29,6 +29,7 @@ class Document extends Model
         'total',
         'xml_path',
         'cdr_path',
+        'pdf_path',
         'status_sunat',
         'sale_id',
         'client_id',

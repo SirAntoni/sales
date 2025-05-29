@@ -163,7 +163,8 @@ class SunatService
             'page-width' => '21cm',
             'page-height' => '29.7cm',
         ]);
-        $report->setBinPath('"/usr/local/bin/wkhtmltopdf"');
+
+        $report->setBinPath(config('wkhtmltopdf.bin_path'));
         $params = [
             'system' => [
                 'logo' => file_get_contents(public_path('/images/logo.png')), // Logo de Empresa
@@ -182,7 +183,9 @@ class SunatService
 
         $pdf = $report->render($invoice, $params);
 
-        file_put_contents(storage_path('/pdf_path/invoice4.pdf'),$pdf);
+        file_put_contents(storage_path('/pdf_path/'.$invoice->getName().'.pdf'),$pdf);
+
+        return '/pdf_path/'.$invoice->getName().'.pdf';
 
     }
 

@@ -128,8 +128,9 @@ class NewDocument extends Component
 
         $sunatResponse = $sunat->sunatResponse($invoice,$result);
 
+        $pdf_path = "";
         if($sunatResponse['status']){
-            $sunat->generatePDF($invoice);
+            $pdf_path = $sunat->generatePDF($invoice);
         }
 
         $document = Document::create([
@@ -145,6 +146,7 @@ class NewDocument extends Component
             'total' => $this->granTotal,
             'xml_path' => '/xml_path/'.$invoice->getName().'.xml',
             'cdr_path' => $sunatResponse['cdr'] ?? '',
+            'pdf_path' => $pdf_path,
             'status_sunat'=> $sunatResponse['status'],
             'sale_id' => $this->id,
             'client_id' => $this->client,
