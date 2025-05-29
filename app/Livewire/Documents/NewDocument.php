@@ -4,9 +4,11 @@ namespace App\Livewire\Documents;
 
 use App\Models\Article;
 use App\Models\Client;
+use App\Models\Document;
 use App\Services\SunatService;
 use App\Models\Sale;
 use App\Models\SaleDetail;
+use Illuminate\Support\Facades\Log;
 use Livewire\Component;
 use App\Models\Voucher;
 use Luecano\NumeroALetras\NumeroALetras;
@@ -70,36 +72,49 @@ class NewDocument extends Component
     public function save()
     {
 
-        //dd($this->articlesSelected);
+        Log::info("inicio de emisión de comprobante");
 
-
-
-       // $this->dispatch('error', ['label' => 'La función se encuentra en desarrollo. Por favor, espere confirmación del administrador de sistemas.']);
-       // return;
+        $this->validate();
 
         $items = collect($this->articlesSelected);
 
+        $tiposIdentidad = [
+            '0' => 'NO DOMICILIADO',
+            '1' => 'DNI',
+            '4' => 'CE',
+            '6' => 'RUC',
+            '7' => 'PASAPORTE',
+        ];
+
+        $inverseTipos = array_flip($tiposIdentidad);
+
+        $client = Client::find($this->client);
+
+        $textoDoc = $client->document_type;
+        $tipoDoc  = $inverseTipos[$textoDoc] ?? null;
+
+        if ($this->documentType == '1'
+            && $client->document_type != 'RUC') {
+            $this->dispatch('error', ['label' => 'No puede emitir una factura a un cliente con un documento diferente a RUC.']);
+            return;
+        }
+
         $data = [
-            "serie" => $this->serie ?? "F001",
-            "correlative" => $this->correlative ?? "1",
+            "serie" => $this->serie,
+            "correlative" => $this->correlative,
             "date" => $this->date ?? "2005-01-01",
             "tipoDoc" => ($this->documentType == '1') ? '01' : '03',
             "subtotal" => $this->granSubtotal,
             "igv"=> $this->granTax,
             "total" => $this->granTotal,
-            "mtoOperGrav" => $items->sum("price")
+            "client" => [
+                "tipoDoc" => $tipoDoc,
+                "numDoc" => $client->document_number,
+                "name" => $client->name,
+            ],
+            "items"=> $items,
+            "legend"=> $this->legends,
         ];
-
-
-        $mtoOperGrav = $items->sum('price');
-        $data['mtoOperGrav'] = $mtoOperGrav;
-
-        dd($data);
-
-
-        $client = Client::find($this->client);
-
-        dd($client->document_type);
 
         $sunat = new SunatService();
 
@@ -111,44 +126,47 @@ class NewDocument extends Component
 
         file_put_contents(storage_path('/xml_path/'.$invoice->getName().'.xml'),$see->getFactory()->getLastXml());
 
-        dd($sunat->sunatResponse($invoice,$result));
+        $sunatResponse = $sunat->sunatResponse($invoice,$result);
 
-//
-//        $document = Document::create([
-//            'document_type' => $this->documentType,
-//            'serie' => $this->serie,
-//            'correlative' => $this->correlative,
-//            'date' => $this->date,
-//            'expiration_date' => $this->expirationDate,
-//            'currency' => 'PEN',
-//            'payment_method' => 'CONTADO',
-//            'subtotal' => $this->granSubtotal,
-//            'tax' => $this->granTax,
-//            'total' => $this->granTotal,
-//            'xml_path' => 'xml/path',
-//            'cdr_path' => 'cdr/path',
-//            'status_sunat'=> '001',
-//            'sale_id' => $this->id,
-//            'client_id' => $this->client,
-//            'user_id' => auth()->id()
-//        ]);
-//
-//        foreach ($this->articlesSelected as $article) {
-//            $art = Article::find($article['id']);
-//            $document->documentDetails()->create([
-//                'price' => $article['price'],
-//                'quantity' => $article['quantity'],
-//                'tax' => $article['total'] * 0.18,
-//                'total' => $article['total'] + ($article['total'] * 0.18),
-//                'article_id' => $article['id'],
-//                'category_id' => $article['category'],
-//                'brand_id' => $article['brand'],
-//                'subtotal' => $article['total'],
-//            ]);
-//
-//        }
-//        $this->dispatch('success', ['label' => 'La documento fue registrada con éxito.', 'btn' => 'Ir a documentos', 'route' => route('documents.index')]);
-//
+        if($sunatResponse['status']){
+            $sunat->generatePDF($invoice);
+        }
+
+        $document = Document::create([
+            'document_type' => $this->documentType,
+            'serie' => $this->serie,
+            'correlative' => $this->correlative,
+            'date' => $this->date,
+            'expiration_date' => $this->expirationDate,
+            'currency' => 'PEN',
+            'payment_method' => 'CONTADO',
+            'subtotal' => $this->granSubtotal,
+            'tax' => $this->granTax,
+            'total' => $this->granTotal,
+            'xml_path' => '/xml_path/'.$invoice->getName().'.xml',
+            'cdr_path' => $sunatResponse['cdr'] ?? '',
+            'status_sunat'=> $sunatResponse['status'],
+            'sale_id' => $this->id,
+            'client_id' => $this->client,
+            'user_id' => auth()->id()
+        ]);
+
+        foreach ($this->articlesSelected as $article) {
+            $art = Article::find($article['id']);
+            $document->documentDetails()->create([
+                'price' => $article['price'],
+                'quantity' => $article['quantity'],
+                'tax' => $article['total'] * 0.18,
+                'total' => $article['total'] + ($article['total'] * 0.18),
+                'article_id' => $article['id'],
+                'category_id' => $article['category'],
+                'brand_id' => $article['brand'],
+                'subtotal' => $article['total'],
+            ]);
+
+        }
+        $this->dispatch('success', ['label' => 'La documento fue registrada con éxito.', 'btn' => 'Ir a documentos', 'route' => route('documents.index')]);
+
     }
 
     public function searchClients($query)
@@ -273,6 +291,7 @@ class NewDocument extends Component
                     $this->articlesSelected[] = [
                         'id' => $article->article->id,
                         'category' => $article->article->category_id,
+                        'sku' => $article->article->sku,
                         'brand' => $article->brand_id,
                         'title' => $article->article->title,
                         'price' => $article->price,

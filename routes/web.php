@@ -50,19 +50,20 @@ Route::middleware(['auth'])->group(function () {
     Route::get('kardex', [KardexController::class,'index'])->name('kardex')->middleware('can:kardex');
     Route::get('pdf/{id}', [SaleController::class,'pdf'])->name('pdf.view');
     Route::post("/logout",[AuthController::class,'logout'])->name('logout');
+    Route::get('documents/{path}/download', [DocumentController::class, 'download'])->where('path', '.*')->name('documents.download');
 
     //Start Reset Cache en Cpanel
-    Route::get('/clear-all-caches', function () {
-        Artisan::call('config:clear');
-        Artisan::call('cache:clear');
-        Artisan::call('route:clear');
-        Artisan::call('permission:cache-reset');
-        return "Todos los caches (config, app, rutas y permisos) han sido limpiados.";
-    });
-    Route::get('/clear-permission-cache', function () {
-        Cache::forget('spatie.permission.cache');
-        return "Cache de permisos borrado.";
-    });
+//    Route::get('/clear-all-caches', function () {
+//        Artisan::call('config:clear');
+//        Artisan::call('cache:clear');
+//        Artisan::call('route:clear');
+//        Artisan::call('permission:cache-reset');
+//        return "Todos los caches (config, app, rutas y permisos) han sido limpiados.";
+//    });
+//    Route::get('/clear-permission-cache', function () {
+//        Cache::forget('spatie.permission.cache');
+//        return "Cache de permisos borrado.";
+//    });
     //End Reset Cache en Cpanel
 
     //Start create password

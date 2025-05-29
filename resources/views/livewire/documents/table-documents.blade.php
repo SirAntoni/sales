@@ -100,22 +100,39 @@
                                             </x-base.table.td>
                                             <x-base.table.td class="border-dashed dark:bg-darkmode-600">
 
-                                                <img src="{{asset('images/pdf.svg')}}" width="35px" alt="">
+                                                <a href="{{route('documents.download',['path' => $document->pdf_path])}}"><img src="{{asset('images/pdf.svg')}}" width="35px" alt=""></a>
 
                                             </x-base.table.td>
                                             <x-base.table.td class="text-center border-dashed dark:bg-darkmode-600"
                                             >
-                                                <img src="{{asset('images/xml.svg')}}" width="35px" alt="">
+
+                                                <a href="{{route('documents.download',['path' => $document->xml_path])}}"><img
+                                                        src="{{asset('images/xml.svg')}}" width="35px" alt=""></a>
 
                                             </x-base.table.td>
                                             <x-base.table.td class="border-dashed dark:bg-darkmode-600">
 
-                                                <img src="{{asset('images/cdr.png')}}" width="35px" alt="">
+                                                @if (!empty($document->cdr_path))
+                                                    <a href="{{route('documents.download',['path' => $document->cdr_path])}}"><img
+                                                            src="{{asset('images/cdr.png')}}" width="35px" alt=""></a>
+                                                @else
+                                                    <img
+                                                        src="{{asset('images/reload.svg')}}" width="35px" alt="">
+                                                @endif
+
+
 
                                             </x-base.table.td>
                                             <x-base.table.td class="border-dashed dark:bg-darkmode-600">
-<span
-    class="bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">Enviado</span>
+                                                @if($document->status_sunat == "ACEPTADO")
+                                                    <span
+                                                        class="bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">
+                                                        Enviado</span>
+                                                @else
+                                                    <span
+                                                        class="bg-red-100 text-white-100 text-xs font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-red-900 dark:text-white-100">
+                                                        Rechazado</span>
+                                                @endif
                                             </x-base.table.td>
                                             <x-base.table.td class="border-dashed dark:bg-darkmode-600">
                                                 <div class="flex items-center justify-center">

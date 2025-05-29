@@ -10,6 +10,9 @@ use Greenter\Model\Sale\FormaPagos\FormaPagoContado;
 use Greenter\Model\Sale\Invoice;
 use Greenter\Model\Sale\Legend;
 use Greenter\Model\Sale\SaleDetail;
+use Greenter\Report\HtmlReport;
+use Greenter\Report\PdfReport;
+use Greenter\Report\Resolver\DefaultTemplateResolver;
 use Greenter\See;
 use Greenter\Ws\Services\SunatEndpoints;
 use Illuminate\Support\Facades\Log;
@@ -39,23 +42,24 @@ class SunatService
             ->setFormaPago(new FormaPagoContado()) // FormaPago: Contado
             ->setTipoMoneda('PEN') // Sol - Catalog. 02
             ->setCompany($this->getCompany())
-            ->setClient($this->getClient())
+            ->setClient($this->getClient($data['client']))
             ->setMtoOperGravadas($data['subtotal'])
             ->setMtoIGV($data['igv'])
             ->setTotalImpuestos($data['igv'])
             ->setValorVenta($data['subtotal'])
             ->setSubTotal($data['total'])
             ->setMtoImpVenta($data['total'])
-            ->setDetails($this->getDetails())
-            ->setLegends($this->getLegends());
+            ->setDetails($this->getDetails($data['items']))
+            ->setLegends([$this->getLegends($data['legend'])]);
     }
 
-    public function getClient()
+    public function getClient($client)
     {
+
         return (new Client())
-            ->setTipoDoc('6')
-            ->setNumDoc('10465899129')
-            ->setRznSocial('EMPRESA X');
+            ->setTipoDoc($client['tipoDoc'])
+            ->setNumDoc($client['numDoc'])
+            ->setRznSocial($client['name']);
     }
 
     public function getCompany()
@@ -83,36 +87,33 @@ class SunatService
     {
         $greenDetails = [];
 
-        foreach($details as $detail){
-            $greenDetails = (new SaleDetail())
+        foreach($details as $detail) {
+            $totalIgv = (float)$detail['total'] * 0.18;
+
+            $greenDetails[] = (new SaleDetail())
                 ->setCodProducto($detail['sku'])
                 ->setUnidad('NIU') // Unidad - Catalog. 03
-                ->setCantidad($detail['qty'])
+                ->setCantidad($detail['quantity'])
                 ->setMtoValorUnitario($detail['price'])
-                ->setDescripcion($data['title'])
-                ->setMtoBaseIgv(100)
+                ->setDescripcion($detail['title'])
+                ->setMtoBaseIgv($detail['total'])
                 ->setPorcentajeIgv(18.00) // 18%
-                ->setIgv(18.00)
+                ->setIgv($totalIgv)
                 ->setTipAfeIgv('10') // Gravado Op. Onerosa - Catalog. 07
-                ->setTotalImpuestos(18.00) // Suma de impuestos en el detalle
-                ->setMtoValorVenta(100.00)
-                ->setMtoPrecioUnitario(59.00);
+                ->setTotalImpuestos($totalIgv) // Suma de impuestos en el detalle
+                ->setMtoValorVenta($detail['total'])
+                ->setMtoPrecioUnitario(((float)$detail['price'] * 0.18) + (float)$detail['price']);
         }
-
         return $greenDetails;
     }
 
-    public function getLegends($legends){
+    public function getLegends($legend){
 
-        $greenLegends = [];
+        $greenLegend =  (new Legend())
+            ->setCode('1000') // Monto en letras - Catalog. 52
+            ->setValue($legend);
 
-        foreach($legends as $legend){
-            $legend =  (new Legend())
-                ->setCode('1000') // Monto en letras - Catalog. 52
-                ->setValue($legend['value']);
-        }
-
-        return $greenLegends;
+        return $greenLegend;
     }
 
     public function sunatResponse($invoice,$result){
@@ -145,10 +146,44 @@ class SunatService
             $response['status'] = 0;
             $response['cdr'] = '/cdr_path/R-'.$invoice->getName().'.zip';
         }
-
         return $response;
-
     }
 
+    public function generatePdf($invoice){
+        $htmlReport = new HtmlReport();
+
+        $resolver = new DefaultTemplateResolver();
+        $htmlReport->setTemplate($resolver->getTemplate($invoice));
+
+        $report = new PdfReport($htmlReport);
+
+        $report->setOptions( [
+            'no-outline',
+            'viewport-size' => '1280x1024',
+            'page-width' => '21cm',
+            'page-height' => '29.7cm',
+        ]);
+        $report->setBinPath('"/usr/local/bin/wkhtmltopdf"');
+        $params = [
+            'system' => [
+                'logo' => file_get_contents(public_path('/images/logo.png')), // Logo de Empresa
+                'hash' => 'qqnr2dN4p/HmaEA/CJuVGo7dv5g=', // Valor Resumen
+            ],
+            'user' => [
+                'header'     => 'Telf: <b>(01) 123375</b>', // Texto que se ubica debajo de la dirección de empresa
+                'extras'     => [
+                    // Leyendas adicionales
+                    ['name' => 'CONDICION DE PAGO', 'value' => 'Efectivo'     ],
+                    ['name' => 'VENDEDOR'         , 'value' => 'GITHUB SELLER'],
+                ],
+                'footer' => '<p>Nro Resolucion: <b>3232323</b></p>'
+            ]
+        ];
+
+        $pdf = $report->render($invoice, $params);
+
+        file_put_contents(storage_path('/pdf_path/invoice4.pdf'),$pdf);
+
+    }
 
 }

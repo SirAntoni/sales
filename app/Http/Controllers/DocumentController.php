@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Greenter\Model\Sale\Invoice;
+use Greenter\Report\HtmlReport;
 use Illuminate\Http\Request;
+use Greenter\Report\PdfReport;
 
 class DocumentController extends Controller
 {
@@ -17,9 +20,10 @@ class DocumentController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function download(string $path)
     {
-        //
+        $fullPath = storage_path($path);
+        return response()->download($fullPath);
     }
 
     /**
