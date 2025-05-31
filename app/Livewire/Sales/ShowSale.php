@@ -92,7 +92,7 @@ class ShowSale extends Component
             'number'            => [
                 'nullable',
                 Rule::unique('sales', 'number')
-                    ->ignore($this->saleId)
+                    ->ignore($this->id)
                     ->where(function ($query) {
                         $query->where('status', '<>', 0);
                     }),
@@ -249,7 +249,7 @@ class ShowSale extends Component
 
                 if ($this->articlesSelected[$index]['quantity'] < $article->stock) {
                     $this->articlesSelected[$index]['quantity']++;
-                    $this->articlesSelected[$index]['total'] = $this->articlesSelected[$index]['quantity'] * $article->purchase_price;
+                    $this->articlesSelected[$index]['total'] = $this->articlesSelected[$index]['quantity'] * $this->articlesSelected[$index]['price'];
                 } else {
                     $this->dispatch('error', ['label' => 'No hay stock disponible para ' . $article->title]);
                 }

@@ -59,6 +59,10 @@ class AddClient extends Component
     public function searchDocument(MigoApiService $api)
     {
 
+        $this->validate([
+            'document_number' => 'required|numeric|min:3|unique:clients,document_number',
+        ]);
+
         if (! isset($this->docConfig[$this->document_type])) {
             return $this->throwError('Selecciona un tipo de documento válido.');
         }

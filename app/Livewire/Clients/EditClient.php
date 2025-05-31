@@ -5,6 +5,8 @@ namespace App\Livewire\Clients;
 use App\Models\Department;
 use App\Models\District;
 use App\Models\Province;
+use App\Services\MigoApiService;
+use Illuminate\Validation\Rule;
 use Livewire\Component;
 use App\Models\Client;
 
@@ -25,7 +27,25 @@ class EditClient extends Component
     public $departmentSelect = null;
     public $provinceSelect = null;
     public $districtSelect = null;
+    public $token;
+    protected array $docConfig = [
+        'DNI' => [
+            'size'        => 8,
+            'field'       => 'dni',
+            'responseKey' => 'nombre',
+        ],
+        'RUC' => [
+            'size'        => 11,
+            'field'       => 'ruc',
+            'responseKey' => 'nombre_o_razon_social',
+        ],
+    ];
+    private function throwError(string $message)
+    {
+        $this->dispatch('error', ['label' => $message]);
+    }
     public function mount(){
+        $this->token = env('MIGO_API_TOKEN');
         $departments = Department::all();
         $this->departments = $departments;
 
@@ -44,6 +64,48 @@ class EditClient extends Component
         $this->provinceSelect = $client->province_id;
         $this->districtSelect = $client->district_id;
 
+
+    }
+
+    public function searchDocument(MigoApiService $api)
+    {
+        $this->validate([
+            'document_number' => [
+                Rule::unique('clients', 'document_number')->ignore($this->id),
+            ],
+        ]);
+
+        if (! isset($this->docConfig[$this->document_type])) {
+            return $this->throwError('Selecciona un tipo de documento válido.');
+        }
+
+        if ($this->document_type === 'CE') {
+            return $this->throwError('Servicio no disponible para este tipo de documento.');
+        }
+
+        $config = $this->docConfig[$this->document_type];
+
+        if (strlen($this->document_number) !== $config['size']) {
+            return $this->throwError(
+                "El {$this->document_type} debe tener exactamente {$config['size']} dígitos."
+            );
+        }
+
+        $payload = [
+            $config['field'] => $this->document_number,
+            'token'          => $this->token,
+        ];
+
+        $response = $api->post(
+            strtolower($this->document_type),
+            $payload
+        );
+
+        if(!isset($response['success']) || $response['success'] === false ){
+            return $this->throwError("Recurso no encontrado");
+        }
+
+        $this->name = $response[$config['responseKey']] ?? '';
 
     }
     public function updatedDepartmentSelect($value)

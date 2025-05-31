@@ -188,13 +188,13 @@ class NewSale extends Component
 
                 if ($this->articlesSelected[$index]['quantity'] < $article->stock) {
                     $this->articlesSelected[$index]['quantity']++;
-                    $this->articlesSelected[$index]['total'] = $this->articlesSelected[$index]['quantity'] * $article->sale_price;
+                    $this->articlesSelected[$index]['total'] = $this->articlesSelected[$index]['quantity'] * $this->articlesSelected[$index]['price'];
                 } else {
                     $this->dispatch('error', ['label' => 'No hay stock disponible para ' . $article->title]);
                 }
 
             } else {
-
+                Log::info('validacion2');
                 if ($article->stock > 0) {
                     $this->articlesSelected[] = [
                         'id' => $article->id,
@@ -247,6 +247,7 @@ class NewSale extends Component
 
     public function calculateTotals()
     {
+        Log::info("Totals: " . json_encode($this->articlesSelected));
         $this->granSubtotal = collect($this->articlesSelected)->sum('total');
         if ($this->tax == 1) {
             $this->granTotal = $this->granSubtotal + ($this->granSubtotal * 0.18);

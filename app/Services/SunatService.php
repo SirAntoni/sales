@@ -112,7 +112,6 @@ class SunatService
         $greenLegend =  (new Legend())
             ->setCode('1000') // Monto en letras - Catalog. 52
             ->setValue($legend);
-
         return $greenLegend;
     }
 
@@ -167,17 +166,16 @@ class SunatService
         $report->setBinPath(config('wkhtmltopdf.bin_path'));
         $params = [
             'system' => [
-                'logo' => file_get_contents(public_path('/images/logo.png')), // Logo de Empresa
+                'logo' => file_get_contents(public_path('/images/logo_invoice.png')), // Logo de Empresa
                 'hash' => 'qqnr2dN4p/HmaEA/CJuVGo7dv5g=', // Valor Resumen
             ],
             'user' => [
-                'header'     => 'Telf: <b>(01) 123375</b>', // Texto que se ubica debajo de la dirección de empresa
+                'header'     => 'Telf: <b>+51959140757</b>', // Texto que se ubica debajo de la dirección de empresa
                 'extras'     => [
                     // Leyendas adicionales
                     ['name' => 'CONDICION DE PAGO', 'value' => 'Efectivo'     ],
-                    ['name' => 'VENDEDOR'         , 'value' => 'GITHUB SELLER'],
-                ],
-                'footer' => '<p>Nro Resolucion: <b>3232323</b></p>'
+                    ['name' => 'VENDEDOR'         , 'value' => 'LOPEZ VERASTEGUI RAUL EDUARDO'],
+                ]
             ]
         ];
 

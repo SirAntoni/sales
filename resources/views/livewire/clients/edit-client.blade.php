@@ -113,6 +113,26 @@
                                             placeholder="Número de documento del cliente"
                                             wire:model="document_number"
                                         />
+                                        <span wire:loading>
+                                             <x-base.button class="w-32" variant="primary">
+                                                    Buscando...
+                                                    <x-base.loading-icon
+                                                        class="ml-2 h-4 w-4"
+                                                        icon="three-dots"
+                                                        color="white"
+                                                    />
+                                                </x-base.button>
+                                        </span>
+                                        <span wire:loading.remove>
+                                            <x-base.button
+                                                class="w-32"
+                                                variant="primary"
+                                                wire:click="searchDocument"
+                                            >
+                                            <i class="fa-solid fa-magnifying-glass mr-2"></i>
+                                            Buscar
+                                            </x-base.button>
+                                        </span>
                                         @error('document_number')
                                         <div class="p-1 text-red-600">
                                             {{ $message }}
