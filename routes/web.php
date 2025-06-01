@@ -64,9 +64,9 @@ Route::middleware(['auth'])->group(function () {
         Cache::forget('spatie.permission.cache');
         return "Cache de permisos borrado.";
     });
-    End Reset Cache en Cpanel
+    //End Reset Cache en Cpanel
 
-    Start create password
+    //Start create password
     Route::get('/create-password/{password}', function ($password) {
         $new_passowrd = bcrypt($password);
         return $new_passowrd;
