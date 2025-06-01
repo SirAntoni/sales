@@ -9,6 +9,7 @@ use Greenter\Model\Company\Company;
 use Greenter\Model\Sale\FormaPagos\FormaPagoContado;
 use Greenter\Model\Sale\Invoice;
 use Greenter\Model\Sale\Legend;
+use Greenter\Model\Sale\Note;
 use Greenter\Model\Sale\SaleDetail;
 use Greenter\Report\HtmlReport;
 use Greenter\Report\PdfReport;
@@ -52,6 +53,11 @@ class SunatService
             ->setDetails($this->getDetails($data['items']))
             ->setLegends([$this->getLegends($data['legend'])]);
     }
+
+//    public function getNote($data){
+//        return (new Note)
+//            ->setUblVersion('2.1')
+//    }
 
     public function getClient($client)
     {
