@@ -43,7 +43,7 @@
                                 <div class="grid grid-cols-12 pt-4">
 
 
-                                    <div class="col-span-12 sm:col-span-4 flex flex-col gap-3.5 px-5 py-2">
+                                    <div class="col-span-12 sm:col-span-6 flex flex-col gap-3.5 px-5 py-2">
 
                                         <div>
                                             <x-base.form-label for="documentType">
@@ -69,7 +69,7 @@
 
 
                                     </div>
-                                    <div class="col-span-12 sm:col-span-4 flex flex-col gap-3.5 px-5 py-2">
+                                    <div class="col-span-12 sm:col-span-6 flex flex-col gap-3.5 px-5 py-2">
 
                                         <div>
                                             <x-base.form-label for="serie">
@@ -91,7 +91,7 @@
 
 
                                     </div>
-                                    <div class="col-span-12 sm:col-span-4 flex flex-col gap-3.5 px-5 py-2">
+                                    <div class="col-span-12 sm:col-span-6 flex flex-col gap-3.5 px-5 py-2">
 
                                         <div>
                                             <x-base.form-label for="correlative">
@@ -136,29 +136,7 @@
 
 
                                     </div>
-                                    <div class="col-span-12 sm:col-span-6 flex flex-col gap-3.5 px-5 py-2">
-                                        <div>
-                                            <x-base.form-label for="datepicker2">
-                                                Fecha de vencimiento
-                                            </x-base.form-label>
-                                            <x-base.litepicker
-                                                id="datepicker2"
-                                                class="w-full block"
-                                                data-single-mode="true"
-                                                placeholder="Ingresa una fecha de vencimiento"
-                                                wire:model.live="expirationDate"
-                                            />
 
-                                            @error('expirationDate')
-                                            <div class="p-1">
-                                                {{ $message }}
-                                            </div>
-                                            @enderror
-
-                                        </div>
-
-
-                                    </div>
                                     <div class="col-span-12 sm:col-span-6 flex flex-col gap-3.5 px-5 py-2">
                                         <div>
                                             <label>Agregar Articulo</label>
@@ -385,12 +363,6 @@
             singleMode: true
         });
 
-        const picker2 = new Litepicker({
-            element: document.getElementById('datepicker2'),
-            autoApply: true,
-            singleMode: true
-        });
-
         new TomSelect('#tomArticles', {
             valueField: 'value',
             labelField: 'text',
@@ -447,11 +419,6 @@
             console.log('selected picker 1');
             @this.
             set('date', startDate.format('YYYY-MM-DD'));
-        });
-
-        picker2.on('selected', (startDate, endDate) => {
-            @this.
-            set('expirationDate', startDate.format('YYYY-MM-DD'));
         });
 
     });

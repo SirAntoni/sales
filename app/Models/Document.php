@@ -31,9 +31,15 @@ class Document extends Model
         'cdr_path',
         'pdf_path',
         'status_sunat',
+        'code',
+        'notes',
         'sale_id',
         'client_id',
         'user_id'
+    ];
+
+    protected $casts = [
+        'notes' => 'array',
     ];
 
     public function documentDetails()

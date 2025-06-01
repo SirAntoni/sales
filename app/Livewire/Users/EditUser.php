@@ -37,8 +37,7 @@ class EditUser extends Component
             'email' => $this->email
         ]);
         $user->refresh();
-        Log::info('permissions: ' . json_encode($this->permissionsSelected));
-        Log::info("user: " . json_encode($user));
+
         $user->permissions()->sync($this->permissionsSelected);
 
         $this->dispatch('success',['label' => 'Se edito el usuario con éxito.','btn' => 'Ir a usuarios','route' => route('users.index')]);

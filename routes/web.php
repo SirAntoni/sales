@@ -73,14 +73,14 @@ Route::middleware(['auth'])->group(function () {
 //    });
     //End create password
 
-//    Route::get('/run-migrations', function () {
-//
-//        Artisan::call('migrate', ['--force' => true]);
-//
-//
-//        return response( nl2br(Artisan::output()), 200 )
-//            ->header('Content-Type', 'text/html');
-//    });
+    Route::get('/run-migrations', function () {
+
+        Artisan::call('migrate', ['--force' => true]);
+
+
+        return response( nl2br(Artisan::output()), 200 )
+            ->header('Content-Type', 'text/html');
+    });
 
 });
 

@@ -23,7 +23,6 @@ class NewDocument extends Component
     public $articles;
     public $number;
     public $date;
-    public $expirationDate;
     public $granSubtotal;
     public $granTax;
     public $granTotal;
@@ -63,7 +62,6 @@ class NewDocument extends Component
 
     protected $rules = [
         'date'=>'required',
-        'expirationDate' => 'required',
         'documentType' => 'required',
         'articlesSelected' => 'required|array|min:1',
         'client' => 'required',
@@ -111,6 +109,7 @@ class NewDocument extends Component
                 "tipoDoc" => $tipoDoc,
                 "numDoc" => $client->document_number,
                 "name" => $client->name,
+                "address" => $client->address,
             ],
             "items"=> $items,
             "legend"=> $this->legends,
@@ -138,7 +137,6 @@ class NewDocument extends Component
             'serie' => $this->serie,
             'correlative' => $this->correlative,
             'date' => $this->date,
-            'expiration_date' => $this->expirationDate,
             'currency' => 'PEN',
             'payment_method' => 'CONTADO',
             'subtotal' => $this->granSubtotal,
@@ -148,6 +146,8 @@ class NewDocument extends Component
             'cdr_path' => $sunatResponse['cdr'] ?? '',
             'pdf_path' => $pdf_path,
             'status_sunat'=> $sunatResponse['status'],
+            'code' => $sunatResponse['code'],
+            'notes'=> $sunatResponse['notes'],
             'sale_id' => $this->id,
             'client_id' => $this->client,
             'user_id' => auth()->id()

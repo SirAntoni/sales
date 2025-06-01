@@ -195,7 +195,7 @@ class NewSale extends Component
                 }
 
             } else {
-                Log::info('validacion2');
+
                 if ($article->stock > 0) {
                     $this->articlesSelected[] = [
                         'id' => $article->id,
@@ -248,7 +248,6 @@ class NewSale extends Component
 
     public function calculateTotals()
     {
-        Log::info("Totals: " . json_encode($this->articlesSelected));
         $this->granSubtotal = collect($this->articlesSelected)->sum('total');
         if ($this->tax == 1) {
             $this->granTotal = $this->granSubtotal + ($this->granSubtotal * 0.18);

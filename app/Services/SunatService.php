@@ -118,11 +118,12 @@ class SunatService
     public function sunatResponse($invoice,$result){
 
         $response = [];
-        Log::info("FACTURA RESPUESTA: LOG");
+
         if (!$result->isSuccess()) {
-            Log::info("FACTURA ERROR: " . $result->getError()->getCode());
+            Log::info("--- START: Log comprobante " . $invoice->getName() . " ---");
             Log::info("FACTURA ERROR: " . $result->getError()->getCode());
             Log::info("MENSAJE ERROR: " . $result->getError()->getMessage());
+            Log::info("--- END: log comprobante " . $invoice->getName() . " ---");
             $response['status'] = 0;
             $response['cdr'] = null;
             return $response;
@@ -135,15 +136,30 @@ class SunatService
         $code = (int)$cdr->getCode();
 
         if ($code === 0) {
-            if (count($cdr->getNotes()) > 0)  Log::info($cdr->getNotes());
+            if (count($cdr->getNotes()) > 0){
+                Log::info("--- START: Log comprobante notes " . $invoice->getName() . " ---");
+                Log::info($cdr->getNotes());
+                Log::info("--- END: Log comprobante notes " . $invoice->getName() . " ---");
+            }
             $response['status'] = 1;
+            $response['code'] = $code;
             $response['cdr'] = '/cdr_path/R-'.$invoice->getName().'.zip';
+            $response['notes'] = (count($cdr->getNotes()) > 0) ? $cdr->getNotes():[];
         } else if ($code >= 2000 && $code <= 3999) {
+            Log::info("--- START: Log comprobante >= 2000 && <= 3999 " . $invoice->getName() . " ---");
+            Log::info("Code: " . $code);
+            Log::info($cdr->getNotes());
+            Log::info("--- END: Log comprobante >= 2000 && <= 3999 " . $invoice->getName() . " ---");
             $response['status'] = 2;
+            $response['code'] = $code;
             $response['cdr'] = '/cdr_path/R-'.$invoice->getName().'.zip';
+            $response['notes'] = (count($cdr->getNotes()) > 0) ? $cdr->getNotes():[];
         } else {
+            Log::info("--- START: Log comprobante ELSE " . $invoice->getName() . " ---");
+            Log::info("Code: " . $code);
+            Log::info($cdr->getNotes());
+            Log::info("--- END: Log comprobante ELSE " . $invoice->getName() . " ---");
             $response['status'] = 0;
-            $response['cdr'] = '/cdr_path/R-'.$invoice->getName().'.zip';
         }
         return $response;
     }
