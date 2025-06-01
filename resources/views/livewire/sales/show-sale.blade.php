@@ -45,6 +45,7 @@
                                                     class="w-full"
                                                     data-placeholder="Selecciona un cliente"
                                                     wire:model="client"
+                                                    disabled="true"
                                                 >
 
                                                 </x-base.tom-select>
@@ -71,6 +72,7 @@
                                                 class="w-full block"
                                                 data-single-mode="true"
                                                 wire:model.live="date"
+                                                disabled
                                             />
 
                                             @error('date')
@@ -94,6 +96,7 @@
                                                 type="text"
                                                 placeholder="Ingresa número de orden"
                                                 wire:model="number"
+                                                disabled
                                             />
                                             @error('number')
                                             <div class="p-1 text-red-600">
@@ -132,7 +135,7 @@
 
 
                                     </div>
-                                    <div class="col-span-12 sm:col-span-6 flex flex-col gap-3.5 px-5 py-2">
+                                    <div class="col-span-12 sm:col-span-5 flex flex-col gap-3.5 px-5 py-2">
 
                                         <div>
                                             <x-base.form-label for="paymentMethod">
@@ -160,7 +163,7 @@
 
 
                                     </div>
-                                    <div class="col-span-12 sm:col-span-6 flex flex-col gap-3.5 px-5 py-2">
+                                    <div class="col-span-12 sm:col-span-5 flex flex-col gap-3.5 px-5 py-2">
 
                                         <div>
                                             <x-base.form-label for="delivery_fee">
@@ -171,6 +174,7 @@
                                                 type="text"
                                                 placeholder="Ingresa precio de delivery"
                                                 wire:model="delivery_fee"
+                                                disabled
                                             />
                                             @error('delivery_fee')
                                             <div class="p-1 text-red-600">
@@ -181,33 +185,9 @@
 
 
                                     </div>
-                                    <div class="col-span-12 sm:col-span-9 flex flex-col gap-3.5 px-5 py-2">
-                                        <div>
-                                            <label>Agregar Articulo</label>
 
-                                            <div class="mt-2" wire:ignore>
-                                                <x-base.tom-select
-                                                    id="tomArticles"
-                                                    class="w-full"
-                                                    data-placeholder="Selecciona el articulo a agregar"
-                                                    wire:model.live="articleSelected"
-                                                >
-
-
-
-                                                </x-base.tom-select>
-                                            </div>
-                                            @error('articlesSelected')
-                                            <div class="p-1 text-red-600">
-                                                {{$message}}
-                                            </div>
-                                            @enderror
-                                        </div>
-
-
-                                    </div>
                                     <div
-                                        class="col-span-12 sm:col-span-3 flex flex-col gap-3.5 px-5 sm:pt-1 pt-10  md:pt-10 pb-4">
+                                        class="col-span-12 sm:col-span-2 flex flex-col gap-3.5 px-5 sm:pt-1 pt-10  md:pt-10 pb-4">
                                         <div>
 
                                             <x-base.form-switch>
@@ -275,7 +255,7 @@
                                                                 min="1"
                                                                 step="1"
                                                                 wire:model="articlesSelected.{{ $index }}.quantity"
-                                                                wire:input.debounce.1000ms="updateTotal({{ $index }})"
+                                                                disabled="true"
                                                                 class="w-15 text-center border rounded"
                                                             >
                                                         </div>
@@ -435,59 +415,6 @@
             element: document.getElementById('datepicker'),
             autoApply: true,
             singleMode: true
-        });
-
-        new TomSelect('#tomArticles', {
-            valueField: 'value',
-            labelField: 'text',
-            searchField: 'text',
-            maxItems: 1,
-            create: false,
-            render: {
-                option: function(data, escape) {
-
-                    let label = escape(data.text);
-
-                    // 2) Busca el número de stock ("stock: 12")
-                    const match = data.text.match(/stock:\s*(\d+)/);
-                    if (match) {
-                        const stock = parseInt(match[1], 10);
-                        const cls   = stock > 10 ? 'mark-green' : 'mark-red';
-                        // 3) Reemplaza esa parte por un <span> coloreado
-                        label = label.replace(
-                            /stock:\s*\d+/,
-                            `stock: <span class="${cls}">${stock}</span>`
-                        );
-                    }
-
-                    return `<div>${label}</div>`;
-                },
-                item: function(data, escape) {
-                    let label = escape(data.text);
-                    const match = data.text.match(/stock:\s*(\d+)/);
-                    if (match) {
-                        const stock = parseInt(match[1], 10);
-                        const cls   = stock > 10 ? 'mark-green' : 'mark-red';
-                        label = label.replace(
-                            /stock:\s*\d+/,
-                            `stock: <span class="${cls}">${stock}</span>`
-                        );
-                    }
-                    return `<div>${label}</div>`;
-                }
-            },
-            load: function (query, callback) {
-                if (!query.length) return callback();
-
-                @this.
-                call('searchArticles', query)
-                    .then(data => callback(data))
-                    .catch(() => callback());
-            },
-            onItemAdd: function(value, $item) {
-                this.clear();
-                @this.set('articleSelected', value);
-            }
         });
 
         new TomSelect('#tomClients', {

@@ -88,15 +88,7 @@ class ShowSale extends Component
             'contact'           => 'required',
             'paymentMethod'     => 'required',
             'delivery_fee'      => 'numeric|nullable',
-            'articlesSelected'  => 'required|array|min:1',
-            'number'            => [
-                'nullable',
-                Rule::unique('sales', 'number')
-                    ->ignore($this->id)
-                    ->where(function ($query) {
-                        $query->where('status', '<>', 0);
-                    }),
-            ],
+            'articlesSelected'  => 'required|array|min:1'
         ];
     }
 
@@ -161,16 +153,10 @@ class ShowSale extends Component
         });
 
         $sale->update([
-            'number' => $this->number,
-            'date' => $this->date,
             'subtotal' => $this->granSubtotal,
             'tax' => $this->granTax,
             'total' => $this->granTotal,
-            'delivery' => empty($this->delivery_fee) ? 0 : 1,
-            'delivery_fee' => $this->delivery_fee ?: 0,
-            'client_id' => $this->client,
-            'contact_id' => $this->contact,
-            'payment_method_id' => $this->paymentMethod
+            'contact_id' => $this->contact
         ]);
 
         foreach ($this->articlesSelected as $article) {
@@ -186,7 +172,7 @@ class ShowSale extends Component
                 'subtotal' => $article['total'],
             ]);
 
-            Article::find($article['id'])->decrement('stock', $article['quantity']);
+            //Article::find($article['id'])->decrement('stock', $article['quantity']);
 
         }
         $this->dispatch('success', ['label' => 'La venta fue editada con éxito.', 'btn' => 'Ir a ventas', 'route' => route('sales.index')]);
@@ -251,7 +237,7 @@ class ShowSale extends Component
                     $this->articlesSelected[$index]['quantity']++;
                     $this->articlesSelected[$index]['total'] = $this->articlesSelected[$index]['quantity'] * $this->articlesSelected[$index]['price'];
                 } else {
-                    $this->dispatch('error', ['label' => 'No hay stock disponible para ' . $article->title]);
+                    $this->dispatch('error', ['label' => '4No hay stock disponible para ' . $article->title]);
                 }
 
             } else {
@@ -268,10 +254,8 @@ class ShowSale extends Component
                         'total' => $article->sale_price
                     ];
 
-
-
                 } else {
-                    $this->dispatch('error', ['label' => 'No hay stock disponible para ' . $article->title]);
+                    $this->dispatch('error', ['label' => '1No hay stock disponible para ' . $article->title]);
                 }
             }
 
@@ -297,12 +281,10 @@ class ShowSale extends Component
                     $this->articlesSelected[$index]['quantity']++;
                     $this->articlesSelected[$index]['total'] = $this->articlesSelected[$index]['quantity'] * $article->purchase_price;
                 } else {
-                    $this->dispatch('error', ['label' => 'No hay stock disponible para ' . $article->title]);
+                    $this->dispatch('error', ['label' => '2No hay stock disponible para ' . $article->title]);
                 }
 
             } else {
-
-                if ($article->article->stock > 0) {
 
                     $this->articlesSelected[] = [
                         'id' => $article->article->id,
@@ -313,12 +295,6 @@ class ShowSale extends Component
                         'quantity' => $article->quantity,
                         'total' => $article->price * $article->quantity,
                     ];
-
-
-
-                } else {
-                    $this->dispatch('error', ['label' => 'No hay stock disponible para ' . $article->title]);
-                }
             }
 
             $this->calculateTotals();
@@ -344,11 +320,6 @@ class ShowSale extends Component
         if (!$article) {
             $this->dispatch('error', ['label' => 'Artículo no encontrado']);
             return;
-        }
-
-        if ($article->stock < $selected['quantity']) {
-            $this->dispatch('error', ['label' => 'No hay stock disponible para ' . $article->title]);
-            $selected['quantity'] = $article->stock;
         }
 
         $selected['total'] = (float)$selected['price'] * (int)$selected['quantity'];
