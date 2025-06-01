@@ -57,6 +57,7 @@ Route::middleware(['auth'])->group(function () {
         Artisan::call('config:clear');
         Artisan::call('cache:clear');
         Artisan::call('route:clear');
+        Artisan::call('view:clear');
         Artisan::call('permission:cache-reset');
         return "Todos los caches (config, app, rutas y permisos) han sido limpiados.";
     });
