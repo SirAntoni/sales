@@ -139,6 +139,7 @@ class SunatService
             Log::info("MENSAJE ERROR: " . $result->getError()->getMessage());
             Log::info("--- END: log comprobante " . $invoice->getName() . " ---");
             $response['status'] = 0;
+            $response['code'] = "000";
             $response['cdr'] = null;
             return $response;
         }

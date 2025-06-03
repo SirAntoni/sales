@@ -128,6 +128,8 @@ class NewDocument extends Component
             return;
         }
 
+
+
         $data = [
             "serie" => $this->serie,
             "correlative" => $this->correlative,
@@ -165,8 +167,9 @@ class NewDocument extends Component
             $pdf_path = $sunat->generatePDF($invoice);
         }
 
-        if(!isset($sunatResponse['code'])){
+        if($sunatResponse['code'] == "000"){
             $this->dispatch('error', ['label' => 'No se puede emitir un comprobante en estos momentos por fallos con sunat, Intentarlo mas tarde.']);
+            return;
         }
 
         $document = Document::create([
