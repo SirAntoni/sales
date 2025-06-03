@@ -14,6 +14,10 @@ class TableDocuments extends Component
     public function updatingSearch(){
         $this->resetPage();
     }
+
+    public function creditNote($id){
+        return redirect()->route('documents.credit-note', $id);
+    }
     public function render()
     {
         $documents = Document::paginate(15);

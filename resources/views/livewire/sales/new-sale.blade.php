@@ -20,7 +20,7 @@
                             class="group-[.mode--light]:!border-transparent group-[.mode--light]:!bg-white/[0.12] group-[.mode--light]:!text-slate-200"
                             variant="primary"
                             disabled="true" >
-                                <i class="fas fa-spinner animate-spin"></i> Calculando..
+                                <i class="fas fa-spinner animate-spin mr-1"></i> Calculando..
                         </x-base.button>
                     </span>
                     <span wire:loading.remove>
@@ -314,7 +314,7 @@
                                                         class="border-dashed py-4 text-right dark:bg-darkmode-600">
                                                         <div class="whitespace-nowrap font-medium">
                                                             <span wire:loading>
-                                                                <i class="fas fa-spinner animate-spin"></i> Calculando..
+                                                                <i class="fas fa-spinner animate-spin mr-1"></i> Calculando..
                                                             </span>
                                                             <span wire:loading.remove>
                                                                 S/. {{$article['total']}}
@@ -345,7 +345,7 @@
                                 <div class="text-slate-500">Subtotal:</div>
                                 <div class="w-20 font-medium text-slate-600 sm:w-52">
                                     <span wire:loading>
-                                        <i class="fas fa-spinner animate-spin"></i> Calculando..
+                                        <i class="fas fa-spinner animate-spin mr-1"></i> Calculando..
                                     </span>
                                     <span wire:loading.remove>
                                         S/. {{ number_format($this->granSubtotal, 2) }}
@@ -356,7 +356,7 @@
                                 <div class="text-slate-500">IGV:</div>
                                 <div class="w-20 font-medium text-slate-600 sm:w-52">
                                     <span wire:loading>
-                                        <i class="fas fa-spinner animate-spin"></i> Calculando..
+                                        <i class="fas fa-spinner animate-spin mr-1"></i> Calculando..
                                     </span>
                                     <span wire:loading.remove>
                                         S/. {{ number_format($this->granTax, 2) }}
@@ -367,7 +367,7 @@
                                 <div class="text-slate-500">Total:</div>
                                 <div class="w-20 font-medium text-slate-600 sm:w-52">
                                    <span wire:loading>
-                                       <i class="fas fa-spinner animate-spin"></i> Calculando..
+                                       <i class="fas fa-spinner animate-spin mr-1"></i> Calculando..
                                    </span>
                                     <span wire:loading.remove>
                                         S/. {{ number_format($this->granTotal, 2) }}

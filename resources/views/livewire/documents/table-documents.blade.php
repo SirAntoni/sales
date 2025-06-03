@@ -138,6 +138,13 @@
                                                 <div class="flex items-center justify-center">
                                                     <x-base.button-custom
                                                         class="mr-2"
+                                                        variant="success"
+                                                        wire:click="creditNote({{$document->id}})"
+                                                    >
+                                                        <i class="text-white fa-solid fa-file-invoice"></i>
+                                                    </x-base.button-custom>
+                                                    <x-base.button-custom
+                                                        class="mr-2"
                                                         variant="dark"
                                                         wire:click="verPDF({{$document->id}})"
                                                     >
@@ -145,7 +152,6 @@
                                                     </x-base.button-custom>
                                                     @can('delete')
                                                         <x-base.button-custom
-
                                                             variant="danger"
                                                             wire:click="delete({{$document->id}})"
                                                         >

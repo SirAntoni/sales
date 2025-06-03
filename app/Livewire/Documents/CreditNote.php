@@ -5,6 +5,7 @@ namespace App\Livewire\Documents;
 use App\Models\Article;
 use App\Models\Client;
 use App\Models\Document;
+use App\Models\DocumentDetail;
 use App\Services\MigoApiService;
 use App\Services\SunatService;
 use App\Models\Sale;
@@ -15,7 +16,7 @@ use App\Models\Voucher;
 use Luecano\NumeroALetras\NumeroALetras;
 use App\Models\Setting;
 
-class NewDocument extends Component
+class CreditNote extends Component
 {
     public $id;
     public $clients;
@@ -55,22 +56,22 @@ class NewDocument extends Component
     ];
 
     public function mount(){
-        $sale = Sale::find($this->id);
+        $document = Document::find($this->id);
         $this->token = env('MIGO_API_TOKEN');
-        $this->serie = "-";
-        $this->correlative = "-";
+        $this->documentType = $document->document_type;
+        $this->serie = $document->serie;
+        $this->correlative = $document->correlative;
 
         //Inicio Client
-        $this->client = $sale->client_id;
-        $this->clientSelected = $sale->client;
+        $this->client = $document->client_id;
+        $this->clientSelected = $document->client;
         //Fin Client
 
-        $this->date = $sale->date;
-        $this->defaultClient = $sale->client->id;
-        $this->number = $sale->number;
-        $this->granSubtotal = $sale->granSubtotal;
-
-        foreach ($sale->saleDetails as $detail) {
+        $this->date = $document->date;
+        $this->defaultClient = $document->client->id;
+        $this->number = $document->number;
+        $this->granSubtotal = $document->granSubtotal;
+        foreach ($document->documentDetails as $detail) {
             $this->addToArticleSale($detail->id);
         }
     }
@@ -299,7 +300,7 @@ class NewDocument extends Component
     public function addToArticleSale($id)
     {
 
-        $article = SaleDetail::with('article')->find($id);
+        $article = DocumentDetail::with('article')->find($id);
 
 
         if ($article) {

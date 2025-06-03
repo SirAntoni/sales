@@ -17,6 +17,11 @@ class DocumentController extends Controller
         return view('documents.index');
     }
 
+    public function creditNote(string $id)
+    {
+        return view('documents.credit-note', compact('id'));
+    }
+
     /**
      * Show the form for creating a new resource.
      */
@@ -39,7 +44,7 @@ class DocumentController extends Controller
      */
     public function show(string $id)
     {
-        return view('documents.show',compact('id'));
+        return view('documents.show', compact('id'));
     }
 
     /**

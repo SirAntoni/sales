@@ -23,9 +23,10 @@ class SunatService
     public function getSee()
     {
         $see = new See();
-        $see->setCertificate(file_get_contents(storage_path('/cert/certificate.pem')));
-        $see->setService(SunatEndpoints::FE_BETA); //FE_PRODUCCION
-        $see->setClaveSOL('20000000001', 'MODDATOS', 'moddatos');
+        $service = (env('APP_ENV') == "production") ? SunatEndpoints::FE_PRODUCCION : SunatEndpoints::FE_BETA;
+        $see->setCertificate(file_get_contents(storage_path(config('sunat.path_certificate'))));;
+        $see->setService($service);
+        $see->setClaveSOL(config('sunat.ruc'), config('sunat.user'), config('sunat.password'));;
 
         return $see;
     }
@@ -71,9 +72,9 @@ class SunatService
     public function getCompany()
     {
         return (new Company())
-            ->setRuc("20123456789")
-            ->setRazonSocial('GREEN SAC')
-            ->setNombreComercial('GREEN')
+            ->setRuc(config('sunat.ruc'))
+            ->setRazonSocial(config('sunat.razon_social'))
+            ->setNombreComercial(config('sunat.commercial_name'))
             ->setAddress($this->getAddress());
     }
 
@@ -83,9 +84,9 @@ class SunatService
             ->setUbigueo('150101')
             ->setDepartamento('LIMA')
             ->setProvincia('LIMA')
-            ->setDistrito('LIMA')
+            ->setDistrito('SANTIAGO DE SURCO')
             ->setUrbanizacion('-')
-            ->setDireccion('Av. Villa Nueva 221')
+            ->setDireccion('CAL. ARTESANOS 150 URB. ALBORADA INT. 205 C.C LAS PLAZUELAS')
             ->setCodLocal('0000');
     }
 

@@ -12,7 +12,7 @@
                             class="group-[.mode--light]:!border-transparent group-[.mode--light]:!bg-white/[0.12] group-[.mode--light]:!text-slate-200"
                             variant="primary"
                             disabled="true" >
-                                <i class="fas fa-spinner animate-spin"></i> Emitiendo..
+                                <i class="fas fa-spinner animate-spin mr-1"></i> Emitiendo..
                         </x-base.button>
                     </span>
                     <span wire:loading.remove>
@@ -91,7 +91,7 @@
 
 
                                     </div>
-                                    <div class="col-span-12 sm:col-span-6 flex flex-col gap-3.5 px-5 py-2">
+                                    <div class="col-span-12 sm:col-span-4 flex flex-col gap-3.5 px-5 py-2">
 
                                         <div>
                                             <x-base.form-label for="correlative">
@@ -113,7 +113,7 @@
 
 
                                     </div>
-                                    <div class="col-span-12 sm:col-span-6 flex flex-col gap-3.5 px-5 py-2">
+                                    <div class="col-span-12 sm:col-span-4 flex flex-col gap-3.5 px-5 py-2">
                                         <div>
 
                                             <x-base.form-label for="datepicker">
@@ -137,31 +137,7 @@
 
                                     </div>
 
-                                    <div class="col-span-12 sm:col-span-6 flex flex-col gap-3.5 px-5 py-2">
-                                        <div>
-                                            <label>Agregar Articulo</label>
-
-                                            <div class="mt-2" wire:ignore>
-                                                <x-base.tom-select
-                                                    id="tomArticles"
-                                                    class="w-full"
-                                                    data-placeholder="Selecciona el articulo a agregar"
-                                                    wire:model.live="articleSelected"
-                                                >
-
-
-                                                </x-base.tom-select>
-                                            </div>
-                                            @error('articlesSelected')
-                                            <div class="p-1">
-                                                {{$message}}
-                                            </div>
-                                            @enderror
-                                        </div>
-
-
-                                    </div>
-                                    <div class="col-span-12 sm:col-span-6 flex flex-col px-5 py-2">
+                                    <div class="col-span-12 sm:col-span-4 flex flex-col px-5 py-2">
 
                                         <div>
                                             <label>Cliente</label>
@@ -237,6 +213,7 @@
                                                                 wire:model="articlesSelected.{{ $index }}.quantity"
                                                                 wire:input.debounce.1000ms="updateTotal({{ $index }})"
                                                                 class="w-15 text-center border rounded"
+                                                                disabled
                                                             >
                                                         </div>
                                                     </x-base.table.td>
@@ -318,11 +295,7 @@
                                 </div>
                                 @enderror
                             </div>
-
-
                         </div>
-
-
                         <div class="-mx-8 border-t border-dashed border-slate-200/80 px-10 pt-6">
                             <div class="mt-5 text-slate-500">© 2025 Hecho con <i class="fa-solid fa-heart"></i> | ©
                                 InventraShop.
@@ -361,22 +334,6 @@
             element: document.getElementById('datepicker'),
             autoApply: true,
             singleMode: true
-        });
-
-        new TomSelect('#tomArticles', {
-            valueField: 'value',
-            labelField: 'text',
-            searchField: 'text',
-            maxItems: 1,
-            create: false,
-            load: function (query, callback) {
-                if (!query.length) return callback();
-
-                @this.
-                call('searchArticles', query)
-                    .then(data => callback(data))
-                    .catch(() => callback());
-            }
         });
 
         new TomSelect('#tomClients', {

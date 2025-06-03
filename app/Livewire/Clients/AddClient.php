@@ -63,7 +63,7 @@ class AddClient extends Component
             'document_number' => 'required|numeric|min:3|unique:clients,document_number',
         ]);
 
-        if (! isset($this->docConfig[$this->document_type])) {
+        if (!isset($this->docConfig[$this->document_type])) {
             return $this->throwError('Selecciona un tipo de documento válido.');
         }
 
