@@ -163,7 +163,7 @@ class NewDocument extends Component
             $pdf_path = $sunat->generatePDF($invoice);
         }
 
-        if(){
+        if($sunatResponse['code'] != "1"){
             $this->dispatch('error', ['label' => 'No se puede emitir un comprobante en estos momentos por fallos con sunat, Intentarlo mas tarde.']);
         }
 
