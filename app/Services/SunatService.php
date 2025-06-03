@@ -24,15 +24,18 @@ class SunatService
     {
         $see = new See();
 
+        Log::info("--- START: Log certificado path: " . config('sunat.path_certificate') . " ---");
+        Log::info("--- START: Log certificado ruc: " . config('sunat.ruc_sol') . " ---");
+        Log::info("--- START: Log certificado user: " . config('sunat.usuario_sol') . " ---");
+        Log::info("--- START: Log certificado password: " . config('sunat.clave_sol') . " ---");
+
         $see->setCertificate(file_get_contents(storage_path(config('sunat.path_certificate'))));;
         $see->setService(SunatEndpoints::FE_BETA);
-        Log::info("--- START: Log certificado path" . config('sunat.path_certificate') . " ---");
-        Log::info("--- START: Log certificado ruc" . config('sunat.ruc') . " ---");
-        Log::info("--- START: Log certificado user" . config('sunat.user') . " ---");
-        Log::info("--- START: Log certificado password" . config('sunat.password') . " ---");
-        $see->setClaveSOL(config('sunat.ruc'), config('sunat.user'), config('sunat.password'));;
+
+        $see->setClaveSOL(config('sunat.ruc_sol'), config('sunat.usuario_sol'), config('sunat.clave_sol'));
 
         return $see;
+
     }
 
     public function getInvoice($data)
@@ -78,7 +81,7 @@ class SunatService
         return (new Company())
             ->setRuc(config('sunat.ruc'))
             ->setRazonSocial(config('sunat.razon_social'))
-            ->setNombreComercial(config('sunat.commercial_name'))
+            ->setNombreComercial(config('sunat.nombre_comercial'))
             ->setAddress($this->getAddress());
     }
 
