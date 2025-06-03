@@ -26,6 +26,7 @@ class SunatService
 
         $see->setCertificate(file_get_contents(storage_path(config('sunat.path_certificate'))));;
         $see->setService(SunatEndpoints::FE_BETA);
+        Log::info("--- START: Log certificado path" . config('sunat.path_certificate') . " ---");
         Log::info("--- START: Log certificado ruc" . config('sunat.ruc') . " ---");
         Log::info("--- START: Log certificado user" . config('sunat.user') . " ---");
         Log::info("--- START: Log certificado password" . config('sunat.ruc') . " ---");
