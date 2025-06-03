@@ -24,9 +24,8 @@ class SunatService
     {
         $see = new See();
 
-        $see->setCertificate(file_get_contents(storage_path(config('sunat.path_certificate'))));;
+        $see->setCertificate(file_get_contents(storage_path("/cert/certificate.pem")));
         $see->setService(SunatEndpoints::FE_BETA);
-
         $see->setClaveSOL('20000000001', 'MODDATOS', 'moddatos');
 
         return $see;
