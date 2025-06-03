@@ -152,7 +152,7 @@ class NewDocument extends Component
 
         $invoice = $sunat->getInvoice($data);
 
-        Log::info("invoice: " . json_encode($invoice));;
+        Log::info("invoice: " . json_encode($data));;
 
         $result = $see->send($invoice);
 
