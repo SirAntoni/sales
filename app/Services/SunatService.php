@@ -26,6 +26,9 @@ class SunatService
         $service = (env('APP_ENV') == "production") ? SunatEndpoints::FE_PRODUCCION : SunatEndpoints::FE_BETA;
         $see->setCertificate(file_get_contents(storage_path(config('sunat.path_certificate'))));;
         $see->setService($service);
+        Log::info("--- START: Log certificado ruc" . config('sunat.ruc') . " ---");
+        Log::info("--- START: Log certificado user" . config('sunat.user') . " ---");
+        Log::info("--- START: Log certificado password" . config('sunat.ruc') . " ---");
         $see->setClaveSOL(config('sunat.ruc'), config('sunat.user'), config('sunat.password'));;
 
         return $see;
