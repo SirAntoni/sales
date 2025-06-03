@@ -54,14 +54,14 @@ Route::middleware(['auth'])->group(function () {
     Route::get('documents/{id}/credit-note', [DocumentController::class, 'creditNote'])->name('documents.credit-note')->middleware('can:documents');
 
     //Start Reset Cache en Cpanel
-//    Route::get('/clear-all-caches', function () {
-//        Artisan::call('config:clear');
-//        Artisan::call('cache:clear');
-//        Artisan::call('route:clear');
-//        Artisan::call('view:clear');
-//        Artisan::call('permission:cache-reset');
-//        return "Todos los caches (config, app, rutas y permisos) han sido limpiados.";
-//    });
+    Route::get('/clear-all-caches', function () {
+        Artisan::call('config:clear');
+        Artisan::call('cache:clear');
+        Artisan::call('route:clear');
+        Artisan::call('view:clear');
+        Artisan::call('permission:cache-reset');
+        return "Todos los caches (config, app, rutas y permisos) han sido limpiados.";
+    });
 //    Route::get('/clear-permission-cache', function () {
 //        Cache::forget('spatie.permission.cache');
 //        return "Cache de permisos borrado.";
