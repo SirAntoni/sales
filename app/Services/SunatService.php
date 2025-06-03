@@ -9,7 +9,6 @@ use Greenter\Model\Company\Company;
 use Greenter\Model\Sale\FormaPagos\FormaPagoContado;
 use Greenter\Model\Sale\Invoice;
 use Greenter\Model\Sale\Legend;
-use Greenter\Model\Sale\Note;
 use Greenter\Model\Sale\SaleDetail;
 use Greenter\Report\HtmlReport;
 use Greenter\Report\PdfReport;
@@ -24,7 +23,7 @@ class SunatService
     {
         $see = new See();
 
-        $see->setCertificate(file_get_contents(storage_path("/cert/certificate.pem")));
+        $see->setCertificate(file_get_contents(storage_path('/cert/certificate.pem')));
         $see->setService(SunatEndpoints::FE_BETA);
         $see->setClaveSOL('20000000001', 'MODDATOS', 'moddatos');
 
@@ -56,11 +55,6 @@ class SunatService
             ->setLegends([$this->getLegends($data['legend'])]);
     }
 
-//    public function getNote($data){
-//        return (new Note)
-//            ->setUblVersion('2.1')
-//    }
-
     public function getClient($client)
     {
 
@@ -73,7 +67,7 @@ class SunatService
     public function getCompany()
     {
         return (new Company())
-            ->setRuc('20123456789')
+            ->setRuc("20123456789")
             ->setRazonSocial('GREEN SAC')
             ->setNombreComercial('GREEN')
             ->setAddress($this->getAddress());
