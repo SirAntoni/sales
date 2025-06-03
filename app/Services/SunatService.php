@@ -29,7 +29,7 @@ class SunatService
         Log::info("--- START: Log certificado path" . config('sunat.path_certificate') . " ---");
         Log::info("--- START: Log certificado ruc" . config('sunat.ruc') . " ---");
         Log::info("--- START: Log certificado user" . config('sunat.user') . " ---");
-        Log::info("--- START: Log certificado password" . config('sunat.ruc') . " ---");
+        Log::info("--- START: Log certificado password" . config('sunat.password') . " ---");
         $see->setClaveSOL(config('sunat.ruc'), config('sunat.user'), config('sunat.password'));;
 
         return $see;

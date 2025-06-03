@@ -152,6 +152,8 @@ class NewDocument extends Component
 
         $invoice = $sunat->getInvoice($data);
 
+        Log::info("invoice: " . json_encode($invoice));;
+
         $result = $see->send($invoice);
 
         file_put_contents(storage_path('/xml_path/'.$invoice->getName().'.xml'),$see->getFactory()->getLastXml());
