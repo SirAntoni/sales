@@ -868,6 +868,7 @@ class ComposerStaticInita9bbd3976012d5a30a5f6721e86c380d
         'App\\Livewire\\Contacts\\EditContact' => __DIR__ . '/../..' . '/app/Livewire/Contacts/EditContact.php',
         'App\\Livewire\\Contacts\\TableContacts' => __DIR__ . '/../..' . '/app/Livewire/Contacts/TableContacts.php',
         'App\\Livewire\\Dashboard\\Dashboard' => __DIR__ . '/../..' . '/app/Livewire/Dashboard/Dashboard.php',
+        'App\\Livewire\\Documents\\CreditNote' => __DIR__ . '/../..' . '/app/Livewire/Documents/CreditNote.php',
         'App\\Livewire\\Documents\\NewDocument' => __DIR__ . '/../..' . '/app/Livewire/Documents/NewDocument.php',
         'App\\Livewire\\Documents\\TableDocuments' => __DIR__ . '/../..' . '/app/Livewire/Documents/TableDocuments.php',
         'App\\Livewire\\Kardex\\Kardex' => __DIR__ . '/../..' . '/app/Livewire/Kardex/Kardex.php',

@@ -52,6 +52,7 @@ return array(
     'App\\Livewire\\Contacts\\EditContact' => $baseDir . '/app/Livewire/Contacts/EditContact.php',
     'App\\Livewire\\Contacts\\TableContacts' => $baseDir . '/app/Livewire/Contacts/TableContacts.php',
     'App\\Livewire\\Dashboard\\Dashboard' => $baseDir . '/app/Livewire/Dashboard/Dashboard.php',
+    'App\\Livewire\\Documents\\CreditNote' => $baseDir . '/app/Livewire/Documents/CreditNote.php',
     'App\\Livewire\\Documents\\NewDocument' => $baseDir . '/app/Livewire/Documents/NewDocument.php',
     'App\\Livewire\\Documents\\TableDocuments' => $baseDir . '/app/Livewire/Documents/TableDocuments.php',
     'App\\Livewire\\Kardex\\Kardex' => $baseDir . '/app/Livewire/Kardex/Kardex.php',
