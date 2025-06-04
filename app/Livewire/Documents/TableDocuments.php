@@ -4,6 +4,7 @@ namespace App\Livewire\Documents;
 
 use App\Models\Document;
 use App\Services\SunatService;
+use App\Services\Util;
 use DateTime;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -39,8 +40,9 @@ class TableDocuments extends Component
 
         $sunat = new SunatService();
 
-        $see = $sunat->getSee();
-        $detail1 = new VoidedDetail();
+        $util = Util::getInstance();
+        $sunat = new SunatService();
+
 
         $anuladosCount = Document::where('status', 'anulado')->count();
         $nextCorrelativo = $anuladosCount + 1;
@@ -58,6 +60,8 @@ class TableDocuments extends Component
         ];
 
         $voided = $sunat->getVoided($data);
+
+        $see = $sunat->getSee();
 
         $result = $see->send($voided);
 

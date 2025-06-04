@@ -20,6 +20,8 @@ use Greenter\Ws\Services\SunatEndpoints;
 use Greenter\XMLSecLibs\Certificate\X509Certificate;
 use Greenter\XMLSecLibs\Certificate\X509ContentType;
 use Illuminate\Support\Facades\Log;
+use Greenter\Model\Response\SummaryResult;
+use App\Services\Util;
 
 class SunatService
 {
@@ -155,6 +157,8 @@ class SunatService
 
     public function sunatResponse($invoice,$result,$type="invoice"){
 
+        $util = Util::getInstance();
+
         $response = [];
 
         if (!$result->isSuccess()) {
@@ -168,7 +172,15 @@ class SunatService
             return $response;
         }
 
-
+        if($type != "invoice"){
+            $see = $this->getSee();
+            $ticket = $result->getTicket();
+            $result = $see->getStatus($ticket);
+            if (!$result->isSuccess()) {
+                Log::info("ERROR AL ANULAR COMPROBANTE: " . $util->getErrorResponse($res->getError()));
+                return;
+            }
+        }
 
         $cdr = $result->getCdrResponse();
 
