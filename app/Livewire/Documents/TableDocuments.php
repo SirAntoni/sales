@@ -108,7 +108,7 @@ class TableDocuments extends Component
     public
     function render()
     {
-        $documents = Document::paginate(15)->orderBy('id', 'desc');
+        $documents = Document::orderBy('id', 'desc')->paginate(10);
         return view('livewire.documents.table-documents', compact('documents'));
     }
 }
