@@ -37,7 +37,7 @@ class SunatService
         //$see->setCertificate($certificate->export(X509ContentType::PEM));
 
         $see->setCertificate(file_get_contents(storage_path(config('sunat.path_certificate'))));
-        $see->setService(SunatEndpoints::FE_PRODUCCION);
+        $see->setService((env('APP_ENV') == "production") ? SunatEndpoints::FE_PRODUCCION : SunatEndpoints::FE_BETA);
         $see->setClaveSOL(config('sunat.ruc_sol'), config('sunat.usuario_sol'), config('sunat.clave_sol'));
         return $see;
 
@@ -70,7 +70,7 @@ class SunatService
 
     public function getVoided($data){
         return (new Voided)
-            ->setCorrelativo(1)
+            ->setCorrelativo($data['correlative'])
             ->setFecGeneracion(new DateTime('-3days'))
             ->setFecComunicacion(new DateTime('-1days'))
             ->setCompany($this->getCompany())
@@ -83,10 +83,10 @@ class SunatService
 
         foreach($details as $detail) {
             $greenDetails[] = (new VoidedDetail)
-                ->setTipoDoc('03')
-                ->setSerie('1')
-                ->setCorrelativo('1')
-                ->setDesMotivoBaja('PRUEBAS DE INTEGRACIÓN');
+                ->setTipoDoc($detail['tipoDoc'])
+                ->setSerie($detail['serie'])
+                ->setCorrelativo($detail['correlative'])
+                ->setDesMotivoBaja($detail['motivoBaja']);
         }
         return $greenDetails;
     }
@@ -153,7 +153,7 @@ class SunatService
         return $greenLegend;
     }
 
-    public function sunatResponse($invoice,$result){
+    public function sunatResponse($invoice,$result,$type="invoice"){
 
         $response = [];
 
@@ -172,7 +172,13 @@ class SunatService
 
         $cdr = $result->getCdrResponse();
 
-        file_put_contents(storage_path('/cdr_path/R-'.$invoice->getName().'.zip'), $result->getCdrZip());
+        if($type="invoice"){
+            file_put_contents(storage_path('/cdr_path/R-'.$invoice->getName().'.zip'), $result->getCdrZip());
+        }else{
+            file_put_contents(storage_path('/cdr_path_anulled/R-'.$invoice->getName().'.zip'), $result->getCdrZip());
+        }
+
+
 
         $code = (int)$cdr->getCode();
 
@@ -208,7 +214,7 @@ class SunatService
         return $response;
     }
 
-    public function generatePdf($invoice){
+    public function generatePdf($invoice,$type='invoice'){
         $htmlReport = new HtmlReport();
 
         $resolver = new DefaultTemplateResolver();
@@ -241,9 +247,15 @@ class SunatService
 
         $pdf = $report->render($invoice, $params);
 
-        file_put_contents(storage_path('/pdf_path/'.$invoice->getName().'.pdf'),$pdf);
+        if($type == "invoice"){
+            file_put_contents(storage_path('/pdf_path/'.$invoice->getName().'.pdf'),$pdf);
+            return '/pdf_path_anulled/'.$invoice->getName().'.pdf';
+        }else{
+            file_put_contents(storage_path('/pdf_path/'.$invoice->getName().'.pdf'),$pdf);
+            return '/pdf_path_anulled/'.$invoice->getName().'.pdf';
+        }
 
-        return '/pdf_path/'.$invoice->getName().'.pdf';
+
 
     }
 

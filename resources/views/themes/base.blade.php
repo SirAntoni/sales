@@ -159,7 +159,7 @@ License: Uso comercial solo para ShiperSales
                     text: "El documento fue anulado con éxito!.",
                     icon: "success"
                 });
-                Livewire.dispatch('document_destroy',{id:event.detail[0]['id']})
+                Livewire.dispatch('document_destroy', {document:event.detail[0]['id']})
             }
         });
     });

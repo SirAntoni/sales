@@ -25,3 +25,12 @@ yarn-error.log
 
 /storage/pdf_path/*
 !/storage/pdf_path/.gitkeep
+
+/storage/cdr_path_anulled/*
+!/storage/cdr_path_anulled/.gitkeep
+
+/storage/xml_path_anulled/*
+!/storage/xml_path_anulled/.gitkeep
+
+/storage/pdf_path_anulled/*
+!/storage/pdf_path_anulled/.gitkeep
