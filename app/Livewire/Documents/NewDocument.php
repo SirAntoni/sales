@@ -198,7 +198,7 @@ class NewDocument extends Component
             'xml_path' => '/xml_path/'.$invoice->getName().'.xml',
             'cdr_path' => $sunatResponse['cdr'] ?? '',
             'pdf_path' => $pdf_path,
-            'status_sunat'=> ($sunatResponse['status'] == "1") ? "Aceptado" : "Rechazado",
+            'status_sunat'=> ($sunatResponse['status'] == "1") ? "aceptado" : "rechazado",
             'notes'=> $sunatResponse['notes'],
             'sale_id' => $this->id,
             'client_id' => $this->client,

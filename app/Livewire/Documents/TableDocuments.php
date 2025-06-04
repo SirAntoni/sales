@@ -74,7 +74,7 @@ class TableDocuments extends Component
 
         $pdf_path = "";
         if ($sunatResponse['status'] == 1) {
-            $pdf_path = $sunat->generatePDF($voided);
+            $pdf_path = $sunat->generatePDF($voided,'voided');
         }
 
         if ($sunatResponse['status'] != 1) {
@@ -82,14 +82,13 @@ class TableDocuments extends Component
             return;
         }
 
-        $document->update(
-            [
-                'status' => "anulado",
-                'xml_path_anulled' => '/xml_path/' . $voided->getName() . '.xml',
-                'cdr_path_anulled' => $sunatResponse['cdr'] ?? '',
-                'pdf_path_anulled' => $pdf_path,
-            ]
-        );
+        Document::find($document->id)->update([
+            'status' => "anulado",
+            'status_sunat' => ($sunatResponse['status'] == "1") ? "anulado" : "aceptado",
+            'xml_path_anulled' => '/xml_path/' . $voided->getName() . '.xml',
+            'cdr_path_anulled' => $sunatResponse['cdr'] ?? '',
+            'pdf_path_anulled' => $pdf_path,
+        ]);
 
         return;
 
