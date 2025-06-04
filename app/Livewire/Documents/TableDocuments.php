@@ -50,6 +50,7 @@ class TableDocuments extends Component
             "details" => [
                 [
                     "tipoDoc" => ($document->document_type == '1') ? '01' : '03',
+                    'date' => $document->date,
                     "serie" => $document->serie,
                     "correlative" => $document->correlative,
                     "motivoBaja" => 'PRUEBAS DE INTEGRACIÓN',

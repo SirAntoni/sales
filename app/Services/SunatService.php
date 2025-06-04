@@ -72,8 +72,8 @@ class SunatService
     public function getVoided($data){
         return (new Voided)
             ->setCorrelativo($data['correlative'])
-            ->setFecGeneracion(new DateTime('-3days'))
-            ->setFecComunicacion(new DateTime('-1days'))
+            ->setFecGeneracion(new DateTime($datap['date']))
+            ->setFecComunicacion(new DateTime())
             ->setCompany($this->getCompany())
             ->setDetails($this->getVoidedDetails($data['details']));
     }
@@ -174,8 +174,11 @@ class SunatService
             $ticket = $result->getTicket();
             $result = $see->getStatus($ticket);
             if (!$result->isSuccess()) {
-                Log::info("ERROR AL ANULAR COMPROBANTE: " . $result->getError());
-                return;
+                Log::info("ERROR AL ANULAR COMPROBANTE: " . json_encode($result->getError()));
+                $response['status'] = 0;
+                $response['code'] = "000";
+                $response['cdr'] = null;
+                return $response;
             }
         }
 
