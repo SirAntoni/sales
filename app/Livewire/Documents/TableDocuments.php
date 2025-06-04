@@ -40,9 +40,6 @@ class TableDocuments extends Component
 
         $sunat = new SunatService();
 
-        $util = UtilSunat::getInstance();
-        $sunat = new SunatService();
-
 
         $anuladosCount = Document::where('status', 'anulado')->count();
         $nextCorrelativo = $anuladosCount + 1;
