@@ -9,6 +9,7 @@ use App\Services\MigoApiService;
 use App\Services\SunatService;
 use App\Models\Sale;
 use App\Models\SaleDetail;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Log;
 use Livewire\Component;
 use App\Models\Voucher;
@@ -81,6 +82,19 @@ class NewDocument extends Component
         'articlesSelected' => 'required|array|min:1',
         'client' => 'required',
     ];
+
+    public function rules()
+    {
+        // Calculamos la fecha mínima permitida (hoy menos 5 días).
+        $minDate = Carbon::now()->subDays(5)->format('Y-m-d');
+
+        return [
+            'date'             => ['required', 'date', "after_or_equal:{$minDate}"],
+            'documentType'     => ['required'],
+            'articlesSelected' => ['required', 'array', 'min:1'],
+            'client'           => ['required'],
+        ];
+    }
 
     public function save(MigoApiService $api)
     {
