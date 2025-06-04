@@ -23,10 +23,9 @@ class SunatService
     {
         $see = new See();
 
-        $see->setCertificate(file_get_contents(storage_path('/cert/certificate.pem')));
-        $see->setService(SunatEndpoints::FE_BETA);
-        $see->setClaveSOL('20000000001', 'MODDATOS', 'moddatos');
-
+        $see->setCertificate(file_get_contents(storage_path(config('sunat.path_certificate'))));
+        $see->setService(SunatEndpoints::FE_PRODUCCION);
+        $see->setClaveSOL(config('sunat.ruc_sol'), config('sunat.usuario_sol'), config('sunat.clave_sol'));
         return $see;
 
     }
@@ -67,9 +66,9 @@ class SunatService
     public function getCompany()
     {
         return (new Company())
-            ->setRuc("20123456789")
-            ->setRazonSocial('GREEN SAC')
-            ->setNombreComercial('GREEN')
+            ->setRuc(config('sunat.ruc'))
+            ->setRazonSocial(config('sunat.razon_social'))
+            ->setNombreComercial(config('sunat.nombre_comercial'))
             ->setAddress($this->getAddress());
     }
 
@@ -132,11 +131,15 @@ class SunatService
             return $response;
         }
 
+
+
         $cdr = $result->getCdrResponse();
 
         file_put_contents(storage_path('/cdr_path/R-'.$invoice->getName().'.zip'), $result->getCdrZip());
 
         $code = (int)$cdr->getCode();
+
+        Log::info("CODE: " . $code);
 
         if ($code === 0) {
             if (count($cdr->getNotes()) > 0){
@@ -148,6 +151,7 @@ class SunatService
             $response['code'] = $code;
             $response['cdr'] = '/cdr_path/R-'.$invoice->getName().'.zip';
             $response['notes'] = (count($cdr->getNotes()) > 0) ? $cdr->getNotes():[];
+            Log::info("--- START: Log comprobante 0 " . json_encode($response) . " ---");
         } else if ($code >= 2000 && $code <= 3999) {
             Log::info("--- START: Log comprobante >= 2000 && <= 3999 " . $invoice->getName() . " ---");
             Log::info("Code: " . $code);
