@@ -144,6 +144,26 @@ License: Uso comercial solo para ShiperSales
         });
     });
 
+    window.addEventListener('document_delete', event => {
+        Swal.fire({
+            title: 'Alerta',
+            text: event.detail[0]['label'],
+            icon: 'warning',
+            confirmButtonText: "Anular comprobante",
+            confirmButtonColor: "red",
+            showCancelButton: true,
+        }).then((result) => {
+            if(result.isConfirmed){
+                Swal.fire({
+                    title: "Documento Anulado!",
+                    text: "El documento fue anulado con éxito!.",
+                    icon: "success"
+                });
+                Livewire.dispatch('document_destroy',{id:event.detail[0]['id']})
+            }
+        });
+    });
+
     window.addEventListener('abrir-nueva-pestania', event => {
         window.open(event.detail[0]['url'], '_blank');
     });

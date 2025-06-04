@@ -10,6 +10,8 @@ use Greenter\Model\Sale\FormaPagos\FormaPagoContado;
 use Greenter\Model\Sale\Invoice;
 use Greenter\Model\Sale\Legend;
 use Greenter\Model\Sale\SaleDetail;
+use Greenter\Model\Voided\Voided;
+use Greenter\Model\Voided\VoidedDetail;
 use Greenter\Report\HtmlReport;
 use Greenter\Report\PdfReport;
 use Greenter\Report\Resolver\DefaultTemplateResolver;
@@ -63,6 +65,30 @@ class SunatService
             ->setMtoImpVenta($data['total'])
             ->setDetails($this->getDetails($data['items']))
             ->setLegends([$this->getLegends($data['legend'])]);
+    }
+
+
+    public function getVoided($data){
+        return (new Voided)
+            ->setCorrelativo(1)
+            ->setFecGeneracion(new DateTime('-3days'))
+            ->setFecComunicacion(new DateTime('-1days'))
+            ->setCompany($this->getCompany())
+            ->setDetails($this->getVoidedDetails($data['details']));
+    }
+
+    public function getVoidedDetails($details = [])
+    {
+        $greenDetails = [];
+
+        foreach($details as $detail) {
+            $greenDetails[] = (new VoidedDetail)
+                ->setTipoDoc('03')
+                ->setSerie('1')
+                ->setCorrelativo('1')
+                ->setDesMotivoBaja('PRUEBAS DE INTEGRACIÓN');
+        }
+        return $greenDetails;
     }
 
     public function getClient($client)
