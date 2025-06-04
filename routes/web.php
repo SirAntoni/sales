@@ -27,6 +27,7 @@ Route::middleware(['guest'])->group(function () {
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/', [DashboardController::class,'index'])->middleware(['auth', RedirectIfNoDashboardPermission::class])->name('dashboard');
+
     Route::resource('categories', CategoryController::class)->middleware('can:store','can:categories');
     Route::resource('brands', BrandController::class)->middleware('can:store','can:brands');
     Route::resource('articles', ArticleController::class)->middleware('can:store','can:articles');
@@ -51,7 +52,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('pdf/{id}', [SaleController::class,'pdf'])->name('pdf.view');
     Route::post("/logout",[AuthController::class,'logout'])->name('logout');
     Route::get('documents/{path}/download', [DocumentController::class, 'download'])->where('path', '.*')->name('documents.download');
-    Route::get('documents/{id}/credit-note', [DocumentController::class, 'creditNote'])->name('documents.credit-note')->middleware('can:documents');
+    Route::get('documents/{id}/credit-note', [DocumentController::class, 'creditNote'])->name('documents.credit-note.blade.php')->middleware('can:documents');
     Route::get('documents/{document}/retry', [DocumentController::class, 'retry'])->name('documents.retry')->middleware('can:documents');
     //Start Reset Cache en Cpanel
     Route::get('/clear-all-caches', function () {

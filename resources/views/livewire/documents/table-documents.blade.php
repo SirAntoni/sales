@@ -100,7 +100,8 @@
                                             </x-base.table.td>
                                             <x-base.table.td class="border-dashed dark:bg-darkmode-600">
 
-                                                <a href="{{route('documents.download',['path' => $document->pdf_path])}}"><img src="{{asset('images/pdf.svg')}}" width="35px" alt=""></a>
+                                                <a href="{{route('documents.download',['path' => $document->pdf_path])}}"><img
+                                                        src="{{asset('images/pdf.svg')}}" width="35px" alt=""></a>
 
                                             </x-base.table.td>
                                             <x-base.table.td class="text-center border-dashed dark:bg-darkmode-600"
@@ -121,7 +122,6 @@
                                                 @endif
 
 
-
                                             </x-base.table.td>
                                             <x-base.table.td class="border-dashed dark:bg-darkmode-600">
                                                 @if($document->status_sunat == "aceptado")
@@ -136,13 +136,15 @@
                                             </x-base.table.td>
                                             <x-base.table.td class="border-dashed dark:bg-darkmode-600">
                                                 <div class="flex items-center justify-center">
-                                                    <x-base.button-custom
-                                                        class="mr-2"
-                                                        variant="success"
-                                                        wire:click="creditNote({{$document->id}})"
-                                                    >
-                                                        <i class="text-white fa-solid fa-file-invoice"></i>
-                                                    </x-base.button-custom>
+                                                    @if($document->status != "anulado")
+                                                        <x-base.button-custom
+                                                            class="mr-2"
+                                                            variant="success"
+                                                            wire:click="creditNote({{$document->id}})"
+                                                        >
+                                                            <i class="text-white fa-solid fa-file-invoice"></i>
+                                                        </x-base.button-custom>
+
                                                     <x-base.button-custom
                                                         class="mr-2"
                                                         variant="dark"
@@ -150,14 +152,16 @@
                                                     >
                                                         <i class="text-white fa-solid fa-envelope"></i>
                                                     </x-base.button-custom>
-                                                    @can('delete')
-                                                        <x-base.button-custom
-                                                            variant="danger"
-                                                            wire:click="delete({{$document->id}})"
-                                                        >
-                                                            <i class="text-white fa-solid fa-xmark"></i>
-                                                        </x-base.button-custom>
-                                                    @endcan
+
+                                                        @can('delete')
+                                                            <x-base.button-custom
+                                                                variant="danger"
+                                                                wire:click="delete({{$document->id}})"
+                                                            >
+                                                                <i class="text-white fa-solid fa-xmark"></i>
+                                                            </x-base.button-custom>
+                                                        @endcan
+                                                    @endif
 
                                                 </div>
                                             </x-base.table.td>

@@ -26,7 +26,7 @@ return [
          *
          * The location of the directory where DOMPDF will store fonts and font metrics
          * Note: This directory must exist and be writable by the webserver process.
-         * *Please note the trailing slash.*
+         * *Please note.blade.php the trailing slash.*
          *
          * Notes regarding fonts:
          * Additional .afm font metrics can be added by executing load_font.php from command line.

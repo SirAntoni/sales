@@ -5,11 +5,11 @@ namespace App\Livewire\Documents;
 use App\Models\Article;
 use App\Models\Client;
 use App\Models\Document;
-use App\Models\DocumentDetail;
 use App\Services\MigoApiService;
 use App\Services\SunatService;
 use App\Models\Sale;
 use App\Models\SaleDetail;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Log;
 use Livewire\Component;
 use App\Models\Voucher;
@@ -42,6 +42,8 @@ class CreditNote extends Component
     public $legends;
     public $token;
 
+    public $affected_document;
+
     protected array $docConfig = [
         'DNI' => [
             'size'        => 8,
@@ -58,19 +60,23 @@ class CreditNote extends Component
     public function mount(){
         $document = Document::find($this->id);
         $this->token = env('MIGO_API_TOKEN');
-        $this->documentType = $document->document_type;
-        $this->serie = $document->serie;
+        $this->serie = ($document->document_type == '1') ? "FC01" : "BC01";
         $this->correlative = $document->correlative;
+
 
         //Inicio Client
         $this->client = $document->client_id;
         $this->clientSelected = $document->client;
         //Fin Client
 
+        $this->affected_document = $document->serie . '-' . $document->correlative;
+
         $this->date = $document->date;
         $this->defaultClient = $document->client->id;
-        $this->number = $document->number;
-        $this->granSubtotal = $document->granSubtotal;
+        $this->granSubtotal = $document->total;
+        $this->documentType = $document->document_type;
+
+
         foreach ($document->documentDetails as $detail) {
             $this->addToArticleSale($detail->id);
         }
@@ -82,6 +88,19 @@ class CreditNote extends Component
         'articlesSelected' => 'required|array|min:1',
         'client' => 'required',
     ];
+
+    public function rules()
+    {
+        // Calculamos la fecha mínima permitida (hoy menos 5 días).
+        $minDate = Carbon::now()->subDays(5)->format('Y-m-d');
+
+        return [
+            'date'             => ['required', 'date', "after_or_equal:{$minDate}"],
+            'documentType'     => ['required'],
+            'articlesSelected' => ['required', 'array', 'min:1'],
+            'client'           => ['required'],
+        ];
+    }
 
     public function save(MigoApiService $api)
     {
@@ -153,6 +172,8 @@ class CreditNote extends Component
 
         $invoice = $sunat->getInvoice($data);
 
+        Log::info("invoice: " . json_encode($data));;
+
         $result = $see->send($invoice);
 
         file_put_contents(storage_path('/xml_path/'.$invoice->getName().'.xml'),$see->getFactory()->getLastXml());
@@ -160,11 +181,17 @@ class CreditNote extends Component
         $sunatResponse = $sunat->sunatResponse($invoice,$result);
 
         $pdf_path = "";
-        if($sunatResponse['status']){
+        if($sunatResponse['status'] == 1){
             $pdf_path = $sunat->generatePDF($invoice);
         }
 
+        if($sunatResponse['status'] != 1){
+            $this->dispatch('error', ['label' => 'No se puede emitir un comprobante en estos momentos por fallos con sunat, Intentarlo mas tarde.']);
+            return;
+        }
+
         $document = Document::create([
+            'estado' => "enviado",
             'document_type' => $this->documentType,
             'serie' => $this->serie,
             'correlative' => $this->correlative,
@@ -177,8 +204,7 @@ class CreditNote extends Component
             'xml_path' => '/xml_path/'.$invoice->getName().'.xml',
             'cdr_path' => $sunatResponse['cdr'] ?? '',
             'pdf_path' => $pdf_path,
-            'status_sunat'=> $sunatResponse['status'],
-            'code' => $sunatResponse['code'],
+            'status_sunat'=> ($sunatResponse['status'] == "1") ? "aceptado" : "rechazado",
             'notes'=> $sunatResponse['notes'],
             'sale_id' => $this->id,
             'client_id' => $this->client,
@@ -300,7 +326,7 @@ class CreditNote extends Component
     public function addToArticleSale($id)
     {
 
-        $article = DocumentDetail::with('article')->find($id);
+        $article = SaleDetail::with('article')->find($id);
 
 
         if ($article) {
@@ -381,6 +407,6 @@ class CreditNote extends Component
 
     public function render()
     {
-        return view('livewire.documents.new-document');
+        return view('livewire.documents.credit-note');
     }
 }

@@ -43,7 +43,7 @@
                                 <div class="grid grid-cols-12 pt-4">
 
 
-                                    <div class="col-span-12 sm:col-span-6 flex flex-col gap-3.5 px-5 py-2">
+                                    <div class="col-span-12 sm:col-span-4 flex flex-col gap-3.5 px-5 py-2">
 
                                         <div>
                                             <x-base.form-label for="documentType">
@@ -69,7 +69,7 @@
 
 
                                     </div>
-                                    <div class="col-span-12 sm:col-span-6 flex flex-col gap-3.5 px-5 py-2">
+                                    <div class="col-span-12 sm:col-span-4 flex flex-col gap-3.5 px-5 py-2">
 
                                         <div>
                                             <x-base.form-label for="serie">
@@ -105,6 +105,27 @@
                                                 disabled
                                             />
                                             @error('correlative')
+                                            <div class="p-1">
+                                                {{$message}}
+                                            </div>
+                                            @enderror
+                                        </div>
+
+
+                                    </div>
+                                    <div class="col-span-12 sm:col-span-4 flex flex-col gap-3.5 px-5 py-2">
+
+                                        <div>
+                                            <x-base.form-label for="affected_document">
+                                                Documento afectado
+                                            </x-base.form-label>
+                                            <x-base.form-input
+                                                id="affected_document"
+                                                type="text"
+                                                placeholder="Documento afectado"
+                                                wire:model="affected_document"
+                                            />
+                                            @error('affected_document')
                                             <div class="p-1">
                                                 {{$message}}
                                             </div>

@@ -102,7 +102,7 @@ class TableDocuments extends Component
     public
     function creditNote($id)
     {
-        return redirect()->route('documents.credit-note', $id);
+        return redirect()->route('documents.credit-note.blade.php', $id);
     }
 
     public
