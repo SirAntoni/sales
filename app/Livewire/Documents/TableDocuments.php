@@ -6,6 +6,7 @@ use App\Models\Document;
 use App\Services\SunatService;
 use App\Services\UtilSunat;
 use DateTime;
+use Illuminate\Support\Facades\Log;
 use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -56,9 +57,13 @@ class TableDocuments extends Component
             ]
         ];
 
-        $voided = $sunat->getVoided($data);
+
 
         $see = $sunat->getSee();
+
+        $voided = $sunat->getVoided($data);
+
+        Log::info("VOIDED: ". json_encode($voided));
 
         $result = $see->send($voided);
 
