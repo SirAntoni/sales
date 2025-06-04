@@ -21,7 +21,6 @@ use Greenter\XMLSecLibs\Certificate\X509Certificate;
 use Greenter\XMLSecLibs\Certificate\X509ContentType;
 use Illuminate\Support\Facades\Log;
 use Greenter\Model\Response\SummaryResult;
-use App\Services\UtilSunat;
 
 class SunatService
 {
@@ -177,7 +176,7 @@ class SunatService
             $ticket = $result->getTicket();
             $result = $see->getStatus($ticket);
             if (!$result->isSuccess()) {
-                Log::info("ERROR AL ANULAR COMPROBANTE: " . $util->getErrorResponse($res->getError()));
+                Log::info("ERROR AL ANULAR COMPROBANTE: " . $result->getError());
                 return;
             }
         }
