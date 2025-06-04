@@ -249,7 +249,7 @@ class SunatService
 
         if($type == "invoice"){
             file_put_contents(storage_path('/pdf_path/'.$invoice->getName().'.pdf'),$pdf);
-            return '/pdf_path_anulled/'.$invoice->getName().'.pdf';
+            return '/pdf_path/'.$invoice->getName().'.pdf';
         }else{
             file_put_contents(storage_path('/pdf_path/'.$invoice->getName().'.pdf'),$pdf);
             return '/pdf_path_anulled/'.$invoice->getName().'.pdf';
