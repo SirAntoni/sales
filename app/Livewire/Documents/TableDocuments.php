@@ -4,7 +4,7 @@ namespace App\Livewire\Documents;
 
 use App\Models\Document;
 use App\Services\SunatService;
-use App\Services\Util;
+use App\Services\UtilSunat;
 use DateTime;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -40,7 +40,7 @@ class TableDocuments extends Component
 
         $sunat = new SunatService();
 
-        $util = Util::getInstance();
+        $util = UtilSunat::getInstance();
         $sunat = new SunatService();
 
 

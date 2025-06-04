@@ -14,10 +14,10 @@ use Greenter\Report\Resolver\DefaultTemplateResolver;
 use Greenter\Report\XmlUtils;
 use Greenter\See;
 
-final class Util
+final class UtilSunat
 {
     /**
-     * @var Util
+     * @var UtilSunat
      */
     private static $current;
     /**
@@ -30,7 +30,7 @@ final class Util
         $this->shared = new SharedStore();
     }
 
-    public static function getInstance(): Util
+    public static function getInstance(): UtilSunat
     {
         if (!self::$current instanceof self) {
             self::$current = new self();

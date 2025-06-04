@@ -21,7 +21,7 @@ use Greenter\XMLSecLibs\Certificate\X509Certificate;
 use Greenter\XMLSecLibs\Certificate\X509ContentType;
 use Illuminate\Support\Facades\Log;
 use Greenter\Model\Response\SummaryResult;
-use App\Services\Util;
+use App\Services\UtilSunat;
 
 class SunatService
 {
@@ -157,7 +157,7 @@ class SunatService
 
     public function sunatResponse($invoice,$result,$type="invoice"){
 
-        $util = Util::getInstance();
+        $util = UtilSunat::getInstance();
 
         $response = [];
 
