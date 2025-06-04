@@ -72,7 +72,7 @@ class SunatService
     public function getVoided($data){
         return (new Voided)
             ->setCorrelativo($data['correlative'])
-            ->setFecGeneracion(new DateTime($datap['date']))
+            ->setFecGeneracion(new DateTime($data['date']))
             ->setFecComunicacion(new DateTime())
             ->setCompany($this->getCompany())
             ->setDetails($this->getVoidedDetails($data['details']));
