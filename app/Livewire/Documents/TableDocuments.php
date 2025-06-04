@@ -74,7 +74,7 @@ class TableDocuments extends Component
 
         $pdf_path = "";
         if ($sunatResponse['status'] == 1) {
-            $pdf_path = $sunat->generatePDF($invoice);
+            $pdf_path = $sunat->generatePDF($voided);
         }
 
         if ($sunatResponse['status'] != 1) {
