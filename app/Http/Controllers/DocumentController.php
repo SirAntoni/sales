@@ -87,9 +87,9 @@ class DocumentController extends Controller
             "correlative" => $document->correlative,
             "date" => $document->date ?? "2005-01-01",
             "tipoDoc" => ($document->document_type == '1') ? '01' : '03',
-            "subtotal" => $document->subtotal,
-            "igv"=> $document->tax,
-            "total" => $document->total,
+            "subtotal" => number_format((float)$document->subtotal, 2, '.', ''),
+            "igv"=> $number_format((float)$document->tax, 2, '.', ''),
+            "total" => number_format((float)$document->total, 2, '.', ''),
             "client" => [
                 "tipoDoc" => $tipoDoc,
                 "numDoc" => $document->client->document_number,
