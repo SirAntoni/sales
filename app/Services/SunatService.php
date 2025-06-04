@@ -15,6 +15,8 @@ use Greenter\Report\PdfReport;
 use Greenter\Report\Resolver\DefaultTemplateResolver;
 use Greenter\See;
 use Greenter\Ws\Services\SunatEndpoints;
+use Greenter\XMLSecLibs\Certificate\X509Certificate;
+use Greenter\XMLSecLibs\Certificate\X509ContentType;
 use Illuminate\Support\Facades\Log;
 
 class SunatService
@@ -23,7 +25,11 @@ class SunatService
     {
         $see = new See();
 
-        $see->setCertificate(file_get_contents(storage_path(config('sunat.path_certificate'))));
+        $pfx = file_get_contents(storage_path(config('sunat.path_certificate')));
+        $password = 'zGwEPRvP6QeV26R';
+        $certificate = new X509Certificate($pfx, $password);
+        $see->setCertificate($certificate->export(X509ContentType::PEM));
+        //$see->setCertificate(file_get_contents(storage_path(config('sunat.path_certificate'))));
         $see->setService(SunatEndpoints::FE_PRODUCCION);
         $see->setClaveSOL(config('sunat.ruc_sol'), config('sunat.usuario_sol'), config('sunat.clave_sol'));
         return $see;
