@@ -25,11 +25,16 @@ class SunatService
     {
         $see = new See();
 
-        $pfx = file_get_contents(storage_path(config('sunat.path_certificate')));
-        $password = 'zGwEPRvP6QeV26R';
-        $certificate = new X509Certificate($pfx, $password);
-        $see->setCertificate($certificate->export(X509ContentType::PEM));
-        //$see->setCertificate(file_get_contents(storage_path(config('sunat.path_certificate'))));
+        Log::info("PATH CERTIFICATE: " .  config('sunat.path_certificate'));
+        Log::info("SUNAT RUC SOL: " .  config('sunat.ruc_sol'));
+        Log::info("RUC: : " .  config('sunat.ruc'));
+
+        ///$pfx = file_get_contents(storage_path(config('sunat.path_certificate')));
+        //$password = 'zGwEPRvP6QeV26R';
+        //$certificate = new X509Certificate($pfx, $password);
+        //$see->setCertificate($certificate->export(X509ContentType::PEM));
+
+        $see->setCertificate(file_get_contents(storage_path(config('sunat.path_certificate'))));
         $see->setService(SunatEndpoints::FE_PRODUCCION);
         $see->setClaveSOL(config('sunat.ruc_sol'), config('sunat.usuario_sol'), config('sunat.clave_sol'));
         return $see;
