@@ -17,6 +17,7 @@ class Document extends Model
     const DOCUMENT_REJECTED = 2;
 
     protected $fillable = [
+        'status',
         'document_type',
         'serie',
         'correlative',
@@ -28,8 +29,11 @@ class Document extends Model
         'tax',
         'total',
         'xml_path',
+        'xml_path_anulled',
         'cdr_path',
+        'cdr_path_anulled',
         'pdf_path',
+        'pdf_path_anulled',
         'status_sunat',
         'code',
         'notes',

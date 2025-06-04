@@ -263,11 +263,9 @@ class SunatService
             file_put_contents(storage_path('/pdf_path/'.$invoice->getName().'.pdf'),$pdf);
             return '/pdf_path/'.$invoice->getName().'.pdf';
         }else{
-            file_put_contents(storage_path('/pdf_path/'.$invoice->getName().'.pdf'),$pdf);
+            file_put_contents(storage_path('/pdf_path_anulled/'.$invoice->getName().'.pdf'),$pdf);
             return '/pdf_path_anulled/'.$invoice->getName().'.pdf';
         }
-
-
 
     }
 
