@@ -2,10 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Document;
+use App\Services\MigoApiService;
+use App\Services\SunatService;
 use Greenter\Model\Sale\Invoice;
 use Greenter\Report\HtmlReport;
 use Illuminate\Http\Request;
 use Greenter\Report\PdfReport;
+use Illuminate\Support\Facades\Log;
+use Luecano\NumeroALetras\NumeroALetras;
 
 class DocumentController extends Controller
 {
@@ -29,6 +34,94 @@ class DocumentController extends Controller
     {
         $fullPath = storage_path($path);
         return response()->download($fullPath);
+    }
+
+    public function retry(Document  $document,MigoApiService $api)
+    {
+        $docConfig = [
+            'DNI' => [
+                'size'        => 8,
+                'field'       => 'dni',
+                'responseKey' => 'nombre',
+            ],
+            'RUC' => [
+                'size'        => 11,
+                'field'       => 'ruc',
+                'responseKey' => 'nombre_o_razon_social',
+            ],
+        ];
+
+        $tiposIdentidad = [
+            '0' => 'NO DOMICILIADO',
+            '1' => 'DNI',
+            '4' => 'CE',
+            '6' => 'RUC',
+            '7' => 'PASAPORTE',
+        ];
+
+        $inverseTipos = array_flip($tiposIdentidad);
+
+        $textoDoc = $document->client->document_type;
+        $tipoDoc  = $inverseTipos[$textoDoc] ?? null;
+
+        $config = $docConfig[$textoDoc];
+
+        $payload = [
+            $config['field'] => $document->client->document_number,
+            'token'          => env('MIGO_API_TOKEN')
+        ];
+
+        $responseMigoApi = $api->post(
+            strtolower($document->client->document_type),
+            $payload
+        );
+
+        $formatter = new NumeroALetras();
+
+        $legends = $formatter->toInvoice($document->total, 2, 'SOLES');
+
+        $sunat = new SunatService();
+
+        $data = [
+            "serie" => $document->serie,
+            "correlative" => $document->correlative,
+            "date" => $document->date ?? "2005-01-01",
+            "tipoDoc" => ($document->document_type == '1') ? '01' : '03',
+            "subtotal" => $document->subtotal,
+            "igv"=> $document->tax,
+            "total" => $document->total,
+            "client" => [
+                "tipoDoc" => $tipoDoc,
+                "numDoc" => $document->client->document_number,
+                "name" => $responseMigoApi[$config['responseKey']] ?? '',
+                "address" => $document->client->address,
+            ],
+            "items"=> $document->documentDetails,
+            "legend"=> $legends,
+        ];
+
+        $see = $sunat->getSee();
+
+        $invoice = $sunat->getInvoice($data);
+
+        Log::info("invoice: " . json_encode($data));;
+
+        $result = $see->send($invoice);
+
+        file_put_contents(storage_path('/xml_path/'.$invoice->getName().'.xml'),$see->getFactory()->getLastXml());
+
+        $sunatResponse = $sunat->sunatResponse($invoice,$result);
+
+        $pdf_path = "";
+        if($sunatResponse['status'] == 1){
+            $pdf_path = $sunat->generatePDF($invoice);
+        }
+
+        if($sunatResponse['status'] != 1){
+            return response()->json(['no enviado']);
+        }
+
+        return response()->json(['success']);
     }
 
     /**

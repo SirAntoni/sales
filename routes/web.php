@@ -52,7 +52,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post("/logout",[AuthController::class,'logout'])->name('logout');
     Route::get('documents/{path}/download', [DocumentController::class, 'download'])->where('path', '.*')->name('documents.download');
     Route::get('documents/{id}/credit-note', [DocumentController::class, 'creditNote'])->name('documents.credit-note')->middleware('can:documents');
-
+    Route::get('documents/{document}/retry', [DocumentController::class, 'retry'])->name('documents.retry')->middleware('can:documents');
     //Start Reset Cache en Cpanel
     Route::get('/clear-all-caches', function () {
         Artisan::call('config:clear');
