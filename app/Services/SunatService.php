@@ -156,8 +156,6 @@ class SunatService
 
     public function sunatResponse($invoice,$result,$type="invoice"){
 
-        $util = UtilSunat::getInstance();
-
         $response = [];
 
         if (!$result->isSuccess()) {
