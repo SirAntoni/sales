@@ -227,11 +227,12 @@ class NewDocument extends Component
     {
         return Client::query()
             ->where('name', 'like', '%'.$query.'%')
+            ->orWhere('document_number', 'like', '%'.$query.'%')
             ->limit(10)
-            ->get(['id', 'name'])
+            ->get(['id', 'name','document_number'])
             ->map(fn($c) => [
                 'value' => $c->id,
-                'text'  => $c->name,
+                'text'  => $c->name . " - ".  $c->document_number,
             ])
             ->toArray();
     }

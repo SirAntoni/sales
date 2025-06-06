@@ -355,7 +355,7 @@
                 // agregamos la opción que ya existe
                 this.addOption({
                     value: '{{ $clientSelected->id }}',
-                    text: '{{ $clientSelected->name }}'
+                    text: '{{ $clientSelected->name }} - {{$clientSelected}}'
                 });
                 // la seleccionamos
                 this.setValue('{{ $clientSelected->id }}');

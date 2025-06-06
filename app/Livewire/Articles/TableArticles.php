@@ -45,6 +45,7 @@ class TableArticles extends Component
         $limit = 15;
         $articles = Article::query()
             ->with(['category:id,name', 'brand:id,name'])
+            ->whereNot('id', 1)
             ->when($this->search, function ($query, $search) {
                 $search = trim($search);
                 $query->where(function ($q) use ($search) {
