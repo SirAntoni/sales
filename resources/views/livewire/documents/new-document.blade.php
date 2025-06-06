@@ -91,7 +91,7 @@
 
 
                                     </div>
-                                    <div class="col-span-12 sm:col-span-4 flex flex-col gap-3.5 px-5 py-2">
+                                    <div class="col-span-12 sm:col-span-3 flex flex-col gap-3.5 px-5 py-2">
 
                                         <div>
                                             <x-base.form-label for="correlative">
@@ -113,7 +113,7 @@
 
 
                                     </div>
-                                    <div class="col-span-12 sm:col-span-4 flex flex-col gap-3.5 px-5 py-2">
+                                    <div class="col-span-12 sm:col-span-3 flex flex-col gap-3.5 px-5 py-2">
                                         <div>
 
                                             <x-base.form-label for="datepicker">
@@ -137,7 +137,7 @@
 
                                     </div>
 
-                                    <div class="col-span-12 sm:col-span-4 flex flex-col px-5 py-2">
+                                    <div class="col-span-12 sm:col-span-6 flex flex-col px-5 py-2">
 
                                         <div>
                                             <label>Cliente</label>
