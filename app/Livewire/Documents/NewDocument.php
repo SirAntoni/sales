@@ -285,18 +285,9 @@ class NewDocument extends Component
             });
 
             if ($index !== false) {
-
-                if ($this->articlesSelected[$index]['quantity'] < $article->stock) {
                     $this->articlesSelected[$index]['quantity']++;
-                    $this->articlesSelected[$index]['total'] = $this->articlesSelected[$index]['quantity'] * $article->sale_price;
-                } else {
-                    $this->dispatch('error', ['label' => 'No hay stock disponible para ' . $article->title]);
-                }
-
+                    $this->articlesSelected[$index]['total'] = $this->articlesSelected[$index]['quantity'] * $this->articlesSelected[$index]['price'];
             } else {
-
-                if ($article->stock > 0) {
-
                     $this->articlesSelected[] = [
                         'id' => $article->id,
                         'category' => $article->category_id,
@@ -306,12 +297,6 @@ class NewDocument extends Component
                         'quantity' => 1,
                         'total' => $article->sale_price
                     ];
-
-
-
-                } else {
-                    $this->dispatch('error', ['label' => 'No hay stock disponible para ' . $article->title]);
-                }
             }
 
             $this->calculateTotals();
@@ -332,17 +317,12 @@ class NewDocument extends Component
 
             if ($index !== false) {
 
-                if ($this->articlesSelected[$index]['quantity'] < $article->stock) {
+
                     $this->articlesSelected[$index]['quantity']++;
-                    $this->articlesSelected[$index]['total'] = $this->articlesSelected[$index]['quantity'] * $article->sale_price;
-                } else {
-                    $this->dispatch('error', ['label' => 'No hay stock disponible para ' . $article->title]);
-                }
+                    $this->articlesSelected[$index]['total'] = $this->articlesSelected[$index]['quantity'] * $this->articlesSelected[$index]['price'];
+
 
             } else {
-
-                if ($article->article->stock > 0) {
-
                     $this->articlesSelected[] = [
                         'id' => $article->article->id,
                         'category' => $article->article->category_id,
@@ -353,12 +333,6 @@ class NewDocument extends Component
                         'quantity' => $article->quantity,
                         'total' => $article->price * $article->quantity,
                     ];
-
-
-
-                } else {
-                    $this->dispatch('error', ['label' => 'No hay stock disponible para ' . $article->title]);
-                }
             }
 
             $this->calculateTotals();
@@ -389,11 +363,6 @@ class NewDocument extends Component
         if (!$article) {
             $this->dispatch('error', ['label' => 'Artículo no encontrado']);
             return;
-        }
-
-        if ($article->stock < $selected['quantity']) {
-            $this->dispatch('error', ['label' => 'No hay stock disponible para ' . $article->title]);
-            $selected['quantity'] = $article->stock;
         }
 
         $selected['total'] = (float)$selected['price'] * (int)$selected['quantity'];
