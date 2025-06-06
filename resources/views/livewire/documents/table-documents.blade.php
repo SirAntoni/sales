@@ -137,29 +137,36 @@
                                             <x-base.table.td class="border-dashed dark:bg-darkmode-600">
                                                 <div class="flex items-center justify-center">
                                                     @if($document->status != "anulado")
-                                                        <x-base.button-custom
-                                                            class="mr-2"
+                                                        <x-base.tippy
+                                                            as="x-base.button-sm"
                                                             variant="success"
-                                                            wire:click="creditNote({{$document->id}})"
-                                                        >
+                                                            size="sm"
+                                                            class="mr-2"
+                                                            content="Emitir nota de crédito"
+                                                            wire:click="creditNote({{$document->id}})">
                                                             <i class="text-white fa-solid fa-file-invoice"></i>
-                                                        </x-base.button-custom>
+                                                        </x-base.tippy>
 
-                                                    <x-base.button-custom
-                                                        class="mr-2"
-                                                        variant="dark"
-                                                        wire:click="verPDF({{$document->id}})"
-                                                    >
-                                                        <i class="text-white fa-solid fa-envelope"></i>
-                                                    </x-base.button-custom>
+                                                        <x-base.tippy
+                                                            as="x-base.button-sm"
+                                                            variant="dark"
+                                                            size="sm"
+                                                            class="mr-2"
+                                                            content="Enviar comprobante por email."
+                                                            wire:click="creditNote({{$document->id}})">
+                                                            <i class="text-white fa-solid fa-envelope"></i>
+                                                        </x-base.tippy>
 
                                                         @can('delete')
-                                                            <x-base.button-custom
+                                                            <x-base.tippy
+                                                                as="x-base.button-sm"
                                                                 variant="danger"
-                                                                wire:click="delete({{$document->id}})"
-                                                            >
+                                                                size="sm"
+                                                                class="mr-2"
+                                                                content="Anular comprobante"
+                                                                wire:click="delete({{$document->id}})">
                                                                 <i class="text-white fa-solid fa-xmark"></i>
-                                                            </x-base.button-custom>
+                                                            </x-base.tippy>
                                                         @endcan
                                                     @endif
 

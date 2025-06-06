@@ -16,7 +16,6 @@
                     </x-base.button>
 
 
-
                 </div>
             </div>
             <div class="mt-3.5">
@@ -67,60 +66,59 @@
                         </div>
 
 
-
                     </div>
                     <div class="overflow-auto xl:overflow-visible text-sm">
                         <x-base.table class="border-b border-slate-200/60 ">
                             <x-base.table.thead>
                                 <x-base.table.tr>
                                     <x-base.table.td
-                                                     class="border-t border-slate-200/60 bg-slate-50 font-medium text-slate-500"
+                                        class="border-t border-slate-200/60 bg-slate-50 font-medium text-slate-500"
                                     >
                                         Creación
                                     </x-base.table.td>
                                     <x-base.table.td
-                                                     class="border-t border-slate-200/60 bg-slate-50 font-medium text-slate-500"
+                                        class="border-t border-slate-200/60 bg-slate-50 font-medium text-slate-500"
                                     >
                                         Usuario
                                     </x-base.table.td>
                                     <x-base.table.td
-                                                     class="border-t border-slate-200/60 bg-slate-50 font-medium text-slate-500"
+                                        class="border-t border-slate-200/60 bg-slate-50 font-medium text-slate-500"
                                     >
                                         Cliente
                                     </x-base.table.td>
                                     <x-base.table.td
-                                                     class="border-t border-slate-200/60 bg-slate-50 font-medium text-slate-500"
+                                        class="border-t border-slate-200/60 bg-slate-50 font-medium text-slate-500"
                                     >
                                         Fecha
                                     </x-base.table.td>
                                     <x-base.table.td
-                                                     class="border-t border-slate-200/60 bg-slate-50 font-medium text-slate-500"
+                                        class="border-t border-slate-200/60 bg-slate-50 font-medium text-slate-500"
                                     >
                                         Total
                                     </x-base.table.td>
                                     <x-base.table.td
-                                                     class="border-t border-slate-200/60 bg-slate-50 font-medium text-slate-500"
+                                        class="border-t border-slate-200/60 bg-slate-50 font-medium text-slate-500"
                                     >
                                         Cant.
                                     </x-base.table.td>
                                     <x-base.table.td
-                                                     class="border-t border-slate-200/60 bg-slate-50 font-medium text-slate-500"
+                                        class="border-t border-slate-200/60 bg-slate-50 font-medium text-slate-500"
                                     >
                                         Contacto
                                     </x-base.table.td>
                                     <x-base.table.td
-                                                     class="border-t border-slate-200/60 bg-slate-50 font-medium text-slate-500"
+                                        class="border-t border-slate-200/60 bg-slate-50 font-medium text-slate-500"
                                     >
                                         M. pago
                                     </x-base.table.td>
                                     <x-base.table.td
-                                                     class="border-t border-slate-200/60 bg-slate-50 font-medium text-slate-500"
+                                        class="border-t border-slate-200/60 bg-slate-50 font-medium text-slate-500"
                                     >
                                         N.Orden
                                     </x-base.table.td>
 
                                     <x-base.table.td
-                                                     class="w-36 border-t border-slate-200/60 bg-slate-50 text-center font-medium text-slate-500"
+                                        class="w-36 border-t border-slate-200/60 bg-slate-50 text-center font-medium text-slate-500"
                                     >
                                         Action
                                     </x-base.table.td>
@@ -130,12 +128,12 @@
                                 @if($sales->count() > 0 )
                                     @foreach ($sales as $sale)
                                         <x-base.table.tr class="[&_td]:last:border-b-0">
-                                            <x-base.table.td-sale class="border-dashed dark:bg-darkmode-600 text" >
+                                            <x-base.table.td-sale class="border-dashed dark:bg-darkmode-600 text">
 
                                                 {{ $sale->created_at->format("d-m-Y H:i:s")}}
 
                                             </x-base.table.td-sale>
-                                            <x-base.table.td-sale class="border-dashed dark:bg-darkmode-600" >
+                                            <x-base.table.td-sale class="border-dashed dark:bg-darkmode-600">
 
                                                 {{ $sale->user->name}}
 
@@ -154,45 +152,48 @@
 
 
                                             </x-base.table.td-sale>
-                                            <x-base.table.td-sale class="border-dashed dark:bg-darkmode-600" >
+                                            <x-base.table.td-sale class="border-dashed dark:bg-darkmode-600">
 
                                                 {{ $sale->date }}
 
                                             </x-base.table.td-sale>
-                                            <x-base.table.td-sale class="border-dashed dark:bg-darkmode-600" >
+                                            <x-base.table.td-sale class="border-dashed dark:bg-darkmode-600">
 
                                                 S/. {{ number_format($sale->total,2) }}
 
                                             </x-base.table.td-sale>
                                             <x-base.table.td-sale class="text-center border-dashed dark:bg-darkmode-600"
-                                                             >
+                                            >
                                                 {{ $sale->saleDetails->sum('quantity') }}
 
                                             </x-base.table.td-sale>
-                                            <x-base.table.td-sale class="border-dashed dark:bg-darkmode-600" >
+                                            <x-base.table.td-sale class="border-dashed dark:bg-darkmode-600">
 
                                                 {{ $sale->contact->name }}
 
                                             </x-base.table.td-sale>
-                                            <x-base.table.td-sale class="border-dashed dark:bg-darkmode-600" >
+                                            <x-base.table.td-sale class="border-dashed dark:bg-darkmode-600">
 
                                                 {{ $sale->paymentMethod->name }}
 
                                             </x-base.table.td-sale>
-                                            <x-base.table.td-sale class="border-dashed dark:bg-darkmode-600" >
+                                            <x-base.table.td-sale class="border-dashed dark:bg-darkmode-600">
                                                 {{ $sale->number }}
                                             </x-base.table.td-sale>
 
                                             <x-base.table.td class="border-dashed dark:bg-darkmode-600">
                                                 <div class="flex items-center justify-center">
                                                     @can('update')
-                                                        <x-base.button-custom
-                                                            class="mr-2"
+                                                        <x-base.tippy
+                                                            as="x-base.button-sm"
                                                             variant="success"
-                                                            wire:click="edit({{$sale->id}})"
-                                                        >
+                                                            size="sm"
+                                                            class="mr-2"
+                                                            content="Ver detalle"
+                                                            wire:click="edit({{$sale->id}})">
                                                             <i class="text-white fa-solid fa-eye"></i>
-                                                        </x-base.button-custom>
+
+                                                        </x-base.tippy>
                                                     @endcan
                                                     <x-base.tippy
                                                         as="x-base.button-sm"
@@ -205,21 +206,28 @@
                                                         <i class="fa-solid fa-file-circle-plus"></i>
 
                                                     </x-base.tippy>
-                                                    <x-base.button-custom
-                                                                   class="mr-2"
-                                                                   variant="dark"
-                                                                   wire:click="verPDF({{$sale->id}})"
-                                                    >
+                                                    <x-base.tippy
+                                                        as="x-base.button-sm"
+                                                        variant="dark"
+                                                        size="sm"
+                                                        class="mr-2"
+                                                        content="Ver PDF"
+                                                        wire:click="verPDF({{$sale->id}})">
                                                         <i class="text-white fa-solid fa-file-pdf"></i>
-                                                    </x-base.button-custom>
-                                                    @can('delete')
-                                                    <x-base.button-custom
 
-                                                                   variant="danger"
-                                                                   wire:click="delete({{$sale->id}})"
-                                                    >
-                                                        <i class="text-white fa-solid fa-xmark"></i>
-                                                    </x-base.button-custom>
+                                                    </x-base.tippy>
+
+                                                    @can('delete')
+                                                        <x-base.tippy
+                                                            as="x-base.button-sm"
+                                                            variant="danger"
+                                                            size="sm"
+                                                            class="mr-2"
+                                                            content="Anular venta"
+                                                            wire:click="delete({{$sale->id}})">
+                                                            <i class="text-white fa-solid fa-xmark"></i>
+
+                                                        </x-base.tippy>
                                                     @endcan
 
                                                 </div>
@@ -282,8 +290,10 @@
         });
 
         pickerFilter.on('selected', (startDate, endDate) => {
-            @this.set('startDate', startDate.format('YYYY-MM-DD'));
-            @this.set('endDate', endDate.format('YYYY-MM-DD'));
+            @this.
+            set('startDate', startDate.format('YYYY-MM-DD'));
+            @this.
+            set('endDate', endDate.format('YYYY-MM-DD'));
         });
 
     });

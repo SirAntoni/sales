@@ -26,6 +26,10 @@ class TableDocuments extends Component
         $this->resetPage();
     }
 
+    public function rendered(){
+        $this->dispatch('reinit-tippy');
+    }
+
     #[On('document_destroy')]
     public function document_destroy(Document $document)
     {

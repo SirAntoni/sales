@@ -112,20 +112,25 @@
                                             </x-base.table.td>
                                             <x-base.table.td class="border-dashed py-4 dark:bg-darkmode-600">
                                                 <div class="flex items-center justify-center">
-                                                    <x-base.button-custom
-                                                        class="mr-2"
+                                                    <x-base.tippy
+                                                        as="x-base.button-sm"
                                                         variant="success"
-                                                        wire:click="edit({{$purchase->id}})"
-                                                    >
+                                                        size="sm"
+                                                        class="mr-2"
+                                                        content="Ver compra"
+                                                        wire:click="edit({{$purchase->id}})">
                                                         <i class="text-white fa-solid fa-eye"></i>
-                                                    </x-base.button-custom>
+                                                    </x-base.tippy>
                                                     @can('delete')
-                                                        <x-base.button-custom
+                                                        <x-base.tippy
+                                                            as="x-base.button-sm"
                                                             variant="danger"
-                                                            wire:click="delete({{$purchase->id}})"
-                                                        >
+                                                            size="sm"
+                                                            class="mr-2"
+                                                            content="Anular Compra"
+                                                            wire:click="delete({{$purchase->id}})">
                                                             <i class="text-white fa-solid fa-xmark"></i>
-                                                        </x-base.button-custom>
+                                                        </x-base.tippy>
                                                     @endcan
                                                 </div>
                                             </x-base.table.td>
