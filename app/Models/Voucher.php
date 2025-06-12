@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Log;
 
 class Voucher extends Model
 {
@@ -19,7 +20,7 @@ class Voucher extends Model
 
         $last = Document::where('serie', $voucher->serie)
             ->max('correlative');
-
+        Log::info("last correlative: " . $last);
         return $last
             ? $last + 1
             : (int) $voucher->number + 1;
