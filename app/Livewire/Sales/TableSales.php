@@ -142,7 +142,13 @@ class TableSales extends Component
                     break;
             }
             foreach ($sale->saleDetails as $detail) {
-                $htmlDetails .= "<tr><td style='border:1px solid;padding:5px'>{$detail->article->title}</td><td style='text-align: center;border:1px solid;'>{$detail->quantity}</td><td style='text-align: center;border:1px solid;'>{$detail->price}</td></tr>";
+                $htmlDetails .= "<tr>"
+                    . "<td style='border:1px solid;padding:5px'>"
+                    . ($detail->article?->title ?? '-')
+                    . "</td>"
+                    . "<td style='text-align:center;border:1px solid;'>{$detail->quantity}</td>"
+                    . "<td style='text-align:center;border:1px solid;'>{$detail->price}</td>"
+                    . "</tr>";
             }
             $sale->htmlDetails = $htmlDetails . '</tbody></table>';
             if($sale->observations != null){
