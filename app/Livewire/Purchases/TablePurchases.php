@@ -120,9 +120,15 @@ class TablePurchases extends Component
             $htmlDetails = "<p><strong>Proveedor: </strong> {$purchase->provider->name} </p><br><table style='border: 1px solid;'><thead style='border:1px solid;'><tr><th style='border:1px solid'>Titulo</th><th style='border:1px solid;padding:10px'>Cantidad</th><th style='padding:10px'>Precio</thstyle></tr></thead><tbody style='border:1px solid;'>";
 
             foreach ($purchase->purchaseDetails as $detail) {
-                $htmlDetails .= "<tr><td style='border:1px solid;padding:5px'>{$detail->article->title}</td><td style='text-align: center;border:1px solid;'>{$detail->quantity}</td><td style='text-align: center;border:1px solid;'>{$detail->price}</td></tr>";
+                $htmlDetails .= "<tr>"
+                    . "<td style='border:1px solid;padding:5px'>"
+                    . ($detail->article?->title ?? '-')
+                    . "</td>"
+                    . "<td style='text-align:center;border:1px solid;'>{$detail->quantity}</td>"
+                    . "<td style='text-align:center;border:1px solid;'>{$detail->price}</td>"
+                    . "</tr>";
             }
-            $purchase->htmlDetails = $htmlDetails . '</tbody></table>';
+            $purchase->htmlDetails = $htmlDetails . "</tbody></table>";
 
         }
 
