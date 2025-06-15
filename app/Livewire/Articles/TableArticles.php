@@ -17,7 +17,6 @@ class TableArticles extends Component
     public function reportArticle(){
         $url = route('reports.articles');
         $this->dispatch('abrir-nueva-pestania', ['url' => $url]);
-        //test
     }
 
     public function updatingSearch(){
