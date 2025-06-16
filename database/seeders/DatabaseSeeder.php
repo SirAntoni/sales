@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
         $this->call(RoleSeeder::class);
         User::create([
             'name' => 'Eduardo Lopez',
-            'email' => 'administrador@shipersales.com',
+            'email' => 'administrador@wari.pe',
             'password' => bcrypt('12345678'),
         ])->givePermissionTo(Permission::all());
 

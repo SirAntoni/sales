@@ -1,7 +1,7 @@
 @extends('../themes/echo')
 
 @section('subhead')
-    <title>ShiperSales | Documentos | Sistema de ventas</title>
+    <title>WariFact | Documentos | Sistema de ventas</title>
 @endsection
 
 @section('subcontent')

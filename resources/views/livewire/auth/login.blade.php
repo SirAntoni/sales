@@ -9,7 +9,7 @@
                 <div
                     class="flex h-[55px] w-[55px] items-center justify-center rounded-[0.8rem] border border-primary/30">
 
-                    <img src="{{ Vite::asset('resources/images/logo.png') }}" alt="shipersales" width="34">
+                    <img src="{{ Vite::asset('resources/images/logo.png') }}" alt="WariFact" width="34">
 
                 </div>
                 <div class="mt-10">
@@ -20,7 +20,7 @@
                         <x-base.form-input
                             class="block rounded-[0.6rem] border-slate-300/80 px-4 py-3.5"
                             type="text"
-                            placeholder="holamundo@shipersales.com"
+                            placeholder="holamundo@wari.pe"
                             wire:model="email"
                         />
                         @error('email')

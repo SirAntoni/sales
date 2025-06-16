@@ -48,11 +48,11 @@
                             class="flex items-center transition-[margin] duration-300 group-[.side-menu--collapsed.side-menu--on-hover]:xl:ml-0 group-[.side-menu--collapsed]:xl:ml-2"
                             href=""
                         >
-                            <img src="{{ Vite::asset('resources/images/logo.png') }}" alt="shipersales" width="34">
+                            <img src="{{ Vite::asset('resources/images/logo.png') }}" alt="WariFact" width="34">
 
                             <div
                                 class="ml-3.5 font-medium transition-opacity group-[.side-menu--collapsed.side-menu--on-hover]:xl:opacity-100 group-[.side-menu--collapsed]:xl:opacity-0">
-                                ShiperSales
+                                WariFact
                             </div>
                         </a>
                         <a
@@ -221,7 +221,7 @@
                                 class="hidden flex-1 xl:block"
                                 light
                             >
-                                <x-base.breadcrumb.link :index="0">ShiperSales</x-base.breadcrumb.link>
+                                <x-base.breadcrumb.link :index="0">WariFact</x-base.breadcrumb.link>
                                 <x-custom.breadcrumbs/>
 
                             </x-base.breadcrumb>

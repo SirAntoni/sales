@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <!--
-Template Name: Sistema de ventas | ShiperSales
+Template Name: Sistema de ventas | WariFact
 Author: Antony Culqui
 Website: https://www.inventrashop.com
 Contact: a.culqui02@gmail.com
-License: Uso comercial solo para ShiperSales
+License: Uso comercial solo para WariFact
 -->
 <html
     class="opacity-0"
@@ -24,11 +24,11 @@ License: Uso comercial solo para ShiperSales
     >
     <meta
         name="description"
-        content="ShiperSales | Sistema de ventas "
+        content="WariFact | Sistema de ventas "
     >
     <meta
         name="keywords"
-        content="Sistema de ventas | ShiperSales"
+        content="Sistema de ventas | WariFact"
     >
     <meta
         name="author"
